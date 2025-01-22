@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "routing-test": {
+    "restaurant-management-front": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/routing-test",
+            "outputPath": "dist/restaurant-management-front",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "routing-test:build:production"
+              "buildTarget": "restaurant-management-front:build:production"
             },
             "development": {
-              "buildTarget": "routing-test:build:development"
+              "buildTarget": "restaurant-management-front:build:development"
             }
           },
           "defaultConfiguration": "development"
