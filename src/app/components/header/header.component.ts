@@ -8,7 +8,8 @@ import { Component, HostListener, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   navItems = [
-    { label: 'Dashboard', icon: 'fas fa-tachometer-alt', active: true },
+    { label: 'Home', icon: 'fas fa-tachometer-alt', active: true },
+    { label: 'Dashboard', icon: 'fas fa-tachometer-alt', active: false },
     { label: 'Clients', icon: 'far fa-address-book', active: false },
     { label: 'Menus', icon: 'far fa-clone', active: false },
     { label: 'Orders', icon: 'far fa-calendar-alt', active: false },
