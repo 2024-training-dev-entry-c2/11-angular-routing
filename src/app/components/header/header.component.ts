@@ -1,19 +1,20 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
   navItems = [
-    { label: 'Home', icon: 'fas fa-tachometer-alt', active: true },
-    { label: 'Dashboard', icon: 'fas fa-tachometer-alt', active: false },
-    { label: 'Clients', icon: 'far fa-address-book', active: false },
-    { label: 'Menus', icon: 'far fa-clone', active: false },
-    { label: 'Orders', icon: 'far fa-calendar-alt', active: false },
-    { label: "/ᐠ - ˕ -マ", icon: 'far fa-calendar-alt', active: false },
+    { label: 'Home', icon: 'fas fa-tachometer-alt', active: true,link: '/' },
+    { label: 'Dashboard', icon: 'fas fa-tachometer-alt', active: false,link: '/dashboard' },
+    { label: 'Clients', icon: 'far fa-address-book', active: false,link: '' },
+    { label: 'Menus', icon: 'far fa-clone', active: false,link: '' },
+    { label: 'Orders', icon: 'far fa-calendar-alt', active: false,link: '' },
+    { label: "/ᐠ - ˕ -マ", icon: 'far fa-calendar-alt', active: false,link: '' },
 
   ];
 
