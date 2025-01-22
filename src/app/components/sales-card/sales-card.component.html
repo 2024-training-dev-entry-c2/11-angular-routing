@@ -15,7 +15,7 @@
         </div>
     </div>
     <!-- Canvas for Chart.js -->
-    <canvas id="ordersPerMonthChart"></canvas>
+    <canvas [id]="chartId"></canvas>
     <!-- Custom Axis -->
     <div class="axis">
         @for (item of ticks; track $index) {

@@ -1,17 +1,18 @@
-import { Component, Input, input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, AfterViewInit } from '@angular/core';
 import { Chart } from 'chart.js/auto';
+
 @Component({
   selector: 'app-sales-card',
-  imports: [],
   templateUrl: './sales-card.component.html',
-  styleUrl: './sales-card.component.scss'
+  styleUrls: ['./sales-card.component.scss'],
 })
-export class SalesCardComponent {
+export class SalesCardComponent implements AfterViewInit, OnDestroy {
+  @Input() title: string = '';
+  @Input() subTitle: string = '';
+  @Input() description: string = '';
+  @Input() chartId: string = `chart-${Math.random().toString(36).substr(2, 9)}`; // ID único dinámico
 
-  @Input() title: string='';
-  @Input() subTitle: string='';
-  @Input() description: string='';
-
+  private chartInstance: Chart | null = null;
 
   ticks = [
     { day: 'MON', thisWeek: 24, prevWeek: 20 },
@@ -23,8 +24,15 @@ export class SalesCardComponent {
     { day: 'SUN', thisWeek: 28, prevWeek: 30 },
   ];
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.renderOrdersPerMonthChart();
+  }
+
+  ngOnDestroy(): void {
+    // Destruir el gráfico al desmontar el componente
+    if (this.chartInstance) {
+      this.chartInstance.destroy();
+    }
   }
 
   renderOrdersPerMonthChart() {
@@ -35,11 +43,15 @@ export class SalesCardComponent {
       },
       afterDatasetsDraw(chart: Chart) {
         chart.ctx.globalCompositeOperation = 'source-over';
-      }
+      },
     };
+    const canvas = document.getElementById(this.chartId) as HTMLCanvasElement;
+    if (!canvas) {
+      console.error(`Canvas with ID ${this.chartId} not found`);
+      return;
+    }
 
-    const canvas = document.getElementById('ordersPerMonthChart') as HTMLCanvasElement;
-    const ctx = canvas.getContext("2d")!;
+    const ctx = canvas.getContext('2d')!;
     const gradientThisWeek = ctx.createLinearGradient(0, 0, 0, 150);
     gradientThisWeek.addColorStop(0, '#5555FF');
     gradientThisWeek.addColorStop(1, '#9787FF');
@@ -47,40 +59,43 @@ export class SalesCardComponent {
     const gradientPrevWeek = ctx.createLinearGradient(0, 0, 0, 150);
     gradientPrevWeek.addColorStop(0, '#FF55B8');
     gradientPrevWeek.addColorStop(1, '#FF8787');
-    new Chart(ctx, {
-      type: 'line', // Cambiado de 'bar' a 'line'
+
+    this.chartInstance = new Chart(ctx, {
+      type: 'line',
       data: {
-        labels: ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"],
+        labels: ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
         datasets: [
           {
             label: 'This week',
-            data: [24, 18, 16, 18, 24, 36, 28],
-            backgroundColor: gradientThisWeek, // Color de fondo (para el área debajo de la línea)
-            borderColor: '#fff', // Color de la línea
-            fill: true, // Llenar el área debajo de la línea
-            tension: 0.4, // Opcional: suaviza la línea
-
+            data: this.ticks.map((t) => t.thisWeek),
+            backgroundColor: gradientThisWeek,
+            borderColor: '#fff',
+            fill: true,
+            tension: 0.4,
           },
           {
             label: 'Previous week',
-            data: [25, 20, 25, 25, 24, 22, 28],
+            data: this.ticks.map((t) => t.prevWeek),
             backgroundColor: gradientPrevWeek,
-            borderColor: '#fff', // Color de la línea
-            fill: true, // Llenar el área debajo de la línea
-            tension: 0.4, // Opcional: suaviza la línea
-        }
+            borderColor: '#fff',
+            fill: true,
+            tension: 0.4,
+          },
         ],
       },
       options: {
-        elements: { point: { radius: 0, hitRadius: 1, hoverRadius: 1 } },
-        plugins: { legend: { display: false } },
-        scales: { x: { display: false }, y: { display: false } },
+        elements: {
+          point: { radius: 0, hitRadius: 1, hoverRadius: 1 },
+        },
+        plugins: {
+          legend: { display: false },
+        },
+        scales: {
+          x: { display: false },
+          y: { display: false },
+        },
       },
-      plugins: [multiply]
-
+      plugins: [multiply],
     });
-
-
-  
-}
+  }
 }
