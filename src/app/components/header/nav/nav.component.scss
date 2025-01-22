@@ -2,8 +2,6 @@
 
 .header {
   &__nav {
-    background-color: variables.$bg-color-1;
-    padding: variables.$padding;
     display: flex;
     flex-direction: column;
     gap: 20px;

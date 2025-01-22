@@ -1,0 +1,73 @@
+@use "../../../ui/styles/variables.scss" as variables;
+
+.main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+  }
+
+  &__logo {
+    width: 8dvw;
+    height: auto;
+    filter: drop-shadow(0 0 20px variables.$primary-color);
+  }
+
+  &__title {
+    font-size: 4rem;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    text-shadow: 0 0 7px #fff;
+  }
+
+  &__description {
+    font-size: 1.7rem;
+    font-weight: 400;
+    text-align: center;
+    letter-spacing: 0.2rem;
+    width: 35%;
+    color: variables.$secondary-color;
+  }
+
+  &__start {
+    background-color: variables.$primary-color;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    text-shadow: 0 0 3px #fff;
+    box-shadow: 0 2px 10px variables.$primary-color;
+
+    &:hover {
+      background-color: #fff;
+      color: variables.$primary-color;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    &:active {
+      transform: scale(0.95);
+      transition: 0.15s;
+    }
+  }
+}

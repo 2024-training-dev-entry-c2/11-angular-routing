@@ -6,6 +6,6 @@ export const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    children: [{ path: 'home', component: HomeComponent }],
+    children: [{ path: '', component: HomeComponent }],
   },
 ];

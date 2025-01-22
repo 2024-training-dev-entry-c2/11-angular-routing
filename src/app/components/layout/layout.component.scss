@@ -1,4 +1,18 @@
-.header {
-  height: 100dvh;
-  width: 6dvw;
+@use "../../ui/styles/variables.scss" as variables;
+.layout {
+  display: flex;
+  &__header {
+    height: 100dvh;
+    width: 6dvw;
+    background-color: variables.$bg-color-1;
+    padding: variables.$padding;
+  }
+
+  &__main {
+    width: 94dvw;
+    height: 100dvh;
+    padding: variables.$padding;
+    background-color: variables.$bg-color-2;
+    color: white;
+  }
 }
