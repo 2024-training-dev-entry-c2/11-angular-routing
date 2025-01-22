@@ -3,9 +3,14 @@
   <menu class="header__nav-menu" role="menu" aria-label="Main menu navigation">
     @for (route of navRoutes; track route) {
     <li class="header__nav-menu-item" role="menuitem">
-      <a [routerLink]="route.path" mat-icon-button>
-        <mat-icon>{{ route.icon }}</mat-icon>
-        {{ route.name }}
+      <a
+        class="header__nav-menu-link"
+        [routerLink]="route.path"
+        mat-icon-button
+        [title]="route.name"
+      >
+        <mat-icon class="header__nav-menu-icon">{{ route.icon }}</mat-icon>
+        <span class="header__nav-menu-text">{{ route.name }}</span>
       </a>
     </li>
     }
