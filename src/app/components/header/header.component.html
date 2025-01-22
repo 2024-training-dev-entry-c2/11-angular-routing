@@ -1,6 +1,23 @@
 
 <header class="navbar">
-<div class="navbar-container">
-    <div></div>
-</div>
+    <div class="navbar__container">
+        <div class="navbar__logo">
+            <a href="#">
+                <img width="60px" src="assets/icons/logo.svg" alt="logo">
+            </a>
+        </div>
+    <nav class=" navbar__menu">
+        <div class=" navbar__collapse" id="navbarSupportedContent">
+          <ul class="navbar__list">
+            <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+            @for (item of navItems; track $index) {
+                <li class="navbar__item" [class.active]="item.active" (click)="onNavItemClick(item)">
+                  <a class="navbar__link" href="javascript:void(0);">
+                    <span>{{item.label}}</span>
+                  </a>
+            }
+          </ul>
+        </div>
+      </nav>
+    </div>
 </header>
