@@ -58,12 +58,11 @@
       cursor: pointer;
       transition: background-color 0.2s;
 
-      &:hover {
-        background-color: darken(variables.$primary-color, 10%);
+      &:enabled:hover {
+        background-color: rgba(variables.$primary-color, 10%);
       }
 
       &:disabled {
-        background-color: variables.$secondary-color;
         cursor: not-allowed;
       }
     }
