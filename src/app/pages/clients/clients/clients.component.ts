@@ -9,9 +9,9 @@ import { TabsComponent } from '../../../components/tabs/tabs.component';
 })
 export class ClientsComponent {
   tabsList = [
-    { title: 'Add client', tabContent: 'tabContent0' },
-    { title: 'List', tabContent: 'tabContent0' },
-    { title: 'Delete', tabContent: 'tabContent0' },
-    { title: 'Update', tabContent: 'tabContent0' },
+    { title: 'Add client', tabContent: '"assets/icons/form-svgrepo-com.svg#icon-twitter"' },
+    { title: 'List', tabContent: '"assets/icons/form-svgrepo-com.svg#icon-list"' },
+    { title: 'Delete', tabContent: '"assets/icons/form-svgrepo-com.svg#icon-twitter"' },
+    { title: 'Update', tabContent: '"assets/icons/form-svgrepo-com.svg#icon-update"' },
   ];
 }

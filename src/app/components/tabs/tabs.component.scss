@@ -38,11 +38,14 @@
   flex-wrap: wrap;
 }
 
+
 .tabs__buttons li {
   box-sizing: border-box;
   flex: 1;
   width: #{100% / vars.$tab-count};
   padding: 0 10px;
+  display: flex;    
+justify-content: center;
   text-align: center;
 }
 .tabs__buttons li span {
@@ -62,6 +65,10 @@
       fill: lighten(vars.$color-menu, 15%);
     }
   }
+}
+.tabs__buttons li svg {
+justify-content: center;
+align-items: center;
 }
 
 .tabs__buttons li.active {
