@@ -48,3 +48,19 @@
     margin-bottom: 3rem;
   }
 }
+
+.gallery {
+  padding: vars.$size-medium vars.$size-medium ;
+
+  margin: 0 auto;
+
+
+  & h2 {
+    font-family: "Pioneer Boulevard";
+    font-style: italic;
+    font-size: 4rem;
+    color: vars.$color-menu;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+}
