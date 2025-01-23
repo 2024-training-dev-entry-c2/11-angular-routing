@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { GetAllCustomersService } from '../../../services/customer/get-all-customers.service';
 import { ICustomer } from '../../../interfaces/customerResponse';
 import { CustomerCardComponent } from './customer-card/customer-card.component';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-customer',
-  imports: [CustomerCardComponent, RouterLink, RouterOutlet],
+  imports: [CustomerCardComponent, RouterLink],
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.scss'],
 })

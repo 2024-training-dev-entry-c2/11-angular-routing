@@ -8,10 +8,11 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddCustomerService } from '../../../../services/customer/add-customer.service';
 import { EditCustomerService } from '../../../../services/customer/edit-customer.service';
+import { DynamicInputComponent } from '../../../custom/custom-input/custom-input.component';
 
 @Component({
   selector: 'app-customer-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, DynamicInputComponent],
   templateUrl: './customer-form.component.html',
   styleUrl: './customer-form.component.scss',
 })
@@ -22,6 +23,33 @@ export class CustomerFormComponent implements OnInit {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   protected customerId: number | null = null;
+
+  inputConfigs = [
+    {
+      name: 'firstName',
+      label: 'First Name',
+      type: 'text',
+      errorMessage: 'First Name is required.',
+    },
+    {
+      name: 'lastName',
+      label: 'Last Name',
+      type: 'text',
+      errorMessage: 'Last Name is required.',
+    },
+    {
+      name: 'email',
+      label: 'Email',
+      type: 'email',
+      errorMessage: 'Valid Email is required.',
+    },
+    {
+      name: 'phone',
+      label: 'Phone',
+      type: 'text',
+      errorMessage: 'Phone is required.',
+    },
+  ];
 
   constructor(private fb: FormBuilder) {
     this.customerForm = this.fb.group({

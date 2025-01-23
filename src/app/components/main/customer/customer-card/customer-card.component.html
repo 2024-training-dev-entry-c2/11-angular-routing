@@ -3,14 +3,10 @@
   <p>Email: {{ customer.email }}</p>
   <p>Phone: {{ customer.phone }}</p>
   <p>Frequent Customer: {{ customer.isFrequent ? "Yes" : "No" }}</p>
-  <div class="card__actions">
-    <button class="card__btns card__btns---edit" (click)="editCustomer()">
-      Edit
-    </button>
-    <button class="card__btns card__btns---delete" (click)="openModal()">
-      Delete
-    </button>
-  </div>
+  <app-btns-actions
+    (editAction)="editCustomer()"
+    (deleteAction)="openModal()"
+  ></app-btns-actions>
 
   @if (isModalOpen) {
   <app-confirm-model

@@ -7,6 +7,7 @@ import { DishComponent } from '../main/dish/dish.component';
 import { MenuComponent } from '../main/menu/menu.component';
 import { OrderComponent } from '../main/order/order.component';
 import { ReservationComponent } from '../main/reservation/reservation.component';
+import { DishFormComponent } from '../main/dish/dish-form/dish-form.component';
 
 export const routes: Routes = [
   {
@@ -18,6 +19,8 @@ export const routes: Routes = [
       { path: 'customer/add', component: CustomerFormComponent },
       { path: 'customer/edit/:id', component: CustomerFormComponent },
       { path: 'dish', component: DishComponent },
+      { path: 'dish/add', component: DishFormComponent },
+      { path: 'dish/edit/:id', component: DishFormComponent },
       { path: 'menu', component: MenuComponent },
       { path: 'order', component: OrderComponent },
       { path: 'reservation', component: ReservationComponent },

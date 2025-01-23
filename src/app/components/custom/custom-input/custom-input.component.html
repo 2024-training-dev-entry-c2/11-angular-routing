@@ -1,0 +1,16 @@
+<div class="form-group" [formGroup]="formGroup">
+  <label [for]="config.name">{{ config.label }}</label>
+  <input
+    [id]="config.name"
+    [type]="config.type || 'text'"
+    [formControlName]="config.name"
+    [placeholder]="config.placeholder || ''"
+  />
+
+  @if (formGroup.get(config.name)?.invalid &&
+  formGroup.get(config.name)?.touched) {
+  <div>
+    {{ config.errorMessage || "Invalid input" }}
+  </div>
+  }
+</div>

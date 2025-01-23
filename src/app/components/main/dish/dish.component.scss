@@ -1,0 +1,31 @@
+@use "../../../ui/styles/variables.scss" as variables;
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__title {
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 0 0 10px #fff;
+    text-transform: uppercase;
+  }
+  &__add {
+    background-color: variables.$primary-color;
+    border: none;
+    font-size: 2rem;
+    color: variables.$secondary-color;
+    font-weight: 700;
+    text-decoration: none;
+    width: fit-content;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    &:hover {
+      background-color: variables.$bg-color-active;
+    }
+  }
+}

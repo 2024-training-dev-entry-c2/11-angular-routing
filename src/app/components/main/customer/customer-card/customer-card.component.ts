@@ -3,10 +3,11 @@ import { ICustomer } from '../../../../interfaces/customerResponse';
 import { DeleteCustomerService } from '../../../../services/customer/delete-customer.service';
 import { ConfirmModelComponent } from '../../confirm-model/confirm-model.component';
 import { Router } from '@angular/router';
+import { BtnsActionsComponent } from '../../../btns-actions/btns-actions.component';
 
 @Component({
   selector: 'app-customer-card',
-  imports: [ConfirmModelComponent],
+  imports: [ConfirmModelComponent, BtnsActionsComponent],
   templateUrl: './customer-card.component.html',
   styleUrls: ['./customer-card.component.scss'],
 })
