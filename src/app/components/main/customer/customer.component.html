@@ -1,6 +1,6 @@
 <section class="main" aria-label="Customer Management">
   <h1 class="main__title">Customer Management</h1>
-  <a class="main__link" [routerLink]="'/customer/add'">+</a>
+  <app-add></app-add>
   <div class="main__container">
     @for (customer of customers; track $index) {
     <app-customer-card [customer]="customer"></app-customer-card>

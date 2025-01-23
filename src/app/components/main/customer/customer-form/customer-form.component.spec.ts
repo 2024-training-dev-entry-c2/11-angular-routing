@@ -1,23 +1,78 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AddCustomerService } from '../../../../services/customer/add-customer.service';
+import { EditCustomerService } from '../../../../services/customer/edit-customer.service';
+import { CustomFormComponent } from '../../../custom/custom-form/custom-form.component';
 
-import { CustomerFormComponent } from './customer-form.component';
+@Component({
+  selector: 'app-customer-form',
+  imports: [CustomFormComponent],
+  templateUrl: './customer-form.component.html',
+  styleUrl: './customer-form.component.scss',
+})
+export class CustomerFormComponent implements OnInit {
+  customerId: number | null = null;
+  formData: any = null;
 
-describe('CustomerFormComponent', () => {
-  let component: CustomerFormComponent;
-  let fixture: ComponentFixture<CustomerFormComponent>;
+  formConfig = [
+    {
+      name: 'firstName',
+      label: 'First Name',
+      type: 'text',
+      errorMessage: 'First Name is required.',
+    },
+    {
+      name: 'lastName',
+      label: 'Last Name',
+      type: 'text',
+      errorMessage: 'Last Name is required.',
+    },
+    {
+      name: 'email',
+      label: 'Email',
+      type: 'email',
+      errorMessage: 'Valid Email is required.',
+    },
+    {
+      name: 'phone',
+      label: 'Phone',
+      type: 'text',
+      errorMessage: 'Phone is required.',
+    },
+  ];
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [CustomerFormComponent]
-    })
-    .compileComponents();
+  private addCustomerService = inject(AddCustomerService);
+  private editCustomerService = inject(EditCustomerService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
 
-    fixture = TestBed.createComponent(CustomerFormComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id');
+      if (id) {
+        this.customerId = +id;
+        this.loadCustomerData(this.customerId);
+      }
+    });
+  }
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  loadCustomerData(id: number): void {
+    this.editCustomerService.getCustomer(id).subscribe((customer) => {
+      this.formData = customer;
+    });
+  }
+
+  submitAction(data: any): void {
+    if (this.customerId) {
+      this.editCustomerService
+        .updateCustomer(this.customerId, data)
+        .subscribe(() => {
+          this.router.navigate(['/customer']);
+        });
+    } else {
+      this.addCustomerService.execute(data).subscribe(() => {
+        this.router.navigate(['/customer']);
+      });
+    }
+  }
+}

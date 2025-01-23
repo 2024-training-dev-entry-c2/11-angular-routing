@@ -3,10 +3,11 @@ import { RouterLink } from '@angular/router';
 import { DishCardComponent } from './dish-card/dish-card.component';
 import { GetAllDishesService } from '../../../services/dish/get-all-dishes.service';
 import { IDish } from '../../../interfaces/dishResponse';
+import { AddComponent } from '../../custom/add/add.component';
 
 @Component({
   selector: 'app-dish',
-  imports: [RouterLink, DishCardComponent],
+  imports: [RouterLink, DishCardComponent, AddComponent],
   templateUrl: './dish.component.html',
   styleUrl: './dish.component.scss',
 })

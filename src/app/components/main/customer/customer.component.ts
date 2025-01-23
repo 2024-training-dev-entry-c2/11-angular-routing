@@ -3,10 +3,11 @@ import { GetAllCustomersService } from '../../../services/customer/get-all-custo
 import { ICustomer } from '../../../interfaces/customerResponse';
 import { CustomerCardComponent } from './customer-card/customer-card.component';
 import { RouterLink } from '@angular/router';
+import { AddComponent } from '../../custom/add/add.component';
 
 @Component({
   selector: 'app-customer',
-  imports: [CustomerCardComponent, RouterLink],
+  imports: [CustomerCardComponent, RouterLink, AddComponent],
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.scss'],
 })

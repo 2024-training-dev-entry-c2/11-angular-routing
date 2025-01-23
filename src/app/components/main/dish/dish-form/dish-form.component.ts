@@ -1,30 +1,20 @@
 import { Component, inject, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddDishService } from '../../../../services/dish/add-dish.service';
 import { EditDishService } from '../../../../services/dish/edit-dish.service';
-import { DynamicInputComponent } from '../../../custom/custom-input/custom-input.component';
+import { CustomFormComponent } from '../../../custom/custom-form/custom-form.component';
 
 @Component({
   selector: 'app-dish-form',
-  imports: [ReactiveFormsModule, DynamicInputComponent],
+  imports: [CustomFormComponent],
   templateUrl: './dish-form.component.html',
   styleUrl: './dish-form.component.scss',
 })
 export class DishFormComponent implements OnInit {
-  dishForm: FormGroup;
-  private addDishService = inject(AddDishService);
-  private editDishService = inject(EditDishService);
-  private router = inject(Router);
-  private route = inject(ActivatedRoute);
-  protected dishId: number | null = null;
+  dishId: number | null = null;
+  formData: any = null;
 
-  inputConfigs = [
+  formConfig = [
     {
       name: 'name',
       label: 'Name',
@@ -45,15 +35,10 @@ export class DishFormComponent implements OnInit {
     },
   ];
 
-  constructor(private fb: FormBuilder) {
-    this.dishForm = this.fb.group({
-      name: ['', Validators.required],
-      price: ['', Validators.required],
-      isPopular: [false],
-      isAvailable: [true],
-      description: ['', Validators.required],
-    });
-  }
+  private addDishService = inject(AddDishService);
+  private editDishService = inject(EditDishService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -67,22 +52,19 @@ export class DishFormComponent implements OnInit {
 
   loadDishData(id: number): void {
     this.editDishService.getDish(id).subscribe((dish) => {
-      this.dishForm.patchValue(dish);
+      this.formData = dish;
     });
   }
 
-  submit(): void {
-    if (this.dishForm.valid) {
-      const dishData = this.dishForm.value;
-      if (this.dishId) {
-        this.editDishService.updateDish(this.dishId, dishData).subscribe(() => {
-          this.router.navigate(['/dish']);
-        });
-      } else {
-        this.addDishService.execute(dishData).subscribe(() => {
-          this.router.navigate(['/dish']);
-        });
-      }
+  submitAction(data: any): void {
+    if (this.dishId) {
+      this.editDishService.updateDish(this.dishId, data).subscribe(() => {
+        this.router.navigate(['/dish']);
+      });
+    } else {
+      this.addDishService.execute(data).subscribe(() => {
+        this.router.navigate(['/dish']);
+      });
     }
   }
 }

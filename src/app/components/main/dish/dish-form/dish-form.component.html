@@ -1,17 +1,8 @@
-<section class="main" aria-label="Customer Management">
-  <h1 class="main__title">
-    {{ dishId ? "Edit Dish" : "Add Dish" }}
-  </h1>
-  <form [formGroup]="dishForm" (ngSubmit)="submit()">
-    @for (config of inputConfigs; track $index) {
-    <app-dynamic-input
-      [formGroup]="dishForm"
-      [config]="config"
-    ></app-dynamic-input
-    >}
-
-    <button type="submit" [disabled]="dishForm.invalid">
-      {{ dishId ? "Update Dish" : "Add Dish" }}
-    </button>
-  </form>
+<section class="main" aria-label="Dish Management">
+  <h1 class="main__title">{{ dishId ? "Edit Dish" : "Add Dish" }}</h1>
+  <app-custom-form
+    [formConfig]="formConfig"
+    [formData]="formData"
+    [submitAction]="submitAction.bind(this)"
+  ></app-custom-form>
 </section>

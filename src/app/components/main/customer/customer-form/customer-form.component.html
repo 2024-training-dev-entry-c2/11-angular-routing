@@ -2,15 +2,9 @@
   <h1 class="main__title">
     {{ customerId ? "Edit Customer" : "Add Customer" }}
   </h1>
-  <form [formGroup]="customerForm" (ngSubmit)="submit()">
-    @for (config of inputConfigs; track $index) {
-    <app-dynamic-input
-      [formGroup]="customerForm"
-      [config]="config"
-    ></app-dynamic-input
-    >}
-    <button type="submit" [disabled]="customerForm.invalid">
-      {{ customerId ? "Update Customer" : "Add Customer" }}
-    </button>
-  </form>
+  <app-custom-form
+    [formConfig]="formConfig"
+    [formData]="formData"
+    [submitAction]="submitAction.bind(this)"
+  ></app-custom-form>
 </section>

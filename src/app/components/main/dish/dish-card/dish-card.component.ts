@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ConfirmModelComponent } from '../../confirm-model/confirm-model.component';
 import { Router } from '@angular/router';
 import { IDish } from '../../../../interfaces/dishResponse';
-import { BtnsActionsComponent } from '../../../btns-actions/btns-actions.component';
+import { BtnsActionsComponent } from '../../../custom/btns-actions/btns-actions.component';
 import { DeleteDishService } from '../../../../services/dish/delete-dish.service';
 
 @Component({

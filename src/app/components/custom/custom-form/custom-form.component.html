@@ -1,0 +1,13 @@
+<section class="main" aria-label="Form">
+  <form [formGroup]="formGroup" (ngSubmit)="submit()">
+    @for (config of formConfig; track $index) {
+    <div>
+      <app-custom-input
+        [formGroup]="formGroup"
+        [config]="config"
+      ></app-custom-input>
+    </div>
+    }
+    <button type="submit" [disabled]="formGroup.invalid">Submit</button>
+  </form>
+</section>

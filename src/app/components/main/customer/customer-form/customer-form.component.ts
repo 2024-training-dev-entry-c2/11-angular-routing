@@ -1,30 +1,20 @@
 import { Component, inject, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddCustomerService } from '../../../../services/customer/add-customer.service';
 import { EditCustomerService } from '../../../../services/customer/edit-customer.service';
-import { DynamicInputComponent } from '../../../custom/custom-input/custom-input.component';
+import { CustomFormComponent } from '../../../custom/custom-form/custom-form.component';
 
 @Component({
-  selector: 'app-customer-form',
-  imports: [ReactiveFormsModule, DynamicInputComponent],
+  selector: 'app-custom-form',
+  imports: [CustomFormComponent],
   templateUrl: './customer-form.component.html',
   styleUrl: './customer-form.component.scss',
 })
 export class CustomerFormComponent implements OnInit {
-  customerForm: FormGroup;
-  private addCustomerService = inject(AddCustomerService);
-  private editCustomerService = inject(EditCustomerService);
-  private router = inject(Router);
-  private route = inject(ActivatedRoute);
-  protected customerId: number | null = null;
+  customerId: number | null = null;
+  formData: any = null;
 
-  inputConfigs = [
+  formConfig = [
     {
       name: 'firstName',
       label: 'First Name',
@@ -51,14 +41,10 @@ export class CustomerFormComponent implements OnInit {
     },
   ];
 
-  constructor(private fb: FormBuilder) {
-    this.customerForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
-    });
-  }
+  private addCustomerService = inject(AddCustomerService);
+  private editCustomerService = inject(EditCustomerService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -72,24 +58,21 @@ export class CustomerFormComponent implements OnInit {
 
   loadCustomerData(id: number): void {
     this.editCustomerService.getCustomer(id).subscribe((customer) => {
-      this.customerForm.patchValue(customer);
+      this.formData = customer;
     });
   }
 
-  submit(): void {
-    if (this.customerForm.valid) {
-      const customerData = this.customerForm.value;
-      if (this.customerId) {
-        this.editCustomerService
-          .updateCustomer(this.customerId, customerData)
-          .subscribe(() => {
-            this.router.navigate(['/customer']);
-          });
-      } else {
-        this.addCustomerService.execute(customerData).subscribe(() => {
+  submitAction(data: any): void {
+    if (this.customerId) {
+      this.editCustomerService
+        .updateCustomer(this.customerId, data)
+        .subscribe(() => {
           this.router.navigate(['/customer']);
         });
-      }
+    } else {
+      this.addCustomerService.execute(data).subscribe(() => {
+        this.router.navigate(['/customer']);
+      });
     }
   }
 }
