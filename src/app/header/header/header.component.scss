@@ -1,0 +1,26 @@
+.header{
+    background-color: rgb(83, 20, 20);
+    display: flex;
+    color: white;
+    padding: 0px 20px;
+    &__parrafo{
+        color: white;
+        width: 20px;
+        
+    }
+    &__menu{
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-grow: 3;
+    }
+    &__li{
+        cursor: pointer;
+    }
+    &__btn{
+        padding: 3px 15px;
+        margin: auto;
+        border-radius: 6px;
+    }
+}
