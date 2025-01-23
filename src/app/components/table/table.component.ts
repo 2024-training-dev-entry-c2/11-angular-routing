@@ -12,6 +12,12 @@ export class TableComponent {
   @Input() data: any[] = [];
   @Input() isLoading: boolean = false;
   @Input() isError: string = '';
+
+  images = [
+  'assets/icons/form-svgrepo-com.svg#icon-delete',
+  'assets/icons/form-svgrepo-com.svg#icon-update',
+  ];
+
   get columnKeys(): string[] {
    
     return this.data.length > 0 ? Object.keys(this.data[0]) : [];

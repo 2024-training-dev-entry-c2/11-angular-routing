@@ -21,14 +21,6 @@ export class ClientsComponent implements OnInit {
       title: 'List',
       tabContent: '"assets/icons/form-svgrepo-com.svg#icon-list"',
     },
-    {
-      title: 'Delete',
-      tabContent: '"assets/icons/form-svgrepo-com.svg#icon-twitter"',
-    },
-    {
-      title: 'Update',
-      tabContent: '"assets/icons/form-svgrepo-com.svg#icon-update"',
-    },
   ];
   public clients = inject(GetClientService);
 
@@ -42,4 +34,15 @@ export class ClientsComponent implements OnInit {
       },
     });
   }
+
+  // deleteClient(id: number): void {
+  //   this.clients.deleteClient(id).subscribe({
+  //     next: (data) => {
+  //       this.listClients = data;
+  //     },
+  //     error: (error) => {
+  //       console.log(error);
+  //     },
+  //   });
+  // }
 }

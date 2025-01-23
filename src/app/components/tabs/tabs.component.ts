@@ -13,9 +13,9 @@ export class TabsComponent {
   images = [
     'assets/icons/form-svgrepo-com.svg#icon-twitter',
     'assets/icons/form-svgrepo-com.svg#icon-list',
-    'assets/icons/form-svgrepo-com.svg#icon-delete',
-    'assets/icons/form-svgrepo-com.svg#icon-update',
   ];
+  // 'assets/icons/form-svgrepo-com.svg#icon-delete',
+  // 'assets/icons/form-svgrepo-com.svg#icon-update',
   selectTab(index: number): void {
     this.activeTab = index;
   }

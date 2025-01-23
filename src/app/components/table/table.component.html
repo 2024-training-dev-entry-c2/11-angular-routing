@@ -25,7 +25,15 @@
                 @for(key of columnKeys; track $index) {
                 <td>{{ isArray(item[key]) ? item[key].length : item[key] }}</td>
                 }
-
+                <div class="actions__items">
+                    @for(image of images; track $index) {
+                    <button class="actions__button">
+                        <svg width="30px" height="30px" src="assets/icons/form-svgrepo-com.svg" alt="logo">
+                            <use [attr.xlink:href]="images[$index]"></use>
+                        </svg>
+                    </button>
+                    }
+                </div>
             </tr>
             }
         </tbody>
