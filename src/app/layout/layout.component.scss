@@ -2,12 +2,13 @@
   width: 100%;
 
   display: grid;
+  gap: 0;
   grid:
     "header header header" auto
     "leftSide body rightSide" 1fr
     "footer footer footer" auto
     / auto 1fr auto;
-  gap: 8px;
+ 
 }
 .header {
   grid-area: header;
@@ -19,7 +20,7 @@
 }
 .body {
   grid-area: body;
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 .rightSide {
   grid-area: rightSide;
