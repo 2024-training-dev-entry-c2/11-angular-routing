@@ -3,6 +3,10 @@
 
 .section__main{
     padding-bottom: 2rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
 }
 .title__home {
     text-align: center;
@@ -20,8 +24,8 @@
   background: white;
   padding: 50px;
   padding-bottom: 80px;
-  width: 70%;
-  height: 250px;
+
+  
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   border-radius: 5px;
   min-width: #{vars.$tab-count * 60px};
@@ -86,6 +90,7 @@ align-items: center;
 .tab__content {
   padding: 20px;
   border: 1px solid #ccc;
+
 }
 
 .slider {
