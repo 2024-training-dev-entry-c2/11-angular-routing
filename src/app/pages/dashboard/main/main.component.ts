@@ -61,6 +61,7 @@ export class DashboardComponent {
             backgroundColor: 'rgb(83, 81, 199)',
             borderColor: 'rgba(153, 102, 255, 1)',
             borderWidth: 2,
+            tension: 0.3,
           },
         ],
       },
