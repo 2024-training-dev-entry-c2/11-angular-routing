@@ -1,0 +1,71 @@
+@use "../../../../ui/styles/variables.scss" as variables;
+
+.main {
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: variables.$primary-color;
+    text-align: center;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: variables.$bg-color-1;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      label {
+        font-size: 1rem;
+        color: variables.$secondary-color;
+      }
+
+      input {
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid variables.$primary-color;
+        border-radius: 5px;
+        transition: border-color 0.2s;
+
+        &:focus {
+          border-color: variables.$primary-color;
+          outline: none;
+        }
+      }
+
+      div {
+        font-size: 0.875rem;
+        color: rgb(128, 4, 4);
+      }
+    }
+
+    button {
+      padding: 10px;
+      font-size: 1rem;
+      color: #fff;
+      background-color: variables.$primary-color;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: darken(variables.$primary-color, 10%);
+      }
+
+      &:disabled {
+        background-color: variables.$secondary-color;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

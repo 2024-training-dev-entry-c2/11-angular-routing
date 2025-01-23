@@ -17,6 +17,10 @@
         padding: 10px;
         border-radius: 10px;
         transition: background-color 0.15s, color 0.15s;
+
+        &---selected {
+          background-color: variables.$bg-color-active;
+        }
         &:hover {
           background-color: variables.$bg-color-active;
           .header__nav-menu-icon {

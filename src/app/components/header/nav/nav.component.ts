@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { LogoComponent } from '../logo/logo.component';
+import { Router } from '@angular/router';
 import { NavRoute } from '../../../interfaces/NavRoute';
-import { RouterLink } from '@angular/router';
+import { LogoComponent } from '../logo/logo.component';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -11,6 +12,14 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent {
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {}
+
+  isRouteActive(routePath: string): boolean {
+    return this.router.url === routePath;
+  }
+
   navRoutes: NavRoute[] = [
     { name: 'Customer', path: '/customer', icon: 'person' },
     { name: 'Dish', path: '/dish', icon: 'restaurant' },

@@ -1,8 +1,12 @@
 <nav class="header__nav" role="navigation" aria-label="Main navigation">
   <app-logo></app-logo>
   <menu class="header__nav-menu" role="menu" aria-label="Main menu navigation">
-    @for (route of navRoutes; track route) {
-    <li class="header__nav-menu-item" role="menuitem">
+    @for (route of navRoutes; track route.path) {
+    <li
+      class="header__nav-menu-item"
+      role="menuitem"
+      [class.header__nav-menu-item---selected]="isRouteActive(route.path)"
+    >
       <a
         class="header__nav-menu-link"
         [routerLink]="route.path"
