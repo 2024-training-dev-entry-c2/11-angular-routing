@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tabs',
@@ -7,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrl: './tabs.component.scss'
 })
 export class TabsComponent {
+  @Input() tabs: { title: string,tabContent:string }[] = [];
+  @Input() title: string='';
+  activeTab: number = 0;
 
+  selectTab(index: number): void {
+    this.activeTab = index;
+  }
+  show(value: string):void{
+    console.log(value);
+  }
 }

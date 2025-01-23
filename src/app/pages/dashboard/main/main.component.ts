@@ -42,23 +42,7 @@ export class DashboardComponent {
           },
         ],
       },
-      options: {
-        responsive: true,
-        elements: {
-          point: { radius: 0, hitRadius: 1, hoverRadius: 1 },
-        },
-        plugins: {
-          legend: { display: false },
-        },
-       hover: {
-          mode: 'nearest',
-          intersect: true
-        },
-        scales: {
-          x: { display: false },
-          y: { display: false },
-        }
-      },
+
     });
   }
 
@@ -73,12 +57,21 @@ export class DashboardComponent {
         datasets: [
           {
             label: 'Órdenes',
-            data: [30, 40, 50, 60, 70, 80],
+            data: [30, 40, 20, 60, 30, 80],
             backgroundColor: 'rgb(83, 81, 199)',
             borderColor: 'rgba(153, 102, 255, 1)',
             borderWidth: 2,
           },
         ],
+      },
+      options: {
+        responsive: true,
+
+       hover: {
+          mode: 'nearest',
+          intersect: true
+        },
+
       },
     });
   }
