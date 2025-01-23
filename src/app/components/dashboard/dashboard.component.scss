@@ -1,0 +1,12 @@
+.dashboard{
+  width: 100dvw;
+  height: 100dvh;
+  display: grid;
+  grid-template-columns: 20% 70%;
+  grid-template-rows: 100%;
+
+  &__sidebar{
+    height: 100dvh;
+    background-color: #E3366B;
+  }
+}
