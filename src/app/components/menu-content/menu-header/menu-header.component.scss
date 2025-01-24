@@ -1,0 +1,30 @@
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+
+    &__button {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background-color: #58ff3cab;
+        padding: 2px 6px;
+        font-size: 16px;
+        border: 1px solid black;
+        border-radius: 30px;
+        cursor: pointer;
+    }
+
+    &__icon {
+        padding: 4px 4px 0px 0px;
+    }
+
+    svg {
+        width: 25px;
+        height: 25px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+}
