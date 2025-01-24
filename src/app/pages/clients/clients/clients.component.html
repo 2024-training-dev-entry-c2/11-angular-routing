@@ -1,8 +1,15 @@
-<app-tabs  title="Clients Data " [tabs]="tabsList">
-    <div  tabContent0>Contenido de la pestaña 1</div>
-    <div tabContent1>
+<app-tabs title="Clients Data " [tabs]="tabsList">
+    <div tabContent0>
 
-        <app-table title="Clients" [data]="listClients" ></app-table>
+        <form [formGroup]="loginForm" (ngSubmit)="submit()">
+            <!-- Reutilización del componente dinámico -->
+            <app-form [formFields]="fields" [formGroup]="loginForm">
+            </app-form>
+            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+        </form>
+    </div>
+    <div tabContent1>
+        <app-table title="Clients" [data]="listClients"></app-table>
     </div>
     <div tabContent2>Contenido de la pestaña 3</div>
 </app-tabs>
