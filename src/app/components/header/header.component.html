@@ -1,0 +1,14 @@
+<header class="header">
+  <img
+    src="../../../../public//tuerca.png"
+    alt="logo"
+    class="header__parrafo"
+  />
+
+  <menu class="header__menu">
+    @for (lista of listMenu; track $index) {
+    <li class="header__li">{{ lista.name }}</li>
+    }
+  </menu>
+  <button class="header__btn">Registrar usuario</button>
+</header>

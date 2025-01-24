@@ -1,0 +1,16 @@
+<section class="sidebar">
+  <h1 class="sidebar__title">Restaurant Management</h1>
+  <menu class="sidebar__menu">
+    @for(item of navItems; track $index) {
+      <li class="sidebar__li">
+        <a class="sidebar__link" [routerLink]="item.path">
+          <img
+            src="../../../../../public//svg/{{item.icon}}.svg"
+            alt="icon"
+            class="sidebar__icon"
+          />
+          <span class="sidebar__span">{{ item.name }}</span>
+        </a>
+    }
+  </menu>
+</section>

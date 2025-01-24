@@ -1,0 +1,10 @@
+.sidebar{
+    // background-color: rgb(83, 20, 20);
+    border: 2px solid rgb(83, 20, 20);
+    border-radius: 10px;
+    width: 300px;
+    height: 100%;
+    &__title{
+      margin: 0px
+    };
+}

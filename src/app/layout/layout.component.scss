@@ -1,0 +1,32 @@
+
+
+.layout{
+  width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 300px 1fr 300px;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "header header header"
+      "sidebar main aside";
+    background-color: aqua;
+    gap: 10px;
+    &__header{
+      grid-area: header;
+        background-color: antiquewhite;
+    }
+    &__sidebar{
+      grid-area: sidebar;
+      background-color: burlywood;
+    }
+
+    &__main{
+      grid-area: main;
+      background-color: cadetblue;
+    }
+
+    &__aside{
+      grid-area: aside;
+      background-color: rgb(173, 237, 100);
+    }
+}
