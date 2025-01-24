@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ICustomer } from '../../../../interfaces/customerResponse';
+import { ICustomer } from '../../../../interfaces/customerResponse.interface';
 import { DeleteCustomerService } from '../../../../services/customer/delete-customer.service';
 import { ConfirmModelComponent } from '../../confirm-model/confirm-model.component';
 import { Router } from '@angular/router';

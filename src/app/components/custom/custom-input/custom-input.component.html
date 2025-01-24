@@ -1,16 +1,33 @@
-<div class="form-group" [formGroup]="formGroup">
+<div class="container" [formGroup]="formGroup">
   <label [for]="config.name">{{ config.label }}</label>
+
+  @if (!isArray) {
   <input
+    class="container__array-input"
     [id]="config.name"
     [type]="config.type || 'text'"
     [formControlName]="config.name"
     [placeholder]="config.placeholder || ''"
   />
-
-  @if (formGroup.get(config.name)?.invalid &&
+  } @else {
+  <div formArrayName="{{ config.name }}">
+    @for (item of getFormArrayControls(control); track $index) {
+    <div>
+      <input
+        class="container__array-input"
+        [type]="config.type || 'number'"
+        [formControlName]="$index"
+        [placeholder]="config.placeholder || ''"
+      />
+      <button type="button" (click)="removeItem($index)">Remove</button>
+    </div>
+    }
+    <button type="button" (click)="addItem()">Add Dish ID</button>
+  </div>
+  } @if (formGroup.get(config.name)?.invalid &&
   formGroup.get(config.name)?.touched) {
-  <div>
-    {{ config.errorMessage || "Invalid input" }}
+  <div class="container__error">
+    <span>{{ config.errorMessage || "Invalid input" }}</span>
   </div>
   }
 </div>

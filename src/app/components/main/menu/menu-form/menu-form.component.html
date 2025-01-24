@@ -1,0 +1,8 @@
+<section class="main" aria-label="Menu Management">
+  <h1 class="main__title">{{ menuId ? "Edit Menu" : "Add Menu" }}</h1>
+  <app-custom-form
+    [formConfig]="formConfig"
+    [formData]="formData"
+    [submitAction]="submitAction.bind(this)"
+  ></app-custom-form>
+</section>

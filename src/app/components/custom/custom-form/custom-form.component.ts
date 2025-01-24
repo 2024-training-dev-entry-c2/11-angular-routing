@@ -18,7 +18,6 @@ import { CustomInputComponent } from '../custom-input/custom-input.component';
   templateUrl: './custom-form.component.html',
   styleUrls: ['./custom-form.component.scss'],
   imports: [ReactiveFormsModule, CustomInputComponent],
-  standalone: true,
 })
 export class CustomFormComponent implements OnInit, OnChanges {
   @Input() formConfig!: {
@@ -46,10 +45,16 @@ export class CustomFormComponent implements OnInit, OnChanges {
   initializeForm(): void {
     this.formGroup = this.fb.group(
       this.formConfig.reduce((acc, curr) => {
-        acc[curr.name] = [
-          curr.type === 'checkbox' ? false : '',
-          Validators.required,
-        ];
+        if (curr.type === 'array') {
+          acc[curr.name] = this.fb.array([
+            this.fb.control('', Validators.required),
+          ]);
+        } else {
+          acc[curr.name] = [
+            curr.type === 'checkbox' ? false : '',
+            Validators.required,
+          ];
+        }
         return acc;
       }, {} as any)
     );

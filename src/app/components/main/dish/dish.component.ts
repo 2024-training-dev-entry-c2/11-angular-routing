@@ -1,30 +1,40 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { DishCardComponent } from './dish-card/dish-card.component';
 import { GetAllDishesService } from '../../../services/dish/get-all-dishes.service';
-import { IDish } from '../../../interfaces/dishResponse';
+import { IDish } from '../../../interfaces/dishResponse.interface';
 import { AddComponent } from '../../custom/add/add.component';
 import { TitleComponent } from '../../custom/title/title.component';
+import { interval, Subscription, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-dish',
-  imports: [RouterLink, DishCardComponent, AddComponent, TitleComponent],
+  imports: [DishCardComponent, AddComponent, TitleComponent],
   templateUrl: './dish.component.html',
   styleUrl: './dish.component.scss',
 })
-export class DishComponent {
+export class DishComponent implements OnInit {
   dishes: IDish[] = [];
   title = 'Dishes Management';
   addLink = '/dish/add';
+  private refreshSubscription!: Subscription;
 
   constructor(private getAllDishesService: GetAllDishesService) {}
 
   ngOnInit(): void {
-    this.getAllDishesService.execute().subscribe((data) => {
-      this.dishes = data;
-    });
+    this.refreshSubscription = interval(100)
+      .pipe(switchMap(() => this.getAllDishesService.execute()))
+      .subscribe({
+        next: (data) => (this.dishes = data),
+        error: (err) => console.error('Error fetching dishes:', err),
+      });
   }
+
   trackByFn(index: number, dish: IDish): number {
     return dish.id;
+  }
+  ngOnDestroy(): void {
+    if (this.refreshSubscription) {
+      this.refreshSubscription.unsubscribe();
+    }
   }
 }

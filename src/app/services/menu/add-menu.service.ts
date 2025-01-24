@@ -1,16 +1,23 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IDish } from '../../interfaces/dishResponse.interface';
+import { IMenuRequest } from '../../interfaces/menuRequest.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AddDishService {
+export class AddMenuService {
   private http = inject(HttpClient);
 
-  execute(dish: Partial<IDish>): Observable<IDish> {
-    return this.http.post<IDish>('http://localhost:8080/dishes', dish, {
+  execute(menu: Partial<IMenuRequest>): Observable<IMenuRequest> {
+    if (menu.dishIds) {
+      menu.dishIds = menu.dishIds.map((dishId) =>
+        parseInt(dishId.toString(), 10)
+      );
+    }
+
+    console.log(menu);
+    return this.http.post<IMenuRequest>('http://localhost:8080/menu', menu, {
       headers: this.getHeaders(),
     });
   }

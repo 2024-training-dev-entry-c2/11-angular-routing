@@ -1,14 +1,15 @@
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { ICustomer } from '../../interfaces/customerResponse';
+import { Observable } from 'rxjs';
+import { ICustomer } from '../../interfaces/customerResponse.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GetAllCustomersService {
-  private http = inject(HttpClient);
+  constructor(private http: HttpClient) {}
 
-  execute() {
+  execute(): Observable<ICustomer[]> {
     return this.http.get<ICustomer[]>('http://localhost:8080/customers');
   }
 }

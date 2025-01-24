@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AddCustomerService } from '../../../../services/customer/add-customer.service';
 import { EditCustomerService } from '../../../../services/customer/edit-customer.service';
 import { CustomFormComponent } from '../../../custom/custom-form/custom-form.component';
+import { ICustomer } from '../../../../interfaces/customerResponse.interface';
 
 @Component({
   selector: 'app-custom-form',
@@ -12,7 +13,7 @@ import { CustomFormComponent } from '../../../custom/custom-form/custom-form.com
 })
 export class CustomerFormComponent implements OnInit {
   customerId: number | null = null;
-  formData: any = null;
+  formData: ICustomer | null = null;
 
   formConfig = [
     {
@@ -62,7 +63,7 @@ export class CustomerFormComponent implements OnInit {
     });
   }
 
-  submitAction(data: any): void {
+  submitAction(data: ICustomer): void {
     if (this.customerId) {
       this.editCustomerService
         .updateCustomer(this.customerId, data)

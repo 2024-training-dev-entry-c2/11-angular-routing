@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavRoute } from '../../../interfaces/NavRoute';
+import { NavRoute } from '../../../interfaces/navRoute.interface';
 import { LogoComponent } from '../logo/logo.component';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';

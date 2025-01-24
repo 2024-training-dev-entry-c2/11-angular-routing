@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IDish } from '../../interfaces/dishResponse';
+import { IDish } from '../../interfaces/dishResponse.interface';
 
 @Injectable({
   providedIn: 'root',

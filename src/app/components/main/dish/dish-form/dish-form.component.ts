@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AddDishService } from '../../../../services/dish/add-dish.service';
 import { EditDishService } from '../../../../services/dish/edit-dish.service';
 import { CustomFormComponent } from '../../../custom/custom-form/custom-form.component';
+import { IDish } from '../../../../interfaces/dishResponse.interface';
 
 @Component({
   selector: 'app-dish-form',
@@ -12,7 +13,7 @@ import { CustomFormComponent } from '../../../custom/custom-form/custom-form.com
 })
 export class DishFormComponent implements OnInit {
   dishId: number | null = null;
-  formData: any = null;
+  formData: IDish | null = null;
 
   formConfig = [
     {
@@ -68,7 +69,7 @@ export class DishFormComponent implements OnInit {
     });
   }
 
-  submitAction(data: any): void {
+  submitAction(data: IDish): void {
     if (this.dishId) {
       this.editDishService.updateDish(this.dishId, data).subscribe(() => {
         this.router.navigate(['/dish']);

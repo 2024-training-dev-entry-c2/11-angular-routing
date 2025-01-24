@@ -1,15 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IDish } from '../../interfaces/dishResponse.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GetAllDishesService {
+export class DeleteMenuService {
+  private apiUrl = 'http://localhost:8080/menu';
+
   constructor(private http: HttpClient) {}
 
-  execute(): Observable<IDish[]> {
-    return this.http.get<IDish[]>('http://localhost:8080/dishes');
+  deleteMenu(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

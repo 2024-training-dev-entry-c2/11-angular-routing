@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ConfirmModelComponent } from '../../confirm-model/confirm-model.component';
 import { Router } from '@angular/router';
-import { IDish } from '../../../../interfaces/dishResponse';
+import { IDish } from '../../../../interfaces/dishResponse.interface';
 import { BtnsActionsComponent } from '../../../custom/btns-actions/btns-actions.component';
 import { DeleteDishService } from '../../../../services/dish/delete-dish.service';
 
