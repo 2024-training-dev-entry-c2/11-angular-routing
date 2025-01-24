@@ -1,0 +1,12 @@
+<header class="header">
+    <div class="header__restaurant-name">
+        <h1><a href="#">Site Name</a></h1>
+    </div>
+    <nav class="header__navigation">
+        <ul class="header__options">
+            @for(option of options; track $index){
+                <li><a [routerLink]="option.url">{{option.name}}</a></li>
+            }
+        </ul>
+    </nav>
+</header>

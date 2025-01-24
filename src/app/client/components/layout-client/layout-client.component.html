@@ -1,0 +1,12 @@
+<section class="layout-client">
+  <aside class="layout-client__aside-left">
+    <nav class="layout-client__nav">
+      <ul class="layout-client__options">
+        @for(option of options; track $index){
+          <li><a [routerLink]="option.url">{{option.name}}</a></li>
+        }
+      </ul>
+    </nav>
+  </aside>
+  <main class="layout-client__main"><router-outlet></router-outlet></main>
+</section>
