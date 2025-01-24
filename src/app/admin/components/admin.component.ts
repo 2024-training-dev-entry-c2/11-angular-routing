@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-admin',
   imports: [RouterOutlet],
-  template: '<router-outlet />',
+  templateUrl: './admin.component.html',
+  styleUrl: './admin.component.scss',
 })
-export class AppComponent {
-  title = 'restaurant-management-front';
-}
+export class AdminComponent {}

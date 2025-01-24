@@ -1,0 +1,82 @@
+@use "../../ui/styles/variables.scss" as variables;
+@use "../../ui/styles/mixins.scss" as mixins;
+
+.main-container {
+  @include mixins.center-container();
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  background-image: linear-gradient(
+    to right top,
+    #b39090,
+    #b49898,
+    #c9b6b6,
+    #e0d6d6,
+    #f2e4e4,
+    #f6e6e6,
+    #fcf2f2,
+    #f1ebeb,
+    #e9d6d6,
+    #e6c7c7,
+    #e7bfbf
+  );
+}
+
+.login {
+  &__card {
+    @include mixins.container-column();
+    @include mixins.full-width();
+    background-color: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0px 15px 20px 2px hsla(220, 20%, 30%, 0.4);
+
+    @media (min-width: 600px) {
+      width: 480px;
+    }
+  }
+
+  &__img {
+    @include mixins.full-width();
+    margin-bottom: 30px;
+  }
+
+  &__form {
+    width: 100%;
+  }
+
+  &__form-group {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 30px;
+
+    label {
+      @include mixins.font(16px, 500);
+    }
+
+    input {
+      @include mixins.font(16px, 500);
+      @include mixins.full-width(50px);
+      margin-top: 8px;
+      padding-left: 10px;
+      border-radius: 12px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+    input::placeholder {
+      @include mixins.font(16px);
+    }
+  }
+
+  &__button {
+    @include mixins.font(16px, 700);
+    @include mixins.full-width(40px);
+    background-color: variables.$color-primary;
+    color: white;
+    border-radius: 12px;
+    transition: all 0.25s ease;
+
+    &:hover {
+      box-shadow: 0px 3px 6px 0px rgba(160, 160, 160, 1);
+    }
+  }
+}
