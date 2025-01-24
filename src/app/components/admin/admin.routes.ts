@@ -9,6 +9,8 @@ import { OrderComponent } from '../main/order/order.component';
 import { ReservationComponent } from '../main/reservation/reservation.component';
 import { DishFormComponent } from '../main/dish/dish-form/dish-form.component';
 import { MenuFormComponent } from '../main/menu/menu-form/menu-form.component';
+import { ReservationFormComponent } from '../main/reservation/reservation-form/reservation-form.component';
+import { OrderFormComponent } from '../main/order/order-form/order-form.component';
 
 export const routes: Routes = [
   {
@@ -25,8 +27,12 @@ export const routes: Routes = [
       { path: 'menu', component: MenuComponent },
       { path: 'menu/add', component: MenuFormComponent },
       { path: 'menu/edit/:id', component: MenuFormComponent },
-      { path: 'order', component: OrderComponent },
       { path: 'reservation', component: ReservationComponent },
+      { path: 'reservation/add', component: ReservationFormComponent },
+      { path: 'reservation/edit/:id', component: ReservationFormComponent },
+      { path: 'order', component: OrderComponent },
+      { path: 'order/add', component: OrderFormComponent },
+      { path: 'order/edit/:id', component: OrderFormComponent },
     ],
   },
 ];

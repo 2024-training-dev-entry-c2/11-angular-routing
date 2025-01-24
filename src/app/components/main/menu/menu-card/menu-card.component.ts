@@ -32,7 +32,6 @@ export class MenuCardComponent {
   confirmDelete(): void {
     this.deleteMenuService.deleteMenu(this.menu.id).subscribe(() => {
       this.closeModal();
-      window.location.reload();
     });
   }
 

@@ -31,7 +31,6 @@ export class DishCardComponent {
   confirmDelete(): void {
     this.deleteDishService.deleteDish(this.dish.id).subscribe(() => {
       this.closeModal();
-      window.location.reload();
     });
   }
 

@@ -33,7 +33,6 @@ export class CustomerCardComponent {
       .deleteCustomer(this.customer.id)
       .subscribe(() => {
         this.closeModal();
-        window.location.reload();
       });
   }
 

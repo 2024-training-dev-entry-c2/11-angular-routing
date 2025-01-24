@@ -1,1 +1,9 @@
-<p>reservation works!</p>
+<section class="main" aria-label="Menu Management">
+  <app-title [title]="title"></app-title>
+  <app-add [link]="addLink"></app-add>
+  <div class="main__container">
+    @for (reservation of reservations; track $index) {
+    <app-reservation-card [reservation]="reservation"></app-reservation-card>
+    }
+  </div>
+</section>

@@ -16,7 +16,6 @@ export class AddMenuService {
       );
     }
 
-    console.log(menu);
     return this.http.post<IMenuRequest>('http://localhost:8080/menu', menu, {
       headers: this.getHeaders(),
     });

@@ -1,0 +1,10 @@
+<section class="main" aria-label="Reservation Management">
+  <h1 class="main__title">
+    {{ reservationId ? "Edit Reservation" : "Add Reservation" }}
+  </h1>
+  <app-custom-form
+    [formConfig]="formConfig"
+    [formData]="formData"
+    [submitAction]="submitAction.bind(this)"
+  ></app-custom-form>
+</section>
