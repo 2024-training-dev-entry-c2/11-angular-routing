@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Client } from '../../interfaces/client.interface';
 
 @Component({
@@ -12,6 +12,7 @@ export class TableComponent {
   @Input() data: any[] = [];
   @Input() isLoading: boolean = false;
   @Input() isError: string = '';
+  @Output() deleteId = new EventEmitter<void>(); 
 
   images = [
   'assets/icons/form-svgrepo-com.svg#icon-delete',

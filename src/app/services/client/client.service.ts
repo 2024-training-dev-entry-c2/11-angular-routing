@@ -1,25 +1,31 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
-import { Client } from '../../interfaces/client.interface';
+import { Client, newClient } from '../../interfaces/client.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class GetClientService {
-
+export class ClientService {
   private http = inject(HttpClient);
   getClients(): Observable<Client[]> {
-    return this.http
-    .get<any>('http://localhost:8080/clients')
-    .pipe(
+    return this.http.get<any>('http://localhost:8080/clients').pipe(
       map((response) => this.validateResponse(response)),
       catchError((error) => {
         console.error('Error fetching clients:', error);
         return throwError(() => new Error('Failed to fetch clients'));
       })
     );
+  }
 
+  addClient(client: newClient): Observable<Client> {
+    return this.http.post<newClient>('http://localhost:8080/clients', client).pipe(
+      map((response) => this.validateObjectResponse(response)),
+      catchError((error) => {
+        console.error('Error fetching clients:', error);
+        return throwError(() => new Error('Failed to fetch clients'));
+      })
+    );
   }
 
   private validateResponse(response: any): Client[] {
@@ -39,6 +45,19 @@ export class GetClientService {
       });
     } else {
       throw new Error('Invalid response structure');
+    }
+  }
+  private validateObjectResponse(response: any): Client {
+    if (
+      typeof response.id === 'number' &&
+      typeof response.name === 'string' &&
+      typeof response.email === 'string' &&
+      typeof response.isOften === 'boolean' &&
+      Array.isArray(response.orderIds)
+    ) {
+      return response as Client;
+    } else {
+      throw new Error('Invalid client structure');
     }
   }
 }

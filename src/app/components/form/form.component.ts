@@ -13,7 +13,4 @@ export class InputComponent {
   @Input() formFields: FormField[] = [];
   @Input() formGroup!: FormGroup; 
 
-  
-
-
 }
