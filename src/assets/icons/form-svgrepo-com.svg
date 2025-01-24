@@ -22,7 +22,7 @@
             <path d="M9 17H4" stroke="#000000" stroke-width="1.5" stroke-linecap="round"></path>
         </g>
     </symbol>
-    <symbol id="icon-delete" viewBox="0 0 30.80 30.80" fill="none">
+    <symbol id="icon-delete"  fill="none">
 
         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -34,8 +34,7 @@
 
 
     </symbol>
-    <symbol id="icon-update" viewBox="0 0 30.80 30.80" fill="none">
-
+    <symbol id="icon-update"  fill="none">
             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
             <g id="SVGRepo_iconCarrier">
@@ -46,7 +45,5 @@
                         stroke-linejoin="round"></path>
                 </g>
             </g>
-
-
     </symbol>
 </svg>

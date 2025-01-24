@@ -6,10 +6,16 @@
             <app-form [formFields]="fields" [formGroup]="clientForm">
             </app-form>
             <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-        </form> 
+        </form>
     </div>
     <div tabContent1>
-        <app-table title="Clients" [data]="listClients" (deleteId)="deleteClient($event)" (updateId)="updateClient($event)"></app-table>
+        <app-table title="Clients" [data]="listClients" (deleteId)="deleteClient($event)"
+            (updateId)="getClient($event)"></app-table>
     </div>
-    <div tabContent2>Contenido de la pestaña 3</div>
+
 </app-tabs>
+
+@if(showModal){
+
+<app-cliente-modal [showModalClient]="showModal"  (closeModalclient)="closeModal()" [getData]="clientData" [getClientId]="ClientId"></app-cliente-modal>
+    }

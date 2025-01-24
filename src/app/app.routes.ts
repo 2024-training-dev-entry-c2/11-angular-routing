@@ -3,6 +3,9 @@ import { LayoutComponent } from './layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/main/main.component';
 import { HomeComponent } from './pages/home/main/home.component';
 import { ClientsComponent } from './pages/clients/clients/clients.component';
+import { OrderComponent } from './pages/orders/order/order.component';
+import { DishfoodComponent } from './pages/dish/dishfood/dishfood.component';
+import { MenusComponent } from './pages/menus/menus/menus.component';
 
 export const routes: Routes = [
     {
@@ -19,6 +22,12 @@ export const routes: Routes = [
             {
                 path: 'clients',
                 component: ClientsComponent
+            },{
+                path: 'orders',
+                component: OrderComponent
+            },{
+                path:'menu',
+                component: MenusComponent
             }
         ]
     },

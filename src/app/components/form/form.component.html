@@ -4,7 +4,9 @@
     <label for="{{field.label}}">{{field.label}}</label>
     }
     <input [id]="field.name" [type]="field.type" [formControlName]="field.name" [placeholder]="field.placeholder || ''"
-        class="form-control"
+    [disabled]="field.disable"
+    value="{{field.value}}"
+    class="form-control"
         [ngClass]="{ 'is-invalid': formGroup.get(field.name)?.invalid && formGroup.get(field.name)?.touched }" />
     <div class="invalid-feedback">
         @if(field.validators) {

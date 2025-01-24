@@ -1,0 +1,12 @@
+
+
+
+    <form [formGroup]="clientUpdatedForm" >
+       <app-modal (closeModal)="closeModal()" [data]="getData" [formGroup]="clientUpdatedForm">
+        <button update type="submit" (click)="updateClient()">Update</button>
+       </app-modal>
+       
+   </form>
+
+
+

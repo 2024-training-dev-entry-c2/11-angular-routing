@@ -8,6 +8,7 @@ import { Client, newClient } from '../../interfaces/client.interface';
 })
 export class ClientService {
   private http = inject(HttpClient);
+
   getClients(): Observable<Client[]> {
     return this.http.get<any>('http://localhost:8080/clients').pipe(
       map((response) => this.validateResponse(response)),
@@ -17,9 +18,23 @@ export class ClientService {
       })
     );
   }
-
   addClient(client: newClient): Observable<Client> {
-    return this.http.post<newClient>('http://localhost:8080/clients', client).pipe(
+    return this.http
+      .post<newClient>('http://localhost:8080/clients', client)
+      .pipe(
+        map((response) => this.validateObjectResponse(response)),
+        catchError((error) => {
+          console.error('Error fetching clients:', error);
+          return throwError(() => new Error('Failed to fetch clients'));
+        })
+      );
+  }
+  deleteClient(id: number): Observable<any> {
+    return this.http.delete<any>(`http://localhost:8080/clients/${id}`);
+  }
+  getClientId(id: number): Observable<Client> {
+    return this.http.get<any>(`http://localhost:8080/clients/${id}`)
+    .pipe(
       map((response) => this.validateObjectResponse(response)),
       catchError((error) => {
         console.error('Error fetching clients:', error);
@@ -27,8 +42,16 @@ export class ClientService {
       })
     );
   }
-  deleteClient(id: number): Observable<any> {
-    return this.http.delete<any>(`http://localhost:8080/clients/${id}`);
+
+  updateClient(client: newClient, id: number): Observable<Client> {
+    return this.http.put<any>(`http://localhost:8080/clients/${id}`, client)
+    .pipe(
+      map((response) => this.validateObjectResponse(response)),
+      catchError((error) => {
+        console.error('Error fetching clients:', error);
+        return throwError(() => new Error('Failed to fetch clients'));
+      })
+    );
   }
 
   private validateResponse(response: any): Client[] {
@@ -50,6 +73,7 @@ export class ClientService {
       throw new Error('Invalid response structure');
     }
   }
+
   private validateObjectResponse(response: any): Client {
     if (
       typeof response.id === 'number' &&

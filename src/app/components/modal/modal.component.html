@@ -1,0 +1,11 @@
+<div class="modal-overlay" (click)="close()"></div>
+<div class="modal">
+    <div class="modal__content">
+
+        <app-form [formFields]="fields" [formGroup]="formGroup"></app-form>
+        <button (click)="close()">Cerrar</button>
+        <ng-content select="[update]">
+            
+        </ng-content>
+    </div>
+</div>

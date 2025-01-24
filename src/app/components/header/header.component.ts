@@ -12,8 +12,8 @@ export class HeaderComponent implements OnInit {
     { label: 'Home', icon: 'fas fa-tachometer-alt', active: true,link: '/' },
     { label: 'Dashboard', icon: 'fas fa-tachometer-alt', active: false,link: '/dashboard' },
     { label: 'Clients', icon: 'far fa-address-book', active: false,link: '/clients' },
-    { label: 'Menus', icon: 'far fa-clone', active: false,link: '' },
-    { label: 'Orders', icon: 'far fa-calendar-alt', active: false,link: '' },
+    { label: 'Menus', icon: 'far fa-clone', active: false,link: '/menu' },
+    { label: 'Orders', icon: 'far fa-calendar-alt', active: false,link: '/orders' },
     { label: "/ᐠ - ˕ -マ", icon: 'far fa-calendar-alt', active: false,link: '' },
 
   ];
