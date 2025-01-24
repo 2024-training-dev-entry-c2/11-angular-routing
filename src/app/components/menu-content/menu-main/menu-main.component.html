@@ -1,0 +1,42 @@
+<main class="menu">
+    <table class="menu__table">
+        <thead>
+            <tr>
+                <th>Menu ID</th>
+                <th>Nombre del Menu</th>
+                <th>Detalles</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (menu of getMenuItems(); track menu.id) {
+            <tr>
+                <td>{{ menu.id }}</td>
+                <td>{{ menu.name }}</td>
+                <td>
+                    <button class="accordion" (click)="toggleAccordion($event)">Ver platos del Menu</button>
+                    <div class="panel">
+                        <ul>
+                            @for (dish of menu.dishes; track dish) {
+                            <li>{{ dish }}</li>
+                            }
+                        </ul>
+                    </div>
+                </td>
+                <td class="menu__action">
+                    @for (action of getActions(); track action.label) {
+                    <a class="menu__button menu__button--{{ action.type }}" [routerLink]="action.link">
+                        <i class="menu__icon" aria-hidden="true">
+                            <svg>
+                                <use [attr.xlink:href]="action.icon"></use>
+                            </svg>
+                        </i>
+                        {{ action.label }}
+                    </a>
+                    }
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</main>
