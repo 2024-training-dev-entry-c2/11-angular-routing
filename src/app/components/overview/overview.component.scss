@@ -2,14 +2,17 @@
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: 20px;
-    max-width: 970px;
+    margin-bottom: 20px;
 
     &__item {
         display: flex;
+        align-items: center;
+        justify-content: center;
         gap: 10px;
         padding: 10px;
         border-radius: 10px;
         box-shadow: 0px 0px 6px 0px;
+        height: 120px;
 
         h3 {
             font-size: 18px;
@@ -17,8 +20,8 @@
         }
 
         svg {
-            width: 50px;
-            height: 50px;
+            width: 70px;
+            height: 70px;
             margin-top: 5px;
             fill: none;
             stroke: currentColor;
@@ -31,9 +34,7 @@
     $distributions: (
         1: 1 / span 4,
         2: 5 / span 4,
-        3: 9 / span 4,
-        4: 1 / span 4,
-        5: 5 / span 8
+        3: 9 / span 4
     );
 
 @each $key, $value in $distributions {
@@ -41,4 +42,24 @@
         grid-column: $value;
     }
 }
+}
+
+.client {
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 6px 0px;
+    width: 600px;
+    justify-self: center;
+    height: 380px;
+
+    &__title {
+        text-align: center;
+    }
+
+    &__list {
+        list-style: none;
+        padding: 20px;
+        font-size: 18px;
+
+    }
 }
