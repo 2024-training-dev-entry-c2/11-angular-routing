@@ -4,7 +4,7 @@ import { MainSectionClientsComponent } from "../main-section-clients/main-sectio
 
 @Component({
   selector: 'app-main',
-  imports: [MainSectionStatsComponent, MainSectionClientsComponent],
+  imports: [MainSectionStatsComponent],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
 })

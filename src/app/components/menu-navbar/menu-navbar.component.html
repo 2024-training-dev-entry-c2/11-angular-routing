@@ -3,29 +3,31 @@
       <li class="menu__item">
         <a href="">
           <i class="menu__item menu__item-icon" aria-hidden="true">
-            <img src="./logo.png" />
+            <a [routerLink]="'/'">
+              <img src="./logo.png" />
+            </a>
           </i>
         </a>
       </li>
     </div>
     <div class="menu__navigation">
       <li class="menu__item">
-        <a [routerLink]="'/clients'">
+        <a [routerLink]="'/dishes'">
           <span>Platos</span>
         </a>
       </li>
       <li class="menu__item">
-        <a href="/menus.html">
+        <a [routerLink]="'/menus'">
           <span>Menus</span>
         </a>
       </li>
       <li class="menu__item">
-        <a href="/orders.html">
+        <a [routerLink]="'/orders'">
           <span>Pedidos</span>
         </a>
       </li>
       <li class="menu__item">
-        <a href="/clients.html">
+        <a [routerLink]="'/clients'">
           <span>Clients</span>
         </a>
       </li>
