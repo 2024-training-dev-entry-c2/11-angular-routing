@@ -2,6 +2,7 @@
   <h3 class="card__name">{{ dish.name }}</h3>
   <p>Price: {{ dish.price }}</p>
   <p>Description: {{ dish.description }}</p>
+  <p>Is Popular: {{ dish.isPopular }}</p>
   <app-btns-actions
     (editAction)="editDish()"
     (deleteAction)="openModal()"

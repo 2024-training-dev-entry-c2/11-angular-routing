@@ -4,15 +4,18 @@ import { DishCardComponent } from './dish-card/dish-card.component';
 import { GetAllDishesService } from '../../../services/dish/get-all-dishes.service';
 import { IDish } from '../../../interfaces/dishResponse';
 import { AddComponent } from '../../custom/add/add.component';
+import { TitleComponent } from '../../custom/title/title.component';
 
 @Component({
   selector: 'app-dish',
-  imports: [RouterLink, DishCardComponent, AddComponent],
+  imports: [RouterLink, DishCardComponent, AddComponent, TitleComponent],
   templateUrl: './dish.component.html',
   styleUrl: './dish.component.scss',
 })
 export class DishComponent {
   dishes: IDish[] = [];
+  title = 'Dishes Management';
+  addLink = '/dish/add';
 
   constructor(private getAllDishesService: GetAllDishesService) {}
 

@@ -46,7 +46,10 @@ export class CustomFormComponent implements OnInit, OnChanges {
   initializeForm(): void {
     this.formGroup = this.fb.group(
       this.formConfig.reduce((acc, curr) => {
-        acc[curr.name] = ['', Validators.required];
+        acc[curr.name] = [
+          curr.type === 'checkbox' ? false : '',
+          Validators.required,
+        ];
         return acc;
       }, {} as any)
     );

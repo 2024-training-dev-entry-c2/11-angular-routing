@@ -5,13 +5,6 @@
   flex-direction: column;
   gap: 20px;
 
-  &__title {
-    font-size: 3rem;
-    font-weight: 700;
-    text-align: center;
-    text-shadow: 0 0 10px #fff;
-    text-transform: uppercase;
-  }
   &__add {
     background-color: variables.$primary-color;
     border: none;

@@ -1,6 +1,6 @@
 <section class="main" aria-label="Dish Management">
-  <h1 class="main__title">Dish Management</h1>
-  <app-add></app-add>
+  <app-title [title]="title"></app-title>
+  <app-add [link]="addLink"></app-add>
   <div class="main__container">
     @for (dish of dishes; track $index) {
     <app-dish-card [dish]="dish"></app-dish-card>

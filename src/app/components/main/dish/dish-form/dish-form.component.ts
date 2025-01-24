@@ -33,6 +33,18 @@ export class DishFormComponent implements OnInit {
       type: 'text',
       errorMessage: 'Description is required.',
     },
+    {
+      name: 'isPopular',
+      label: 'Is Popular',
+      type: 'checkbox',
+      errorMessage: 'Is Popular is required.',
+    },
+    {
+      name: 'isAvailable',
+      label: 'Is Available',
+      type: 'checkbox',
+      errorMessage: 'Is Available is required.',
+    },
   ];
 
   private addDishService = inject(AddDishService);
