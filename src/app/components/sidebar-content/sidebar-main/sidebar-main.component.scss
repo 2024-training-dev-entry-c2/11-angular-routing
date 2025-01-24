@@ -22,4 +22,15 @@
             stroke-linejoin: round;
         }
     }
+
+    &__item:hover {
+        color: #0a5f76c2;
+    }
+
+    &__item.active {
+        background-color: #ffffff29;
+        border-radius: 15px;
+        padding: 0 5px;
+        box-shadow: 0 0 2px 0;
+    }
 }
