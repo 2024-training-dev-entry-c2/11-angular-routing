@@ -27,6 +27,9 @@ export class ClientService {
       })
     );
   }
+  deleteClient(id: number): Observable<any> {
+    return this.http.delete<any>(`http://localhost:8080/clients/${id}`);
+  }
 
   private validateResponse(response: any): Client[] {
     if (Array.isArray(response)) {

@@ -62,7 +62,7 @@ export class ClientsComponent implements OnInit {
         .addClient(this.clientForm.getRawValue() as unknown as newClient)
         .subscribe({
           next: (data) => {
-            this.getClients();//update list?
+            this.getClients(); //update list?
             console.log(data);
             this.clientForm.reset({
               name: '',
@@ -92,14 +92,27 @@ export class ClientsComponent implements OnInit {
     });
   }
 
-  // deleteClient(id: number): void {
-  //   this.clients.deleteClient(id).subscribe({
-  //     next: (data) => {
-  //       this.listClients = data;
-  //     },
-  //     error: (error) => {
-  //       console.log(error);
-  //     },
-  //   });
-  // }
+  deleteClient(id: number): void {
+    console.log(id);
+    this.clients.deleteClient(id).subscribe({
+      next: (data) => {
+        this.listClients = this.listClients.filter((client) => client.id !== id);
+        alert("Client deleted");
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
+  updateClient(id: number): void {
+    console.log(id);
+    // this.clients.updateClient(id).subscribe({
+    //   next: (data) => {
+    //     this.listClients = data;
+    //   },
+    //   error: (error) => {
+    //     console.log(error);
+    //   },
+    // });
+  }
 }

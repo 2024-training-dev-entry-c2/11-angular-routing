@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Client } from '../../interfaces/client.interface';
+import { ButtonsComponent } from '../buttons/buttons.component';
 
 @Component({
   selector: 'app-table',
-  imports: [],
+  imports: [ButtonsComponent],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
 })
@@ -12,7 +13,8 @@ export class TableComponent {
   @Input() data: any[] = [];
   @Input() isLoading: boolean = false;
   @Input() isError: string = '';
-  @Output() deleteId = new EventEmitter<void>(); 
+  @Output() deleteId = new EventEmitter<number>(); 
+  @Output() updateId = new EventEmitter<number>(); 
 
   images = [
   'assets/icons/form-svgrepo-com.svg#icon-delete',
@@ -25,5 +27,14 @@ export class TableComponent {
   }
   isArray(value: any): boolean {
     return Array.isArray(value);
+  }
+
+  deleteData(id: number): void {
+    console.log(id);
+    this.deleteId.emit(id);
+  }
+  updateData(id: number): void {
+    console.log(id);
+    this.updateId.emit(id);
   }
 }

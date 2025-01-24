@@ -9,7 +9,7 @@
         </form> 
     </div>
     <div tabContent1>
-        <app-table title="Clients" [data]="listClients"></app-table>
+        <app-table title="Clients" [data]="listClients" (deleteId)="deleteClient($event)" (updateId)="updateClient($event)"></app-table>
     </div>
     <div tabContent2>Contenido de la pestaña 3</div>
 </app-tabs>
