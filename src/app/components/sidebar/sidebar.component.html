@@ -1,9 +1,11 @@
 <aside class="sidebar">
-  <nav>
-    <ul>
-      <li><a href="/enlace1">Enlace 1</a></li>
-      <li><a href="/enlace2">Enlace 2</a></li>
-      <li><a href="/enlace3">Enlace 3</a></li>
+  <nav class="sidebar__nav" role="navigation">
+    <ul class="sidebar__list">
+      @for ( item of menuItems; track item.id) {
+      <li><a [routerLink]="[{ outlets: { main: [item.link] } }]" (click)="handleClick({ title: item.title, link: item.link, id: item.id })">{{item.title}}</a>
+
+      </li>
+      }
     </ul>
   </nav>
 </aside>

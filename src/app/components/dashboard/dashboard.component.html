@@ -1,8 +1,11 @@
 <section class="dashboard">
   <section class="dashboard__sidebar">
-    <app-sidebar/>
+    <app-sidebar />
   </section>
   <section class="dashboard__content">
-    <app-header/>
+    <app-header />
+    <section class="dashboard__main">
+      <router-outlet name="main"></router-outlet>
+    </section>
   </section>
 </section>
