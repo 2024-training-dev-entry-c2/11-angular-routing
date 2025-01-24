@@ -1,0 +1,56 @@
+/* General Layout */
+.layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: #333;
+    color: #fff;
+  
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+  
+      li {
+        a {
+          color: #fff;
+          text-decoration: none;
+          transition: color 0.3s;
+  
+          &:hover {
+            color: #ff6347; /* Tomato color on hover */
+          }
+        }
+      }
+    }
+  }
+  
+  /* Main Content */
+  .main-content {
+    flex: 1;
+    padding: 2rem;
+    background-color: #f9f9f9;
+  }
+  
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
+    font-size: 0.875rem;
+  }
+  

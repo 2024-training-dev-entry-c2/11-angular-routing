@@ -1,0 +1,25 @@
+.menu {
+    display: flex;
+    align-items: center;
+    background-color: #5d6ea6;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0 15px;
+  }
+  .menu__logo {
+    margin: 10px;
+  }
+  .menu__logo img {
+    height: 70px;
+    width: 100px;
+    background-color: #e0dfe4;
+    border-radius: 50%;
+  }
+  .menu__navigation {
+    display: flex;
+    gap: 50px;
+  }
+  .menu__navigation a {
+    color: white;
+  }
+  
