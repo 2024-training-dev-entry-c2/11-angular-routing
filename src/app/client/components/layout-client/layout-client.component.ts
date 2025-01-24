@@ -12,14 +12,14 @@ export class LayoutClientComponent {
     url: "agregar",
     name: "agregar"
   }, {
-    url: "actualizar",
-    name: "actualizar/:id"
+    url: "actualizar/:id",
+    name: "actualizar"
   }, {
-    url: "eliminar",
-    name: "eliminar/:id"
+    url: "eliminar/:id",
+    name: "eliminar"
   }, {
-    url: "consultar por id",
-    name: "buscar/:id"
+    url: "buscar/:id",
+    name: "buscar"
   }
   ]
 }
