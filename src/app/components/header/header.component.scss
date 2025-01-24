@@ -4,14 +4,19 @@
     align-items: center;
     gap: 10px;
 
+    &__text {
+        font-size: 20px;
+        font-weight: 400;
+    }
+
     &__icon {
         border-radius: 50%;
         border: 1px solid black;
         padding: 5px 5px 1px 5px;
 
         svg {
-            width: 28px;
-            height: 24px;
+            width: 24px;
+            height: 20px;
             fill: none;
             stroke: currentColor;
             stroke-width: 2;
