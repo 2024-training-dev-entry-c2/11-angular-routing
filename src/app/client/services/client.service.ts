@@ -16,6 +16,10 @@ export class ClientService{
         return this.http.get<IClient[]>(this.url);
     }
 
+    getById(id: number): Observable<IClient> {
+      return this.http.get<IClient>(`${this.url}/${id}`);
+    }
+
     save(Client: Partial<IClient> ): Observable<IClient>{
       return this.http.post<IClient>(this.url,Client);
     }
