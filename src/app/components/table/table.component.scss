@@ -9,6 +9,9 @@
   max-width: 900px;
   transition: transform 0.3s, box-shadow 0.3s;
   margin: 0 auto;
+  overflow-y: scroll; 
+  overflow-x: hidden;
+  height: 550px;
 
   & h2 {
     text-align: center;
