@@ -12,6 +12,11 @@
         border: 1px solid rgb(139, 139, 139);
         border-radius: 5px;
         cursor: pointer;
+        transition: 0.5s transform;
+
+        &:hover {
+            transform: scale(1.05);
+        }
     }
 
     &__icon {

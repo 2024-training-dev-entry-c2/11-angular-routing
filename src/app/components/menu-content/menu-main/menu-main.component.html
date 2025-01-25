@@ -15,7 +15,7 @@
                 <td>
                     <button class="accordion" (click)="toggleAccordion($event)">Ver platos del Menu</button>
                     <div class="panel">
-                        <ul>
+                        <ul class="panel__list">
                             @for (dish of menu.dishes; track dish.idDish) {
                             <li>{{ dish.dishName }}</li>
                             }
