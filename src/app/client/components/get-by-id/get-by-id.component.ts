@@ -22,21 +22,16 @@ export class GetByIdComponent {
   });
 
   public loadClientData(id: number): void {
-    this.clientService.getById(id).subscribe({
-      next: (client) => {
+    this.clientService.processClientData(
+      id,
+      (client) => {
         this.client = client;
-        //this.getClient(client);
       },
-      error: (err) => {
-        console.error('Error al obtener cliente', err);
+      (error) => {
+        console.error('Error al cargar cliente por ID:', error);
       }
-    });
+    );
   }
-
-  // public getClient(client: IClient): IClient{
-  //   this.client = client;
-  //   return client;
-  // }
 
   onSubmit(){
     if (this.form.invalid) {

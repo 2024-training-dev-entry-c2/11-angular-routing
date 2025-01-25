@@ -57,21 +57,15 @@ export class FormComponent implements OnInit {
   }
 
   private loadClientData(id: number): void {
-    this.clientService.getById(id).subscribe({
-      next: (client) => {
-        // patchValue, para no pisar campos no definidos, pero normalmente
-        // coincide con tu IClient
-        this.form.patchValue({
-          nombre: client.nombre,
-          cedula: client.cedula,
-          correo: client.correo,
-          telefono: client.telefono
-        });
+    this.clientService.processClientData(
+      id,
+      (client) => {
+        this.form.patchValue(client);
       },
-      error: (err) => {
-        console.error('Error al obtener cliente', err);
+      (error) => {
+        console.error('Error al cargar datos del cliente:', error);
       }
-    });
+    );
   }
 
   saveClient(client: IClient) {

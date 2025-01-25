@@ -11,13 +11,8 @@ export class LayoutClientComponent {
   options = [{
     url: "agregar",
     name: "agregar"
-  }, {
-    url: "#",
-    name: "actualizar"
-  }, {
-    url: "eliminar/:id",
-    name: "eliminar"
-  }, {
+  },
+  {
     url: "buscar",
     name: "buscar"
   }

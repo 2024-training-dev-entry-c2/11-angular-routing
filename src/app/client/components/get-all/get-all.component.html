@@ -1,17 +1,19 @@
 <section class="get-all-client">
     <h1 class="get-all-client__title">CLIENTES</h1>
     @for(client of clients; track $index){
-    <article>
-        <div>
+    <article class="get-all-client__info">
+        <div class="get-all-client__header">
             <h2>{{client.nombre}}</h2>
             <p>id: {{client.id}}</p>
             <a [routerLink]="['actualizar', client.id]">Actualizar</a>
             <a [routerLink]="['eliminar', client.id]">Eliminar</a>
         </div>
-        <p>cedula: {{client.cedula}}</p>
-        <p>correo: {{client.correo}}</p>
-        <p>telefono: {{client.telefono}}</p>
-        <p>tipo: {{client.tipo}}</p>
+        <div class="get-all-client__body">
+            <p>cedula: {{client.cedula}}</p>
+            <p>correo: {{client.correo}}</p>
+            <p>telefono: {{client.telefono}}</p>
+            <p>tipo: {{client.tipo}}</p>
+        </div>
     </article>
     <hr>
     }
