@@ -3,10 +3,11 @@ import { TableComponent } from '../../../components/table/table.component';
 import { MenusService } from '../../../services/menu/menus.service';
 import { ButtonsComponent } from '../../../components/buttons/buttons.component';
 import { DishService } from '../../../services/dish/dish.service';
-import { Menu } from '../../../interfaces/menu.interface';
+import { DishfoodRequest, Menu } from '../../../interfaces/menu.interface';
 import { AddMenuComponent } from '../add-menu/add-menu.component';
 import { UpdateMenuComponent } from '../update-menu/update-menu.component';
 import { DishfoodComponent } from '../../dish/dishfood/dishfood.component';
+import { UpdateDishComponent } from '../../dish/update-dish/update-dish.component';
 
 @Component({
   selector: 'app-menus',
@@ -16,14 +17,13 @@ import { DishfoodComponent } from '../../dish/dishfood/dishfood.component';
     AddMenuComponent,
     UpdateMenuComponent,
     DishfoodComponent,
+    UpdateDishComponent,
   ],
   templateUrl: './menus.component.html',
   styleUrl: './menus.component.scss',
 })
 export class MenusComponent implements OnInit {
-  updateDish($event: number) {
-    throw new Error('Method not implemented.');
-  }
+
   ngOnInit(): void {
     this.getMenus();
   }
@@ -101,9 +101,12 @@ export class MenusComponent implements OnInit {
   //update Menu
   dataMenu: Menu | any;
   MenuId: number = 0;
+  DishId: number = 0;
+  DishData: DishfoodRequest | any;
   showModal = false;
   showModalMenu = false;
   showModalDish = false;
+  showModalDishUpdate = false;
 
   getMenu(id: number) {
     this.menus.getMenuId(id).subscribe({
@@ -140,6 +143,26 @@ export class MenusComponent implements OnInit {
     this.showModalDish = false;
     this.getMenus();
   }
+  openModalDishupdate($event: number, id: number) {
+    this.dish.getDishId($event).subscribe({
+      next: (data) => {
+        this.DishData = data;
+        this.showModalDishUpdate = true;
+        this.DishId = $event;
+        this.MenuId = id;
+        console.log($event);
+        console.log(this.DishData);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
 
+    
+  }
+  closeModalDishupdate() {
+    this.showModalDishUpdate = false;
+    this.getMenus();
+  }
 
 }

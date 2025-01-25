@@ -22,8 +22,8 @@
         <div class="tab__content">
             @for(item of getTabs; track $index) {
             @if(activeTab === $index){
-            <app-table title="Orders" [data]="getMenuDishes(item.name)" (deleteId)="deleteDish($event)"
-                (updateId)="updateDish($event)"></app-table>
+            <app-table title="DishFoods" [data]="getMenuDishes(item.name)" (deleteId)="deleteDish($event)"
+                (updateId)="openModalDishupdate($event,item.id)"></app-table>
 
                 <div class="actions__button-dish">
                     <button (click)="openModalDish(item.id)">Add Dish</button>
@@ -42,5 +42,8 @@
     }
     @if (showModalDish) {
         <app-dishfood [showModalDish]="showModalDish" (closeModalDish)="closeModalDish()" [getMenuid]="1"></app-dishfood>
+    }
+    @if(showModalDishUpdate){
+        <app-update-dish [showModalDish]="showModalDishUpdate" (closeModalDish)="closeModalDishupdate()" [getMenuid]="MenuId" [getData]="DishData"></app-update-dish>
     }
 </section>
