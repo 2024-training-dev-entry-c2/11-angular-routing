@@ -1,11 +1,13 @@
 <header class="menu-header">
     <h2>Menus</h2>
-    <button class="menu-header__button">
+    <button class="menu-header__button" (click)="openModal()">
         <i class="menu-header__icon" aria-hidden="true">
             <svg>
                 <use xlink:href="svg/plus.svg#plus"></use>
             </svg>
         </i>
-        Add Menu
+        Agregar Menu
     </button>
 </header>
+
+<app-modal *ngIf="isModalOpen" (closeModal)="closeModal($event)" (addMenu)="addMenu($event)"></app-modal>

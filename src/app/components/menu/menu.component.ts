@@ -10,5 +10,5 @@ import { MenuMainComponent } from "../menu-content/menu-main/menu-main.component
   styleUrl: './menu.component.scss'
 })
 export class MenuComponent {
-
+ 
 }

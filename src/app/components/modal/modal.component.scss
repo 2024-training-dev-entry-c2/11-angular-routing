@@ -1,0 +1,52 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 280px;
+    width: 100%;
+
+    input {
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid rgb(139, 139, 139);
+        width: 210px;
+    }
+
+    &__option {
+        display: flex;
+        gap: 10px;
+    }
+
+    &__button {
+        padding: 5px;
+        border: 1px solid rgb(139, 139, 139);
+        width: 100px;
+        border-radius: 5px;
+        cursor: pointer;
+
+
+        &--add {
+            background-color: #29b3418a;
+        }
+
+        &--close {
+            background-color: #f3173d9e;
+        }
+    }
+}

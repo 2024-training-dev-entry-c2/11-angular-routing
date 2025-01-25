@@ -1,10 +1,15 @@
 export interface IMenu {
-    id: number;
+    idMenu: number;
     menuName: string;
-    dishes: [];
-  }
+    dishes: IDish[];
+}
+
+export interface IDish {
+    idDish: number;
+    dishName: string;
+}
   
-  export interface IMenuResponse {
+export interface IMenuResponse {
     token: string;
     message: string;
-  }
+}

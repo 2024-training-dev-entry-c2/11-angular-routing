@@ -11,6 +11,7 @@ import { RouterLink } from '@angular/router';
 })
 export class MenuMainComponent implements OnInit {
   menus: IMenu[] = []; 
+
   actions = [
     { label: 'Editar', link: '/edit', type: 'edit', icon: 'svg/edit.svg#edit' },
     { label: 'Eliminar', link: '/delete', type: 'delete', icon: 'svg/delete.svg#delete' }
