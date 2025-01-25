@@ -1,1 +1,8 @@
-<p>order-form works!</p>
+<section class="main" aria-label="Order Management">
+  <h1 class="main__title">{{ orderId ? "Edit Order" : "Add Order" }}</h1>
+  <app-custom-form
+    [formConfig]="formConfig"
+    [formData]="formData"
+    [submitAction]="submitAction.bind(this)"
+  ></app-custom-form>
+</section>

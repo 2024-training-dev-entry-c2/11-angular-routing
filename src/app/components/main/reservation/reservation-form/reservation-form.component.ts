@@ -37,8 +37,10 @@ export class ReservationFormComponent implements OnInit {
     {
       name: 'status',
       label: 'Status',
-      type: 'text',
-      errorMessage: 'Status is required.',
+      type: 'select',
+      options: ['pending', 'completed', 'cancelled'],
+      errorMessage:
+        'Status is required. Must be one of: pending, completed, cancelled.',
     },
   ];
 

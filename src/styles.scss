@@ -1,3 +1,4 @@
+@use "./app/ui/styles/variables.scss" as variables;
 *,
 *::after,
 *::before {
@@ -12,4 +13,5 @@ html {
 
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: variables.$bg-color-2;
 }

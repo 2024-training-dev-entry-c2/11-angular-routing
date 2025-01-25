@@ -1,4 +1,5 @@
 @use "../../ui/styles/variables.scss" as variables;
+
 .layout {
   display: flex;
   &__header {
@@ -12,7 +13,7 @@
     width: 94dvw;
     height: 100dvh;
     padding: variables.$padding;
-    background-color: variables.$bg-color-2;
+
     color: white;
   }
 }

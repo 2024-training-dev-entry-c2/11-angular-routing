@@ -1,1 +1,27 @@
-<p>order-card works!</p>
+<div class="card">
+  <h3 class="card__name">ID:{{ order.id }}</h3>
+  <p>Reservation ID:{{ order.reservationId }}</p>
+  <p>Total: {{ order.totalPrice | currency : "USD" : "symbol" : "1.2-2" }}</p>
+  <p class="card__subtitle">Dishes</p>
+  <ol>
+    @for (dish of order.dishes; track $index) {
+    <li>
+      {{ dish.name }} - {{ dish.price | currency : "USD" : "symbol" : "1.2-2" }}
+    </li>
+    }
+  </ol>
+
+  <app-btns-actions
+    (editAction)="editOrder()"
+    (deleteAction)="openModal()"
+  ></app-btns-actions>
+
+  @if (isModalOpen) {
+  <app-confirm-model
+    [title]="'Confirm Deletion'"
+    [message]="'Are you sure you want to delete this order?'"
+    (confirm)="confirmDelete()"
+    (cancel)="closeModal()"
+  ></app-confirm-model>
+  }
+</div>

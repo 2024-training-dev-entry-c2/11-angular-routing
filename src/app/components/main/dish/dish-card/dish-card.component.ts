@@ -4,10 +4,11 @@ import { Router } from '@angular/router';
 import { IDish } from '../../../../interfaces/dishResponse.interface';
 import { BtnsActionsComponent } from '../../../custom/btns-actions/btns-actions.component';
 import { DeleteDishService } from '../../../../services/dish/delete-dish.service';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-dish-card',
-  imports: [ConfirmModelComponent, BtnsActionsComponent],
+  imports: [ConfirmModelComponent, BtnsActionsComponent, CurrencyPipe],
   templateUrl: './dish-card.component.html',
   styleUrl: './dish-card.component.scss',
 })
