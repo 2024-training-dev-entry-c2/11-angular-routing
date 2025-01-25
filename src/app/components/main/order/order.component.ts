@@ -7,10 +7,11 @@ import { AddComponent } from '../../custom/add/add.component';
 import { interval, Subscription, switchMap } from 'rxjs';
 import { GetAllOrderService } from '../../../services/order/get-all-order.service';
 import { OrderCardComponent } from './order-card/order-card.component';
+import { NoDataComponent } from '../../custom/no-data/no-data.component';
 
 @Component({
   selector: 'app-order',
-  imports: [TitleComponent, AddComponent, OrderCardComponent],
+  imports: [TitleComponent, AddComponent, OrderCardComponent, NoDataComponent],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss',
 })

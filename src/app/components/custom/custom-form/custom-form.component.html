@@ -20,15 +20,26 @@
     ></app-custom-input>
 
     }
-    <button
-      class="main__form-submit"
-      type="submit"
-      [disabled]="formGroup.invalid"
-      aria-label="Submit"
-      role="button"
-      aria-disabled="false"
-    >
-      Submit
-    </button>
+    <div class="main__form-actions">
+      <button
+        class="main__form-submit"
+        type="submit"
+        [disabled]="formGroup.invalid"
+        aria-label="Submit"
+        role="button"
+        aria-disabled="false"
+      >
+        Submit
+      </button>
+      <button
+        class="main__form-cancel"
+        type="button"
+        (click)="cancel()"
+        aria-label="Cancel"
+        role="button"
+      >
+        Cancel
+      </button>
+    </div>
   </form>
 </section>

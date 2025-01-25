@@ -2,8 +2,10 @@
   <app-title [title]="title"></app-title>
   <app-add [link]="addLink"></app-add>
   <div class="main__container">
-    @for (order of orders; track $index) {
+    @if (orders.length>0) { @for (order of orders; track $index) {
     <app-order-card [order]="order"></app-order-card>
+    }} @else {
+    <app-no-data></app-no-data>
     }
   </div>
 </section>

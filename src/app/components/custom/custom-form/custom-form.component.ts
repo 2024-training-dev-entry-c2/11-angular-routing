@@ -11,6 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Location } from '@angular/common';
 import { CustomInputComponent } from '../custom-input/custom-input.component';
 
 @Component({
@@ -30,7 +31,7 @@ export class CustomFormComponent implements OnInit, OnChanges {
   @Input() submitAction!: (data: any) => void;
   formGroup!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private location: Location) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -68,5 +69,9 @@ export class CustomFormComponent implements OnInit, OnChanges {
     if (this.formGroup.valid) {
       this.submitAction(this.formGroup.value);
     }
+  }
+
+  cancel(): void {
+    this.location.back();
   }
 }

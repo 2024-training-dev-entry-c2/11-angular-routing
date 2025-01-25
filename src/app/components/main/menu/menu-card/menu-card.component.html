@@ -1,13 +1,13 @@
 <div class="card">
   <h3 class="card__name">{{ menu.name }}</h3>
-  <p class="card__subtitle">Dishes</p>
-  <ol>
-    @for (dish of menu.dishes; track $index) {
-    <li>
+
+  <ul class="card__list">
+    Dishes : @for (dish of menu.dishes; track $index) {
+    <li class="card__list-item">
       {{ dish.name }} - {{ dish.price | currency : "USD" : "symbol" : "1.2-2" }}
     </li>
     }
-  </ol>
+  </ul>
 
   <app-btns-actions
     (editAction)="editMenu()"

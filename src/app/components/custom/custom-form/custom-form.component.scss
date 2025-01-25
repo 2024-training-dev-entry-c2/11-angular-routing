@@ -14,25 +14,18 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
+    &-actions {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+    }
+
     &-submit {
-      padding: 10px 20px;
-      font-size: 1.3rem;
+      @include mixins.button-form();
+    }
 
-      color: variables.$secondary-color;
-      background-color: variables.$primary-color;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.3s;
-
-      &:enabled:hover {
-        background-color: variables.$primary-color-dark;
-        transform: translateY(-2px);
-      }
-
-      &:disabled {
-        cursor: not-allowed;
-      }
+    &-cancel {
+      @include mixins.button-form(grey);
     }
   }
 }

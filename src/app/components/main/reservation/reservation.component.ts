@@ -6,10 +6,16 @@ import { IReservationResponse } from '../../../interfaces/reservationResponse.in
 import { interval, Subscription, switchMap } from 'rxjs';
 import { GetAllReservationService } from '../../../services/reservation/get-all-reservation.service';
 import { ReservationCardComponent } from './reservation-card/reservation-card.component';
+import { NoDataComponent } from '../../custom/no-data/no-data.component';
 
 @Component({
   selector: 'app-reservation',
-  imports: [TitleComponent, AddComponent, ReservationCardComponent],
+  imports: [
+    TitleComponent,
+    AddComponent,
+    ReservationCardComponent,
+    NoDataComponent,
+  ],
   templateUrl: './reservation.component.html',
   styleUrl: './reservation.component.scss',
 })

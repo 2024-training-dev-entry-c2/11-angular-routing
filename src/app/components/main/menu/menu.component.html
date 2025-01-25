@@ -2,8 +2,10 @@
   <app-title [title]="title"></app-title>
   <app-add [link]="addLink"></app-add>
   <div class="main__container">
-    @for (menu of menus; track $index) {
+    @if (menus.length > 0) { @for (menu of menus; track $index) {
     <app-menu-card [menu]="menu"></app-menu-card>
+    } } @else {
+    <app-no-data></app-no-data>
     }
   </div>
 </section>

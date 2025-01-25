@@ -7,7 +7,7 @@ import { ICustomer } from '../../../../interfaces/customerResponse.interface';
 import { FormTitleComponent } from '../../../custom/form-title/form-title.component';
 
 @Component({
-  selector: 'app-custom-form',
+  selector: 'app-customer-form',
   imports: [CustomFormComponent, FormTitleComponent],
   templateUrl: './customer-form.component.html',
   styleUrl: './customer-form.component.scss',

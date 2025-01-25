@@ -5,10 +5,11 @@ import { IDish } from '../../../interfaces/dishResponse.interface';
 import { AddComponent } from '../../custom/add/add.component';
 import { TitleComponent } from '../../custom/title/title.component';
 import { interval, Subscription, switchMap } from 'rxjs';
+import { NoDataComponent } from '../../custom/no-data/no-data.component';
 
 @Component({
   selector: 'app-dish',
-  imports: [DishCardComponent, AddComponent, TitleComponent],
+  imports: [DishCardComponent, AddComponent, TitleComponent, NoDataComponent],
   templateUrl: './dish.component.html',
   styleUrl: './dish.component.scss',
 })

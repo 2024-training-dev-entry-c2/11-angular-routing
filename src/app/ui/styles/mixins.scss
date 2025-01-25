@@ -1,4 +1,4 @@
-@use "variables";
+@use "./variables.scss" as variables;
 
 @mixin flex-center(
   $direction: row,
@@ -57,6 +57,26 @@
 
   p {
     font-size: 1.3rem;
+    flex-wrap: wrap;
     color: variables.$secondary-color;
+  }
+}
+
+@mixin button-form($color: variables.$primary-color) {
+  padding: 10px 20px;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: variables.$secondary-color;
+  background-color: $color;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  &:enabled:hover {
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 }

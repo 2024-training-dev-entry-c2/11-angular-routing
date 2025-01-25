@@ -2,8 +2,10 @@
   <app-title [title]="title"></app-title>
   <app-add [link]="addLink"></app-add>
   <div class="main__container">
-    @for (dish of dishes; track $index) {
+    @if (dishes.length>0) { @for (dish of dishes; track $index) {
     <app-dish-card [dish]="dish"></app-dish-card>
+    }} @else {
+    <app-no-data></app-no-data>
     }
   </div>
 </section>

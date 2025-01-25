@@ -1,0 +1,16 @@
+.main {
+  &__no-data {
+    font-size: 2.5rem;
+    color: #888;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 47%;
+    opacity: 0.5;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    user-select: none;
+  }
+}

@@ -2,8 +2,11 @@
   <app-title [title]="title"></app-title>
   <app-add [link]="addLink"></app-add>
   <div class="main__container">
-    @for (reservation of reservations; track $index) {
+    @if (reservations.length>0) { @for (reservation of reservations; track
+    $index) {
     <app-reservation-card [reservation]="reservation"></app-reservation-card>
+    }} @else {
+    <app-no-data></app-no-data>
     }
   </div>
 </section>

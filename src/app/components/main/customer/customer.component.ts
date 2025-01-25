@@ -6,10 +6,16 @@ import { switchMap } from 'rxjs/operators';
 import { CustomerCardComponent } from './customer-card/customer-card.component';
 import { AddComponent } from '../../custom/add/add.component';
 import { TitleComponent } from '../../custom/title/title.component';
+import { NoDataComponent } from '../../custom/no-data/no-data.component';
 
 @Component({
   selector: 'app-customer',
-  imports: [CustomerCardComponent, AddComponent, TitleComponent],
+  imports: [
+    CustomerCardComponent,
+    AddComponent,
+    TitleComponent,
+    NoDataComponent,
+  ],
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.scss'],
 })

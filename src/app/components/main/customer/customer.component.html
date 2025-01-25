@@ -2,8 +2,10 @@
   <app-title [title]="title"></app-title>
   <app-add [link]="addLink"></app-add>
   <div class="main__container">
-    @for (customer of customers; track $index) {
+    @if (customers.length>0) { @for (customer of customers; track $index) {
     <app-customer-card [customer]="customer"></app-customer-card>
+    } } @else {
+    <app-no-data></app-no-data>
     }
   </div>
 </section>
