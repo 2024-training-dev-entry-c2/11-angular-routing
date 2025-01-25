@@ -1,11 +1,16 @@
 <aside class="sidebar">
+  <button [routerLink]="['/']">Dashboard</button>
   <nav class="sidebar__nav" role="navigation">
     <ul class="sidebar__list">
       @for ( item of menuItems; track item.id) {
-      <li><a [routerLink]="[{ outlets: { main: [item.link] } }]" (click)="handleClick({ title: item.title, link: item.link, id: item.id })">{{item.title}}</a>
-
+      <li class="sidebar__item">
+        <img src="icon-orden.png">
+        <a  [routerLink] = "item.link">
+          {{item.title}}</a>
       </li>
+
       }
     </ul>
+
   </nav>
 </aside>

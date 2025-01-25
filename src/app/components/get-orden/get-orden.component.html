@@ -1,0 +1,43 @@
+<section class="content">
+  <h1>Ordenes</h1>
+  <table class="content__table">
+    <thead class="coontent__head">
+      <tr>
+        <th>ID Orden</th>
+        <th>Total Precio</th>
+        <th>Estado de la Orden</th>
+        <th>Nombre del Cliente</th>
+        <th>Teléfono del Cliente</th>
+        <th>Items</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody class="content__body">
+      @for(orden of ordenes; track orden.id){
+      <tr class="content__orden">
+        <td>{{ orden.id }}</td>
+        <td>{{ orden.priceTotal }}</td>
+        <td>{{ orden.statusOrder }}</td>
+        <td>{{ orden.client.name }}</td>
+        <td>{{ orden.client.numberPhone }}</td>
+        <td>
+          <ul class="content__items">
+            @for(item of orden.items; track item.id){
+            <li><strong>Nombre del plato:</strong> {{ item.dish.name }},</li>
+            <li><strong>Precio:</strong>  {{ item.dish.price }},</li>
+            <li><strong>Cantidad:</strong> {{ item.quantity }}</li>
+            }
+          </ul>
+        </td>
+        <td>
+
+            <button class="content__button-edit" (click)="editOrden(orden.id)">Editar</button>
+            <button class="content__button-delete" (click)="deleteOrden(orden.id)">Eliminar</button>
+
+
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</section>

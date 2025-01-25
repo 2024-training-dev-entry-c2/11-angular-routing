@@ -5,12 +5,14 @@ import { MainContentComponent } from './components/main-content/main-content.com
 import { ClientComponent } from './components/client/client.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { DishComponent } from './components/dish/dish.component';
+import { GetOrdenComponent } from './components/get-orden/get-orden.component';
 
 export const routes: Routes = [
   {
     path: '' ,
+    redirectTo:'dashboard',
     pathMatch: 'full',
-    component: DashboardComponent
+
   },
   {
     path: 'dashboard',
@@ -19,29 +21,25 @@ export const routes: Routes = [
       {
         path:'',
         component: MainContentComponent,
-        outlet:"main"
       },
       {
         path:'ordenes',
         component: OrdenComponent,
-        outlet:"main"
       },
       {
         path:'clientes',
         component: ClientComponent,
-        outlet:"main"
       },
       {
-        path:'menus',
+        path: 'menus',
         component: MenuComponent,
-        outlet:"main"
+
       },
       {
-        path:'platos',
+        path: 'platos',
         component: DishComponent,
-        outlet:"main"
-      }
-    ]
-  }
-];
+      },
+    ],
+  },
+]
 

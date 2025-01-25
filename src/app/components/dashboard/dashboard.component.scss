@@ -3,7 +3,7 @@
   height: 100%;
   box-sizing: border-box;
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 10% 90%;
   grid-template-rows: 100%;
 
   &__sidebar{
@@ -16,6 +16,11 @@
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 10px;
+  }
+  &__main{
+    width: 100%;
+    height: 80dvh;
+
   }
 }
