@@ -32,9 +32,7 @@
         <td>
 
             <button class="content__button-edit" (click)="editOrden(orden.id)">Editar</button>
-            <button class="content__button-delete" (click)="deleteOrden(orden.id)">Eliminar</button>
-
-
+            <app-botton-delete [idOrden]="orden.id" (deleteEvent)="deleteOrden($event)"></app-botton-delete>
         </td>
       </tr>
       }

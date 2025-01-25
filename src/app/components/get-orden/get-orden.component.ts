@@ -2,10 +2,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GetOrdenService } from '../../service/get-orden.service';
 import { IViewOrden } from '../../inferfaces/view-orden.interface';
+import { BottonDeleteComponent } from '../botton-delete/botton-delete.component';
 
 @Component({
   selector: 'app-get-orden',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, BottonDeleteComponent],
   templateUrl: './get-orden.component.html',
   styleUrl: './get-orden.component.scss'
 })
@@ -32,9 +33,16 @@ export class GetOrdenComponent implements OnInit{
     console.log(`Editar orden con ID: ${id}`);
 
   }
-
   deleteOrden(id: number): void {
-    console.log(`Eliminar orden con ID: ${id}`);
-
+    this.getOrdenService.deleteOrderById(id).subscribe({
+      next: () => {
+        this.ordenes = this.ordenes.filter((orden) => orden.id !== id);
+      },
+      error: (error: any) => {
+        console.error('Error al eliminar la orden:', error);
+      }
+    });
   }
+
+
 }
