@@ -2,17 +2,16 @@
     <table class="menu__table">
         <thead>
             <tr>
-                <th>Menu ID</th>
-                <th>Nombre del Menu</th>
-                <th>Detalles</th>
-                <th>Acciones</th>
+                @for (header of getHeaders(); track header.label) {
+                <th>{{ header.label }}</th>
+                }
             </tr>
         </thead>
         <tbody>
-            @for (menu of getMenuItems(); track menu.id) {
+            @for (menu of menus; track menu.id) {
             <tr>
                 <td>{{ menu.id }}</td>
-                <td>{{ menu.name }}</td>
+                <td>{{ menu.menuName }}</td>
                 <td>
                     <button class="accordion" (click)="toggleAccordion($event)">Ver platos del Menu</button>
                     <div class="panel">

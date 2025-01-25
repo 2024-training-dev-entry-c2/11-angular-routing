@@ -1,44 +1,84 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MenuService } from '../../../services/menu.service';
+import { IMenu } from '../../../interfaces/menu.interface';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-menu-main',
   imports: [RouterLink],
   templateUrl: './menu-main.component.html',
-  styleUrl: './menu-main.component.scss'
+  styleUrls: ['./menu-main.component.scss']
 })
-export class MenuMainComponent {
-  menus = [
-    { id: 1, name: 'Primaveral', dishes: ['Pasta con champiñones', 'Ensalada fresca'] },
-    { id: 2, name: 'Ensaladitas', dishes: ['Ensalada César', 'Ensalada griega'] },
-    { id: 3, name: 'En el mar', dishes: ['Ceviche', 'Camarones al ajillo'] },
-    { id: 4, name: 'Invernal', dishes: ['Sopa de tomate', 'Guiso de lentejas'] }
-  ];
-
+export class MenuMainComponent implements OnInit {
+  menus: IMenu[] = []; 
   actions = [
     { label: 'Editar', link: '/edit', type: 'edit', icon: 'svg/edit.svg#edit' },
     { label: 'Eliminar', link: '/delete', type: 'delete', icon: 'svg/delete.svg#delete' }
   ];
 
-  getMenuItems() {
-    return this.menus;
+  constructor(private menuService: MenuService) {}
+
+  ngOnInit(): void {
+    this.loadMenus();
+  }
+
+  loadMenus(): void {
+    this.menuService.getMenus().subscribe(
+      (menus) => {
+        this.menus = menus;
+      },
+      (error) => {
+        console.error('Error loading menus', error);
+      }
+    );
+  }
+
+  getHeaders() {
+    return [
+      { label: 'Menu ID' },
+      { label: 'Nombre del Menu' },
+      { label: 'Detalles' },
+      { label: 'Acciones' }
+    ];
   }
 
   getActions() {
     return this.actions;
   }
 
-
-  toggleAccordion(event: Event) {
+  toggleAccordion(event: Event): void {
     const button = event.target as HTMLElement;
-    button.classList.toggle('active'); 
-    const panel = button.nextElementSibling as HTMLElement; 
+    button.classList.toggle('active');
+    const panel = button.nextElementSibling as HTMLElement;
 
     if (panel.style.maxHeight) {
       panel.style.maxHeight = '';
-
     } else {
-      panel.style.maxHeight = panel.scrollHeight + 'px'; 
+      panel.style.maxHeight = panel.scrollHeight + 'px';
     }
+  }
+
+  deleteMenu(id: number): void {
+    this.menuService.deleteMenu(id).subscribe(
+      () => {
+        console.log('Menu deleted');
+        this.loadMenus(); 
+      },
+      (error) => {
+        console.error('Error deleting menu', error);
+      }
+    );
+  }
+
+  updateMenu(id: number, updatedMenu: IMenu): void {
+    this.menuService.updateMenu(id, updatedMenu).subscribe(
+      () => {
+        console.log('Menu updated');
+        this.loadMenus();
+      },
+      (error) => {
+        console.error('Error updating menu', error);
+      }
+    );
   }
 }
