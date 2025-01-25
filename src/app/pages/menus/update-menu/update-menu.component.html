@@ -1,1 +1,10 @@
-<p>update-menu works!</p>
+
+
+
+<form [formGroup]="menuAddForm" >
+    <app-modal (closeModal)="closeModal()" [data]="getData" [formGroup]="menuAddForm">
+     <button button type="submit" (click)="addMenu()">Add</button>
+    </app-modal>
+    
+</form>
+

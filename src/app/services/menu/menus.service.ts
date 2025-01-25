@@ -27,7 +27,7 @@ export class MenusService {
     );
   }
   deleteMenu(id: number): Observable<any> {
-    return this.http.delete<any>(`http://localhost:8080/menus/${id}`);
+    return this.http.delete<any>(`http://localhost:8080/menus/delete/${id}`);
   }
   getMenuId(id: number): Observable<Menu> {
     return this.http.get<any>(`http://localhost:8080/menus/${id}`).pipe(
@@ -38,8 +38,8 @@ export class MenusService {
       })
     );
   }
-  updateMenu(menu: Menu): Observable<Menu> {
-    return this.http.put<Menu>('http://localhost:8080/menus', menu).pipe(
+  updateMenu(menu: Menu, id: number): Observable<Menu> {
+    return this.http.put<Menu>(`http://localhost:8080/menus/${id}`, menu).pipe(
       map((response) => this.validateObjectResponse(response)),
       catchError((error) => {
         console.error('Error fetching menus:', error);

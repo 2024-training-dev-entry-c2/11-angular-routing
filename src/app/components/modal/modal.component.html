@@ -3,9 +3,12 @@
     <div class="modal__content">
 
         <app-form [formFields]="fields" [formGroup]="formGroup"></app-form>
+
+        <ng-content select="[selection]"></ng-content>
         <button (click)="close()">Cerrar</button>
-        <ng-content select="[update]">
-            
+
+        <ng-content select="[button]">
+
         </ng-content>
     </div>
 </div>

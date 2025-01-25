@@ -1,16 +1,15 @@
-<app-tabs title="Dishfood Data " [tabs]="tabsList">
-    <div tabContent0>
+<form [formGroup]="dishfoodUpdatedForm">
+    <app-modal (closeModal)="closeModal()" [data]="getData" [formGroup]="dishfoodUpdatedForm">
 
-        <!-- <form [formGroup]="clientForm" (ngSubmit)="submit()">
-            
-            <app-form [formFields]="fields" [formGroup]="clientForm">
-            </app-form>
-            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-        </form> -->
-    </div>
-    <div tabContent1>
-        <!-- <app-table title="Clients" [data]="listClients" (deleteId)="deleteClient($event)"
-            (updateId)="getClient($event)"></app-table> -->
-    </div>
+        <!-- <div selection>
+            <label for="menuId">Choose a menu option:</label>
+            <select formControlName="menuId">
+                @for (item of getDataMenus; track $index) {
+                <option value="{{item.id}}">{{item.name}}</option>
+                }
+            </select>
+        </div> -->
+        <button button type="submit" (click)="addMenu()">Add</button>
+    </app-modal>
 
-</app-tabs>
+</form>

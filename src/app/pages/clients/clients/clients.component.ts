@@ -130,6 +130,7 @@ export class ClientsComponent implements OnInit {
         this.ClientId = id;
         this.clientData = data;
         this.showModal = true;
+        this.getClients();
       },
       error: (error) => {
         console.log(error);

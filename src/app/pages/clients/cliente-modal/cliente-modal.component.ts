@@ -27,7 +27,6 @@ export class ClienteModalComponent implements OnInit {
     console.log(this.getData);
     this.setValue();
   }
-  clientData: Client | any;
   public clients = inject(ClientService);
   private formUpdateBuilder = inject(FormBuilder);
   showModal = false;
@@ -78,6 +77,7 @@ export class ClienteModalComponent implements OnInit {
           next: (data) => {
             console.log(data);
             alert('Client updated successfully');
+            this.showModal = false;
           },
           error: (error) => {
             console.log(error);
