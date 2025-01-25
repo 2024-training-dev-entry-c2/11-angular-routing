@@ -1,0 +1,37 @@
+@use '../../ui/styles/mixins.scss' as mixins;
+
+.aside {
+    @include mixins.flex-column;
+    justify-content: space-between;
+    padding: 1.5rem;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 2px;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.105);
+
+    &__nav {
+
+        menu {
+            @include mixins.flex-column;
+            gap: 5px;
+            list-style: none;
+            
+            li {
+                color: #fff;
+                text-decoration: none;
+                padding: 5px 20px;
+                border-radius: 5px;
+
+                &:hover {
+                    cursor: pointer;
+                    text-decoration: underline;
+                }
+
+                &:active {
+                    background-color: #fff;
+                    color: #232323;
+                }
+            }
+        }
+    }
+}
