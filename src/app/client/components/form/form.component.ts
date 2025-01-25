@@ -23,7 +23,7 @@ export class FormComponent implements OnInit {
     nombre: ['', [Validators.required]],
     cedula: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
     correo: ['', [Validators.required, Validators.email]],
-    telefono: ['', [Validators.pattern(/^[0-9]+$/)]]
+    telefono: ['', [Validators.required,Validators.pattern(/^[0-9]+$/)]]
   });
 
   ngOnInit(): void {
@@ -91,6 +91,5 @@ export class FormComponent implements OnInit {
       error: (err) => console.error('Error al actualizar cliente', err),
     });
   }
-
 
 }

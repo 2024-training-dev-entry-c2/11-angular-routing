@@ -18,7 +18,7 @@ export class LayoutClientComponent {
     url: "eliminar/:id",
     name: "eliminar"
   }, {
-    url: "buscar/:id",
+    url: "buscar",
     name: "buscar"
   }
   ]

@@ -6,6 +6,7 @@ import { DeleteComponent } from './components/delete/delete.component';
 import { GetAllComponent } from './components/get-all/get-all.component';
 import { UpdateComponent } from './components/update/update.component';
 import { RegisterComponent } from './components/register/register.component';
+import { GetByIdComponent } from './components/get-by-id/get-by-id.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
       { path: '', component: GetAllComponent },   // /cliente
       { path: 'agregar', component: RegisterComponent }, // /cliente/crear
       { path: 'actualizar/:id', component: UpdateComponent }, // /cliente/editar/4
-      { path: 'eliminar/:id', component: DeleteComponent }, 
+      { path: 'eliminar/:id', component: DeleteComponent },
+      { path: 'buscar', component: GetByIdComponent}, 
     ],
   },
 ];

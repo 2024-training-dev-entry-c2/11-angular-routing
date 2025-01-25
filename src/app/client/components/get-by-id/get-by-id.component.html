@@ -1,0 +1,28 @@
+<section class="get-by-id">
+    <article>
+        <h3 class="get-by-id__title">Obtener cliente por ID</h3>
+        <form [formGroup]="form" class="get-by-id__form" (ngSubmit)="onSubmit()">
+            <label class="get-by-id__label">
+                <span>ID:</span>
+                <input type="text" formControlName="id" class="get-by-id__input">
+            </label>
+            <button>Enviar</button>
+        </form>
+    </article>
+
+    <article>
+        <h3>cliente</h3>
+        <div>
+            <div>
+                <h4>{{client.nombre}}</h4>
+            </div>
+            <ul>
+                <li><span>Cedula:</span> {{client.cedula}}</li>
+                <li><span>Correo:</span> {{client.correo}}</li>
+                <li><span>Telefono:</span> {{client.telefono}}</li>
+                <li><span>Tipo:</span> {{client.tipo}} </li>
+            </ul>
+        </div>
+
+    </article>
+</section>
