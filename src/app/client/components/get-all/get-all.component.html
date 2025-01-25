@@ -1,15 +1,15 @@
 <section class="get-all-client">
     <h1 class="get-all-client__title">CLIENTES</h1>
-    @for(cliente of clientes; track $index){
+    @for(client of clients; track $index){
     <article>
         <div>
-            <h2>{{cliente.nombre}}</h2>
-            <p>id: {{cliente.id}}</p>
+            <h2>{{client.nombre}}</h2>
+            <p>id: {{client.id}}</p>
         </div>
-        <p>cedula: {{cliente.cedula}}</p>
-        <p>correo: {{cliente.correo}}</p>
-        <p>telefono: {{cliente.telefono}}</p>
-        <p>tipo: {{cliente.tipo}}</p>
+        <p>cedula: {{client.cedula}}</p>
+        <p>correo: {{client.correo}}</p>
+        <p>telefono: {{client.telefono}}</p>
+        <p>tipo: {{client.tipo}}</p>
     </article>
     <hr>
     }

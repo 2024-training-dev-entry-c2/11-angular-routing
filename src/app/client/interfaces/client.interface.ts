@@ -1,4 +1,4 @@
-export interface ICliente {
+export interface IClient {
     id?: number;       
     nombre: string;
     cedula: string;

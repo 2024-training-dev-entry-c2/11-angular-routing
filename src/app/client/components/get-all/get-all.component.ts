@@ -1,6 +1,6 @@
 import { Component,inject,OnInit } from '@angular/core';
-import { ICliente } from '../../interfaces/cliente.interface';
-import { ClienteService } from '../../services/cliente.service';
+import { IClient } from '../../interfaces/client.interface';
+import { ClientService } from '../../services/client.service';
 
 @Component({
   selector: 'app-get-all',
@@ -9,18 +9,18 @@ import { ClienteService } from '../../services/cliente.service';
   styleUrl: './get-all.component.scss'
 })
 export class GetAllComponent {
-  clientes: ICliente[] = [];
+  clients: IClient[] = [];
 
-  private clienteService = inject(ClienteService);
+  private clienteService = inject(ClientService);
 
   ngOnInit() {
-    this.cargarClientes();
+    this.getAllClients();
   }
 
-  cargarClientes() {
-    this.clienteService.obtenerTodos().subscribe({
+  getAllClients() {
+    this.clienteService.getAll().subscribe({
       next: (lista) => {
-        this.clientes = lista;
+        this.clients = lista;
       },
       error: (err) => {
         console.error('Error al obtener clientes:', err);
