@@ -1,0 +1,92 @@
+$data-background-color: #f9f9f9;
+$data-header-color: #007bff;
+$data-row-hover: #f1f1f1;
+$data-border-color: #ddd;
+$data-font-color: #333;
+$data-action-color: #007bff;
+$data-action-hover: #0056b3;
+
+.data {
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  color: $data-font-color;
+
+  &__header {
+    margin-bottom: 1rem;
+    text-align: left;
+
+    & h1 {
+      font-size: 1.5rem;
+      color: $data-header-color;
+    }
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: $data-background-color;
+
+    thead {
+      background-color: $data-header-color;
+      color: #fff;
+
+      th {
+        text-align: left;
+        padding: 0.75rem;
+        border-bottom: 2px solid $data-border-color;
+        font-weight: bold;
+      }
+    }
+
+    tbody {
+      tr {
+        &:hover {
+          background-color: $data-row-hover;
+        }
+
+        & td {
+          padding: 0.75rem;
+          border-bottom: 1px solid $data-border-color;
+          text-align: left;
+
+          &:last-child {
+            text-align: center;
+          }
+        }
+      }
+
+      .data__row {
+        &:nth-child(even) {
+          background-color: #f2f2f2;
+        }
+      }
+    }
+  }
+
+  &__action {
+    text-decoration: none;
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+
+    &--edit {
+      color: $data-action-color;
+
+      &:hover {
+        color: #fff;
+        background-color: $data-action-hover;
+      }
+    }
+
+    &--delete {
+      color: #d9534f;
+
+      &:hover {
+        color: #fff;
+        background-color: #c9302c;
+      }
+    }
+  }
+}
