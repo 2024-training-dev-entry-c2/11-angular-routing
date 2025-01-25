@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "project",
         "app",
-        "components"
+        "components",
+        "services"
     ]
 }
