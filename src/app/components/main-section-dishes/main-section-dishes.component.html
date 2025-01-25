@@ -1,62 +1,42 @@
+
 <section class="section">
     <div class="container section__content">
       <div class="section__content-header section__content-header--clients-img">
-        <div class="section__content-container">
+        <figure class="section__content-container">
             <img src="./logo.png" />
-            <h1>Gusteau's Dishes Details</h1>
-            <button class="btn">Add Order</button>
-        </div>
+            <h1 class="container__content-title">Gusteau's Dishes Details</h1>
+            <button class="container__content-btn container__content-btn--add">Add Order</button>
+        </figure>
       </div>
-      <table>
-        <thead>
+      <table class="container__content-table">
+
+        <thead class="container__content-table-header">
           <tr>
-            <th>Dish ID</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Menu ID</th>
-            <th>Dish Type</th>
-            <th>Total Ordered</th>
-            <th>Actions</th>
+            @for (tableContent of tableContent(); track $index) {
+                <th>{{tableContent}}</th>
+            }
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Pastas de Queso</td>
-            <td>$320</td>
-            <td>1</td>
-            <td>POPULAR</td>
-            <td>100</td>
-            <td class="actions">
-              <button class="btn btn-edit" id="myBtn">Edit</button>
-              <button class="btn btn-delete">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Pastas de Tomate</td>
-            <td>$120</td>
-            <td>1</td>
-            <td>REGULAR</td>
-            <td>20</td>
-            <td class="actions">
-              <button class="btn btn-edit">Edit</button>
-              <button class="btn btn-delete">Delete</button>
-            </td>
-          </tr>
-          
-          <tr>
-            <td>1</td>
-            <td>Rissoto de Tomate</td>
-            <td>$520</td>
-            <td>1</td>
-            <td>REGULAR</td>
-            <td>10</td>
-            <td class="actions">
-              <button class="btn btn-edit">Edit</button>
-              <button class="btn btn-delete">Delete</button>
-            </td>
-          </tr>
+        <tbody class="container__content-table-body">
+            @for (data of dishData(); track $index) {
+                <tr [id]="$index">
+                    <td [id]="$index">{{data.id}}</td>
+                    <td [id]="$index">{{data.name}}</td>
+                    <td [id]="$index">{{data.price | currency:'COP' + ' '}}</td>
+                    <td [id]="$index">{{data.menuId}}</td>
+                    <td [id]="$index">
+                        <span>
+                            {{data.dishType}}
+                        </span>
+                    </td>
+                    <td [id]="$index">{{data.totalOrdered}}</td>
+
+                    <td class="container__content-table-actions">
+                      <button class="container__content-btn container__content-btn--edit">Edit</button>
+                      <button class="container__content-btn container__content-btn--delete">Delete</button>
+                  </td>
+                </tr>
+            }
         </tbody>
       </table>
     </div>

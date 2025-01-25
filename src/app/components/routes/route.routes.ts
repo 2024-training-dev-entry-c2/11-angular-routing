@@ -3,10 +3,10 @@ import { LayoutComponent } from '../../layout/layout.component';
 import { MainComponent } from '../main/main.component';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
-import { MainSectionClientsComponent } from '../main-section-clients/main-section-clients.component';
-import { MainSectionDishesComponent } from '../main-section-dishes/main-section-dishes.component';
-import { MainSectionOrdersComponent } from '../main-section-orders/main-section-orders.component';
-import { MainSectionMenusComponent } from '../main-section-menus/main-section-menus.component';
+import { SectionClientsContentComponent } from '../section-clients-content/section-clients-content.component';
+import { SectionDishesContentComponent } from '../section-dishes-content/section-dishes-content.component';
+import { SectionOrdersContentComponent } from '../section-orders-content/section-orders-content.component';
+import { SectionMenusContentComponent } from '../section-menus-content/section-menus-content.component';
 
 
 export const routes: Routes = [
@@ -42,7 +42,7 @@ export const routes: Routes = [
       },
       {
         path: '',
-        component: MainSectionClientsComponent,
+        component: SectionClientsContentComponent,
      
       },
       {
@@ -63,7 +63,7 @@ export const routes: Routes = [
       },
       {
         path: '',
-        component: MainSectionDishesComponent,
+        component: SectionDishesContentComponent,
      
       },
       {
@@ -84,7 +84,7 @@ export const routes: Routes = [
       },
       {
         path: '',
-        component: MainSectionOrdersComponent,
+        component: SectionOrdersContentComponent,
      
       },
       {
@@ -105,7 +105,7 @@ export const routes: Routes = [
       },
       {
         path: '',
-        component: MainSectionMenusComponent,
+        component: SectionMenusContentComponent,
      
       },
       {
