@@ -10,17 +10,19 @@
           <th class="clients__th">Email</th>
           <th class="clients__th">Teléfono</th>
           <th class="clients__th">Dirección</th>
-          <th class="clients__th">Fecha de nacimiento</th>
+          <th class="clients__th">Fecha de creación</th>
           <th class="clients__th">Acciones</th>
         </tr>
       </thead>
+
       <tbody class="clients__tbody">
+        @for(user of this.clientes; track $index) {
         <tr class="clients__tr">
-          <td class="clients__td">Sofia</td>
-          <td class="clients__td">sofiafgmail.com</td>
-          <td class="clients__td">+56 987654321</td>
-          <td class="clients__td">Av. Principal 123</td>
-          <td class="clients__td">19/04/1990</td>
+          <td class="clients__td">{{ user.name }}</td>
+          <td class="clients__td">{{ user.email }}</td>
+          <td class="clients__td">{{ user.phone }}</td>
+          <td class="clients__td">{{ user.address }}</td>
+          <td class="clients__td">{{ user.birthdate }}</td>
           <td class="clients__td clients__td--actions">
             <button class="clients__btn clients__btn--edit">
               <mat-icon aria-hidden="false" fontIcon="edit"></mat-icon>
@@ -30,36 +32,8 @@
             </button>
           </td>
         </tr>
-        <tr class="clients__tr">
-          <td class="clients__td">Sofia</td>
-          <td class="clients__td">sofiafgmail.com</td>
-          <td class="clients__td">+56 987654321</td>
-          <td class="clients__td">Av. Principal 123</td>
-          <td class="clients__td">19/04/1990</td>
-          <td class="clients__td clients__td--actions">
-            <button class="clients__btn clients__btn--edit">
-              <mat-icon aria-hidden="false" fontIcon="edit"></mat-icon>
-            </button>
-            <button class="clients__btn clients__btn--delete">
-              <mat-icon aria-hidden="false" fontIcon="delete"></mat-icon>
-            </button>
-          </td>
-        </tr>
-        <tr class="clients__tr">
-          <td class="clients__td">Sofia</td>
-          <td class="clients__td">sofiafgmail.com</td>
-          <td class="clients__td">+56 987654321</td>
-          <td class="clients__td">Av. Principal 123</td>
-          <td class="clients__td">19/04/1990</td>
-          <td class="clients__td clients__td--actions">
-            <button class="clients__btn clients__btn--edit">
-              <mat-icon aria-hidden="false" fontIcon="edit"></mat-icon>
-            </button>
-            <button class="clients__btn clients__btn--delete">
-              <mat-icon aria-hidden="false" fontIcon="delete"></mat-icon>
-            </button>
-          </td>
-        </tr>
+
+        }
       </tbody>
     </table>
   </div>
