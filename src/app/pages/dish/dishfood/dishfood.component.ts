@@ -29,31 +29,28 @@ export class DishfoodComponent {
     menuId: [this.getMenuid, [Validators.required]],
   });
   addMenu() {
-    console.log(this.dishfoodUpdatedForm.getRawValue() );
-    
+    console.log(this.dishfoodUpdatedForm.getRawValue());
+
     const addDishPayload = {
       name: this.dishfoodUpdatedForm.get('name')?.value,
       price: this.dishfoodUpdatedForm.get('price')?.value,
       isPopular: this.dishfoodUpdatedForm.get('isPopular')?.value,
-      menuId: this.getMenuid
+      menuId: this.getMenuid,
     };
     if (this.dishfoodUpdatedForm.valid) {
-      this.dishfood
-        .addDish(addDishPayload as unknown as Dishfood)
-        .subscribe({
-          next: (data) => {
-            console.log(data);
-            alert('Dishfood added successfully');
-            this.showModal = false;
-          },
-          error: (error) => {
-            console.log(error);
-          },
-        });
+      this.dishfood.addDish(addDishPayload as unknown as Dishfood).subscribe({
+        next: (data) => {
+          console.log(data);
+          alert('Dishfood added successfully');
+          this.showModal = false;
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
     }
   }
   closeModal() {
     this.closeModalDish.emit();
   }
-
 }
