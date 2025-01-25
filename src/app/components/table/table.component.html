@@ -6,8 +6,9 @@
         <thead>
             <tr>
                 @for (column of columns(); track $index) {
-                    <th>{{ column }}</th>
+                    <th>{{ column.header }}</th>
                 }
+                <th>Editar</th>
             </tr>
         </thead>
         <tbody>
@@ -18,8 +19,6 @@
                     }
                     <td>
                         <a (click)="sendEdit(data.id)" class="data__action data__action--edit">Editar</a>
-                    </td>
-                    <td>
                         <a (click)="sendDelete(data.id)" class="data__action data__action--delete">Eliminar</a>
                     </td>
                 </tr>

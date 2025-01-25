@@ -13,7 +13,6 @@ export class GetAllService {
   }
 
   private getHeaders() {
-    return new HttpHeaders()
-    .append('Content-Type', 'application/json')
+    return new HttpHeaders().append('Content-Type', 'application/json')
   }
 }

@@ -1,6 +1,1 @@
-<app-table ></app-table>
-<!-- [title]="dataType" -->
-<!-- [columns]="columns" -->
-<!-- [data]="data" -->
-<!-- (sendEdit)="sendEdit($event)" -->
-<!-- (sendDelete)="sendDelete($event)" -->
+<app-table [title]="title" [columns]="columns" [data]="users" (delete)="deleteById($event)" (update)="updateById($event)"></app-table>
