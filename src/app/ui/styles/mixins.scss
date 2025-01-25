@@ -1,0 +1,22 @@
+@mixin flex-center-horizontal($justify: start) {
+  display: flex;
+  align-items: center;
+  justify-content: $justify;
+}
+
+@mixin flex-column($align: start) {
+  display: flex;
+  align-items: $align;
+  flex-direction: column;
+}
+
+@mixin flex-with-gap($gap: 0) {
+  @include flex-center-horizontal;
+  gap: $gap;
+}
+
+@mixin grid-layout($columns: 1fr, $gap: 0) {
+  display: grid;
+  grid-template-columns: $columns;
+  gap: $gap;
+}

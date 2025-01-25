@@ -1,0 +1,19 @@
+
+.layout {
+  width: calc(100% - 16px);
+  height: calc(100vh - 16px);
+  display: grid;
+  grid:
+    "sidebar body" 1fr
+    / auto 1fr;
+  gap: 8px;
+  background: #ffe6e6;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  
+  &__aside { grid-area: sidebar; }
+  
+  &__body { 
+    grid-area: body;
+  }
+}
+
