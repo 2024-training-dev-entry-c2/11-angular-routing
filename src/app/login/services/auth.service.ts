@@ -1,22 +1,27 @@
 import { Injectable } from '@angular/core';
+import { IAuth } from '../interfaces/auth.interface';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private isAuthenticated = false;
-
-  constructor() {}
-
-  login() {
-    this.isAuthenticated = true;
+  login(credentials: IAuth): boolean {
+    if (
+      credentials.username === environment.adminUsername &&
+      credentials.password === environment.adminPassword
+    ) {
+      sessionStorage.setItem('isAuthenticated', 'true');
+      return true;
+    }
+    return false;
   }
 
-  logout() {
-    this.isAuthenticated = false;
+  logout(): void {
+    sessionStorage.removeItem('isAuthenticated');
   }
 
   isLoggedIn(): boolean {
-    return this.isAuthenticated;
+    return sessionStorage.getItem('isAuthenticated') === 'true';
   }
 }
