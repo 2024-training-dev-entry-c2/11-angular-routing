@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { IClients, IClientsResponse } from '../interface/clients.interface';
-import { Observable, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { IClients } from '../interface/clients.interface';
+import { tap } from 'rxjs';
 import { DataManagementService } from './data.service';
 
 @Injectable({

@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
-import { IDishes, IDishesResponse } from '../interface/dishes.interface';
+import { HttpClient } from '@angular/common/http';
+import {Injectable } from '@angular/core';
+import { tap } from 'rxjs';
+import { IDishes } from '../interface/dishes.interface';
 import { DataManagementService } from './data.service';
 
 

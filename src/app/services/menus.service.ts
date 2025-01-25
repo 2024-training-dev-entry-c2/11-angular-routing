@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
-import { IMenu, IMenuResponse } from '../interface/menus.interface';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { tap } from 'rxjs';
+import { IMenu } from '../interface/menus.interface';
 import { DataManagementService } from './data.service';
 
 @Injectable({
