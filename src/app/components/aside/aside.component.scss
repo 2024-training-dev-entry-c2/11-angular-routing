@@ -2,35 +2,43 @@
 
 .aside {
     @include mixins.flex-column;
-    justify-content: space-between;
-    padding: 1.5rem;
-    color: #fff;
+    align-items: center;
+    min-height: 100%;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 15px 0 0 15px;
     font-weight: bold;
-    letter-spacing: 2px;
-    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.105);
+    background-color: #252440;
 
     &__nav {
-
+        margin-top: 100px;
         menu {
             @include mixins.flex-column;
-            gap: 5px;
+            gap: 25px;
             list-style: none;
             
             li {
                 color: #fff;
                 text-decoration: none;
-                padding: 5px 20px;
                 border-radius: 5px;
+                letter-spacing: 2px;
+                padding: 20px 80px;
 
-                &:hover {
-                    cursor: pointer;
-                    text-decoration: underline;
+                a {
+                    color: #fff;
+                    text-decoration: none;
+
+                    &:hover {
+                        cursor: pointer;
+                        text-decoration: underline;
+                    }
+    
+                    &:active {
+                        background-color: #fff;
+                        color: #232323;
+                    }
                 }
 
-                &:active {
-                    background-color: #fff;
-                    color: #232323;
-                }
             }
         }
     }

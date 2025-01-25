@@ -1,40 +1,43 @@
-$data-background-color: #f9f9f9;
-$data-header-color: #007bff;
-$data-row-hover: #f1f1f1;
-$data-border-color: #ddd;
-$data-font-color: #333;
-$data-action-color: #007bff;
-$data-action-hover: #0056b3;
+// Variables para tonos neutros y sobrios
+$data-background-color: #ffffff;
+$data-header-color: #333333;
+$data-row-hover: #f5f5f5;
+$data-border-color: #e0e0e0;
+$data-font-color: #555555;
+$data-action-color: #333333;
+$data-action-hover: #000000;
 
 .data {
-  padding: 2rem;
-  font-family: Arial, sans-serif;
+  padding: 1.5rem;
   color: $data-font-color;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.9rem;
 
   &__header {
     margin-bottom: 1rem;
-    text-align: left;
+    text-align: center;
 
     & h1 {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       color: $data-header-color;
+      font-weight: 600;
     }
   }
 
   &__table {
     width: 100%;
     border-collapse: collapse;
-    background-color: $data-background-color;
+    border: 1px solid $data-border-color;
 
     thead {
       background-color: $data-header-color;
-      color: #fff;
+      color: #ffffff;
 
       th {
         text-align: left;
         padding: 0.75rem;
+        font-weight: 600;
         border-bottom: 2px solid $data-border-color;
-        font-weight: bold;
       }
     }
 
@@ -57,7 +60,7 @@ $data-action-hover: #0056b3;
 
       .data__row {
         &:nth-child(even) {
-          background-color: #f2f2f2;
+          background-color: #f9f9f9;
         }
       }
     }
@@ -65,27 +68,29 @@ $data-action-hover: #0056b3;
 
   &__action {
     text-decoration: none;
-    font-size: 0.875rem;
-    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.6rem;
     border-radius: 4px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    font-weight: 500;
+    border: 1px solid $data-border-color;
 
     &--edit {
       color: $data-action-color;
 
       &:hover {
-        color: #fff;
         background-color: $data-action-hover;
+        color: #ffffff;
       }
     }
 
     &--delete {
-      color: #d9534f;
+      color: #b30000;
 
       &:hover {
-        color: #fff;
-        background-color: #c9302c;
+        background-color: #800000;
+        color: #ffffff;
       }
     }
   }
