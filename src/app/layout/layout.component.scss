@@ -1,3 +1,5 @@
+@use "../ui/variables.scss" as variables;
+
 .layout {
   width: 100%;
   min-height: 100vh;
@@ -19,11 +21,11 @@
 
   &__main {
     grid-area: main;
-    background-color: cadetblue;
+    background-color: variables.$secundary-color;
   }
 
   &__aside {
     grid-area: aside;
-    background-color: rgb(173, 237, 100);
+    background-color: variables.$tercery-color;
   }
 }

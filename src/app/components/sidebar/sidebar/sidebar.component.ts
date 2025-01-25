@@ -17,22 +17,22 @@ export class SidebarComponent {
     },
     {
       name: 'Clientes',
-      icon: 'clients',
+      icon: 'group',
       path: '/clientes',
     },
     {
       name: 'Menu',
-      icon: 'menu',
+      icon: 'menu_book',
       path: '/menus',
     },
     {
       name: 'Platos',
-      icon: 'plato',
+      icon: 'restaurant',
       path: '/platos',
     },
     {
       name: 'Orders',
-      icon: 'orders',
+      icon: 'draftsOrders',
       path: '/ordenes',
     },
   ];
