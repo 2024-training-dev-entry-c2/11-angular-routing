@@ -1,0 +1,76 @@
+<section class="orden-form">
+  <h2>Crear Orden</h2>
+  <form [formGroup]="ordenForm" (ngSubmit)="onSubmit()">
+    <div class="orden-form__form-group">
+
+          <div>
+            <label>Total Precio:</label>
+          </div>
+          <div class="orden-form__input-inline">
+            <input formControlName="priceTotal" type="number" step="0.01" />
+          </div>
+
+
+
+
+      </div>
+
+    <div class="orden-form__form-group">
+
+      <div class="orden-form__input-inline">
+        <div>
+          <label>Estado de la Orden:</label>
+
+        <select formControlName="statusOrder">
+          @for(status of statusOptions; track status){
+            <option [value]="status">{{ status }}</option>
+          }
+        </select>
+      </div>
+        <div>
+          <label>ID del Cliente:</label>
+        </div>
+        <div>
+
+          <input formControlName="clientId" type="number" />
+        </div>
+
+      </div>
+
+
+    </div>
+    @for(items of items.controls; track items){
+      <div class="orden-form__form-group">
+        <label>Nombre del Plato:</label>
+        <input formControlName="name" type="text" />
+
+        <div class="orden-form__inline-group">
+          <div class="orden-form__input-inline">
+            <label>Precio:</label>
+            <input formControlName="price" type="number" step="0.01" />
+          </div>
+          <div class="orden-form__input-inline">
+            <label>Cantidad:</label>
+            <input formControlName="quantity" type="number" />
+          </div>
+        </div>
+        <div class="orden-form__inline-group">
+          <div class="orden-form__input-inline">
+            <label>ID del Restaurante:</label>
+            <input formControlName="restaurantId" type="number" readonly />
+          </div>
+          <div class="orden-form__input-inline">
+            <label>ID del Menú:</label>
+            <input formControlName="menuId" type="number" readonly />
+          </div>
+        </div>
+        <button type="button" class="orden-form__remove-btn">Eliminar Item</button>
+      </div>
+    }
+
+    <div class="orden-form__form-actions">
+      <button type="button" (click)="addItem()">Agregar Item</button>
+      <button type="submit">Crear Orden</button>
+    </div>
+  </form>
+</section>

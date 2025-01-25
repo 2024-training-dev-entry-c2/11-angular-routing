@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { GetOrdenService } from '../../service/get-orden.service';
+import { OrdenService } from '../../service/orden.service';
 import { IViewOrden } from '../../inferfaces/view-orden.interface';
 import { BottonDeleteComponent } from '../botton-delete/botton-delete.component';
 
@@ -11,14 +11,14 @@ import { BottonDeleteComponent } from '../botton-delete/botton-delete.component'
   styleUrl: './get-orden.component.scss'
 })
 export class GetOrdenComponent implements OnInit{
-  private getOrdenService = inject(GetOrdenService);
+  private ordenService = inject(OrdenService);
 
   ordenes: IViewOrden[] = [];
   items: IViewOrden[]=[];
   restaurantId = 11;
 
   ngOnInit() {
-    this.getOrdenService.execute().subscribe({
+    this.ordenService.execute().subscribe({
       next: (data: IViewOrden[]) => {
         this.ordenes = data;
 
@@ -34,7 +34,7 @@ export class GetOrdenComponent implements OnInit{
 
   }
   deleteOrden(id: number): void {
-    this.getOrdenService.deleteOrderById(id).subscribe({
+    this.ordenService.deleteOrderById(id).subscribe({
       next: () => {
         this.ordenes = this.ordenes.filter((orden) => orden.id !== id);
       },

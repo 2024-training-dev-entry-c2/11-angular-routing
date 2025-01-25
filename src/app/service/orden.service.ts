@@ -1,12 +1,12 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { IViewOrden } from '../inferfaces/view-orden.interface';
-import { catchError, Observable, throwError } from 'rxjs';
+import {  Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GetOrdenService {
+export class OrdenService {
   private http = inject(HttpClient);
 
   execute(): Observable<IViewOrden[]> {

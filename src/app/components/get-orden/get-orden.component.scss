@@ -6,7 +6,7 @@
   h1 {
     color: variables.$color-secondary;
     text-align: center;
-    margin-bottom: 20px;
+    margin: 0 0 10px 0;
     font-size: 20px;
   }
   &__table {
@@ -17,7 +17,8 @@
 
     th, td {
       border: 1px solid variables.$color-gradients;
-      padding: 12px 15px;
+      padding: 10px 12px;
+      font-size: 12px;
       text-align: left;
       vertical-align: top;
     }
@@ -25,18 +26,26 @@
     th {
       background-color: variables.$color-secondary;
       color: variables.$color-background;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: bold;
     }
+    tr {
+      border-bottom: 1px solid variables.$color-lines;
+    }
+    tr:hover {
+      background-color: lighten(variables.$color-secondary, 40%);
+      color: variables.$color-gradients;
+    }
   }
+
   &__button-edit{
-    background: #5fe480;
+    background: variables.$color-background-button;
     color: variables.$color-text;
     border: none;
     padding: 8px 12px;
     cursor: pointer;
     border-radius: 4px;
-    color: variables.$color-text;
+    color: variables.$color-background;
     font-weight: bold;
     transition: background-color 0.3s ease;
 

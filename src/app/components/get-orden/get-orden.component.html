@@ -8,7 +8,7 @@
         <th>Estado de la Orden</th>
         <th>Nombre del Cliente</th>
         <th>Teléfono del Cliente</th>
-        <th>Items</th>
+        <th>Platos</th>
         <th>Acciones</th>
       </tr>
     </thead>
@@ -23,7 +23,7 @@
         <td>
           <ul class="content__items">
             @for(item of orden.items; track item.id){
-            <li><strong>Nombre del plato:</strong> {{ item.dish.name }},</li>
+            <li><strong>Nombre:</strong> {{ item.dish.name }},</li>
             <li><strong>Precio:</strong>  {{ item.dish.price }},</li>
             <li><strong>Cantidad:</strong> {{ item.quantity }}</li>
             }
