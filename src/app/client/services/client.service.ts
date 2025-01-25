@@ -16,8 +16,12 @@ export class ClientService{
         return this.http.get<IClient[]>(this.url);
     }
 
-    save(IClient: Partial<IClient> ): Observable<IClient>{
-      return this.http.post<IClient>(this.url,IClient);
+    save(Client: Partial<IClient> ): Observable<IClient>{
+      return this.http.post<IClient>(this.url,Client);
+    }
+
+    update(id: number, client: Partial<IClient>): Observable<IClient> {
+      return this.http.put<IClient>(`${this.url}/${id}`,client);
     }
 
 }
