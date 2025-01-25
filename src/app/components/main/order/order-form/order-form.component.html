@@ -1,5 +1,7 @@
 <section class="main" aria-label="Order Management">
-  <h1 class="main__title">{{ orderId ? "Edit Order" : "Add Order" }}</h1>
+  <app-form-title
+    [title]="orderId ? 'Edit Order' : 'Add Order'"
+  ></app-form-title>
   <app-custom-form
     [formConfig]="formConfig"
     [formData]="formData"

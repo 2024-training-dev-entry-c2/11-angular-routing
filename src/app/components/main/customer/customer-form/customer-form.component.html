@@ -1,7 +1,7 @@
 <section class="main" aria-label="Customer Management">
-  <h1 class="main__title">
-    {{ customerId ? "Edit Customer" : "Add Customer" }}
-  </h1>
+  <app-form-title
+    [title]="customerId ? 'Edit Customer' : 'Add Customer'"
+  ></app-form-title>
   <app-custom-form
     [formConfig]="formConfig"
     [formData]="formData"

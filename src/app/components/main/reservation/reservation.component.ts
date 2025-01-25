@@ -14,7 +14,7 @@ import { ReservationCardComponent } from './reservation-card/reservation-card.co
   styleUrl: './reservation.component.scss',
 })
 export class ReservationComponent implements OnInit {
-  title = 'Reservations Management';
+  title = 'Reservations ';
   addLink = '/reservation/add';
   reservations: IReservationResponse[] = [];
   private refreshSubscription!: Subscription;

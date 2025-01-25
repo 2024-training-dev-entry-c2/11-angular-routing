@@ -1,29 +1,33 @@
 @use "../../../ui/styles/variables.scss" as variables;
+@use "../../../ui/styles/mixins.scss" as mixins;
 
 .main {
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    max-width: 400px;
-    margin: 0 auto;
+  &__container {
+    @include mixins.flex-center();
+  }
+
+  &__form {
+    @include mixins.flex-center(column, center, center, 30px);
+    width: 25%;
     padding: 20px;
     background-color: variables.$bg-color-1;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
-    button {
-      padding: 10px;
-      font-size: 1rem;
-      color: #fff;
+    &-submit {
+      padding: 10px 20px;
+      font-size: 1.3rem;
+
+      color: variables.$secondary-color;
       background-color: variables.$primary-color;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      transition: background-color 0.2s;
+      transition: background-color 0.3s, transform 0.3s;
 
       &:enabled:hover {
-        background-color: rgba(variables.$primary-color, 10%);
+        background-color: variables.$primary-color-dark;
+        transform: translateY(-2px);
       }
 
       &:disabled {

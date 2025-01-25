@@ -15,7 +15,7 @@ import { TitleComponent } from '../../custom/title/title.component';
 })
 export class CustomerComponent implements OnInit, OnDestroy {
   customers: ICustomer[] = [];
-  title = 'Customers Management';
+  title = 'Customers';
   addLink = '/customer/add';
   private refreshSubscription!: Subscription;
 

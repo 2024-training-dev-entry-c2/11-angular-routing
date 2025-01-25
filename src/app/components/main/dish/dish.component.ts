@@ -14,7 +14,7 @@ import { interval, Subscription, switchMap } from 'rxjs';
 })
 export class DishComponent implements OnInit {
   dishes: IDish[] = [];
-  title = 'Dishes Management';
+  title = 'Dishes ';
   addLink = '/dish/add';
   private refreshSubscription!: Subscription;
 

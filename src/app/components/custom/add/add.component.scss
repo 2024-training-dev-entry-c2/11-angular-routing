@@ -1,18 +1,19 @@
 @use "../../../ui/styles/variables.scss" as variables;
 
-.main__link {
-  text-decoration: none;
-  width: fit-content;
-  background-color: variables.$primary-color;
-  color: white;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  font-size: 2.5rem;
-  font-weight: 500;
-  &:hover {
-    background-color: #a45345;
+.main {
+  &__add {
+    text-decoration: none;
+    width: fit-content;
+    background-color: variables.$primary-color;
+    color: variables.$secondary-color;
+    padding: 3px 10px;
+    border: none;
+    border-radius: 25%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 2.5rem;
+    &:hover {
+      background-color: #a45345;
+    }
   }
 }

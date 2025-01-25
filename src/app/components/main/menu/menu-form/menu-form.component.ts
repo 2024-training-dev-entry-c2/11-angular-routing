@@ -1,19 +1,20 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { IMenu } from '../../../../interfaces/menuResponse.interface';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AddMenuService } from '../../../../services/menu/add-menu.service';
 import { EditMenuService } from '../../../../services/menu/edit-menu.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { CustomFormComponent } from '../../../custom/custom-form/custom-form.component';
+import { FormTitleComponent } from '../../../custom/form-title/form-title.component';
 
 @Component({
   selector: 'app-menu-form',
-  imports: [CustomFormComponent],
+  imports: [CustomFormComponent, FormTitleComponent],
   templateUrl: './menu-form.component.html',
   styleUrls: ['./menu-form.component.scss'],
 })
 export class MenuFormComponent implements OnInit {
   menuId: number | null = null;
-  formData: IMenu | null = null;
+  formData: any = null;
 
   formConfig = [
     {
@@ -27,15 +28,24 @@ export class MenuFormComponent implements OnInit {
       label: 'Dishes',
       type: 'array',
       errorMessage: 'At least one dish is required.',
+      visible: false,
     },
   ];
+
+  form!: FormGroup;
 
   private addMenuService = inject(AddMenuService);
   private editMenuService = inject(EditMenuService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
+  private fb = inject(FormBuilder);
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      name: ['', Validators.required],
+      dishIds: this.fb.array([], Validators.required),
+    });
+
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
       if (id) {
@@ -48,6 +58,23 @@ export class MenuFormComponent implements OnInit {
   loadMenuData(id: number): void {
     this.editMenuService.getMenu(id).subscribe((menu) => {
       this.formData = menu;
+      this.setFormData(menu);
+    });
+  }
+
+  setFormData(menu: any): void {
+    this.form.patchValue({
+      name: menu.name,
+    });
+
+    const dishIdsArray = this.form.get('dishIds') as FormArray;
+    menu.dishIds.forEach((dishId: number) => {
+      dishIdsArray.push(
+        this.fb.group({
+          id: [dishId],
+          value: [dishId, Validators.required],
+        })
+      );
     });
   }
 

@@ -1,26 +1,42 @@
 @use "../../../ui/styles/variables.scss" as variables;
+@use "../../../ui/styles/mixins.scss" as mixins;
 
 .card {
   &__actions {
-    display: flex;
+    @include mixins.flex-center(row, space-between);
     width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
+    background-color: variables.$bg-color-1;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   &__btns {
-    padding: 5px;
+    padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
-    color: #fff;
+    color: white;
+    border: none;
+    transition: background-color 0.3s, transform 0.3s;
+    font-weight: 700;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
 
     &---edit {
-      background-color: green;
+      background-color: variables.$yes-p-color;
+
+      &:hover {
+        background-color: #245626, 10%;
+      }
     }
+
     &---delete {
-      background-color: red;
+      background-color: variables.$no-p-color;
+
+      &:hover {
+        background-color: #6a1b16;
+      }
     }
   }
 }

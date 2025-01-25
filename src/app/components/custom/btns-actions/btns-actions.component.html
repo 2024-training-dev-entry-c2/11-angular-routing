@@ -1,6 +1,16 @@
-<div class="card__actions">
-  <button class="card__btns card__btns---edit" (click)="onEdit()">Edit</button>
-  <button class="card__btns card__btns---delete" (click)="onDelete()">
+<div class="card__actions" aria-label="Actions" role="toolbar">
+  <button
+    aria-label="Edit"
+    class="card__btns card__btns---edit"
+    (click)="onEdit()"
+  >
+    Edit
+  </button>
+  <button
+    aria-label="Delete"
+    class="card__btns card__btns---delete"
+    (click)="onDelete()"
+  >
     Delete
   </button>
 </div>

@@ -1,3 +1,62 @@
-@mixin card-shadow {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+@use "variables";
+
+@mixin flex-center(
+  $direction: row,
+  $justify: center,
+  $align: center,
+  $gap: 0px
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
+
+@mixin title() {
+  font-size: 4rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  text-shadow: 0 0 7px #fff;
+}
+
+@mixin main-section() {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding-bottom: 4rem;
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5rem 0;
+    justify-items: center;
+  }
+}
+
+@mixin card() {
+  width: 300px;
+  height: 270px;
+  padding: 20px;
+  position: relative;
+  border-radius: 10px;
+  background-color: variables.$bg-color-1;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+  box-shadow: variables.$shadow-box;
+
+  &__name {
+    margin-bottom: 10px;
+    font-size: 2rem;
+    text-decoration: underline;
+    color: variables.$primary-color;
+  }
+
+  p {
+    font-size: 1.3rem;
+    color: variables.$secondary-color;
+  }
 }

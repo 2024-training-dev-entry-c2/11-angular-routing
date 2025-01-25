@@ -1,4 +1,6 @@
 @use "./app/ui/styles/variables.scss" as variables;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
+
 *,
 *::after,
 *::before {
@@ -9,9 +11,11 @@
 
 html {
   font-size: 62.5%;
+  font-family: "Montserrat", sans-serif;
 }
 
 body {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: variables.$bg-color-2;
+  color: variables.$secondary-color;
+  background: variables.$bg-color-2;
+  height: 100dvh;
 }

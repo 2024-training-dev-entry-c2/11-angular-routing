@@ -2,18 +2,13 @@
 
 .layout {
   display: flex;
-  &__header {
-    height: 100dvh;
-    width: 6dvw;
-    background-color: variables.$bg-color-1;
-    padding: variables.$padding;
-  }
+  flex-direction: row;
+  justify-content: space-between;
 
   &__main {
-    width: 94dvw;
+    width: calc(100dvw - 190px);
+    padding-block: 20px;
+    align-self: flex-end;
     height: 100dvh;
-    padding: variables.$padding;
-
-    color: white;
   }
 }

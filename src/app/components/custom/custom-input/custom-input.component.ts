@@ -10,7 +10,7 @@ import {
 @Component({
   selector: 'app-custom-input',
   templateUrl: './custom-input.component.html',
-  styleUrls: ['./custom-input.component.css'],
+  styleUrls: ['./custom-input.component.scss'],
   imports: [ReactiveFormsModule],
 })
 export class CustomInputComponent {

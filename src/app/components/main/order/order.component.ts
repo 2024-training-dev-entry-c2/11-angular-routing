@@ -16,7 +16,7 @@ import { OrderCardComponent } from './order-card/order-card.component';
 })
 export class OrderComponent {
   orders: IOrderResponse[] = [];
-  title = 'Ordes Management';
+  title = 'Orders ';
   addLink = '/order/add';
   private refreshSubscription!: Subscription;
 

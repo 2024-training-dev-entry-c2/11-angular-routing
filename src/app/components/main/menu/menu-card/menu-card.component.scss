@@ -1,21 +1,6 @@
 @use "../../../../ui/styles/variables.scss" as variables;
-.card {
-  width: 200px;
-  height: 200px;
-  padding: 10px;
-  border: 1px solid black;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+@use "../../../../ui/styles/mixins.scss" as mixins;
 
-  background-color: variables.$bg-color-1;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  &:hover {
-    transform: scale(1.1);
-    &:active {
-      transform: scale(1);
-    }
-  }
+.card {
+  @include mixins.card();
 }

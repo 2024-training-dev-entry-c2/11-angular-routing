@@ -1,7 +1,7 @@
 @use "../../../ui/styles/variables.scss" as variables;
 
 .modal {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -19,6 +19,18 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
+  &__title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: variables.$no-p-color;
+  }
+
+  &__message {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: variables.$secondary-color;
+  }
+
   &__actions {
     display: flex;
     justify-content: space-around;
@@ -31,19 +43,24 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.2s;
+    font-size: 1rem;
+    font-weight: bold;
+    color: variables.$secondary-color;
 
-    &:first-child {
-      background-color: red;
-      color: #fff;
+    &---yes {
+      background-color: variables.$no-p-color;
+
+      &:hover {
+        background-color: variables.$primary-color-dark;
+      }
     }
 
-    &:last-child {
+    &---no {
       background-color: grey;
-      color: #fff;
-    }
 
-    &:hover {
-      background-color: rgba(red, 10%);
+      &:hover {
+        background-color: grey;
+      }
     }
   }
 }

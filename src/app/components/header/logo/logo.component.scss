@@ -1,11 +1,12 @@
+@use "../../../ui/styles/mixins.scss" as mixins;
+
 .header {
   &__logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include mixins.flex-center(column, center, center);
+    padding-top: 10px;
 
     img {
-      width: 100%;
+      width: 70px;
     }
   }
 }

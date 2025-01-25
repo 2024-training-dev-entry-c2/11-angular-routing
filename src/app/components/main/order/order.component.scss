@@ -1,7 +1,6 @@
 @use "../../../ui/styles/variables.scss" as variables;
+@use "../../../ui/styles/mixins.scss" as mixins;
 
 .main {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  @include mixins.main-section;
 }

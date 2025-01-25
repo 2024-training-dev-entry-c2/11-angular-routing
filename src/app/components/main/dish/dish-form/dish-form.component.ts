@@ -4,10 +4,11 @@ import { AddDishService } from '../../../../services/dish/add-dish.service';
 import { EditDishService } from '../../../../services/dish/edit-dish.service';
 import { CustomFormComponent } from '../../../custom/custom-form/custom-form.component';
 import { IDish } from '../../../../interfaces/dishResponse.interface';
+import { FormTitleComponent } from '../../../custom/form-title/form-title.component';
 
 @Component({
   selector: 'app-dish-form',
-  imports: [CustomFormComponent],
+  imports: [CustomFormComponent, FormTitleComponent],
   templateUrl: './dish-form.component.html',
   styleUrl: './dish-form.component.scss',
 })
@@ -31,7 +32,7 @@ export class DishFormComponent implements OnInit {
     {
       name: 'description',
       label: 'Description',
-      type: 'text',
+      type: 'text-area',
       errorMessage: 'Description is required.',
     },
     {

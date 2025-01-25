@@ -14,7 +14,7 @@ import { interval, Subscription, switchMap } from 'rxjs';
 })
 export class MenuComponent implements OnInit {
   menus: IMenu[] = [];
-  title = 'Menus Management';
+  title = 'Menus ';
   addLink = '/menu/add';
   private refreshSubscription!: Subscription;
 

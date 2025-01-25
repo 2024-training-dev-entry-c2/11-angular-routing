@@ -3,10 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AddCustomerService } from '../../../../services/customer/add-customer.service';
 import { EditCustomerService } from '../../../../services/customer/edit-customer.service';
 import { CustomFormComponent } from '../../../custom/custom-form/custom-form.component';
+import { FormTitleComponent } from '../../../custom/form-title/form-title.component';
 
 @Component({
   selector: 'app-customer-form',
-  imports: [CustomFormComponent],
+  imports: [CustomFormComponent, FormTitleComponent],
   templateUrl: './customer-form.component.html',
   styleUrl: './customer-form.component.scss',
 })

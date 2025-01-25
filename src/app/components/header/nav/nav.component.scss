@@ -2,10 +2,18 @@
 
 .header {
   &__nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 160px;
+    height: 100dvh;
+    background-color: variables.$bg-color-1;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    height: 100%;
+    gap: 30px;
+    padding: 10px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 
     &-menu {
       display: flex;
@@ -14,13 +22,17 @@
 
       &-item {
         list-style: none;
-        padding: 10px;
+        padding: 15px;
         border-radius: 10px;
-        transition: background-color 0.15s, color 0.15s;
+        transition: background-color 0.3s, color 0.3s;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
 
         &---selected {
           background-color: variables.$bg-color-active;
         }
+
         &:hover {
           background-color: variables.$bg-color-active;
           .header__nav-menu-icon {
@@ -28,23 +40,25 @@
           }
         }
       }
+
       &-link {
         text-decoration: none;
         display: flex;
-        flex-direction: column;
         align-items: center;
+        gap: 10px;
+        color: variables.$secondary-color;
+        font-weight: bold;
       }
+
       &-icon {
         color: variables.$primary-color;
-        font-size: 4rem;
-        height: 100%;
-        width: 100%;
+        font-size: 2.5rem;
         text-align: center;
       }
+
       &-text {
         font-size: 1.2rem;
-        color: #fff;
-        font-weight: 800;
+        color: variables.$secondary-color;
         letter-spacing: 0.1rem;
       }
     }

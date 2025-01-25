@@ -3,10 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AddOrderService } from '../../../../services/order/add-order.service';
 import { EditOrderService } from '../../../../services/order/edit-order.service';
 import { CustomFormComponent } from '../../../custom/custom-form/custom-form.component';
+import { FormTitleComponent } from '../../../custom/form-title/form-title.component';
 
 @Component({
   selector: 'app-order-form',
-  imports: [CustomFormComponent],
+  imports: [CustomFormComponent, FormTitleComponent],
   templateUrl: './order-form.component.html',
   styleUrls: ['./order-form.component.scss'],
 })

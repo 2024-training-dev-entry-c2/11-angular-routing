@@ -1,5 +1,5 @@
 <section class="main" aria-label="Dish Management">
-  <h1 class="main__title">{{ dishId ? "Edit Dish" : "Add Dish" }}</h1>
+  <app-form-title [title]="dishId ? 'Edit Dish' : 'Add Dish'"></app-form-title>
   <app-custom-form
     [formConfig]="formConfig"
     [formData]="formData"

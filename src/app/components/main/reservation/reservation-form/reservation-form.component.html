@@ -1,7 +1,7 @@
 <section class="main" aria-label="Reservation Management">
-  <h1 class="main__title">
-    {{ reservationId ? "Edit Reservation" : "Add Reservation" }}
-  </h1>
+  <app-form-title
+    [title]="reservationId ? 'Edit Reservation' : 'Add Reservation'"
+  ></app-form-title>
   <app-custom-form
     [formConfig]="formConfig"
     [formData]="formData"

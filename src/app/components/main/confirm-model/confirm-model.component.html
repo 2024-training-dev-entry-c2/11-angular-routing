@@ -1,10 +1,14 @@
-<div class="modal">
-  <div class="modal__content">
-    <h2>{{ title }}</h2>
-    <p>{{ message }}</p>
+<div class="modal" aria-label="Confirm model" role="dialog">
+  <div class="modal__content" role="document">
+    <h2 class="modal__title" aria-label="Title" role="heading">{{ title }}</h2>
+    <p class="modal__message" aria-label="Message" role="text">{{ message }}</p>
     <div class="modal__actions">
-      <button class="modal__btn" (click)="onConfirm()">Yes</button>
-      <button class="modal__btn" (click)="onCancel()">No</button>
+      <button class="modal__btn modal__btn---yes" (click)="onConfirm()">
+        Yes
+      </button>
+      <button class="modal__btn modal__btn---no" (click)="onCancel()">
+        No
+      </button>
     </div>
   </div>
 </div>

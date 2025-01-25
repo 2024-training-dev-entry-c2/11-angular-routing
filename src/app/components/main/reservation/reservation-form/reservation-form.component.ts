@@ -4,10 +4,11 @@ import { IReservationResponse } from '../../../../interfaces/reservationResponse
 import { AddReservationService } from '../../../../services/reservation/add-reservation.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EditReservationService } from '../../../../services/reservation/edit-reservation.service';
+import { FormTitleComponent } from '../../../custom/form-title/form-title.component';
 
 @Component({
   selector: 'app-reservation-form',
-  imports: [CustomFormComponent],
+  imports: [CustomFormComponent, FormTitleComponent],
   templateUrl: './reservation-form.component.html',
   styleUrls: ['./reservation-form.component.scss'],
 })
