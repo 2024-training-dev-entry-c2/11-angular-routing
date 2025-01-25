@@ -4,10 +4,14 @@
   align-items: $align;
 }
 
-@mixin center-container() {
+@mixin center-container($justify: center) {
+  @include item-center-container();
+  justify-content: $justify;
+}
+
+@mixin item-center-container() {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 @mixin container($justify: center) {

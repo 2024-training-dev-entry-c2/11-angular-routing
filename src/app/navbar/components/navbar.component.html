@@ -1,0 +1,18 @@
+<nav class="navbar">
+    <a href="/">
+        <img src="images/logo-navbar.png" alt="Bon Appétit restaurant navbar logo" width="auto" height="56" />
+    </a>
+    <menu class="navbar__menu">
+        @for (item of [
+        { title: 'Inicio', link: '' },
+        { title: 'Clientes', link: '' },
+        { title: 'Menús', link: '' },
+        { title: 'Platos', link: 'dishes' },
+        { title: 'Pedidos', link: '' },
+        { title: 'Carrito', link: '' },
+        ]; track item.title){
+        <li><a class="navbar__link" [routerLink]="item.link">{{ item.title }}</a></li>
+        }
+        <li><button (click)="logout()" class="navbar__button">Cerrar sesión</button></li>
+    </menu>
+</nav>
