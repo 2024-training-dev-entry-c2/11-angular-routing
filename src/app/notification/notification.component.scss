@@ -17,7 +17,7 @@
     }
   
     &__message {
-      margin-right: 10px; // Espaciado entre el texto y el botón
+      margin-right: 10px; 
     }
   
     &__button {
@@ -28,7 +28,7 @@
       cursor: pointer;
   
       &:hover {
-        opacity: 0.8; // Efecto visual al pasar el cursor
+        opacity: 0.8;
       }
     }
   }
