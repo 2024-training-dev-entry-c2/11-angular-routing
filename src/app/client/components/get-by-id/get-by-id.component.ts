@@ -2,6 +2,7 @@ import { Component,inject } from '@angular/core';
 import { IClient } from '../../interfaces/client.interface';
 import { ClientService } from '../../services/client.service';
 import { FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import { NotificationService } from '../../../notification/services/notification.service';
 
 @Component({
   selector: 'app-get-by-id',
@@ -12,13 +13,14 @@ import { FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 export class GetByIdComponent {
   private formBuilder = inject(FormBuilder);
   private clientService = inject(ClientService);
+  private notificationService = inject(NotificationService);
 
   public id: number = 0;
-
   public items = ['nombre','cedula','correo','telefono'];
   public client: IClient = {id:0, nombre:'', cedula:'', correo:'', telefono:''}
+
   public form = this.formBuilder.group({
-    id: ['', [Validators.required,Validators.pattern(/^[1-9]+$/)]]
+    id: ['', [Validators.required,Validators.pattern(/^[0-9]+$/)]]
   });
 
   public loadClientData(id: number): void {
@@ -28,7 +30,7 @@ export class GetByIdComponent {
         this.client = client;
       },
       (error) => {
-        console.error('Error al cargar cliente por ID:', error);
+        this.notificationService.setNotification('error', 'No se encontro un cliente con esa ID');;
       }
     );
   }

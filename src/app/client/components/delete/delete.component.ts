@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ClientService } from '../../services/client.service';
 import { ActivatedRoute,Router } from '@angular/router';
+import { NotificationService } from '../../../notification/services/notification.service';
 
 @Component({
   selector: 'app-delete',
@@ -12,6 +13,7 @@ export class DeleteComponent implements OnInit {
   private clientService = inject(ClientService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
+  private notificationService = inject(NotificationService);
 
   public idCliente: number = 0;
 
@@ -27,12 +29,13 @@ export class DeleteComponent implements OnInit {
 
   private deleteClient(id: number): void {
     this.clientService.delete(id).subscribe({
-      next: (response) => {
-        console.log("CLIENTE ELIMINADO", response);
+      next: () => {
+        this.notificationService.setNotification('success', 'Cliente eliminado exitosamente.');
         this.router.navigate(['clientes']);
       },
       error: (err) => {
         console.error('Error al eliminar cliente', err);
+        this.notificationService.setNotification('error', 'Error al eliminar el cliente.');
       }
     });
   }

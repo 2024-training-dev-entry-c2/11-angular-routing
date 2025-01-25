@@ -2,7 +2,8 @@ import { Component, inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IClient } from '../../interfaces/client.interface';
 import { ClientService } from '../../services/client.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
+import { NotificationService } from '../../../notification/services/notification.service';
 
 @Component({
   selector: 'app-form',
@@ -14,6 +15,8 @@ export class FormComponent implements OnInit {
   private formBuilder = inject(FormBuilder);
   private clientService = inject(ClientService);
   private route = inject(ActivatedRoute);
+  private notificationService = inject(NotificationService);
+  private router = inject(Router);
 
   @Input() title: String = '';
   @Input() action: String = '';
@@ -63,6 +66,7 @@ export class FormComponent implements OnInit {
         this.form.patchValue(client);
       },
       (error) => {
+        this.notificationService.setNotification('error', 'Error al cargar datos del cliente.');
         console.error('Error al cargar datos del cliente:', error);
       }
     );
@@ -70,19 +74,21 @@ export class FormComponent implements OnInit {
 
   saveClient(client: IClient) {
     this.clientService.save(client).subscribe({
-      next: (created) => {
-        console.log('Cliente creado', created);
+      next: () => {
+        this.notificationService.setNotification('success', 'Cliente guardado con exito');
+        this.router.navigate(['clientes']);
       },
-      error: (err) => console.error('Error al crear cliente', err),
+      error: (err) => this.notificationService.setNotification('error', 'Error al guardar el cliente'),
     })
   }
 
   updateClient(idCliente: number, client: IClient) {
     this.clientService.update(idCliente, client).subscribe({
       next: (updated) => {
-        console.log('Cliente actualizado', updated);
+        this.notificationService.setNotification('success', 'Cliente actualizado con exito');
+        this.router.navigate(['clientes']);
       },
-      error: (err) => console.error('Error al actualizar cliente', err),
+      error: (err) => this.notificationService.setNotification('error', 'Error al actualizar el cliente'),
     });
   }
 

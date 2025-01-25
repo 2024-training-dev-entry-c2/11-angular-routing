@@ -11,12 +11,12 @@ import { GetByIdComponent } from './components/get-by-id/get-by-id.component';
 
 const routes: Routes = [
   {
-    path: '', // Ruta base /cliente
+    path: '', 
     component: LayoutClientComponent,
     children: [
-      { path: '', component: GetAllComponent },   // /cliente
-      { path: 'agregar', component: RegisterComponent }, // /cliente/crear
-      { path: 'actualizar/:id', component: UpdateComponent }, // /cliente/editar/4
+      { path: '', component: GetAllComponent },   
+      { path: 'agregar', component: RegisterComponent }, 
+      { path: 'actualizar/:id', component: UpdateComponent }, 
       { path: 'eliminar/:id', component: DeleteComponent },
       { path: 'buscar', component: GetByIdComponent}, 
     ],
