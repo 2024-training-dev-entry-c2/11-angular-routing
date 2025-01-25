@@ -1,0 +1,44 @@
+<section class="container">
+    <article class="customers">
+        <div class="customers__header">
+            <h1>Clientes</h1>
+        </div>
+        <div class="customers__create-button-container">
+            <button class="customers__create-button">
+                <fa-icon [icon]="faPlus"></fa-icon>
+                <span>Crear nuevo cliente</span>
+            </button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NOMBRE</th>
+                    <th>APELLIDO</th>
+                    <th>EMAIL</th>
+                    <th>TELEFONO</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for ( customer of customers; track customer.id) {
+                <tr>
+                    <td>{{ customer.id }}</td>
+                    <td>{{ customer.name }}</td>
+                    <td>{{ customer.lastName }}</td>
+                    <td>{{ customer.email }}</td>
+                    <td>{{ customer.phone }}</td>
+                    <td class="customers__buttons">
+                        <button class="customers__edit-button">
+                            <fa-icon [icon]="faEdit"></fa-icon>
+                        </button>
+                        <button class="customers__delete-button">
+                            <fa-icon [icon]="faTrash"></fa-icon>
+                        </button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </article>
+</section>

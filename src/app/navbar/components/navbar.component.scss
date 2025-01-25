@@ -33,6 +33,7 @@
     color: variables.$color-light-font;
     border-radius: 8px;
     border: 1px solid white;
+    cursor: pointer;
     transition: all 0.25s ease;
 
     &:hover {

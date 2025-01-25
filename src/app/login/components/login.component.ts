@@ -9,7 +9,7 @@ import { IAuth } from '../interfaces/auth.interface';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormGroupComponent } from '../../form-group/form-group/form-group.component';
+import { FormGroupComponent } from '../../form-group/components/form-group.component';
 
 @Component({
   selector: 'app-login',
