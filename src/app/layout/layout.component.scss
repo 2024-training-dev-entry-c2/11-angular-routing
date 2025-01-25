@@ -9,7 +9,6 @@
     grid-template-areas:
       "header header header"
       "sidebar main aside";
-    background-color: aqua;
     gap: 10px;
     &__header{
       grid-area: header;

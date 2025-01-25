@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { ISidebarNav } from '../../../interfaces/sidebar/sidebar-nav';
 import { RouterLink } from '@angular/router';
-
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-sidebar',
-  imports: [RouterLink],
+  imports: [RouterLink, MatIconModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
@@ -24,6 +24,11 @@ export class SidebarComponent {
       name: 'Menu',
       icon: 'menu',
       path: '/menus',
+    },
+    {
+      name: 'Platos',
+      icon: 'plato',
+      path: '/platos',
     },
     {
       name: 'Orders',
