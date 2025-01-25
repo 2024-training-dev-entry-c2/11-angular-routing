@@ -1,1 +1,55 @@
-<p>orders works!</p>
+<section class="orders">
+  <h1 class="orders__title">Órdenes</h1>
+
+  <div class="orders__container">
+    <table class="orders__table">
+      <thead class="orders__thead">
+        <tr class="orders__tr orders__tr--header">
+          <th class="orders__th">ID Orden</th>
+          <th class="orders__th">Cliente</th>
+          <th class="orders__th">Platos</th>
+          <th class="orders__th">Total</th>
+          <th class="orders__th">Estado</th>
+          <th class="orders__th">Fecha</th>
+          <th class="orders__th">Acciones</th>
+        </tr>
+      </thead>
+      <tbody class="orders__tbody">
+        <tr class="orders__tr">
+          <td class="orders__td">#ORD-001</td>
+          <td class="orders__td">
+            <div class="orders__user">
+              <img class="orders__user-avatar" src="assets/avatar.jpg" alt="Usuario">
+              <div class="orders__user-info">
+                <span class="orders__user-name">Carlos García</span>
+                <span class="orders__user-email">carlosfdemail.com</span>
+              </div>
+            </div>
+          </td>
+          <td class="orders__td">
+            <div class="orders__dishes">
+              <span class="orders__dish">Pasta Carbonara x2</span>
+              <span class="orders__dish">Ensalada César x1</span>
+            </div>
+          </td>
+          <td class="orders__td">$45.90</td>
+          <td class="orders__td">
+            <span class="orders__status orders__status--pending">Pendiente</span>
+          </td>
+          <td class="orders__td">2024-01-25 14:30</td>
+          <td class="orders__td orders__td--actions">
+            <button class="orders__btn orders__btn--view">
+              <mat-icon aria-hidden="false" fontIcon="visibility"></mat-icon>
+            </button>
+            <button class="orders__btn orders__btn--edit">
+              <mat-icon aria-hidden="false" fontIcon="edit"></mat-icon>
+            </button>
+            <button class="orders__btn orders__btn--delete">
+              <mat-icon aria-hidden="false" fontIcon="delete"></mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

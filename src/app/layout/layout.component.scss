@@ -21,11 +21,14 @@
 
   &__main {
     grid-area: main;
+    padding: 40px 40px;
     background-color: variables.$secundary-color;
+    border-radius: 6px;
   }
 
   &__aside {
     grid-area: aside;
     background-color: variables.$tercery-color;
+    border-radius: 6px;
   }
 }
