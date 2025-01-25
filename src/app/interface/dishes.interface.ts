@@ -1,8 +1,10 @@
 export interface IDishes{
     id: number;
     name: string;
-    description: string;
-    dishes: Array<{}>;
+    price: number;
+    menuId: number;
+    dishType: string;
+    totalOrdered: number;
 }
 
 

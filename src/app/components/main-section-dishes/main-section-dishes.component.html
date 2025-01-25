@@ -5,7 +5,7 @@
         <figure class="section__content-container">
             <img src="./logo.png" />
             <h1 class="container__content-title">Gusteau's Dishes Details</h1>
-            <button class="container__content-btn container__content-btn--add">Add Order</button>
+            <button (click)="abrirModalEditar()" class="container__content-btn container__content-btn--add">Add Dish</button>
         </figure>
       </div>
       <table class="container__content-table">
@@ -18,7 +18,7 @@
           </tr>
         </thead>
         <tbody class="container__content-table-body">
-            @for (data of dishData(); track $index) {
+            @for (data of dishData | async; track $index) {
                 <tr [id]="$index">
                     <td [id]="$index">{{data.id}}</td>
                     <td [id]="$index">{{data.name}}</td>
@@ -40,4 +40,5 @@
         </tbody>
       </table>
     </div>
+    <app-modal [modalTitle]="'Add a new Dish'" [inputForm]="dishForm" (onSaveTest)="onSave()" [formData]="formData"></app-modal>
   </section>

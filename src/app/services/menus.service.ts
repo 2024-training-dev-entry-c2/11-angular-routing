@@ -1,27 +1,29 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { IMenu, IMenuResponse } from '../interface/menus.interface';
+import { DataManagementService } from './data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class getMenusService {
-    private apiUrl = 'http://localhost:8080/api/menus';
-  private http = inject(HttpClient);
-
-  execute(payload: IMenu): Observable<IMenuResponse> {
-    return this.http.post<IMenuResponse>('http://localhost:8080/api/menus', payload, { headers: this.getHeaders() })
-  }
-
-  private getHeaders(): HttpHeaders {
-    return new HttpHeaders()
-    .append('Authorization', 'token')
-    .append('Content-Type', 'application/json');
-  }
+  private apiUrl = 'http://localhost:8080/api/menus';
   
-  
-  getData(): Observable<Object> {
-      return this.http.get<any>(this.apiUrl);
-    }
+  constructor(
+    private http: HttpClient,
+    private dataManagementService: DataManagementService<IMenu>
+  ) {}
+
+  getData() {
+    return this.http.get<IMenu[]>(this.apiUrl).pipe(
+      tap(data => this.dataManagementService.updateData(data))
+    );
+  }
+    
+  postData(client: IMenu) {
+    return this.http.post<IMenu>(this.apiUrl, client).pipe(
+      tap(newClient => this.dataManagementService.addItem(newClient))
+    );
+  }
 }

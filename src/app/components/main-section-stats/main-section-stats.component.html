@@ -8,23 +8,23 @@
   <div class="dashboard__stats">
       <div class="dashboard__stat">
           <h2 class="dashboard__stat-title">Total Clients</h2>
-          <div class="dashboard__stat-value">2</div>
-          <div class="dashboard__stat-graph" style="--percentage: 33.33%"></div>
+          <div class="dashboard__stat-value">{{data.clients.length}}</div>
+          <div class="dashboard__stat-graph" [style]="'--percentage: ' + (data.clients.length / 10) * 100 + '%'"></div>
       </div>
       <div class="dashboard__stat">
           <h2 class="dashboard__stat-title">Total Orders</h2>
-          <div class="dashboard__stat-value dashboard__stat-value--highlighted">250</div>
-          <div class="dashboard__stat-graph dashboard__stat-graph--high" style="--percentage: 100%"></div>
+          <div class="dashboard__stat-value dashboard__stat-value--highlighted">{{data.orders.length}}</div>
+          <div class="dashboard__stat-graph dashboard__stat-graph--low" [style]="'--percentage: ' + (data.orders.length / 110) * 100 + '%'"></div>
       </div>
       <div class="dashboard__stat">
           <h2 class="dashboard__stat-title">Total Dishes</h2>
-          <div class="dashboard__stat-value">2</div>
-          <div class="dashboard__stat-graph dashboard__stat-graph--low" style="--percentage: 20%"></div>
+          <div class="dashboard__stat-value">{{data.dishes.length}}</div>
+          <div class="dashboard__stat-graph dashboard__stat-graph--low" [style]="'--percentage: ' + (data.dishes.length / 20) * 100 + '%'"></div>
       </div>
       <div class="dashboard__stat">
           <h2 class="dashboard__stat-title">Total Menus</h2>
-          <div class="dashboard__stat-value">2</div>
-          <div class="dashboard__stat-graph dashboard__stat-graph--low" style="--percentage: 20%"></div>
+          <div class="dashboard__stat-value">{{data.menus.length}}</div>
+          <div class="dashboard__stat-graph dashboard__stat-graph--low" [style]="'--percentage: ' + (data.menus.length / 4) * 100 + '%'"></div>
       </div>
   </div>
 </section>

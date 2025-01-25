@@ -1,27 +1,30 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { IClients, IClientsResponse } from '../interface/clients.interface';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import { DataManagementService } from './data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class getClientsService {
-    private apiUrl = 'http://localhost:8080/api/clients';
-  private http = inject(HttpClient);
+  private apiUrl = 'http://localhost:8080/api/clients';
+  
+  constructor(
+    private http: HttpClient,
+    private dataManagementService: DataManagementService<IClients>
+  ) {}
 
-  execute(payload: IClients): Observable<IClientsResponse> {
-    return this.http.post<IClientsResponse>('http://localhost:8080/api/clients', payload, { headers: this.getHeaders() })
+  getData() {
+    return this.http.get<IClients[]>(this.apiUrl).pipe(
+      tap(data => this.dataManagementService.updateData(data))
+    );
+  }
+    
+  postData(client: IClients) {
+    return this.http.post<IClients>(this.apiUrl, client).pipe(
+      tap(newClient => this.dataManagementService.addItem(newClient))
+    );
   }
 
-  private getHeaders(): HttpHeaders {
-    return new HttpHeaders()
-    .append('Authorization', 'token')
-    .append('Content-Type', 'application/json');
-  }
-  
-  
-  getData(): Observable<Object> {
-      return this.http.get<any>(this.apiUrl);
-    }
 }

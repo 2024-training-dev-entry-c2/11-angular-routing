@@ -1,8 +1,10 @@
+import { IDishes } from "./dishes.interface";
+
 export interface IMenu{
     id: number;
     name: string;
     description: string;
-    dishes: Array<{}>;
+    dishes: Array<IDishes>;
 }
 
 

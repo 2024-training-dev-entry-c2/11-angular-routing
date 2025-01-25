@@ -4,7 +4,7 @@
             <figure class="section__content-container">
                 <img src="./logo.png"/>
                 <h1 class="container__content-title">Gusteau's Clients Details</h1>
-                <button class="container__content-btn container__content-btn--add">Add Order</button>
+                <button (click)="abrirModalEditar()" class="container__content-btn container__content-btn--add">Add Client</button>
             </figure>
         </div>
         <table class="container__content-table">
@@ -16,16 +16,16 @@
         </tr>
     </thead>
     <tbody class="container__content-table-body">
-        @for (data of userData(); track $index) {
+        @for (data of userData | async; track $index) {
             <tr [id]="$index">
                         <td [id]="$index">{{data.id}}</td>
-                        <td [id]="$index">{{data.email}}</td>
                         <td [id]="$index">{{data.name}}</td>
+                        <td [id]="$index">{{data.email}}</td>
                         <td [id]="$index">{{data.totalOrders}}</td>
                         <td [id]="$index">{{data.userType}}</td>
                         
                         <td class="container__content-table-actions">
-                            <button class="container__content-btn container__content-btn--edit">Edit</button>
+                            <button  class="container__content-btn container__content-btn--edit">Edit</button>
                             <button class="container__content-btn container__content-btn--delete">Delete</button>
                         </td>
                     </tr>
@@ -33,4 +33,6 @@
             </tbody>
         </table>
     </div>
+   <app-modal [modalTitle]="'Add a new Cliente'" [inputForm]="clientForm" (onSaveTest)="onSave()" [formData]="formData"></app-modal>
+
 </section>

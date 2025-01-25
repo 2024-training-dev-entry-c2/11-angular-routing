@@ -1,9 +1,13 @@
+import { IDishes } from "./dishes.interface";
+
 export interface IOrders{
     id: number;
     orderDate: string;
     totalPrice: number;
     clientId:number;
-    dishes: Array<{}>;
+    clientName: string;
+    clientEmail: string;
+    dishes: Array<IDishes>;
 }
 
 

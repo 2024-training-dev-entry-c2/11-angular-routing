@@ -1,29 +1,30 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { IDishes, IDishesResponse } from '../interface/dishes.interface';
+import { DataManagementService } from './data.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class getDishService {
-    private apiUrl = 'http://localhost:8080/api/dishes';
-  private http = inject(HttpClient);
+  private apiUrl = 'http://localhost:8080/api/dishes';
+  
+  constructor(
+    private http: HttpClient,
+    private dataManagementService: DataManagementService<IDishes>
+  ) {}
 
-  // execute(payload: IDishes): Observable<IDishes> {
-  //   // return this.http.post<IDishesResponse>('http://localhost:8080/api/dishes', payload, { headers: this.getHeaders() })
-  //   // return  this.http.post
-  // }
-
-  private getHeaders(): HttpHeaders {
-    return new HttpHeaders()
-    .append('Authorization', 'token')
-    .append('Content-Type', 'application/json');
+  getData() {
+    return this.http.get<IDishes[]>(this.apiUrl).pipe(
+      tap(data => this.dataManagementService.updateData(data))
+    );
   }
-  
-  
-  getMenu(): Observable<Object> {
-      return this.http.get<any>(this.apiUrl);
-    }
+    
+  postData(client: IDishes) {
+    return this.http.post<IDishes>(this.apiUrl, client).pipe(
+      tap(newClient => this.dataManagementService.addItem(newClient))
+    );
+  }
 }

@@ -1,6 +1,9 @@
 import { Component, inject, input } from '@angular/core';
 import { MainSectionOrdersComponent } from "../main-section-orders/main-section-orders.component";
 import { getOrderService } from '../../services/orders.service';
+import { IOrders } from '../../interface/orders.interface';
+import { IMenu } from '../../interface/menus.interface';
+import { catchError, map, of } from 'rxjs';
 
 @Component({
   selector: 'app-section-orders-content',
@@ -9,11 +12,11 @@ import { getOrderService } from '../../services/orders.service';
   styleUrl: './section-orders-content.component.scss'
 })
 export class SectionOrdersContentComponent {
-data: any;
+  data: IOrders[] = [];
   public orderData = input<any>();
 
   public tableContent = {
-    headers: ['Order ID', 'Order Date', 'Price', 'Menu ID', 'Client Id', 'Actions'],
+    headers: ['Order ID', 'Order Date', 'Price', 'Menu ID', 'Client Email', 'Ordered Dishes' , 'Actions'],
 
   }
 
@@ -21,14 +24,18 @@ data: any;
   private ordersService = inject(getOrderService);
 
   ngOnInit(): void {
-    this.ordersService.getOrders().subscribe(
-      (response) => {
-        this.data = response;
-        console.log(this.data); // For debugging purposes
-      },
-      (error) => {
-        console.error('Error fetching data:', error);
-      }
-    );
-  }
+      this.ordersService
+        .getData()
+        .pipe(
+          map((response) => response),
+          catchError((error) => {
+            console.error('Error fetching data:', error);
+            return of([]); 
+          })
+        )
+        .subscribe((response: IOrders[]) => {
+          this.data = response; 
+          console.log(this.data);
+        });
+    }
 }
