@@ -13,6 +13,8 @@ import { CommonModule } from '@angular/common';
 })
 export class MenuHeaderComponent {
   isModalOpen: boolean = false;
+  constructor(private menuService: MenuService) {}
+
 
   openModal() {
     this.isModalOpen = true;
@@ -22,9 +24,19 @@ export class MenuHeaderComponent {
     this.isModalOpen = isOpen;
   }
 
-  // Lógica para manejar el menú
   addMenu(menu: IMenu) {
-    console.log('Menú agregado:', menu);
-    this.isModalOpen = false;  // Cierra el modal después de agregar el menú
+    console.log('Menú a enviar:', menu);
+    this.menuService.addMenu(menu).subscribe({
+      next: (response) => {
+        console.log('Menú agregado correctamente:', response);
+        this.isModalOpen = false; 
+        alert('Menú agregado exitosamente.');
+      },
+      error: (err) => {
+        console.error('Error al agregar el menú:', err);
+        alert('Hubo un error al agregar el menú. Inténtalo de nuevo.');
+      }
+    });
   }
+  
 }

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IMenu } from '../../interfaces/menu.interface';
 import { CommonModule } from '@angular/common';
+import { MenuService } from '../../services/menu.service';
 
 @Component({
   selector: 'app-modal',
@@ -17,21 +18,35 @@ export class ModalComponent {
   menuName: string = '';
   dishes: string[] = [];
 
+  constructor(private menuService: MenuService) {}
+
   close() {
-    this.closeModal.emit(false); // Emitir false cuando se cierra el modal
+    this.closeModal.emit(false);
   }
 
   addMenuToAPI() {
-    if (this.menuName && this.dishes.length > 0) {
-      const newMenu: IMenu = {
-        idMenu: 0,  // Este valor será generado automáticamente desde la API o al agregar un menú.
-        menuName: this.menuName,
-        dishes: this.dishes.map(dish => ({ idDish: 0, dishName: dish })) // Crear los platos
+    if (this.menuName.trim()) {
+      const newMenu = {
+        idMenu: null, 
+        menuName: this.menuName.trim(),
+        dishes: this.dishes.map(dishName => ({
+          idDish: null, 
+          dishName: dishName.trim()
+        }))
       };
-      this.addMenu.emit(newMenu);  // Emitir el menú hacia el componente padre
-      this.close(); // Cerrar el modal
+  
+      this.menuService.addMenu(newMenu).subscribe({
+        next: response => {
+          console.log('Menú agregado exitosamente:', response);
+        },
+        error: error => {
+          console.error('Error al agregar el menú:', error);
+        }
+      });
+  
+      this.close(); 
     } else {
-      alert('Por favor ingresa un nombre de menú y al menos un plato.');
+      alert('Por favor, ingresa un nombre para el menú.');
     }
   }
 

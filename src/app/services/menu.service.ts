@@ -10,9 +10,9 @@ export class MenuService {
   private baseUrl = 'http://localhost:8080/api/menus';
 
   constructor(private http: HttpClient) {}
-
-  addMenu(payload: IMenu): Observable<IMenuResponse> {
-    return this.http.post<IMenuResponse>(this.baseUrl, payload, { headers: this.getHeaders() });
+  
+  addMenu(menu: any): Observable<any> {
+    return this.http.post(this.baseUrl, menu);
   }
 
   getMenus(): Observable<IMenu[]> {
