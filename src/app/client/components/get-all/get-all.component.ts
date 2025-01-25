@@ -1,10 +1,11 @@
 import { Component,inject,OnInit } from '@angular/core';
 import { IClient } from '../../interfaces/client.interface';
 import { ClientService } from '../../services/client.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-get-all',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './get-all.component.html',
   styleUrl: './get-all.component.scss'
 })

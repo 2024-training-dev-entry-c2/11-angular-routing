@@ -5,8 +5,8 @@
         <div>
             <h2>{{client.nombre}}</h2>
             <p>id: {{client.id}}</p>
-            <a routerLink="['actualizar', client.id]">Actualizar</a>
-            <a routerLink="['eliminar', client.id]">Eliminar</a>
+            <a [routerLink]="['actualizar', client.id]">Actualizar</a>
+            <a [routerLink]="['eliminar', client.id]">Eliminar</a>
         </div>
         <p>cedula: {{client.cedula}}</p>
         <p>correo: {{client.correo}}</p>

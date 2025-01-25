@@ -1,7 +1,8 @@
-import { Component,inject, Input,} from '@angular/core';
-import { FormArray, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, inject, Input, OnInit } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IClient } from '../../interfaces/client.interface';
 import { ClientService } from '../../services/client.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -9,37 +10,71 @@ import { ClientService } from '../../services/client.service';
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss'
 })
-export class FormComponent {
+export class FormComponent implements OnInit {
   private formBuilder = inject(FormBuilder);
   private clientService = inject(ClientService);
+  private route = inject(ActivatedRoute);
 
   @Input() title: String = '';
   @Input() action: String = '';
-  @Input() idCliente ?: number;
-  
+  public idCliente?: number;
+
   public form = this.formBuilder.group({
     nombre: ['', [Validators.required]],
-    cedula: ['', [Validators.required,Validators.pattern(/^[0-9]+$/)]],
-    correo: ['', [Validators.required,Validators.email]],
+    cedula: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+    correo: ['', [Validators.required, Validators.email]],
     telefono: ['', [Validators.pattern(/^[0-9]+$/)]]
   });
 
-  onSubmit(){
-    if(this.form.invalid){
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      const idParam = params.get('id');
+      if (idParam) {
+        this.idCliente = +idParam;
+      }
+
+      if (idParam && this.action === 'update') {
+        this.idCliente = +idParam;
+        this.loadClientData(this.idCliente);
+      }
+
+    });
+  }
+
+  onSubmit() {
+    if (this.form.invalid) {
       console.log("formulario invalido");
       console.log(this.form.value);
       return;
     }
     const client: IClient = this.form.value as IClient;
 
-    if(this.action=="save"){
+    if (this.action === "save") {
       this.saveClient(client);
-    }else if(this.action=="update" && this.idCliente){
-      this.updateClient(this.idCliente,client);
+    } else if (this.action === "update" && this.idCliente) {
+      this.updateClient(this.idCliente, client);
     }
   }
 
-  saveClient(client: IClient){
+  private loadClientData(id: number): void {
+    this.clientService.getById(id).subscribe({
+      next: (client) => {
+        // patchValue, para no pisar campos no definidos, pero normalmente
+        // coincide con tu IClient
+        this.form.patchValue({
+          nombre: client.nombre,
+          cedula: client.cedula,
+          correo: client.correo,
+          telefono: client.telefono
+        });
+      },
+      error: (err) => {
+        console.error('Error al obtener cliente', err);
+      }
+    });
+  }
+
+  saveClient(client: IClient) {
     this.clientService.save(client).subscribe({
       next: (created) => {
         console.log('Cliente creado', created);
@@ -48,7 +83,7 @@ export class FormComponent {
     })
   }
 
-  updateClient(idCliente: number,client: IClient){
+  updateClient(idCliente: number, client: IClient) {
     this.clientService.update(idCliente, client).subscribe({
       next: (updated) => {
         console.log('Cliente actualizado', updated);
