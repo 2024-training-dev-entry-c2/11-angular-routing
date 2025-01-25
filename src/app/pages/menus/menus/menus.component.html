@@ -1,16 +1,37 @@
-<app-tabs title="Order Data " [tabs]="tabsList">
-    <div tabContent0>
+<section class="section__main">
+    <h1 class="title__home">Menus List</h1>
+    <div class="tabs__container">
+        <ul class="tabs__buttons">
+            @for(item of getTabs; track $index) {
+            <li class="tab-button" [class.active]="activeTab === $index" (click)="selectTab($index)">
+         
+                 <span>{{item.name}}</span>
+                 <div class="actions__items">
+                    <app-buttons [icon]="images[0]" [rowIndex]="$index"
+                        (buttonClick)="deleteMenu(item.id)"></app-buttons>
+                    <app-buttons [icon]="images[1]" [rowIndex]="$index"
+                        (buttonClick)="updateMenu(item.id)"></app-buttons>
+                </div>
+            </li>
 
-        <!-- <form [formGroup]="clientForm" (ngSubmit)="submit()">
+            }
+            <li id="section__add-menu">Add Menu</li>
+        </ul>
+        <div class="slider">
+            <div class="slider__indicator" [style.transform]="'translateX(' + (activeTab * 100) + '%)'"></div>
+        </div>
+        <div class="tab__content">
+            @for(item of getTabs; track $index) {
+                @if(activeTab === $index){
+                    <app-table title="Orders" [data]="getMenuDishes(item.name)" (deleteId)="deleteMenu($event)"
+                (updateId)="updateMenu($event)"></app-table>
+                }
+            }
+            <div class="actions__button-dish">
+                <button >Add Dish</button>
+            </div>
             
-            <app-form [formFields]="fields" [formGroup]="clientForm">
-            </app-form>
-            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-        </form> -->
-    </div>
-    <div tabContent1>
-        <!-- <app-table title="Clients" [data]="listClients" (deleteId)="deleteClient($event)"
-            (updateId)="getClient($event)"></app-table> -->
-    </div>
 
-</app-tabs>
+        </div>
+    </div>
+</section>

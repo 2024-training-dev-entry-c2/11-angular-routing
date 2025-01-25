@@ -1,5 +1,5 @@
 <app-tabs title="Clients Data " [tabs]="tabsList">
-    <div tabContent0>
+    <div  class="tab__content" tabContent0>
 
         <form [formGroup]="clientForm" (ngSubmit)="submit()">
             <!-- Reutilización del componente dinámico -->
@@ -8,7 +8,7 @@
             <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
         </form>
     </div>
-    <div tabContent1>
+    <div  class="tab__content"  tabContent1>
         <app-table title="Clients" [data]="listClients" (deleteId)="deleteClient($event)"
             (updateId)="getClient($event)"></app-table>
     </div>

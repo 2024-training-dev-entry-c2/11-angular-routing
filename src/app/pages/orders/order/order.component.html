@@ -1,5 +1,5 @@
 <app-tabs title="Order Data " [tabs]="tabsList">
-    <div tabContent0>
+    <div  class="tab__content" tabContent0>
 
         <!-- <form [formGroup]="clientForm" (ngSubmit)="submit()">
             
@@ -8,7 +8,7 @@
             <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
         </form> -->
     </div>
-    <div tabContent1>
+    <div class="tab__content" tabContent1>
         <app-table title="Orders" [data]="orderData" (deleteId)="deleteOrder($event)"
             (updateId)="updateOrder($event)"></app-table>
     </div>
