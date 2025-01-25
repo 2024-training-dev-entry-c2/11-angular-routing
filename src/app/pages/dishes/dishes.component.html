@@ -1,1 +1,51 @@
-<p>dishes works!</p>
+<section class="dishes">
+  <header class="dishes__header">
+    <h1 class="dishes__title">Platos</h1>
+    <button class="dishes__add-btn">Agregar Plato</button>
+  </header>
+
+  <div class="dishes__grid">
+    <article class="dish-card">
+      <div class="dish-card__image-container">
+        <img
+          src="assets/dishes/ensalada-cesar.jpg"
+          alt="Ensalada César"
+          class="dish-card__image"
+        />
+        <span class="dish-card__badge dish-card__badge--out-of-stock"
+          >No disponible</span
+        >
+      </div>
+
+      <div class="dish-card__content">
+        <h3 class="dish-card__title">Ensalada César</h3>
+        <p class="dish-card__description">
+          Lechuga romana fresca con aderezo césar, crutones y queso parmesano
+        </p>
+
+        <div class="dish-card__details">
+          <div class="dish-card__price">$12.90</div>
+          <div class="dish-card__category">Ensaladas</div>
+        </div>
+
+        <div class="dish-card__ingredients">
+          <h4 class="dish-card__ingredients-title">Ingredientes:</h4>
+          <ul class="dish-card__ingredients-list">
+            <li>Lechuga romana</li>
+            <li>Aderezo césar</li>
+            <li>Crutones</li>
+          </ul>
+        </div>
+
+        <div class="dish-card__actions">
+          <button class="dish-card__btn dish-card__btn--edit">
+            <mat-icon aria-hidden="false" fontIcon="edit"></mat-icon>
+          </button>
+          <button class="dish-card__btn dish-card__btn--delete">
+            <mat-icon aria-hidden="false" fontIcon="delete"></mat-icon>
+          </button>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>

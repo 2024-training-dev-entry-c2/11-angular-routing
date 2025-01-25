@@ -1,1 +1,33 @@
-<p>menu works!</p>
+<section class="menu">
+  <header class="menu__header">
+    <h1 class="menu__title">Menú</h1>
+    <button class="menu__add-btn">
+      Agregar Plato
+    </button>
+  </header>
+
+  <div class="menu__grid">
+    <article class="menu-card">
+
+      <div class="menu-card__content">
+        <h3 class="menu-card__title">Pasta Carbonara</h3>
+        <p class="menu-card__description">
+          Pasta italiana con salsa cremosa, panceta, huevo y queso parmesano
+        </p>
+
+        <div class="menu-card__details">
+          <div class="menu-card__category">Pasta</div>
+        </div>
+
+        <div class="menu-card__actions">
+          <button class="menu-card__btn menu-card__btn--edit">
+            <mat-icon aria-hidden="false" fontIcon="edit"></mat-icon>
+          </button>
+          <button class="menu-card__btn menu-card__btn--delete">
+            <mat-icon aria-hidden="false" fontIcon="delete"></mat-icon>
+          </button>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>

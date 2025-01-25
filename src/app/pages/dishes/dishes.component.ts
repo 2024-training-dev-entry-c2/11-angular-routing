@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-dishes',
-  imports: [],
+  imports: [MatIconModule],
   templateUrl: './dishes.component.html',
-  styleUrl: './dishes.component.scss'
+  styleUrl: './dishes.component.scss',
 })
-export class DishesComponent {
-
-}
+export class DishesComponent {}
