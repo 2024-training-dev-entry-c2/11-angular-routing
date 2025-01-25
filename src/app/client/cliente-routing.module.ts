@@ -7,6 +7,7 @@ import { GetAllComponent } from './components/get-all/get-all.component';
 import { UpdateComponent } from './components/update/update.component';
 import { RegisterComponent } from './components/register/register.component';
 
+
 const routes: Routes = [
   {
     path: '', // Ruta base /cliente

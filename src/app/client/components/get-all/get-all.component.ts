@@ -8,7 +8,7 @@ import { ClientService } from '../../services/client.service';
   templateUrl: './get-all.component.html',
   styleUrl: './get-all.component.scss'
 })
-export class GetAllComponent {
+export class GetAllComponent implements OnInit{
   clients: IClient[] = [];
 
   private clienteService = inject(ClientService);
