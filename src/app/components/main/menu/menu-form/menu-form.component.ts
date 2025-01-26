@@ -37,7 +37,7 @@ export class MenuFormComponent implements OnInit {
       label: 'Dishes',
       type: 'array',
       errorMessage: 'At least one dish is required.',
-      options: [], // Agregamos un campo para las opciones
+      options: [],
     },
   ];
 

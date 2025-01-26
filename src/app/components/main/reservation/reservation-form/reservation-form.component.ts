@@ -1,9 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CustomFormComponent } from '../../../custom/custom-form/custom-form.component';
-import { IReservationResponse } from '../../../../interfaces/reservationResponse.interface';
-import { AddReservationService } from '../../../../services/reservation/add-reservation.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AddReservationService } from '../../../../services/reservation/add-reservation.service';
 import { EditReservationService } from '../../../../services/reservation/edit-reservation.service';
+import { GetAllCustomersService } from '../../../../services/customer/get-all-customers.service';
+import { ICustomer } from '../../../../interfaces/customerResponse.interface';
+import { IReservationResponse } from '../../../../interfaces/reservationResponse.interface';
+import { CustomFormComponent } from '../../../custom/custom-form/custom-form.component';
 import { FormTitleComponent } from '../../../custom/form-title/form-title.component';
 
 @Component({
@@ -15,13 +18,15 @@ import { FormTitleComponent } from '../../../custom/form-title/form-title.compon
 export class ReservationFormComponent implements OnInit {
   reservationId: number | null = null;
   formData: IReservationResponse | null = null;
+  customers: ICustomer[] = [];
 
   formConfig = [
     {
       name: 'customerId',
-      label: 'Customer ID',
-      type: 'number',
-      errorMessage: 'Customer ID is required.',
+      label: 'Customer',
+      type: 'select',
+      options: [],
+      errorMessage: 'Customer is required.',
     },
     {
       name: 'time',
@@ -39,18 +44,33 @@ export class ReservationFormComponent implements OnInit {
       name: 'status',
       label: 'Status',
       type: 'select',
-      options: ['pending', 'completed', 'cancelled'],
+      options: [
+        { label: 'Pending', value: 'pending' },
+        { label: 'Completed', value: 'completed' },
+        { label: 'Cancelled', value: 'cancelled' },
+      ],
       errorMessage:
         'Status is required. Must be one of: pending, completed, cancelled.',
     },
   ];
 
+  form!: FormGroup;
+
   private addReservationService = inject(AddReservationService);
   private editReservationService = inject(EditReservationService);
+  private getAllCustomersService = inject(GetAllCustomersService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
+  private fb = inject(FormBuilder);
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      customerId: ['', Validators.required],
+      time: ['', Validators.required],
+      people: ['', Validators.required],
+      status: ['', Validators.required],
+    });
+
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
       if (id) {
@@ -58,12 +78,30 @@ export class ReservationFormComponent implements OnInit {
         this.loadReservationData(this.reservationId);
       }
     });
+
+    this.loadCustomers();
   }
 
   loadReservationData(id: number): void {
     this.editReservationService.getReservation(id).subscribe((reservation) => {
       reservation.time = reservation.time.slice(0, 16);
       this.formData = reservation;
+    });
+  }
+
+  loadCustomers(): void {
+    this.getAllCustomersService.execute().subscribe((customers) => {
+      this.customers = customers;
+
+      const customerConfig = this.formConfig.find(
+        (config) => config.name === 'customerId'
+      );
+      if (customerConfig) {
+        customerConfig.options = customers.map((customer) => ({
+          label: `${customer.firstName} ${customer.lastName}`,
+          value: customer.id.toString(),
+        }));
+      }
     });
   }
 

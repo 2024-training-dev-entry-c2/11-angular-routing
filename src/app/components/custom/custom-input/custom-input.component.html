@@ -12,18 +12,32 @@
     {{ config.label }}
   </label>
 
-  @if (!isArray) {
+  @if (!isArray) { @if (config.type == "select") {
+  <select
+    class="custom-input__input"
+    [id]="config.name"
+    aria-label="Select"
+    role="combobox"
+    [formControlName]="config.name"
+  >
+    @for (option of config.options; track $index) {
+    <option [value]="option.value">
+      {{ option.label }}
+    </option>
+    }
+  </select>
+  } @else {
+
   <input
     class="custom-input__input"
     [class.custom-input__input--checkbox]="config.type === 'checkbox'"
     [id]="config.name"
     aria-label="Input"
     role="input"
-    [type]="config.type || 'text'"
+    [type]="config.type || ''"
     [formControlName]="config.name"
     [placeholder]="config.placeholder || ''"
-  />
-  } @else {
+  />} } @else {
   <div
     class="custom-input__array"
     aria-label="array"
@@ -42,7 +56,7 @@
         aria-label="Select"
         role="combobox"
       >
-        @for (option of config.options; track option) {
+        @for (option of config.options; track option.value) {
         <option [value]="option.value">
           {{ option.label }}
         </option>
