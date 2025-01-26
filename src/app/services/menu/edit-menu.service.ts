@@ -1,31 +1,30 @@
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpErrorResponse,
-} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { IMenu } from '../../interfaces/menuResponse.interface';
 import { IMenuRequest } from '../../interfaces/menuRequest.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AddMenuService {
+export class EditMenuService {
   private http = inject(HttpClient);
+  private apiUrl = 'http://localhost:8080/menu';
 
-  execute(menu: Partial<IMenuRequest>): Observable<IMenuRequest> {
+  getMenu(id: number): Observable<IMenu> {
     return this.http
-      .post<IMenuRequest>('http://localhost:8080/menu', menu, {
-        headers: this.getHeaders(),
-      })
+      .get<IMenu>(`${this.apiUrl}/${id}`)
       .pipe(catchError(this.handleError));
   }
 
-  private getHeaders(): HttpHeaders {
-    return new HttpHeaders()
-      .append('Authorization', 'token')
-      .append('Content-Type', 'application/json');
+  updateMenu(
+    id: number,
+    menu: Partial<IMenuRequest>
+  ): Observable<IMenuRequest> {
+    return this.http
+      .put<IMenuRequest>(`${this.apiUrl}/${id}`, menu)
+      .pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
