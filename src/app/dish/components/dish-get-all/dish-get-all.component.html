@@ -1,1 +1,20 @@
-<p>dish-get-all works!</p>
+<section class="get-all-dish">
+    <h1 class="get-all-dish__title">PLATOS</h1>
+    @for (dish of dishes; track $index) {
+    <article class="get-all-dish__info">
+        <div class="get-all-dish__header">
+            <h2>{{ dish.nombre }}</h2>
+            <p>id: {{ dish.id }}</p>
+            <a [routerLink]="['actualizar', dish.id]">Actualizar</a>
+            <a [routerLink]="['eliminar', dish.id]">Eliminar</a>
+        </div>
+        <div class="get-all-dish__body">
+            <p>Descripción: {{ dish.descripcion }}</p>
+            <p>Precio: {{ dish.precio | currency}}</p>
+            <p>Tipo: {{ dish.tipo }}</p>
+            <p>ID Menú: {{ dish.idMenu }}</p>
+        </div>
+    </article>
+    <hr>
+    }
+</section>

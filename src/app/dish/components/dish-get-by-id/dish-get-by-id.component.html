@@ -1,1 +1,29 @@
-<p>dish-get-by-id works!</p>
+<section class="get-by-id">
+    <article>
+        <h3 class="get-by-id__title">Obtener plato por ID</h3>
+        <form [formGroup]="form" class="get-by-id__form" (ngSubmit)="onSubmit()">
+            <label class="get-by-id__label">
+                <span>ID:</span>
+                <input type="text" formControlName="id" class="get-by-id__input">
+            </label>
+            <button class="get-by-id__button">Enviar</button>
+        </form>
+    </article>
+
+    @if (dish) {
+    <article>
+        <h3>Plato</h3>
+        <div>
+            <div>
+                <h4>{{ dish.nombre }}</h4>
+            </div>
+            <ul>
+                <li><span>Descripción:</span> {{ dish.descripcion }}</li>
+                <li><span>Precio:</span> {{ dish.precio | currency }}</li>
+                <li><span>Tipo:</span> {{ dish.tipo }}</li>
+                <li><span>ID Menú:</span> {{ dish.idMenu }}</li>
+            </ul>
+        </div>
+    </article>
+    }
+</section>

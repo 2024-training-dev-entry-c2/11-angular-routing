@@ -17,6 +17,11 @@ export const routes: Routes = [
         path: 'menus', 
         loadChildren: () => import('../../menu/menu.module').then(m => m.MenuModule),
         outlet: "primary" 
+      },
+      { 
+        path: 'platos', 
+        loadChildren: () => import('../../dish/dish.module').then(m => m.DishModule),
+        outlet: "primary" 
       }
     ]
   },
