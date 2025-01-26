@@ -1,5 +1,5 @@
 import { Component, input, output } from '@angular/core';
-import { IColumn } from './interfaces/column.interface';
+import { IColumn } from '../../interfaces/column-table.interface';
 
 @Component({
   selector: 'app-table',
@@ -13,6 +13,7 @@ export class TableComponent {
   public data = input<any[]>();
   public update = output<number>();
   public delete = output<number>();
+  public openModal = output<boolean>();
 
 
   sendEdit(number: number) {
@@ -21,5 +22,9 @@ export class TableComponent {
 
   sendDelete(number: number) {
     this.delete.emit(number);
+  }
+
+  public openForm() {
+    this.openModal.emit(true);
   }
 }

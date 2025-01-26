@@ -1,0 +1,6 @@
+<dialog class="modal" [class.modal--open]="open()">
+  <div class="modal__content">
+    <span class="modal__close" (click)="closeModal()">&times;</span>
+    <ng-content></ng-content>
+  </div>
+</dialog>

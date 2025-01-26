@@ -1,6 +1,6 @@
 <section class="data">
     <div class = "data__header">
-        <h1 class="data__title">{{ title() }}: </h1>
+        <h1 class="data__title">{{ title() }}:</h1>
     </div>
     <table class="data__table">
         <thead>
@@ -18,11 +18,12 @@
                         <td>{{data[column.field]}}</td>
                     }
                     <td>
-                        <a (click)="sendEdit(data.id)" class="data__action data__action--edit">Editar</a>
-                        <a (click)="sendDelete(data.id)" class="data__action data__action--delete">Eliminar</a>
+                        <a (click)="sendEdit(data.id)" class="data__action data__action--edit">✏️</a>
+                        <a (click)="sendDelete(data.id)" class="data__action data__action--delete">X</a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
+    <a class="data__button" (click)="openForm()">Agregar {{title()}} +</a>
 </section>

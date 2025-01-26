@@ -1,55 +1,67 @@
-// Variables para tonos neutros y sobrios
-$data-background-color: #ffffff;
-$data-header-color: #333333;
-$data-row-hover: #f5f5f5;
-$data-border-color: #e0e0e0;
-$data-font-color: #555555;
-$data-action-color: #333333;
-$data-action-hover: #000000;
+@use '../../ui/styles/mixins.scss' as mixins;
+@use '../../ui/styles/variables.scss' as variables;
 
 .data {
-  padding: 1.5rem;
-  color: $data-font-color;
-  font-family: 'Open Sans', sans-serif;
+  @include mixins.flex-column;
+  align-items: center;
+  gap: 15px;
+  padding: 5rem;
+  color: variables.$white;
   font-size: 0.9rem;
 
   &__header {
     margin-bottom: 1rem;
     text-align: center;
+  }
 
-    & h1 {
-      font-size: 1.25rem;
-      color: $data-header-color;
-      font-weight: 600;
+  &__title {
+    font-size: 1.5rem;
+    color: variables.$white;
+    font-weight: 600;
+  }
+
+  &__button {
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+
+    &:hover {
+      text-decoration: underline;
     }
   }
 
   &__table {
-    width: 100%;
+
+    max-height: 400px;
     border-collapse: collapse;
-    border: 1px solid $data-border-color;
+    overflow-y: auto;
+    display: block;
 
     thead {
-      background-color: $data-header-color;
-      color: #ffffff;
+      position: sticky;
+      top: 0;
+      background-color: variables.$primary-color;
+      z-index: 1;
 
       th {
         text-align: left;
-        padding: 0.75rem;
+        padding: 1rem;
         font-weight: 600;
-        border-bottom: 2px solid $data-border-color;
       }
     }
 
     tbody {
       tr {
+        border-top: 1px solid variables.$primary-color;
+
         &:hover {
-          background-color: $data-row-hover;
+          background-color: variables.$secondary-color;
+          transition: all 0.5s ease;
         }
 
-        & td {
+        td {
           padding: 0.75rem;
-          border-bottom: 1px solid $data-border-color;
           text-align: left;
 
           &:last-child {
@@ -57,12 +69,25 @@ $data-action-hover: #000000;
           }
         }
       }
+    }
 
-      .data__row {
-        &:nth-child(even) {
-          background-color: #f9f9f9;
-        }
-      }
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: variables.$secondary-color;
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: variables.$primary-color;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: variables.$gray;
+      border-radius: 4px;
     }
   }
 
@@ -70,17 +95,15 @@ $data-action-hover: #000000;
     text-decoration: none;
     font-size: 0.85rem;
     padding: 0.4rem 0.6rem;
-    border-radius: 4px;
     transition: all 0.3s ease;
     display: inline-block;
     font-weight: 500;
-    border: 1px solid $data-border-color;
+    cursor: pointer;
+    border-radius: 100%;
 
     &--edit {
-      color: $data-action-color;
-
       &:hover {
-        background-color: $data-action-hover;
+        translate: 0 -5px;
         color: #ffffff;
       }
     }
@@ -89,7 +112,7 @@ $data-action-hover: #000000;
       color: #b30000;
 
       &:hover {
-        background-color: #800000;
+        translate: 0 -5px;
         color: #ffffff;
       }
     }
