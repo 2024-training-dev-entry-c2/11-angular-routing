@@ -8,11 +8,15 @@
                 <fa-icon [icon]="faPlus"></fa-icon>
                 <span>Crear nuevo cliente</span>
             </button>
-            @if(showCreateCustomer){
+            @if(showSaveCustomer){
             <app-create-customer [selectedCustomer]="selectedCustomer" (closeModal)="closeCreateCustomerModal()"
                 (customerSaved)="addCustomer($event)" (customerUpdated)="replaceCustomer($event)"
                 (clearSelected)="clearSelectedCustomer()">
             </app-create-customer>
+            }
+            @if(showDeleteCustomer){
+            <app-delete-customer [selectedIdCustomer]="selectedIdCustomer" (closeModal)="closeDeleteCustomerModal()"
+                (customerDeleted)="deleteCustomer($event)"></app-delete-customer>
             }
         </div>
         <table>
@@ -42,9 +46,10 @@
                         <button class="customers__edit-button" (click)="showUpdateCustomerModal(customer)">
                             <fa-icon [icon]="faEdit"></fa-icon>
                         </button>
-                        <button class="customers__delete-button">
+                        <button class="customers__delete-button" (click)="showDeleteCustomerModal(customer.id)">
                             <fa-icon [icon]="faTrash"></fa-icon>
                         </button>
+
                     </td>
                 </tr>
                 }

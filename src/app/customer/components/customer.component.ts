@@ -4,10 +4,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPlus, faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { FormCustomerComponent } from './form-customer/form-customer.component';
 import { ICustomerResponse } from '../interfaces/customer.interface';
+import { DeleteCustomerComponent } from './delete-customer/delete-customer.component';
 
 @Component({
   selector: 'app-customer',
-  imports: [FontAwesomeModule, FormCustomerComponent],
+  imports: [FontAwesomeModule, FormCustomerComponent, DeleteCustomerComponent],
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.scss',
 })
@@ -15,12 +16,14 @@ export class CustomerComponent implements OnInit {
   faPlus = faPlus;
   faTrash = faTrash;
   faEdit = faEdit;
-  showCreateCustomer = false;
+  showSaveCustomer = false;
+  showDeleteCustomer = false;
 
   private listCustomersService = inject(ListCustomersService);
 
   customers: ICustomerResponse[] = [];
   selectedCustomer: ICustomerResponse | null = null;
+  selectedIdCustomer!: number;
 
   ngOnInit(): void {
     this.listCustomersService.execute().subscribe((customers) => {
@@ -29,18 +32,27 @@ export class CustomerComponent implements OnInit {
   }
 
   showCreateCustomerModal(): void {
-    this.showCreateCustomer = true;
+    this.showSaveCustomer = true;
+  }
+
+  showDeleteCustomerModal(idCustomer: number): void {
+    this.selectedIdCustomer = idCustomer;
+    this.showDeleteCustomer = true;
   }
 
   showUpdateCustomerModal(selectedCustomer: ICustomerResponse): void {
     this.selectedCustomer = selectedCustomer;
     if (this.selectedCustomer) {
-      this.showCreateCustomer = true;
+      this.showSaveCustomer = true;
     }
   }
 
   closeCreateCustomerModal(): void {
-    this.showCreateCustomer = false;
+    this.showSaveCustomer = false;
+  }
+
+  closeDeleteCustomerModal(): void {
+    this.showDeleteCustomer = false;
   }
 
   addCustomer(newCustomer: ICustomerResponse): void {
@@ -53,6 +65,10 @@ export class CustomerComponent implements OnInit {
       this.customers[index] = updatedCustomer;
     }
     this.selectedCustomer = null;
+  }
+
+  deleteCustomer(idCustomer: number): void {
+    this.customers = this.customers.filter((c) => c.id !== idCustomer);
   }
 
   clearSelectedCustomer(): void {
