@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Output } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, Validators, FormControl } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { InputFieldComponent } from '../../atoms/input-field/input-field.component';
 
 interface DishForm {
@@ -19,13 +24,13 @@ export class DishFormComponent {
   @Output() submitDish = new EventEmitter<DishForm>();
   form = inject(FormBuilder).group({
     name: ['', [Validators.required, Validators.minLength(3)]],
-    price: [0, [Validators.required, Validators.min(0.01)]],
+    price: [5000, [Validators.required, Validators.min(0.01)]],
   });
 
   onSubmit(): void {
     if (this.form.valid) {
       this.submitDish.emit(this.form.value as DishForm);
-      this.form.reset({ name: '', price: 0 });
+      this.form.reset({ name: '', price: 5000 });
     }
   }
 
