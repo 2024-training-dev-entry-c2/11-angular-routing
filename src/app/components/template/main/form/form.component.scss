@@ -1,0 +1,109 @@
+.form{
+    position: relative;
+    top:-80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 60%;
+    min-width: 400px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 5px;
+    gap: 20px;
+    overflow: hidden;
+
+    &__container{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #0000002b;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__header{
+        margin-bottom: 20px;
+    }
+
+    &__button-close{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        text-align: center;
+        border: none;
+        background: none;
+
+        &:hover{
+            background-color: #ddd;
+        }
+    }
+
+    &__title{
+        font-size: 30px;
+    }
+
+    &__group{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    &__field{
+        display: flex;
+        align-items: center;
+        width: 300px;
+        gap: 10px;
+
+        &__label{
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        &__input{
+            width: 100%;
+            padding: 3px;
+            border-radius: 3px;
+            outline: none;
+            border: solid 1px #00000028;
+        }
+    }
+
+    &__alert{
+        width: 300px;
+        font-size: 14px;
+        color: red;
+        background: rgba(255, 0, 0, 0.121);
+        padding: 5px;
+        border-radius: 4px;
+        border: solid 1px red;
+    }
+
+    &__button{
+        width: 100px;
+        padding: 5px;
+        background: rgb(89, 215, 89);
+        color: rgb(255, 255, 255);
+        font-size: 15px;
+        font-weight: 500;
+        border: none;
+        border-radius: 100px;
+        box-shadow: 1px 1px 8px #0000003f;
+        cursor: pointer;
+
+        &:disabled{
+            background: rgb(83, 199, 83);           
+            color: rgb(211, 211, 211);
+            cursor:auto;
+        }
+
+        &:hover{
+            background: rgb(83, 199, 83);                
+        }
+    }
+}

@@ -1,0 +1,30 @@
+<app-container>
+    <div class="container__wrapper options">
+        <button class="options__add-button" (click)="isVisibleForm=true;">Agregar cliente</button>
+    </div>
+
+    <app-board class="container__wrapper"
+    [titles]="tableContent.titles"
+    [items]="tableContent.content"
+    (onUpdate)="onUpdateClick($event)"
+    (onDelete)="deleteClient($event)"
+    ></app-board>
+
+    @if (isVisibleForm) {
+        <app-form
+        [title]="formContent.title"
+        [formFields]="formContent.fields"
+        buttonText="Enviar"
+        (onSuccess)="onSendForm($event)"
+        (onClose)="isVisibleForm=false;"
+        ></app-form>
+    }
+
+    <!-- <app-form
+    [idItem]="idToUpdate!"
+    title="Actualizar menú"
+    [formFields]="formContent.fields"
+    buttonText="Actualizar"
+    (onSuccess)="onSendUpdatedForm($event)"
+    ></app-form> -->
+</app-container>

@@ -1,0 +1,13 @@
+.menu{
+    list-style: none;
+    display: flex;
+    gap: 25px;
+
+    &__link{
+        color: #000;
+        text-decoration: none;
+        &--active{
+            font-weight: 600;
+        }
+    }
+}

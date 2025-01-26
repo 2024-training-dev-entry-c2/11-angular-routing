@@ -1,0 +1,35 @@
+@if (formFields()) {
+<div class="form__container">
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <header class="form__header">
+            <button class="form__button-close" (click)="onCloseForm()">x</button>
+            <h3 class="form__title">{{title()}}</h3>
+        </header>
+        <div class="form__content">
+            {{idItem()}}
+            @for (field  of formFields(); track $index) {
+                <div class="form__group">
+                    <div class="form__field">                    
+                        <label [for]="field.key" class="form__field__label">{{ field.label }}</label>
+                        <input
+                            [id]="field"
+                            [type]="field.type"
+                            [formControlName]="field.key"
+                            [placeholder]="field.placeholder"
+                            class="form__field__input"
+                        />
+                    </div>
+                    @if (form.get(field.key)?.invalid && form.get(field.key)?.touched) {
+                        <div class="form__alert">
+                            {{ field.errorMessage || 'Invalid input'}}
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+        <button type="submit" class="form__button" [disabled]="form.invalid">
+            {{ buttonText() }}
+        </button>
+    </form> 
+</div>
+}

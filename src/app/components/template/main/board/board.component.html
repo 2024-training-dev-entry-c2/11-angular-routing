@@ -1,0 +1,31 @@
+<table class="table">
+    <thead class="table__header">
+        <tr class="table__column">
+            @for (title of titles(); track $index) {
+                <th class="table__title" scope="col">{{title}}</th>
+            }
+            <th class="table__title">Acciones</th>
+        </tr>
+    </thead>
+    <tbody class="table__body">
+        @for (column of items(); track $index) {
+            <tr class="table__column">
+                @for(item of column; track $index){
+                    <td class="table__item" [innerHTML]="item"></td>
+                }
+                <td class="table__item table__item--actions"> 
+                    <button class="table__button table__button--update" (click)="sendOnUpdate(column[0])" aria-label="Actualizar columna">
+                        <svg aria-hidden="true">
+                            <use xlink:href ="images/svg/update.svg#update-id"></use>
+                        </svg>                       
+                    </button>
+                    <button class="table__button table__button--delete" (click)="sendOnDelete(column[0])" aria-label="Eliminar columna">
+                        <svg aria-hidden="true">
+                            <use xlink:href ="images/svg/delete.svg#delete-id"></use>
+                        </svg>  
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

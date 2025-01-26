@@ -1,0 +1,21 @@
+.lateral-menu{
+    position: fixed;
+    right: 20px;
+    top: 30%;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    &__item{
+        display: flex;
+        align-self: flex-end;
+        padding: 10px;
+        border-right: solid 2px #000;
+    }
+
+    &__link{
+        text-decoration: none;
+    }
+    
+}

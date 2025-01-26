@@ -1,0 +1,7 @@
+<ul role="menu" class="lateral-menu">
+  @for (item of items(); track $index) {
+    <li class="lateral-menu__item">
+        <a class="lateral-menu__link" [routerLink]="item.url">{{item.text}}</a>
+    </li>
+  }
+</ul>
