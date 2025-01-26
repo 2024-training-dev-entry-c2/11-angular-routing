@@ -9,6 +9,11 @@ export const routes: Routes = [
     component: LayoutComponent,
     children: [
       { 
+        path: '', 
+        redirectTo: 'menus', 
+        pathMatch: 'full' 
+      },
+      { 
         path: 'clientes', 
         loadChildren: () => import('../../client/client.module').then(m => m.ClientModule),
         outlet: "primary" 

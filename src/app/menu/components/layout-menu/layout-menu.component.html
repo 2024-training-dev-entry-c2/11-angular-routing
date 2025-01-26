@@ -1,12 +1,12 @@
 <section class="layout-menu">
-    <aside class="layout-menu__aside-left">
-      <nav class="layout-menu__nav">
-        <ul class="layout-menu__options">
-          @for(option of options; track $index){
-            <li><a [routerLink]="option.url">{{option.name}}</a></li>
-          }
-        </ul>
-      </nav>
-    </aside>
-    <main class="layout-menu__main"><router-outlet></router-outlet></main>
-  </section>
+  <aside class="layout-menu__aside-left">
+    <nav class="layout-menu__nav">
+      <ul class="layout-menu__options">
+        @for(option of options; track $index){
+        <li><a [routerLink]="option.url">{{option.name}}</a></li>
+        }
+      </ul>
+    </nav>
+  </aside>
+  <main class="layout-menu__main"><router-outlet></router-outlet></main>
+</section>

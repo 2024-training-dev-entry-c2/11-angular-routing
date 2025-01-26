@@ -5,7 +5,7 @@ import { INotification } from '../interface/notification.interface';
   providedIn: 'root',
 })
 export class NotificationService {
-    private notificationSubject = new BehaviorSubject<INotification | null>(null);
+  private notificationSubject = new BehaviorSubject<INotification | null>(null);
   public notification$: Observable<INotification | null> = this.notificationSubject.asObservable();
 
   setNotification(type: 'success' | 'error', message: string): void {
