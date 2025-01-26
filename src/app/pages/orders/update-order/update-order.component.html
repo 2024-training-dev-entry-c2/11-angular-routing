@@ -1,4 +1,8 @@
-<form [formGroup]="addOrderForm">
+<p>update-order works!</p>
+<app-modal (closeModal)="closeModal()"  >
+    <form  form-optional [formGroup]="updateOrderForm">
+
+
     <label for="menuId">Choose a Client </label>
     <select formControlName="clientId">
         @for (item of getClientData; track $index) {
@@ -7,11 +11,13 @@
     </select>
     <label for="localDate">Date:</label>
     <input id="localDate" type="date" formControlName="localDate" />
-    @if(addOrderForm.get('localDate')?.invalid && addOrderForm.get('localDate')?.touched){
+    @if(updateOrderForm.get('localDate')?.invalid && updateOrderForm.get('localDate')?.touched){
     <div>
         <small>Date is required.</small>
     </div>
     }
+
+
     <label for="menuId">Choose a menu option:</label>
     <select formControlName="menuId" (change)="onMenuChange($event)">
         @for (item of menus; track $index) {
@@ -37,5 +43,7 @@
         }
     </ul>
 
-    <button type="button" (click)="addOrder()" (click)="updateListOrder()">Submit Order</button>
+    <!-- Botón de envío -->
+    <button type="button" (click)="updateOrder()">Submit Order</button>
 </form>
+</app-modal>

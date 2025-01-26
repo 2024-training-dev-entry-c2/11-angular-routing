@@ -1,28 +1,34 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  inject,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { ClientService } from '../../../services/client/client.service';
 import { MenusService } from '../../../services/menu/menus.service';
 import { OrderService } from '../../../services/order/order.service';
 import {
   FormArray,
   FormBuilder,
+  FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { Client } from '../../../interfaces/client.interface';
 import { Menu } from '../../../interfaces/menu.interface';
+import { ModalComponent } from '../../../components/modal/modal.component';
+import { Order } from '../../../interfaces/order.interface';
 
 @Component({
-  selector: 'app-add-order',
-  imports: [ReactiveFormsModule],
-  templateUrl: './add-order.component.html',
-  styleUrl: './add-order.component.scss',
+  selector: 'app-update-order',
+  imports: [ReactiveFormsModule, ModalComponent],
+  templateUrl: './update-order.component.html',
+  styleUrl: './update-order.component.scss',
 })
-export class AddOrderComponent implements OnInit {
-  ngOnInit(): void {
-    this.getClients();
-    this.getMenus();
-    console.log(this.getMenuData);
-  }
+export class UpdateOrderComponent implements OnInit {
   public clients = inject(ClientService);
   public menu = inject(MenusService);
   public order = inject(OrderService);
@@ -33,44 +39,39 @@ export class AddOrderComponent implements OnInit {
   menus: { id: number; name: string }[] = [];
   dishfoods: any[] = [];
   menuId: number = 0;
+  showModal = false;
   public filteredMenu: any = []; // Filtrado de platos
-  public filteredDishes: any[] = []; // Filtrado de platos
-  @Output() updateList = new EventEmitter<void>();
+  public filteredDishes: any[] = []; //
+  @Input() getOrderData: Order | any;
+  @Input() showModalMenu!: boolean;
+  @Output() closeModalMenu = new EventEmitter<void>();
 
-  public addOrderForm = this.formBuilder.group({
+  ngOnInit(): void {
+    this.getClients();
+    this.getMenus();
+    this.showModal = true;
+    this.dishfoodList= this.getOrderData.dishfoodIds;
+    console.log(this.dishfoodList);
+    
+  }
+
+
+  public updateOrderForm = this.formBuilder.group({
     clientId: [0, [Validators.required]],
     localDate: ['', [Validators.required]],
     menuId: [null],
     dishfoodIds: this.formBuilder.array([]),
   });
 
-  addOrder() {
-    console.log('prueba');
-
-    const updatePayload = {
-      clientId: this.addOrderForm.get('clientId')?.value,
-      localDate: this.addOrderForm.get('localDate')?.value,
-      dishfoodIds: this.dishfoodList,
-    };
-    if (this.addOrderForm.valid) {
-      this.order.addOrder(updatePayload as unknown as any).subscribe({
-        next: (data) => {
-          console.log(data);
-          alert('Order added successfully');
-        },
-        error: (error) => {
-          console.log(error);
-        },
-      });
-    } else {
-      console.log(this.addOrderForm.value);
-    }
+  updateOrder() {
+    console.log(this.updateOrderForm.value);
+    this.showModal = false;console.log(this.getOrderData);
   }
 
   getClients() {
     this.clients.getClients().subscribe({
       next: (data) => {
-        this.addOrderForm.get('clientId')?.setValue(data[0].id);
+        this.updateOrderForm.get('clientId')?.setValue(data[0].id);
         console.log(data);
         this.getClientData = data;
       },
@@ -79,6 +80,7 @@ export class AddOrderComponent implements OnInit {
       },
     });
   }
+
   getMenus() {
     this.menu.getMenus().subscribe({
       next: (data) => {
@@ -109,7 +111,7 @@ export class AddOrderComponent implements OnInit {
     const selectedDishId = selectElement.value;
     const parsedId = parseInt(selectedDishId, 10);
     this.dishfoodList.push(parsedId);
-    const dishfoodIds = this.addOrderForm.get('dishfoodIds') as FormArray;
+    const dishfoodIds = this.updateOrderForm.get('dishfoodIds') as FormArray;
     dishfoodIds.push(this.formBuilder.control(selectedDishId));
   }
   removeDish(index: any) {
@@ -120,7 +122,7 @@ export class AddOrderComponent implements OnInit {
     const selectElement = event.target as HTMLSelectElement;
     console.log(selectElement);
 
-    const menuId = this.addOrderForm.get('menuId')?.value;
+    const menuId = this.updateOrderForm.get('menuId')?.value;
     if (menuId != null) {
       this.menuId = parseInt(menuId);
       this.filteredMenu = this.menus.filter(
@@ -143,7 +145,7 @@ export class AddOrderComponent implements OnInit {
     const dish = this.dishfoods.find((d) => d.id === dishId);
     return dish ? dish.name : '';
   }
-  updateListOrder() {
-    this.updateList.emit();
+  closeModal() {
+    this.closeModalMenu.emit();
   }
 }

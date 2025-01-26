@@ -1,17 +1,12 @@
 <app-tabs title="Order Data " [tabs]="tabsList">
-    <div  class="tab__content" tabContent0>
-        <app-add-order></app-add-order>
-
-        <!-- <form [formGroup]="clientForm" (ngSubmit)="submit()">
-            
-            <app-form [formFields]="fields" [formGroup]="clientForm">
-            </app-form>
-            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-        </form> -->
+    <div class="tab__content" tabContent0>
+        <app-add-order (updateList)="getOders()"></app-add-order>
     </div>
     <div class="tab__content" tabContent1>
         <app-table title="Orders" [data]="orderData" (deleteId)="deleteOrder($event)"
-            (updateId)="updateOrder($event)"></app-table>
+            (updateId)="getOrder($event)"></app-table>
     </div>
-
 </app-tabs>
+@if(showModal){
+<app-update-order [showModalMenu]="showModal" (closeModalMenu)="closeModal()" [getOrderData]="updateOrderData"></app-update-order>
+}

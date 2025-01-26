@@ -4,10 +4,12 @@ import { TableComponent } from '../../../components/table/table.component';
 import { OrderService } from '../../../services/order/order.service';
 import { Order } from '../../../interfaces/order.interface';
 import { AddOrderComponent } from '../add-order/add-order.component';
+import { UpdateOrderComponent } from '../update-order/update-order.component';
+import { AddMenuComponent } from "../../menus/add-menu/add-menu.component";
 
 @Component({
   selector: 'app-order',
-  imports: [TabsComponent, TableComponent,AddOrderComponent],
+  imports: [TabsComponent, TableComponent, AddOrderComponent, UpdateOrderComponent],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss',
 })
@@ -22,6 +24,7 @@ export class OrderComponent implements OnInit {
       tabContent: '"assets/icons/form-svgrepo-com.svg#icon-list"',
     },
   ];
+  updateOrderData: Order | any;
 
   ngOnInit(): void {
     console.log(this.tabsList);
@@ -37,7 +40,8 @@ export class OrderComponent implements OnInit {
           id: order.id,
           nameClient: order.client.name,
           localDate: order.localDate,
-          dishCount: order.dishfoodIds.length, 
+          dishCount: order.dishfoodIds, 
+          price: order.totalPrice
         }));
         this.orderData= transformedData;
         console.log(transformedData);
@@ -48,9 +52,20 @@ export class OrderComponent implements OnInit {
     });
   }
 
-  updateOrder($event: number) {
-    console.log($event);
-  }
+  getOrder(id: number) {
+    this.orders.getOrderId(id).subscribe({
+      next: (data) => {
+        this.updateOrderData = data;
+        console.log(this.updateOrderData);
+        
+        this.showModal = true;
+        this.getOders();
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    }); 
+  }   
   
   deleteOrder($event: number) {
     this.orders.deleteOrder($event).subscribe({
@@ -62,5 +77,12 @@ export class OrderComponent implements OnInit {
         console.log(error);
       },
     });
+  }
+
+  showModal = false;
+
+
+  closeModal() {
+    this.showModal = false;
   }
 }
