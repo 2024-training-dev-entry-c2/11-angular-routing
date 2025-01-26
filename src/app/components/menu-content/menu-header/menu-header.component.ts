@@ -1,42 +1,61 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, TemplateRef, ViewContainerRef } from '@angular/core';
 import { ModalComponent } from '../../modal/modal.component';
 import { MenuService } from '../../../services/menu.service';
 import { IMenu } from '../../../interfaces/menu.interface';
 import { CommonModule } from '@angular/common';
+import { ModalService } from '../../../services/modal.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-menu-header',
   standalone: true,
-  imports: [ModalComponent, CommonModule],
+  imports: [ CommonModule, FormsModule],
   templateUrl: './menu-header.component.html',
   styleUrl: './menu-header.component.scss'
 })
 export class MenuHeaderComponent {
-  isModalOpen: boolean = false;
-  constructor(private menuService: MenuService) {}
+  menuName: string = '';
+  dishes: string[] = [];
 
+  constructor(
+    private menuService: MenuService,
+    private modalService: ModalService,
+    private viewContainerRef: ViewContainerRef
+  ) {}
 
-  openModal() {
-    this.isModalOpen = true;
+  openModal(modalTemplate: TemplateRef<any>) {
+    this.modalService
+      .open(modalTemplate, this.viewContainerRef, {
+        title: 'Agregar Menu',
+        buttonName: 'Agregar',
+      })
+      .subscribe(() => {
+        this.addMenuToAPI();
+      });
   }
 
-  closeModal(isOpen: boolean) {
-    this.isModalOpen = isOpen;
-  }
-
-  addMenu(menu: IMenu) {
-    console.log('Menú a enviar:', menu);
-    this.menuService.addMenu(menu).subscribe({
-      next: (response) => {
-        console.log('Menú agregado correctamente:', response);
-        this.isModalOpen = false; 
-        alert('Menú agregado exitosamente.');
-      },
-      error: (err) => {
-        console.error('Error al agregar el menú:', err);
-        alert('Hubo un error al agregar el menú. Inténtalo de nuevo.');
-      }
-    });
-  }
+    addMenuToAPI() {
+    if (this.menuName.trim()) {
+      const newMenu = {
+        idMenu: null, 
+        menuName: this.menuName.trim(),
+        dishes: this.dishes.map(dishName => ({
+          idDish: null, 
+          dishName: dishName.trim()
+        }))
+      };
   
+      this.menuService.addMenu(newMenu).subscribe({
+        next: response => {
+          console.log('Menu agregado exitosamente:', response);
+        },
+        error: error => {
+          console.error('Error al agregar el menu:', error);
+        }
+      });
+
+    } else {
+      alert('Por favor, ingresa un nombre para el menu.');
+    }
+  }
 }

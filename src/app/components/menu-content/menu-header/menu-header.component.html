@@ -1,6 +1,6 @@
 <header class="menu-header">
     <h2>Menus</h2>
-    <button class="menu-header__button" (click)="openModal()">
+    <button class="menu-header__button" (click)="openModal(modalTemplate)">
         <i class="menu-header__icon" aria-hidden="true">
             <svg>
                 <use xlink:href="svg/plus.svg#plus"></use>
@@ -10,4 +10,7 @@
     </button>
 </header>
 
-<app-modal *ngIf="isModalOpen" (closeModal)="closeModal($event)" (addMenu)="addMenu($event)"></app-modal>
+<ng-template #modalTemplate>
+    <div>Crea tu Menu</div>
+    <input [(ngModel)]="menuName" placeholder="Nombre del menu" />
+</ng-template>

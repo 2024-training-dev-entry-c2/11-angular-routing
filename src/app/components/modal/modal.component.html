@@ -1,20 +1,12 @@
-<div class="modal-overlay">
-    <div class="modal-content">
-        <h3>Crear Menu</h3>
-        <input [(ngModel)]="menuName" placeholder="Nombre del menu" />
-        <div>
-            <input #dishInput type="text" placeholder="Agregar plato"
-                (keydown.enter)="addDish(dishInput.value); dishInput.value=''" />
-            <ul>
-                <li *ngFor="let dish of dishes">
-                    {{ dish }} <button (click)="removeDish(dish)">X</button>
-                </li>
-            </ul>
-        </div>
-        <div class="modal-content__option">
-            <button class="modal-content__button modal-content__button--add" (click)="addMenuToAPI()">Agregar
-                Menu</button>
-            <button class="modal-content__button modal-content__button--close" (click)="close()">Cerrar</button>
-        </div>
+<div class="modal">
+    <div class="modal-header">
+        {{ title }}
+        <span class="modal-close" (click)="close()">✕</span>
+    </div>
+    <div class="modal-content" #contentContainer></div>
+    <div class="modal-footer">
+        <button (click)="submit()">{{ buttonName }}</button>
     </div>
 </div>
+
+<div class="modal-backdrop" (click)="close()"></div>
