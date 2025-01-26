@@ -1,0 +1,17 @@
+.layout-menu {
+    width: 100%;
+
+    display: grid;
+    grid:
+        "sidebar body" 1fr / auto 1fr;
+    gap: 8px;
+
+    &__aside-left { 
+        grid-area: sidebar;
+        border: 1px solid; 
+    }
+    &__main { 
+        grid-area: body;
+        border: 1px solid;  
+    }
+}

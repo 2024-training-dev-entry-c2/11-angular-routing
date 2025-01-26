@@ -12,6 +12,11 @@ export const routes: Routes = [
         path: 'clientes', 
         loadChildren: () => import('../../client/client.module').then(m => m.ClientModule),
         outlet: "primary" 
+      },
+      { 
+        path: 'menus', 
+        loadChildren: () => import('../../menu/menu.module').then(m => m.MenuModule),
+        outlet: "primary" 
       }
     ]
   },

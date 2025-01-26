@@ -1,1 +1,31 @@
-<p>menu-get-all works!</p>
+<section class="get-all-menu">
+    <h1 class="get-all-menu__title">MENÚS</h1>
+    @for(menu of menus; track $index) {
+    <article class="get-all-menu__info">
+        <div class="get-all-menu__header">
+            <h2>{{ menu.nombre }}</h2>
+            <p>ID: {{ menu.id }}</p>
+            <a [routerLink]="['actualizar', menu.id]">Actualizar</a>
+            <a [routerLink]="['eliminar', menu.id]">Eliminar</a>
+        </div>
+        <div class="get-all-menu__body">
+            <h3>Platos:</h3>
+            <div class="get-all-menu__platos">
+                @if(menu.platos){
+                    @for(plato of menu.platos; track $index) {
+                    <article class="get-all-menu__plato">
+                        <div>
+                            <p>{{ plato.nombre }} <span>({{ plato.tipo}})</span></p>
+                            <p>{{ plato.precio | currency}}</p>
+                        </div>
+                        <p>{{ plato.descripcion }}</p>
+                    </article>
+                    <hr />
+                    }
+                }
+            </div>
+        </div>
+    </article>
+    
+    }
+</section>
