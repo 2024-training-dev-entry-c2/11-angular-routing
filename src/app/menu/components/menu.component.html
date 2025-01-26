@@ -1,0 +1,52 @@
+<section class="container">
+    <article class="entity">
+        <div class="entity__header">
+            <h1>Menús</h1>
+        </div>
+        <div class="entity__create-button-container">
+            <button class="entity__create-button" (click)="showCreateMenuModal()">
+                <fa-icon [icon]="faPlus"></fa-icon>
+                <span>Crear nuevo menú</span>
+            </button>
+            @if(showSaveMenu){
+            <app-form-menu [selectedMenu]="selectedMenu" (closeModal)="closeCreateMenuModal()"
+                (menuSaved)="addMenu($event)" (menuUpdated)="replaceMenu($event)" (clearSelected)="clearSelectedMenu()">
+            </app-form-menu>
+            }
+            @if(showDeleteMenu){
+            <app-delete-card [selectedId]="selectedIdMenu" [entityName]="'menú'" (closeModal)="closeDeleteMenuModal()"
+                (onDelete)="deleteMenu($event)"></app-delete-card>
+            }
+
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NOMBRE</th>
+                    <th>Descripción</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for ( menu of menus; track menu.id) {
+                <tr>
+                    <td>{{ menu.id }}</td>
+                    <td>{{ menu.menuName }}</td>
+                    <td>{{ menu.description }}</td>
+
+                    <td class="entity__buttons">
+                        <button class="entity__edit-button" (click)="showUpdateMenuModal(menu)">
+                            <fa-icon [icon]="faEdit"></fa-icon>
+                        </button>
+                        <button class="entity__delete-button" (click)="showDeleteMenuModal(menu.id)">
+                            <fa-icon [icon]="faTrash"></fa-icon>
+                        </button>
+
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </article>
+</section>

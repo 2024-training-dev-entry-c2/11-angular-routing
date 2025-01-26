@@ -1,10 +1,10 @@
 <section class="container">
-    <article class="customers">
-        <div class="customers__header">
+    <article class="entity">
+        <div class="entity__header">
             <h1>Clientes</h1>
         </div>
-        <div class="customers__create-button-container">
-            <button class="customers__create-button" (click)="showCreateCustomerModal()">
+        <div class="entity__create-button-container">
+            <button class="entity__create-button" (click)="showCreateCustomerModal()">
                 <fa-icon [icon]="faPlus"></fa-icon>
                 <span>Crear nuevo cliente</span>
             </button>
@@ -15,8 +15,8 @@
             </app-create-customer>
             }
             @if(showDeleteCustomer){
-            <app-delete-customer [selectedIdCustomer]="selectedIdCustomer" (closeModal)="closeDeleteCustomerModal()"
-                (customerDeleted)="deleteCustomer($event)"></app-delete-customer>
+            <app-delete-card [selectedId]="selectedIdCustomer" [entityName]="'cliente'"
+                (closeModal)="closeDeleteCustomerModal()" (onDelete)="deleteCustomer($event)"></app-delete-card>
             }
         </div>
         <table>
@@ -42,11 +42,11 @@
                     <td>{{ customer.phone }}</td>
                     <td>{{ customer.address }}</td>
                     <td>{{ customer.isFrequent ? 'Si' : 'No' }}</td>
-                    <td class="customers__buttons">
-                        <button class="customers__edit-button" (click)="showUpdateCustomerModal(customer)">
+                    <td class="entity__buttons">
+                        <button class="entity__edit-button" (click)="showUpdateCustomerModal(customer)">
                             <fa-icon [icon]="faEdit"></fa-icon>
                         </button>
-                        <button class="customers__delete-button" (click)="showDeleteCustomerModal(customer.id)">
+                        <button class="entity__delete-button" (click)="showDeleteCustomerModal(customer.id)">
                             <fa-icon [icon]="faTrash"></fa-icon>
                         </button>
 

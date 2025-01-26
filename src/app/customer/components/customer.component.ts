@@ -4,11 +4,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPlus, faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { FormCustomerComponent } from './form-customer/form-customer.component';
 import { ICustomerResponse } from '../interfaces/customer.interface';
-import { DeleteCustomerComponent } from './delete-customer/delete-customer.component';
+import { DeleteCardComponent } from '../../delete-card/delete-card.component';
+import { DeleteCustomerService } from '../services/delete-customer.service';
 
 @Component({
   selector: 'app-customer',
-  imports: [FontAwesomeModule, FormCustomerComponent, DeleteCustomerComponent],
+  imports: [FontAwesomeModule, FormCustomerComponent, DeleteCardComponent],
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.scss',
 })
@@ -20,6 +21,7 @@ export class CustomerComponent implements OnInit {
   showDeleteCustomer = false;
 
   private listCustomersService = inject(ListCustomersService);
+  private deleteCustomerService = inject(DeleteCustomerService);
 
   customers: ICustomerResponse[] = [];
   selectedCustomer: ICustomerResponse | null = null;
@@ -67,11 +69,14 @@ export class CustomerComponent implements OnInit {
     this.selectedCustomer = null;
   }
 
-  deleteCustomer(idCustomer: number): void {
-    this.customers = this.customers.filter((c) => c.id !== idCustomer);
-  }
-
   clearSelectedCustomer(): void {
     this.selectedCustomer = null;
+  }
+
+  deleteCustomer(idCustomer: number): void {
+    this.deleteCustomerService.execute(idCustomer).subscribe(() => {
+      this.customers = this.customers.filter((c) => c.id !== idCustomer);
+      this.showDeleteCustomer = false;
+    });
   }
 }
