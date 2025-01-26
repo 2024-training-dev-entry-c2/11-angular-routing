@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { IOrderResponse } from '../../../interfaces/orderResponese.interface';
 import { TitleComponent } from '../../custom/title/title.component';
 import { AddComponent } from '../../custom/add/add.component';

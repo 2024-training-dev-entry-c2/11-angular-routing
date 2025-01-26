@@ -25,8 +25,6 @@ export class AddOrderService {
       order.reservationId = parseInt(order.reservationId.toString(), 10);
     }
 
-    console.log(order);
-
     return this.http
       .post<IOrderRequests>('http://localhost:8080/orders', order, {
         headers: this.getHeaders(),

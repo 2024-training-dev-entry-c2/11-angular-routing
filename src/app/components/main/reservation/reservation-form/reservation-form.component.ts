@@ -46,7 +46,7 @@ export class ReservationFormComponent implements OnInit {
       type: 'select',
       options: [
         { label: 'Pending', value: 'pending' },
-        { label: 'Completed', value: 'completed' },
+        { label: 'Confirmed', value: 'Confirmed' },
         { label: 'Cancelled', value: 'cancelled' },
       ],
       errorMessage:
