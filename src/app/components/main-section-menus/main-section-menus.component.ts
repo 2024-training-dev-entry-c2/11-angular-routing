@@ -10,6 +10,8 @@ import { getDishService } from '../../services/dishes.service';
 import { Observable, Subscription, tap } from 'rxjs';
 import { ModalDeleteService } from '../../services/modal-delete.service';
 import { ModalActionDeleteComponent } from '../modal-action-delete/modal-action-delete.component';
+import { ModalActionEditComponent } from "../modal-action-edit/modal-action-edit.component";
+import { ModalEditService } from '../../services/modal-edit.service';
 
 @Component({
   selector: 'app-main-section-menus',
@@ -18,7 +20,8 @@ import { ModalActionDeleteComponent } from '../modal-action-delete/modal-action-
     ModalComponent,
     CommonModule,
     ModalActionDeleteComponent,
-  ],
+    ModalActionEditComponent
+],
   templateUrl: './main-section-menus.component.html',
   styleUrl: './main-section-menus.component.scss',
 })
@@ -27,6 +30,8 @@ export class MainSectionMenusComponent {
   private inputService = inject(getMenusService);
   private subscription!: Subscription;
   private menuToDeleteSubscription!: Subscription;
+  private menuToEditSubscription!: Subscription;
+  private menuToEdit: IMenu | null = null;
   private menuToDelete: IMenu | null = null;
 
   public data: any;
@@ -47,7 +52,8 @@ export class MainSectionMenusComponent {
     private dataManagementService: DataManagementService<IMenu>,
     private menuService: getMenusService,
     private modalService: ModalService,
-    private deleteModalService: ModalDeleteService
+    private deleteModalService: ModalDeleteService,
+    private editModalService: ModalEditService
   ) {
     this.menuData = this.dataManagementService.data$;
   }
@@ -60,6 +66,12 @@ export class MainSectionMenusComponent {
       .subscribe((menu) => {
         this.menuToDelete = menu;
       });
+
+      this.menuToEditSubscription = this.menuService
+      .getMenuToEdit()
+      .subscribe((menuEdit) => {
+        this.menuToEdit = menuEdit;
+      });
   }
 
   openAddModal() {
@@ -69,6 +81,17 @@ export class MainSectionMenusComponent {
   openDeleteModal(menu: IMenu) {
     this.deleteModalService.openModal();
     this.menuService.setMenuToDelete(menu);
+  }
+
+
+openEditModal(menuEdit: IMenu) {
+    this.menuForm.patchValue({
+      name: menuEdit.name,
+      description: menuEdit.description,
+    });
+
+    this.editModalService.openModal();
+    this.menuService.setMenuToEdit(menuEdit);
   }
 
   closeModal() {
@@ -98,4 +121,23 @@ export class MainSectionMenusComponent {
       });
     }
   }
+
+
+  onSaveEdit() {
+      if (this.menuToEdit && this.menuForm.valid) {
+        this.menuService
+          .editData(this.menuToEdit.id, this.menuForm.value as unknown as IMenu)
+          .subscribe({
+            next: () => {
+              this.editModalService.closeModal();
+              this.menuForm.reset();
+            },
+            error: (error) => {
+              console.error('Edit failed', error);
+            },
+          });
+      }
+    }
+
+
 }

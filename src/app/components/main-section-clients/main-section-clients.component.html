@@ -33,9 +33,7 @@
             </tbody>
         </table>
     </div>
-    <!-- <app-modal-action-edit [modalTitle]="'Editar Cliente'" [inputForm]="clientForm" (onSaveTest)="onSaveEdit()" [formData]="formData"></app-modal-action-edit> -->
-    
-    <app-modal-action-edit [formData]="formData" [inputForm]="clientForm" [saveAction]="onSaveEdit.bind(this)"></app-modal-action-edit>
+    <app-modal-action-edit  [modalTitle]="'Edit Client'" [formData]="formData" [inputForm]="clientForm" [saveAction]="onSaveEdit.bind(this)"></app-modal-action-edit>
     <app-modal-action-delete [deleteAction]="deleteData.bind(this)"></app-modal-action-delete>
    <app-modal [modalTitle]="'Add a new Cliente'" [inputForm]="clientForm" (onSaveTest)="onSave()" [formData]="formData"></app-modal>
 </section>

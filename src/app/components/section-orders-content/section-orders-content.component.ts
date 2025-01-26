@@ -16,7 +16,7 @@ export class SectionOrdersContentComponent {
   public orderData = input<any>();
 
   public tableContent = {
-    headers: ['Order ID', 'Order Date', 'Price', 'Menu ID', 'Client Email', 'Ordered Dishes' , 'Actions'],
+    headers: ['Order ID', 'Order Date', 'Price', 'Client ID', 'Client Email', 'Ordered Dishes' , 'Actions'],
 
   }
 

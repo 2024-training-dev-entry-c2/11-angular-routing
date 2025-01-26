@@ -4,7 +4,7 @@
         <figure class="section__content-container">
           <img src="./logo.png" ng-cloak/>
           <h1 class="container__content-title">Gusteau's Orders Details</h1>
-          <button class="container__content-btn container__content-btn--add" (click)="abrirModalEditar()">Add Order</button>
+          <button class="container__content-btn container__content-btn--add" (click)="openAddModal()">Add Order</button>
       </figure>
       </div>
       <table class="container__content-table">
@@ -22,21 +22,20 @@
                     <td [id]="$index">{{data.orderDate | date:'medium'}}</td>
                     <td [id]="$index">{{data.totalPrice | currency:'COP' + ' ' }} </td>
                     <td [id]="$index">{{data.clientId}}</td>
-                    <!-- <td [id]="$index">{{data.clientName}}</td> -->
                     <td [id]="$index">{{data.clientEmail}}</td>
                     
                     <td>
                       <div class="container__content-dishes--list">
                                 @for (data of data.dishes; track $index) {
                                   <div class="container__content-dishes--items">
-                                <strong>{{data.name}}</strong> - {{data.price  | currency:'COP' + ' '}} ({{ data.menuId}}, Ordered: {{data.totalOrdered}})
+                                <strong>{{data.name}}</strong> - {{data.price  | currency:'COP' + ' '}}
                               </div>
                             }
                               
                             </div>
 
                             <td class="container__content-table-actions">
-                              <button class="container__content-btn container__content-btn--edit">Edit</button>
+                              <button  class="container__content-btn container__content-btn--edit" (click)="openEditModal(data)">Edit</button>
                               <button class="container__content-btn container__content-btn--delete" (click)="openDeleteModal(data)">Delete</button>
                           </td>
                 </tr>
@@ -44,6 +43,7 @@
         </tbody>
       </table>
     </div>
+    <app-modal-action-edit  [modalTitle]="'Edit Dish'" [formData]="formData" [inputForm]="orderForm" [saveAction]="onSaveEdit.bind(this)" ></app-modal-action-edit>
     <app-modal-action-delete [deleteAction]="deleteData.bind(this)"></app-modal-action-delete>
     <app-modal [modalTitle]="'Add a new Order'" [inputForm]="orderForm" (onSaveTest)="onSave()" [formData]="formData"></app-modal>
   </section>

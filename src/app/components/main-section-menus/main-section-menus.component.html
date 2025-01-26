@@ -24,23 +24,22 @@
                 <td [id]="$index">{{data.description}}</td>
                 <td>
                     <div class="container__content-dishes--list">
-                            @for (data of data.dishes; track $index) {
-                          <div class="container__content-dishes--items">
-                            <strong>{{data.name}}</strong> - ({{data.price | currency:'COP' + ' '}} , Ordered: {{data.totalOrdered}})
-                          </div>
-                        }
-                          
-                        </div>
-
-                        <td class="container__content-table-actions">
-                          <button class="container__content-btn container__content-btn--edit">Edit</button>
-                          <button class="container__content-btn container__content-btn--delete" (click)="openDeleteModal(data)">Delete</button>
-                      </td>
+                  @for (data of data.dishes; track $index) {
+                    <div class="container__content-dishes--items">
+              <strong>{{data.name}}</strong> - ({{data.price | currency:'COP' + ' '}} , Ordered: {{data.totalOrdered}})
+                  </div>
+                  }         
+                    </div>
+                  <td class="container__content-table-actions">
+                    <button class="container__content-btn container__content-btn--edit" (click)="openEditModal(data)">Edit</button>
+                    <button class="container__content-btn container__content-btn--delete" (click)="openDeleteModal(data)">Delete</button>
+                  </td>
             </tr>
-        }
+          }
         </tbody>
       </table>
     </div>
+    <app-modal-action-edit  [modalTitle]="'Edit Dish'" [formData]="formData" [inputForm]="menuForm" [saveAction]="onSaveEdit.bind(this)" ></app-modal-action-edit>
     <app-modal-action-delete [deleteAction]="deleteData.bind(this)"></app-modal-action-delete>
     <app-modal [modalTitle]="'Add a new Menu'" [inputForm]="menuForm" (onSaveTest)="onSave()" [formData]="formData"></app-modal>
   </section>

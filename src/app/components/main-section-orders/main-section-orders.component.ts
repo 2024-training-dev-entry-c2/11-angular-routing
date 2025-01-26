@@ -1,15 +1,18 @@
-import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
-import { Component, inject, input } from '@angular/core';
+import { CommonModule, CurrencyPipe, DatePipe, JsonPipe } from '@angular/common';
+import { Component, inject, input, output } from '@angular/core';
 import { Observable, Subscription, tap } from 'rxjs';
 import { IOrders } from '../../interface/orders.interface';
 import { getClientsService } from '../../services/clients.service';
 import { getOrderService } from '../../services/orders.service';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { DataManagementService } from '../../services/data.service';
 import { ModalService } from '../../services/modal.service';
 import { ModalComponent } from '../modal/modal.component';
 import { ModalActionDeleteComponent } from '../modal-action-delete/modal-action-delete.component';
 import { ModalDeleteService } from '../../services/modal-delete.service';
+import { ModalActionEditComponent } from '../modal-action-edit/modal-action-edit.component';
+import { IMenu } from '../../interface/menus.interface';
+import { ModalEditService } from '../../services/modal-edit.service';
 
 @Component({
   selector: 'app-main-section-orders',
@@ -19,6 +22,8 @@ import { ModalDeleteService } from '../../services/modal-delete.service';
     CommonModule,
     ModalComponent,
     ModalActionDeleteComponent,
+    ModalActionEditComponent,
+  
   ],
   templateUrl: './main-section-orders.component.html',
   styleUrl: './main-section-orders.component.scss',
@@ -32,24 +37,33 @@ export class MainSectionOrdersComponent {
   private subscription!: Subscription;
   private orderToDeleteSubscription!: Subscription;
   private orderToDelete: IOrders | null = null;
+  private orderToEditSubscription!: Subscription;
+  private orderToEdit: IOrders | null = null;
+  onSaveTest = output<void>();
+  dishForm = false;
 
   public orderForm = this.formBuilder.group({
     clientName: ['', [Validators.required, Validators.minLength(3)]],
     clientEmail: ['', [Validators.required, Validators.email]],
-    dishes: ['', [Validators.required]],
+    dishesText: ['', Validators.required],
   });
+
+  get dishesText() {
+    return this.orderForm.get('dishesText');
+  }
 
   formData = [
     { labelName: 'Name', valueLabel: 'clientName' },
     { labelName: 'Email', valueLabel: 'clientEmail' },
-    { labelName: 'Dishes', valueLabel: 'dishes' },
+    { labelName: 'Dishes', valueLabel: 'dishesText' },
   ];
 
   constructor(
     private dataManagementService: DataManagementService<IOrders>,
     private orderService: getOrderService,
     private modalService: ModalService,
-    private deleteModalService: ModalDeleteService
+    private deleteModalService: ModalDeleteService,
+    private editModalService: ModalEditService
   ) {
     this.orderData = this.dataManagementService.data$;
   }
@@ -60,13 +74,19 @@ export class MainSectionOrdersComponent {
     this.orderService.getData().subscribe();
 
     this.orderToDeleteSubscription = this.orderService
-      .getDishToDelete()
+      .getOrderToDelete()
       .subscribe((order) => {
         this.orderToDelete = order;
       });
+
+    this.orderToEditSubscription = this.orderService
+      .getOrderToEdit()
+      .subscribe((orderEdit) => {
+        this.orderToEdit = orderEdit;
+      });
   }
 
-  abrirModalEditar() {
+  openAddModal() {
     this.modalService.openModal();
   }
 
@@ -76,24 +96,49 @@ export class MainSectionOrdersComponent {
 
   openDeleteModal(order: IOrders) {
     this.deleteModalService.openModal();
-    this.orderService.setDishToDelete(order);
+    this.orderService.setOrderToDelete(order);
   }
 
+
+  openEditModal(orderEdit: IOrders) {
+    const dishesText = orderEdit.dishes.map(dish => dish.name).join(', ');
+  
+    this.orderForm.patchValue({
+      clientName: orderEdit.clientName,
+      clientEmail: orderEdit.clientEmail,
+      dishesText: dishesText,
+    });
+  
+    this.editModalService.openModal();
+    this.orderService.setOrderToEdit(orderEdit);
+  }
+  
   onSave(): void {
     if (this.orderForm.valid) {
+      const dishesText = this.dishesText?.value ?? '';
+      const dishesArray = dishesText
+        .split(',')
+        .filter(dish => dish.trim() !== '')
+        .map(dish => ({ name: dish.trim() })); 
+  
       const payload = {
         clientName: this.orderForm.get('clientName')?.value ?? '',
         clientEmail: this.orderForm.get('clientEmail')?.value ?? '',
-        dishes: [{ name: this.orderForm.get('dishes')?.value ?? '' }],
+        dishes: dishesArray, 
       };
-
+  
+      console.log('Payload:', payload); 
+  
       this.inputService
         .postData(payload as unknown as IOrders)
-        .pipe(tap((result) => console.log(result)))
-        .subscribe();
+        .pipe(tap((result) => console.log('Result:', result)))
+        .subscribe(() => {
+          this.closeModal();
+        });
     }
-  
   }
+  
+  
 
   deleteData() {
     if (this.orderToDelete) {
@@ -108,4 +153,35 @@ export class MainSectionOrdersComponent {
       });
     }
   }
+
+  onSaveEdit(): void {
+    if (this.orderToEdit && this.orderForm.valid) {
+      const dishesText = this.dishesText?.value ?? '';
+      const dishesArray = dishesText
+        .split(',')
+        .filter(dish => dish.trim() !== '')
+        .map(dish => ({ name: dish.trim() })); 
+  
+      const payload = {
+        clientName: this.orderForm.get('clientName')?.value ?? '',
+        clientEmail: this.orderForm.get('clientEmail')?.value ?? '',
+        dishes: dishesArray, 
+      };
+  
+      // console.log('Edit Payload:', payload); 
+  
+      this.orderService
+        .editData(this.orderToEdit.id, payload as unknown as IOrders)
+        .subscribe({
+          next: () => {
+            this.editModalService.closeModal();
+            this.orderForm.reset();
+          },
+          error: (error) => {
+            console.error('Edit failed', error);
+          },
+        });
+    }
+  }
+  
 }

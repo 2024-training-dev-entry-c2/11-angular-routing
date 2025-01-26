@@ -3,6 +3,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ModalService } from '../../services/modal.service';
 import { ModalEditService } from '../../services/modal-edit.service';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-modal-action-edit',
@@ -21,6 +22,7 @@ export class ModalActionEditComponent {
   labelName = input<string>('');
   valueLabel = input<string>('');
   @Input() saveAction?: () => void;
+  dishForm = input<any>();
 
   constructor(private modalService: ModalEditService) {}
 
@@ -44,4 +46,6 @@ export class ModalActionEditComponent {
       this.closeModal();
     }
   }
+
+  
 }

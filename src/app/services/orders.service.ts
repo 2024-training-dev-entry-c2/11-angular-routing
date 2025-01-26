@@ -11,6 +11,8 @@ export class getOrderService {
     private apiUrl = 'http://localhost:8080/api/orders';
     private orderToDeleteSubject = new BehaviorSubject<IOrders | null>(null);
     private orderToDelete$ = this.orderToDeleteSubject.asObservable();
+    private orderToEditSubject = new BehaviorSubject<IOrders | null>(null);
+    private orderToEdit$ = this.orderToEditSubject.asObservable();
     
     constructor(
       private http: HttpClient,
@@ -21,23 +23,36 @@ export class getOrderService {
   
     getData() {
       return this.http.get<IOrders[]>(this.apiUrl).pipe(
-        tap(data => this.dataManagementService.updateData(data))
+        tap((data) => {
+          this.dataManagementService.updateData(data);
+        })
       );
     }
       
-    postData(client: IOrders) {
-      return this.http.post<IOrders>(this.apiUrl, client).pipe(
-        tap(newClient => this.dataManagementService.addItem(newClient))
+    postData(order: IOrders) {
+      return this.http
+       .post<IOrders>(this.apiUrl, order)
+       .pipe(tap(newOrder => this.dataManagementService.addItem(newOrder))
       );
     }
 
-     setDishToDelete(dish: IOrders) {
+     setOrderToDelete(dish: IOrders) {
         this.orderToDeleteSubject.next(dish);
       }
     
-      getDishToDelete() {
+      getOrderToDelete() {
         return this.orderToDelete$;
       }
+
+
+      setOrderToEdit(dish: IOrders) {
+        this.orderToEditSubject.next(dish);
+      }
+    
+      getOrderToEdit() {
+        return this.orderToEdit$;
+      }
+      
     
       deleteData(orderId: number) {
         return this.http.delete<IOrders>(`${this.apiUrl}/${orderId}`).pipe(
@@ -46,4 +61,13 @@ export class getOrderService {
           })
         );
       }
+
+      editData(id: number, orderData: IOrders) {
+          return this.http.put<IOrders>(`${this.apiUrl}/${id}`, orderData).pipe(
+            tap((updatedClient) => {
+              this.getData().subscribe();
+              console.log(updatedClient);
+            })
+          );
+        }
 }

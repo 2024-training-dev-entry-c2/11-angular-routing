@@ -12,6 +12,8 @@ export class getDishService {
   private apiUrl = 'http://localhost:8080/api/dishes';
     private dishToDeleteSubject = new BehaviorSubject<IDishes | null>(null);
     private dishToDelete$ = this.dishToDeleteSubject.asObservable();
+    private dishToEditSubject = new BehaviorSubject<IDishes | null>(null);
+    private dishToEdit$ = this.dishToEditSubject.asObservable();
   
   constructor(
     private http: HttpClient,
@@ -38,6 +40,15 @@ export class getDishService {
   getDishToDelete() {
     return this.dishToDelete$;
   }
+  
+  setDishToEdit(dish: IDishes) {
+    this.dishToEditSubject.next(dish);
+  }
+
+  getDishtToEdit() {
+    return this.dishToEdit$;
+  }
+  
 
   deleteData(dishId: number) {
     return this.http.delete<IDishes>(`${this.apiUrl}/${dishId}`).pipe(
@@ -46,4 +57,13 @@ export class getDishService {
       })
     );
   }
+
+  editData(id: number, dishData: IDishes) {
+      return this.http.put<IDishes>(`${this.apiUrl}/${id}`, dishData).pipe(
+        tap((updatedDish) => {
+          this.getData().subscribe();
+          console.log(updatedDish);
+        })
+      );
+    }
 }

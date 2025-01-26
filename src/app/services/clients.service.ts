@@ -10,8 +10,8 @@ import { DataManagementService } from './data.service';
 export class getClientsService {
   private apiUrl = 'http://localhost:8080/api/clients';
   private clientToDeleteSubject = new BehaviorSubject<IClients | null>(null);
-  private clientToEditSubject = new BehaviorSubject<IClients | null>(null);
   private clientToDelete$ = this.clientToDeleteSubject.asObservable();
+  private clientToEditSubject = new BehaviorSubject<IClients | null>(null);
   private clientToEdit$ = this.clientToEditSubject.asObservable();
 
   constructor(
