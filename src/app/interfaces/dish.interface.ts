@@ -1,5 +1,3 @@
-import { MenuComponent } from "../pages/menu/menu.component";
-
 export interface ISendDish {
     name: string;
     description: string;

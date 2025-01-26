@@ -15,17 +15,17 @@
             @for (data of data(); track $index) {
             <tr class="data__row">
                 @for (column of columns(); track $index) {
-                <td> 
-                    {{ 
-                    column.field === 'price' 
-                    ? (data[column.field] | currency:'USD':'symbol':'1.2-2')
-                    : data[column.field]
+                <td>
+                    {{
+                    column.field === 'price'
+                    ? (resolveField(data, column.field) | currency:'USD':'symbol':'1.2-2')
+                    : resolveField(data, column.field)
                     }}
                 </td>
                 }
                 <td>
-                    <a class="data__action" (click)="sendEdit(data.id)" >✏️</a>
-                    <a class="data__action data__action--delete" (click)="sendDelete(data.id)" >X</a>
+                    <a class="data__action" (click)="sendEdit(data.id)">✏️</a>
+                    <a class="data__action data__action--delete" (click)="sendDelete(data.id)">X</a>
                 </td>
             </tr>
             }

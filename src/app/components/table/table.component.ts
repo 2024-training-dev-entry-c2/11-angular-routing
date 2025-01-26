@@ -28,4 +28,18 @@ export class TableComponent {
   public openForm() {
     this.openModal.emit(true);
   }
+
+  resolveField(obj: any, path: string): any {
+    if (!path) return null;
+    const value = path.split('.').reduce((acc, key) => acc && acc[key], obj);
+  
+    if (Array.isArray(value)) {
+      if (path === 'dishes') {
+        return value.map(item => item.name).join(', ');
+      }
+    }
+  
+    return value;
+  }
+  
 }

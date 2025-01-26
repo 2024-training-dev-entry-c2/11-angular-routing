@@ -141,7 +141,7 @@ export class DishesComponent {
         menu: dish?.menuId, 
       });
     
-      this.isModalOpen = true; // Abre el modal
+      this.isModalOpen = true; 
     }
     
   
