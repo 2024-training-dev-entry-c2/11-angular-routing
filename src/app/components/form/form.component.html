@@ -1,16 +1,11 @@
-<dialog class="modal" [class.modal--open]="open()">
-  <div class="modal__content">
-    <span class="modal__close" (click)="closeModal()">&times;</span>
-    <form [formGroup]="form()" class="form" (ngSubmit)="submit">
-      <h3 class="form__title">{{ title() }}</h3>
-      <div class="form__group">
-        @for (control of controls(); track $index) {
-        <app-input [typeOf]="control.type" [span]="control.text" [placeholder]="control.placeholder"
-          [formGroup]="form()" [formControlName]="control.controlName"></app-input>
-        }
-      </div>
-      <h3>{{message()}}</h3>
-      <button class="form__button">{{action()}}</button>
-    </form>
+<form [formGroup]="form()" class="form" (ngSubmit)="submit">
+  <h3 class="form__title">{{ title() }}</h3>
+  <div class="form__group">
+    @for (control of controls(); track $index) {
+    <app-input [typeOf]="control.type" [span]="control.text" [placeholder]="control.placeholder"
+      [formGroup]="form()" [formControlName]="control.controlName"></app-input>
+    }
   </div>
-</dialog>
+  <h3 class="form__message">{{message()}}</h3>
+  <button class="form__button">{{action()}}</button>
+</form>
