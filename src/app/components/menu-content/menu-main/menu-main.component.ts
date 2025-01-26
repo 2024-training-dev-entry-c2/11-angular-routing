@@ -1,7 +1,6 @@
-import { Component, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { MenuService } from '../../../services/menu.service';
 import { IDish, IMenu } from '../../../interfaces/menu.interface';
-import { RouterLink } from '@angular/router';
 import { ModalService } from '../../../services/modal.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -12,13 +11,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   templateUrl: './menu-main.component.html',
   styleUrls: ['./menu-main.component.scss']
 })
-export class MenuMainComponent implements OnInit {
+export class MenuMainComponent implements OnInit, OnChanges {
   menus: IMenu[] = []; 
+  filteredMenus: IMenu[] = []; 
   modalType: string = '';
   menuName: string = '';
   currentMenuName: string = '';
   dishes: IDish[] = [];
   selectedMenuId: number | null = null;
+
+  @Input() searchQuery: string = ''
 
   actions = [
     { label: 'Editar', link: '/edit', type: 'edit', icon: 'svg/edit.svg#edit' },
@@ -33,15 +35,30 @@ export class MenuMainComponent implements OnInit {
     this.loadMenus();
   }
 
+  ngOnChanges(): void {
+    this.filterMenus();
+  }
+
   loadMenus(): void {
     this.menuService.getMenus().subscribe(
       (menus) => {
         this.menus = menus;
+        this.filteredMenus = menus; 
       },
       (error) => {
         console.error('Error loading menus', error);
       }
     );
+  }
+
+  filterMenus(): void {
+    if (this.searchQuery) {
+      this.filteredMenus = this.menus.filter(menu => 
+        menu.menuName.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    } else {
+      this.filteredMenus = this.menus;  
+    }
   }
 
   getHeaders() {

@@ -1,4 +1,4 @@
 <app-menu-header></app-menu-header>
 <hr>
-<app-search></app-search>
-<app-menu-main></app-menu-main>
+<app-search (searchQueryChange)="onSearchQueryChange($event)"></app-search>
+<app-menu-main [searchQuery]="searchQuery"></app-menu-main>

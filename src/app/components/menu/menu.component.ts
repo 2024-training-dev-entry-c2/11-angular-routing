@@ -10,5 +10,9 @@ import { MenuMainComponent } from "../menu-content/menu-main/menu-main.component
   styleUrl: './menu.component.scss'
 })
 export class MenuComponent {
- 
+  searchQuery: string = ''; 
+
+  onSearchQueryChange(query: string): void {
+    this.searchQuery = query; 
+  }
 }

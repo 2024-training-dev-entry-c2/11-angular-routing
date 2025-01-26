@@ -8,7 +8,7 @@
             </tr>
         </thead>
         <tbody>
-            @for (menu of menus; track menu.idMenu) {
+            @for (menu of filteredMenus; track menu.idMenu) {
             <tr>
                 <td>{{ menu.idMenu }}</td>
                 <td>{{ menu.menuName }}</td>
