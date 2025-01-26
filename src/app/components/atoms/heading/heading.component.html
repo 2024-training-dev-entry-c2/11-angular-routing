@@ -1,0 +1,5 @@
+<ng-container [ngSwitch]="level">
+    <h1 *ngSwitchCase="'h1'" class="heading heading--h1">{{ text }}</h1>
+    <h2 *ngSwitchCase="'h2'" class="heading heading--h2">{{ text }}</h2>
+    <h3 *ngSwitchCase="'h3'" class="heading heading--h3">{{ text }}</h3>
+</ng-container>
