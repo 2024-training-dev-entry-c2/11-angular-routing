@@ -1,5 +1,6 @@
 <aside class="sidebar">
-  <button [routerLink]="['/']">Dashboard</button>
+  <img src="https://raw.githubusercontent.com/ErikaDUARTEm/11-angular-routing/refs/heads/development/public/logo.jpeg" alt="Imagen de logo del restaurante" class="sidebar__logo">
+  <button [routerLink]="['/']" class="sidebar__button">Dashboard</button>
   <nav class="sidebar__nav" role="navigation">
     <ul class="sidebar__list">
       @for ( item of menuItems; track item.id) {
