@@ -101,20 +101,13 @@
     cursor: pointer;
     border-radius: 100%;
 
-    &--edit {
-      &:hover {
-        translate: 0 -5px;
-        color: #ffffff;
-      }
+    &:hover {
+      translate: 0 -5px;
+      color: #ffffff;
     }
 
     &--delete {
       color: #b30000;
-
-      &:hover {
-        translate: 0 -5px;
-        color: #ffffff;
-      }
     }
   }
 }

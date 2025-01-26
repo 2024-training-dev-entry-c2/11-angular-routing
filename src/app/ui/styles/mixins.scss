@@ -1,3 +1,5 @@
+@use "../../ui/styles/variables.scss" as variables;
+
 @mixin flex-center-horizontal($justify: start) {
   display: flex;
   align-items: center;
@@ -39,4 +41,20 @@
   justify-content: $justify-content;
   align-items: $align-items;
   gap: $gap;
+}
+
+@mixin scroll-config {
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: variables.$primary-color;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: variables.$dark-gray;
+    border-radius: 15px;
+  }
 }

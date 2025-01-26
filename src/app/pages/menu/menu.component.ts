@@ -4,10 +4,10 @@ import { GetAllService } from '../../services/get-all.service';
 import { DeleteService } from '../../services/delete.service';
 import { UpdateService } from '../../services/update.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Environments } from '../../environments';
+import { Env } from '../../env';
 import { IValidator } from '../../interfaces/validator.interface';
 import { IResponse } from '../../interfaces/response.interface';
-import { tap } from 'rxjs';
+import { delay, finalize, tap } from 'rxjs';
 import { TableComponent } from '../../components/table/table.component';
 import { FormComponent } from '../../components/form/form.component';
 import { ModalComponent } from '../../components/modal/modal.component';
@@ -26,7 +26,7 @@ export class MenuComponent {
   private updateMenu = inject(UpdateService);
   private formBuilder = inject(FormBuilder);
 
-  public url = Environments.API_URL + '/menus';
+  public url = Env.API_URL + '/menus';
 
   public message: string = '';
   public title: string = '';
@@ -72,12 +72,12 @@ export class MenuComponent {
         tap(result => {
           this.message = 'Menú creado correctamente'; 
           this.getAllMenus();
-
-          setTimeout(() => {
-            this.form.reset();
-            this.message = '';
-            this.isModalOpen = false;
-          }, 1500);
+        }),
+        delay(2000),
+        finalize(() => {
+          this.form.reset();
+          this.message = '';
+          this.isModalOpen = false;
         })
       ).subscribe(console.log);
     }
@@ -111,12 +111,12 @@ export class MenuComponent {
           tap(result => {
             this.message = 'Menú actualizado correctamente'; 
             this.getAllMenus();
-  
-            setTimeout(() => {
+            }),
+            delay(2000),
+            finalize(() => {
               this.form.reset();
               this.message = '';
               this.isModalOpen = false;
-            }, 1500);
             })
         ).subscribe(console.log);
     }

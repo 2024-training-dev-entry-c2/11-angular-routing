@@ -1,27 +1,33 @@
 <section class="data">
-    <div class = "data__header">
+    <div class="data__header">
         <h1 class="data__title">{{ title() }}:</h1>
     </div>
     <table class="data__table">
         <thead>
             <tr>
                 @for (column of columns(); track $index) {
-                    <th>{{ column.header }}</th>
+                <th>{{ column.header }}</th>
                 }
                 <th>Editar</th>
             </tr>
         </thead>
         <tbody>
             @for (data of data(); track $index) {
-                <tr class="data__row">
-                    @for (column of columns(); track $index) {
-                        <td>{{data[column.field]}}</td>
-                    }
-                    <td>
-                        <a (click)="sendEdit(data.id)" class="data__action data__action--edit">✏️</a>
-                        <a (click)="sendDelete(data.id)" class="data__action data__action--delete">X</a>
-                    </td>
-                </tr>
+            <tr class="data__row">
+                @for (column of columns(); track $index) {
+                <td> 
+                    {{ 
+                    column.field === 'price' 
+                    ? (data[column.field] | currency:'USD':'symbol':'1.2-2')
+                    : data[column.field]
+                    }}
+                </td>
+                }
+                <td>
+                    <a class="data__action" (click)="sendEdit(data.id)" >✏️</a>
+                    <a class="data__action data__action--delete" (click)="sendDelete(data.id)" >X</a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

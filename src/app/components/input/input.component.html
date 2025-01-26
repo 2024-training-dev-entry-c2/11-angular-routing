@@ -1,13 +1,20 @@
 <label class="label" [formGroup]="formGroup()">
     <span class="label__span">{{span()}}</span>
     @if (isMultiline()) {
-        <textarea class="label__input" [formControlName]="formControlName()" [placeholder]="placeholder()"></textarea>
+    <textarea class="label__input" [formControlName]="formControlName()" [placeholder]="placeholder()"></textarea>
+    } @else if (typeOf() === 'select') {
+    <select class="label__input" [formControlName]="formControlName()">
+        <option value="" disabled selected>{{ placeholder() }}</option>
+        @for (option of options(); track $index) {
+        <option [value]="option.value">{{option.label}}</option>
+        }
+    </select>
     } @else {
-        <input class="label__input" [formControlName]="formControlName()" [type]="typeOf()" [placeholder]="placeholder()">
+    <input class="label__input" [formControlName]="formControlName()" [type]="typeOf()" [placeholder]="placeholder()">
     }
     <span class="label__error">
         @if (notValid()) {
-            {{errorMessage}}
+        {{errorMessage}}
         }
     </span>
 </label>

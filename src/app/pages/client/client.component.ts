@@ -5,7 +5,7 @@ import { GetAllService } from '../../services/get-all.service';
 import { tap } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IValidator } from '../../interfaces/validator.interface';
-import { Environments } from '../../environments';
+import { Env } from '../../env';
 import { FormComponent } from "../../components/form/form.component";
 import { CreateService } from '../../services/create.service';
 import { IResponse } from '../../interfaces/response.interface';
@@ -30,7 +30,7 @@ export class ClientComponent implements OnInit {
   public title: string = '';
   public action: string = '';
 
-  public url = Environments.API_URL + '/clients';
+  public url = Env.API_URL + '/clients';
   
   public users: IResponseClients[] = [];
   public columns = [

@@ -8,5 +8,5 @@ export interface IValidator {
   options?: {
     label: string;
     value: string;
-  }
+  }[];
 }
