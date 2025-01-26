@@ -54,9 +54,9 @@ export class ClientComponent implements OnInit {
   });
 
   public controls: IValidator[] = [
-    {text: 'Nombre', type: 'input', inputType: "text", controlName: 'name', placeholder: 'Juan'},
-    {text: 'Apellido', type: 'input', inputType: "text", controlName: 'lastName', placeholder: 'Perez'},
-    {text: 'Correo', type: 'input', inputType: "email", controlName: 'email', placeholder: 'juan@perez.com' },
+    {text: 'Nombre', type: 'input', inputType: "text", controlName: 'name', placeholder: 'Juan', isMultiline: false},
+    {text: 'Apellido', type: 'input', inputType: "text", controlName: 'lastName', placeholder: 'Perez', isMultiline: false},
+    {text: 'Correo', type: 'input', inputType: "email", controlName: 'email', placeholder: 'juan@perez.com', isMultiline: false},
   ];
 
   ngOnInit(): void {

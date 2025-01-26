@@ -21,6 +21,7 @@ export class InputComponent implements ControlValueAccessor {
   public formGroup = input.required<FormGroup>();
   public formControlName = input.required<string>();
   public placeholder = input<string>();
+  public isMultiline = input<boolean>();
 
   value: any = ''; 
   disabled: boolean = false; 
@@ -69,4 +70,5 @@ export class InputComponent implements ControlValueAccessor {
     this.value = target.value;
     this.onChange(this.value); 
   }
+
 }

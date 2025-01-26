@@ -4,6 +4,7 @@ export interface IValidator {
   inputType?: string;
   controlName: string;
   placeholder: string;
+  isMultiline: boolean;
   options?: {
     label: string;
     value: string;

@@ -3,7 +3,7 @@
   <div class="form__group">
     @for (control of controls(); track $index) {
     <app-input [typeOf]="control.type" [span]="control.text" [placeholder]="control.placeholder"
-      [formGroup]="form()" [formControlName]="control.controlName"></app-input>
+      [formGroup]="form()" [formControlName]="control.controlName" [isMultiline]="control.isMultiline"></app-input>
     }
   </div>
   <h3 class="form__message">{{message()}}</h3>

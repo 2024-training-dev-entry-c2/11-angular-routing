@@ -3,6 +3,6 @@
 </app-table>
 
 <app-modal (close)="openModal($event)" [open]="isModalOpen">
-    <app-form [form]="form" [title]="title" [message]="message" [action]="action" [controls]="controls" (submit)="submit()">
+    <app-form [form]="form" [title]="title" [message]="message" [action]="action" [controls]="controls" (submit)="submit()" >
     </app-form>
 </app-modal>
