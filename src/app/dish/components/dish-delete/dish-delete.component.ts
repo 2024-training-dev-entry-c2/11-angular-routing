@@ -6,8 +6,8 @@ import { NotificationService } from '../../../notification/services/notification
 @Component({
   selector: 'app-dish-delete',
   imports: [],
-  templateUrl: './dish-delete.component.html',
-  styleUrl: './dish-delete.component.scss'
+  template: '',
+  styles: ''
 })
 export class DishDeleteComponent implements OnInit {
 

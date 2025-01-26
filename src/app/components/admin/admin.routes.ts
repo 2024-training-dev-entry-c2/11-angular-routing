@@ -22,6 +22,11 @@ export const routes: Routes = [
         path: 'platos', 
         loadChildren: () => import('../../dish/dish.module').then(m => m.DishModule),
         outlet: "primary" 
+      },
+      { 
+        path: 'pedidos', 
+        loadChildren: () => import('../../details/details.module').then(m => m.DetailsModule),
+        outlet: "primary" 
       }
     ]
   },
