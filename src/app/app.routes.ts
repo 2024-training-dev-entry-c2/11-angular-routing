@@ -7,14 +7,14 @@ export const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: '',
-        redirectTo: 'dishes',
-        pathMatch: 'full',
-      },
-      {
         path: 'dishes',
         loadChildren: () =>
           import('./pages/dishes/dishes.module').then((m) => m.DishesModule),
+      },
+      {
+        path: 'menus',
+        loadChildren: () =>
+          import('./pages/menus/menus.module').then((m) => m.MenusModule),
       },
     ],
   },
