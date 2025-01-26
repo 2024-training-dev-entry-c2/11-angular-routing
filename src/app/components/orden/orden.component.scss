@@ -1,0 +1,19 @@
+@use "../../utils/variables.scss" as variables;
+@use "../../utils/mixin.scss" as mixin;
+
+.orden{
+  display: flex;
+  height: 100%;
+
+
+ &__view{
+    width: 70%;
+    height: 100%;
+   }
+   &__add{
+    width: 30%;
+    height: 100%;
+
+   }
+
+}

@@ -1,0 +1,14 @@
+<aside class="sidebar">
+  <button [routerLink]="['/']">Dashboard</button>
+  <nav class="sidebar__nav" role="navigation">
+    <ul class="sidebar__list">
+      @for ( item of menuItems; track item.id) {
+      <li class="sidebar__item">
+        <a  [routerLink] = "item.link">
+          {{item.title}}</a>
+      </li>
+      }
+    </ul>
+
+  </nav>
+</aside>
