@@ -14,7 +14,6 @@ export class BottonDeleteComponent {
   deleteOrden(): void {
     if (this.idOrden) {
       this.deleteEvent.emit(this.idOrden);
-      console.log('ID emitido:', this.idOrden);
     } else {
       console.error('idOrden es undefined');
     }

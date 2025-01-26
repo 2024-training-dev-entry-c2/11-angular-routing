@@ -16,7 +16,7 @@
       @for(orden of ordenes; track orden.id){
       <tr class="content__orden">
         <td>{{ orden.id }}</td>
-        <td>{{ orden.priceTotal }}</td>
+        <td>{{ orden.priceTotal | currency}}</td>
         <td>{{ orden.statusOrder }}</td>
         <td>{{ orden.client.name }}</td>
         <td>{{ orden.client.numberPhone }}</td>
@@ -24,7 +24,7 @@
           <ul class="content__items">
             @for(item of orden.items; track item.id){
             <li><strong>Nombre:</strong> {{ item.dish.name }},</li>
-            <li><strong>Precio:</strong>  {{ item.dish.price }},</li>
+            <li><strong>Precio:</strong>  {{ item.dish.price | currency}},</li>
             <li><strong>Cantidad:</strong> {{ item.quantity }}</li>
             }
           </ul>

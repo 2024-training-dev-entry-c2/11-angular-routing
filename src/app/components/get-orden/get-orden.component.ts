@@ -3,10 +3,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { OrdenService } from '../../service/orden.service';
 import { IViewOrden } from '../../inferfaces/view-orden.interface';
 import { BottonDeleteComponent } from '../botton-delete/botton-delete.component';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-get-orden',
-  imports: [ReactiveFormsModule, BottonDeleteComponent],
+  imports: [ReactiveFormsModule, BottonDeleteComponent, CurrencyPipe],
   templateUrl: './get-orden.component.html',
   styleUrl: './get-orden.component.scss'
 })

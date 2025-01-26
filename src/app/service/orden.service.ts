@@ -27,4 +27,5 @@ export class OrdenService {
   addOrden(payload: ICreateOrden): Observable<IViewOrden> {
     return this.http.post<IViewOrden>('http://localhost:8080/api/ordenes', payload);
   }
+  
 }
