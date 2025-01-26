@@ -1,8 +1,10 @@
 @use "../../../ui/styles/variables.scss" as variables;
 
-.main__title {
-  font-size: 3rem;
-  margin-bottom: 20px;
-  color: variables.$primary-color;
-  text-align: center;
+.main {
+  &__title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: variables.$primary-color;
+    text-align: center;
+  }
 }

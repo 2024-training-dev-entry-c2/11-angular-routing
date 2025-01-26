@@ -61,7 +61,24 @@ export class CustomerFormComponent implements OnInit {
   loadCustomerData(id: number): void {
     this.editCustomerService.getCustomer(id).subscribe((customer) => {
       this.formData = customer;
+      this.updateFormData();
     });
+  }
+
+  updateFormData(): void {
+    if (this.formData) {
+      const formComponent = this.getFormComponent();
+      if (formComponent) {
+        formComponent.formGroup.patchValue(this.formData);
+      }
+    }
+  }
+
+  getFormComponent(): CustomFormComponent | null {
+    const formComponent = document.querySelector(
+      'app-custom-form'
+    ) as unknown as CustomFormComponent;
+    return formComponent ? formComponent : null;
   }
 
   submitAction(data: ICustomer): void {

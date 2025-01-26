@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddMenuService } from '../../../../services/menu/add-menu.service';
 import { EditMenuService } from '../../../../services/menu/edit-menu.service';
+import { GetAllDishesService } from '../../../../services/dish/get-all-dishes.service';
+import { IDish } from '../../../../interfaces/dishResponse.interface';
 import { CustomFormComponent } from '../../../custom/custom-form/custom-form.component';
 import { FormTitleComponent } from '../../../custom/form-title/form-title.component';
 
@@ -15,6 +17,7 @@ import { FormTitleComponent } from '../../../custom/form-title/form-title.compon
 export class MenuFormComponent implements OnInit {
   menuId: number | null = null;
   formData: any = null;
+  dishes: IDish[] = [];
 
   formConfig = [
     {
@@ -25,10 +28,10 @@ export class MenuFormComponent implements OnInit {
     },
     {
       name: 'dishIds',
-      label: 'Dishes',
+      label: 'Dishes IDs',
       type: 'array',
       errorMessage: 'At least one dish is required.',
-      visible: false,
+      options: [],
     },
   ];
 
@@ -36,6 +39,7 @@ export class MenuFormComponent implements OnInit {
 
   private addMenuService = inject(AddMenuService);
   private editMenuService = inject(EditMenuService);
+  private getAllDishesService = inject(GetAllDishesService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   private fb = inject(FormBuilder);
@@ -53,12 +57,31 @@ export class MenuFormComponent implements OnInit {
         this.loadMenuData(this.menuId);
       }
     });
+
+    this.loadDishes();
   }
 
   loadMenuData(id: number): void {
     this.editMenuService.getMenu(id).subscribe((menu) => {
       this.formData = menu;
       this.setFormData(menu);
+    });
+  }
+
+  loadDishes(): void {
+    this.getAllDishesService.execute().subscribe((dishes) => {
+      this.dishes = dishes;
+
+      const dishIdsConfig = this.formConfig.find(
+        (config) => config.name === 'dishIds'
+      );
+      if (dishIdsConfig) {
+        (dishIdsConfig.options as { label: string; value: number }[]) =
+          dishes.map((dish) => ({
+            label: dish.name,
+            value: dish.id,
+          }));
+      }
     });
   }
 
@@ -69,12 +92,7 @@ export class MenuFormComponent implements OnInit {
 
     const dishIdsArray = this.form.get('dishIds') as FormArray;
     menu.dishIds.forEach((dishId: number) => {
-      dishIdsArray.push(
-        this.fb.group({
-          id: [dishId],
-          value: [dishId, Validators.required],
-        })
-      );
+      dishIdsArray.push(this.fb.control(dishId, Validators.required));
     });
   }
 
