@@ -1,0 +1,14 @@
+<div class="dish-manager">
+    <app-dish-form (submitDish)="addDish($event)"></app-dish-form>
+
+    @if(dishes.length>0){
+    <h4>Agregados recientemente:</h4>
+    <ol>
+        @for (dish of dishes; track $index) {
+        <li class="dish-manager__item">
+            {{ dish.name }} - {{ dish.price | currency:'COP' }}
+        </li>
+        }
+    </ol>
+    }
+</div>

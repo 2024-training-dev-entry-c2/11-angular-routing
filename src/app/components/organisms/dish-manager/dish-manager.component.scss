@@ -1,0 +1,23 @@
+.dish-manager {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &__item {
+        padding: 1rem;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        &:nth-child(odd) {
+            background-color: #f0f0f0;
+        }
+    }
+
+    h4 {
+        margin-bottom: 1rem;
+        color: #333;
+    }
+}
