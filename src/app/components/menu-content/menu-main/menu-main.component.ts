@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { MenuService } from '../../../services/menu.service';
-import { IMenu } from '../../../interfaces/menu.interface';
+import { IDish, IMenu } from '../../../interfaces/menu.interface';
 import { RouterLink } from '@angular/router';
 import { ModalService } from '../../../services/modal.service';
 import { CommonModule } from '@angular/common';
@@ -16,7 +16,8 @@ export class MenuMainComponent implements OnInit {
   menus: IMenu[] = []; 
   modalType: string = '';
   menuName: string = '';
-  dishes: string[] = [];
+  dishes: IDish[] = [];
+  selectedMenuId: number | null = null;
 
   actions = [
     { label: 'Editar', link: '/edit', type: 'edit', icon: 'svg/edit.svg#edit' },
@@ -68,26 +69,49 @@ export class MenuMainComponent implements OnInit {
   }
 
   openModal(modalTemplate: TemplateRef<any>, type: string, id: number): void {
-      this.modalType = type;
-      this.modalService
-        .open(modalTemplate, this.viewContainerRef, {
-          title: type === 'edit' ? 'Editar Menu' : 'Eliminar Menú',
-          buttonName: 'Confirmar',
-        })
-        .subscribe(() => {
-          if (type === 'edit') {
-
-          } else if (type === 'delete') {
-            this.deleteMenu(id);
-          }
-        });
+    this.modalType = type;
+    this.selectedMenuId = id;
+    
+    if (type === 'edit') {
+      this.loadMenuDetails(id);
     }
+    
+    this.modalService
+      .open(modalTemplate, this.viewContainerRef, {
+        title: type === 'edit' ? 'Editar Menu' : 'Eliminar Menú',
+        buttonName: 'Confirmar',
+      })
+      .subscribe(() => {
+        if (type === 'edit' && this.selectedMenuId) {
+          const updatedMenu: IMenu = { 
+            idMenu: this.selectedMenuId, 
+            menuName: this.menuName, 
+            dishes: this.dishes, // Los platos permanecen igual
+          };
+          this.updateMenu(this.selectedMenuId, updatedMenu);
+        } else if (type === 'delete' && this.selectedMenuId) {
+          this.deleteMenu(this.selectedMenuId);
+        }
+      });
+  }
+
+  loadMenuDetails(id: number): void {
+    this.menuService.getMenuById(id).subscribe(
+      (menu) => {
+        this.menuName = menu.menuName;
+        this.dishes = menu.dishes;
+      },
+      (error) => {
+        console.error('Error loading menu details', error);
+      }
+    );
+  }
 
   deleteMenu(id: number): void {
     this.menuService.deleteMenu(id).subscribe(
       () => {
         console.log('Menu deleted');
-        this.loadMenus(); 
+        this.loadMenus();
       },
       (error) => {
         console.error('Error deleting menu', error);

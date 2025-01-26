@@ -44,7 +44,8 @@
 <ng-template #modalTemplate>
     <div *ngIf="modalType === 'edit'; else deleteContent">
         <h3>Editar Menú</h3>
-        <!-- <input [(ngModel)]="menuName" placeholder="Nombre del menú" /> -->
+        <label for="menuName">Nombre del Menú:</label>
+        <input [(ngModel)]="menuName" id="menuName" placeholder="Nuevo nombre del menú" />
     </div>
     <ng-template #deleteContent>
         <p>¿Estás seguro de que deseas eliminar este menú?</p>
