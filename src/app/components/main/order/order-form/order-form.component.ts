@@ -9,6 +9,7 @@ import { IDish } from '../../../../interfaces/dishResponse.interface';
 import { IReservationResponse } from '../../../../interfaces/reservationResponse.interface';
 import { CustomFormComponent } from '../../../custom/custom-form/custom-form.component';
 import { FormTitleComponent } from '../../../custom/form-title/form-title.component';
+import { IOrderRequests } from '../../../../interfaces/orderRequest.interface';
 
 @Component({
   selector: 'app-order-form',
@@ -34,14 +35,14 @@ export class OrderFormComponent implements OnInit {
       label: 'Reservation ID',
       type: 'select',
       errorMessage: 'Reservation ID is required.',
-      options: [], // Agregamos un campo para las opciones
+      options: [],
     },
     {
       name: 'dishIds',
       label: 'Dishes',
       type: 'array',
       errorMessage: 'At least one dish is required.',
-      options: [], // Agregamos un campo para las opciones
+      options: [],
     },
   ];
 
@@ -127,13 +128,18 @@ export class OrderFormComponent implements OnInit {
     }
   }
 
-  submitAction(data: any): void {
+  submitAction(data: IOrderRequests): void {
     if (data.dishIds) {
-      data.dishIds = data.dishIds.map((dishId: string) => parseInt(dishId, 10));
+      data.dishIds = data.dishIds.map((dishId: number | string) =>
+        typeof dishId === 'string' ? parseInt(dishId, 10) : dishId
+      );
     }
 
     if (data.reservationId) {
-      data.reservationId = parseInt(data.reservationId, 10);
+      data.reservationId =
+        typeof data.reservationId === 'string'
+          ? parseInt(data.reservationId, 10)
+          : data.reservationId;
     }
 
     if (this.orderId) {

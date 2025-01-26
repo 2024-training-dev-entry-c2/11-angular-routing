@@ -6,6 +6,7 @@ import { GetCustomerByIdService } from '../../../../services/customer/get-custom
 import { ConfirmModelComponent } from '../../confirm-model/confirm-model.component';
 import { BtnsActionsComponent } from '../../../custom/btns-actions/btns-actions.component';
 import { DatePipe } from '@angular/common';
+import { ICustomer } from '../../../../interfaces/customerResponse.interface';
 
 @Component({
   selector: 'app-reservation-card',
@@ -27,8 +28,9 @@ export class ReservationCardComponent implements OnInit {
   ngOnInit(): void {
     this.getCustomerByIdService
       .execute(this.reservation.customerId)
-      .subscribe((customer: any) => {
-        this.customerName = `${customer.firstName} ${customer.lastName}`;
+      .subscribe((customer) => {
+        const customerData = customer as ICustomer;
+        this.customerName = `${customerData.firstName} ${customerData.lastName}`;
       });
   }
 

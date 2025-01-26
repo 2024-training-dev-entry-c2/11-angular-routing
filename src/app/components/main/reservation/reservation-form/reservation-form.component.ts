@@ -105,7 +105,7 @@ export class ReservationFormComponent implements OnInit {
     });
   }
 
-  submitAction(data: any): void {
+  submitAction(data: IReservationResponse): void {
     data.time = new Date(data.time).toISOString();
     if (this.reservationId) {
       this.editReservationService

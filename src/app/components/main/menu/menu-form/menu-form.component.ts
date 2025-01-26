@@ -7,6 +7,8 @@ import { GetAllDishesService } from '../../../../services/dish/get-all-dishes.se
 import { IDish } from '../../../../interfaces/dishResponse.interface';
 import { CustomFormComponent } from '../../../custom/custom-form/custom-form.component';
 import { FormTitleComponent } from '../../../custom/form-title/form-title.component';
+import { IMenuRequest } from '../../../../interfaces/menuRequest.interface';
+import { IMenu } from '../../../../interfaces/menuResponse.interface';
 
 @Component({
   selector: 'app-menu-form',
@@ -16,7 +18,7 @@ import { FormTitleComponent } from '../../../custom/form-title/form-title.compon
 })
 export class MenuFormComponent implements OnInit {
   menuId: number | null = null;
-  formData: any = null;
+  formData: IMenu | null = null;
   dishes: IDish[] = [];
 
   formConfig: {
@@ -105,7 +107,7 @@ export class MenuFormComponent implements OnInit {
     }
   }
 
-  submitAction(data: any): void {
+  submitAction(data: IMenu): void {
     if (this.menuId) {
       this.editMenuService.updateMenu(this.menuId, data).subscribe(() => {
         this.router.navigate(['/menu']);
