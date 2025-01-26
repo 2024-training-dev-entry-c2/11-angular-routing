@@ -1,0 +1,65 @@
+.formModal-form {
+  margin-top: 2rem;
+
+  &__title {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: normal;
+  }
+
+  &__form {
+    width: 100%;
+  }
+
+  &__group {
+    margin-bottom: 1rem;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 0.8rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    color: #fff;
+    font-size: 1rem;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: #ff6b00;
+    }
+
+    &--invalid {
+      border-color: #ff3333;
+    }
+  }
+
+  &__submit {
+    width: 100%;
+    padding: 1rem;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background: #ff6b00;
+    }
+
+    &--disabled {
+      background: #333;
+      cursor: not-allowed;
+
+      &:hover {
+        background: #333;
+      }
+    }
+  }
+}

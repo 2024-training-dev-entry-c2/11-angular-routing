@@ -4,5 +4,6 @@ export interface Iclient {
   email: string;
   phone: number;
   address: string;
-  isFrequent: boolean;
+  isFrequent?: boolean;
+  fechaCreacion?: string;
 }
