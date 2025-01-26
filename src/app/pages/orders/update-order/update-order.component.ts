@@ -50,11 +50,9 @@ export class UpdateOrderComponent implements OnInit {
     this.getClients();
     this.getMenus();
     this.showModal = true;
-    this.dishfoodList= this.getOrderData.dishfoodIds;
+    this.dishfoodList = this.getOrderData.dishfoodIds;
     console.log(this.dishfoodList);
-    
   }
-
 
   public updateOrderForm = this.formBuilder.group({
     clientId: [0, [Validators.required]],
@@ -64,8 +62,25 @@ export class UpdateOrderComponent implements OnInit {
   });
 
   updateOrder() {
-    console.log(this.updateOrderForm.value);
-    this.showModal = false;console.log(this.getOrderData);
+    const updatePayload = {
+      clientId: this.updateOrderForm.get('clientId')?.value,
+      localDate: this.updateOrderForm.get('localDate')?.value,
+      dishfoodIds: this.dishfoodList,
+    };
+    if (this.updateOrderForm.valid) {
+      this.order
+        .updateOrder(updatePayload as unknown as Order, this.getOrderData.id)
+        .subscribe({
+          next: (data) => {
+            console.log(data);
+            alert('Order updated successfully');
+            this.showModal = false;
+          },
+          error: (error) => {
+            console.log(error);
+          },
+        });
+    }
   }
 
   getClients() {
@@ -107,10 +122,11 @@ export class UpdateOrderComponent implements OnInit {
   }
   addDish(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
-
     const selectedDishId = selectElement.value;
     const parsedId = parseInt(selectedDishId, 10);
     this.dishfoodList.push(parsedId);
+    console.log(this.dishfoodList);
+
     const dishfoodIds = this.updateOrderForm.get('dishfoodIds') as FormArray;
     dishfoodIds.push(this.formBuilder.control(selectedDishId));
   }

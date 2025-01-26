@@ -32,9 +32,9 @@ export class OrderService {
       );
   }
 //?
-  updateOrder(order: Order): Observable<Order> {
+  updateOrder(order: Order,id: number): Observable<Order> {
     return this.http
-      .put<Order>('http://localhost:8080/order', order)
+      .put<Order>(`http://localhost:8080/order/${id}`, order)
       .pipe(
         map((response) => this.validateObjectResponse(response)),
         catchError((error) => {

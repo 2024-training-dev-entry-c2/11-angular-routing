@@ -84,5 +84,6 @@ export class OrderComponent implements OnInit {
 
   closeModal() {
     this.showModal = false;
+    this.getOders();
   }
 }
