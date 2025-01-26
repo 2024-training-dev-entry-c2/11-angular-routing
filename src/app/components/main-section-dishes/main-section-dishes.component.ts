@@ -1,17 +1,19 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, inject, input } from '@angular/core';
 import { ModalComponent } from '../modal/modal.component';
-import { Observable, tap } from 'rxjs';
+import { Observable, Subscription, tap } from 'rxjs';
 import { IDishes } from '../../interface/dishes.interface';
 import { DataManagementService } from '../../services/data.service';
 import { getMenusService } from '../../services/menus.service';
 import { ModalService } from '../../services/modal.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { getDishService } from '../../services/dishes.service';
+import { ModalActionDeleteComponent } from "../modal-action-delete/modal-action-delete.component";
+import { ModalDeleteService } from '../../services/modal-delete.service';
 
 @Component({
   selector: 'app-main-section-dishes',
-  imports: [CurrencyPipe, ModalComponent, CommonModule],
+  imports: [CurrencyPipe, ModalComponent, CommonModule, ModalActionDeleteComponent],
   templateUrl: './main-section-dishes.component.html',
   styleUrl: './main-section-dishes.component.scss',
 })
@@ -23,6 +25,9 @@ export class MainSectionDishesComponent {
   public tableContent = input<string[]>();
   private formBuilder = inject(FormBuilder);
   private inputService = inject(getDishService);
+   private subscription!: Subscription;
+    private dishToDeleteSubscription!: Subscription;
+    private dishToDelete: IDishes | null = null;
 
   formData = [
     { labelName: 'Name', valueLabel: 'name' },
@@ -33,7 +38,8 @@ export class MainSectionDishesComponent {
   constructor(
     private dataManagementService: DataManagementService<IDishes>,
     private dishService: getDishService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private deleteModalService: ModalDeleteService
   ) {
     this.dishData = this.dataManagementService.data$;
   }
@@ -46,14 +52,26 @@ export class MainSectionDishesComponent {
 
   ngOnInit() {
     this.dishService.getData().subscribe();
+    this.dishToDeleteSubscription = this.dishService.getDishToDelete().subscribe(
+      (dish) => {
+        this.dishToDelete = dish;
+      }
+    );
+
   }
 
-  abrirModalEditar() {
+  openAddModal() {
     this.modalService.openModal();
   }
 
+  openDeleteModal(dish: IDishes) {
+      this.deleteModalService.openModal();
+      this.dishService.setDishToDelete(dish);
+    }
+  
+
   closeModal() {
-    this.modalService.closeModal();
+    this.deleteModalService.closeModal();
   }
 
   onSave(): void {
@@ -64,5 +82,19 @@ export class MainSectionDishesComponent {
         .subscribe();
     }
     this.closeModal();
+  }
+
+  deleteData() {
+    if (this.dishToDelete) {
+      this.dishService.deleteData(this.dishToDelete.id).subscribe({
+        next: () => {
+          this.deleteModalService.closeModal();
+          console.log('Deleted successfully');
+        },
+        error: (error) => {
+          console.error('Delete failed', error);
+        },
+      });
+    }
   }
 }

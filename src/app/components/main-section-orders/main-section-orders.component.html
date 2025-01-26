@@ -37,12 +37,13 @@
 
                             <td class="container__content-table-actions">
                               <button class="container__content-btn container__content-btn--edit">Edit</button>
-                              <button class="container__content-btn container__content-btn--delete">Delete</button>
+                              <button class="container__content-btn container__content-btn--delete" (click)="openDeleteModal(data)">Delete</button>
                           </td>
                 </tr>
             }
         </tbody>
       </table>
     </div>
+    <app-modal-action-delete [deleteAction]="deleteData.bind(this)"></app-modal-action-delete>
     <app-modal [modalTitle]="'Add a new Order'" [inputForm]="orderForm" (onSaveTest)="onSave()" [formData]="formData"></app-modal>
   </section>

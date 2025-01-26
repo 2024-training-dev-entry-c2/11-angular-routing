@@ -1,0 +1,16 @@
+@if (isOpen) {
+  <div class="modal is-open--edit">
+    <section class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <div class="modal__container">
+        <h1>Confirm Delete</h1>
+        <span>Are you sure you want to delete this client?</span>
+  
+        <div class="modal__btns">
+          <button class="modal__btn modal__btn--delete" (click)="deleteData()">Delete</button>
+          <button class="modal__btn modal__btn--cancel" (click)="closeModal()">Cancel</button>
+        </div>
+      </div>
+    </section>
+  </div>
+  }

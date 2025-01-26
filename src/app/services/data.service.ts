@@ -17,11 +17,13 @@ import { BehaviorSubject } from "rxjs";
     addItem(item: T) {
       const currentData = this.dataSubject.value;
       this.dataSubject.next([...currentData, item]);
+     
     }
   
     removeItem(predicate: (item: T) => boolean) {
       const currentData = this.dataSubject.value;
       this.dataSubject.next(currentData.filter(item => !predicate(item)));
+      
     }
   
     updateItem(predicate: (item: T) => boolean, updatedItem: T) {
