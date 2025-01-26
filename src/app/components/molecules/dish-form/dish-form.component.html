@@ -6,6 +6,10 @@
     <app-input-field label="Precio" [control]="priceControl" type="number" placeholder="Ej: 8000"
         [errorMessages]="{ required: 'El precio es obligatorio.', min: 'Debe ser mayor que 0.' }">
     </app-input-field>
+    
+    <app-input-field label="MenuID" [control]="menuIdControl" type="number" placeholder="Ej: 1"
+        [errorMessages]="{ required: 'Asociar con un menú es obligatorio', min: 'Debe ser diferente de 0.' }">
+    </app-input-field>
 
     <button type="submit" [disabled]="form.invalid" class="dish-form__submit">
         Crear Plato

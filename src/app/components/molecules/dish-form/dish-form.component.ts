@@ -11,6 +11,7 @@ import { InputFieldComponent } from '../../atoms/input-field/input-field.compone
 interface DishForm {
   name: string;
   price: number;
+  menuId: number;
 }
 
 @Component({
@@ -25,6 +26,7 @@ export class DishFormComponent {
   form = inject(FormBuilder).group({
     name: ['', [Validators.required, Validators.minLength(3)]],
     price: [5000, [Validators.required, Validators.min(0.01)]],
+    menuId: [1, [Validators.required, Validators.min(1)]],
   });
 
   onSubmit(): void {
@@ -40,5 +42,9 @@ export class DishFormComponent {
 
   get priceControl(): FormControl {
     return this.form.get('price') as FormControl;
+  }
+  
+  get menuIdControl(): FormControl {
+    return this.form.get('menuId') as FormControl;
   }
 }
