@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RestaurantService } from '../../services/restaurant.service';
 import { IRestaurant } from '../../inferfaces/restaurant.interface';
-import { IMenuItem } from '../../inferfaces/menu.interface';
 import { Dish } from '../../inferfaces/create-orden.interface';
 import { CurrencyPipe, DatePipe, registerLocaleData, UpperCasePipe } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
@@ -20,6 +19,7 @@ export class MainContentComponent {
  popularDishes: Dish[] = [];
  openingDate: Date = new Date();
  closingDate: Date = new Date();
+
  ngOnInit() {
      this.restaurantService.execute().subscribe({
        next: (data: IRestaurant) => {
@@ -30,7 +30,6 @@ export class MainContentComponent {
          this.openingDate.setHours(this.infoRestaurant.openingHours[0]);
          this.openingDate.setMinutes(this.infoRestaurant.openingHours[1]);
          this.dishes = this.infoRestaurant.menuRestaurant.dishes;
-
          this.popularDishes = this.dishes.filter(dish => dish.popular);
        },
        error: (error) => {

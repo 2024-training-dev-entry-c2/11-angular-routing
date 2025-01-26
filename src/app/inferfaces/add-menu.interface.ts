@@ -1,11 +1,11 @@
 
 export interface Dish {
+  id?: number,
   name: string;
   price: number;
   popular: boolean;
-  menuRestaurantId: number;
+  menuRestaurantId?: number;
 }
-
 export interface IAddMenuRequest {
   description: string;
   restaurantId: number;

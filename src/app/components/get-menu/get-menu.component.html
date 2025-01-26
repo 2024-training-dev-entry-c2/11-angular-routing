@@ -1,0 +1,39 @@
+<section class="content">
+  <h1>Menú del Restaurante</h1>
+  <p>Descripción:  {{menuDescription}}</p>
+  <table class="content__table">
+    <thead class="content__head">
+      <tr>
+        <th>Platos</th>
+        <th>Popularidad</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody class="content__body">
+      @for(dish of dishes; track dish.id) {
+      <tr class="content__menu">
+        <ul class="content__items">
+        <td>
+            <li><strong>Nombre:</strong> {{dish.name}}</li>
+            <li> <strong>Precio:</strong> ${{dish.price}}</li>
+          </td>
+        </ul>
+        <td>
+          @if(dish.popular){
+            <p class="content__items--popular-true">
+              {{ dish.popular ? 'Popular' : 'No Popular' }}
+            </p>
+          }@else{
+            <p class="content__items--popular-false">
+              {{ dish.popular ? 'Popular' : 'No Popular' }}
+            </p>
+          }
+        </td>
+        <td>
+          <app-botton-edit></app-botton-edit>
+          <app-botton-delete ></app-botton-delete>
+        </td>
+      </tr>
+    }
+    </tbody>
+  </table>
