@@ -1,24 +1,41 @@
-import { HttpClient } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse,
+} from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { IMenu } from '../../interfaces/menuResponse.interface';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { IMenuRequest } from '../../interfaces/menuRequest.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class EditMenuService {
+export class AddMenuService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8080/menu';
 
-  getMenu(id: number): Observable<IMenu> {
-    return this.http.get<IMenu>(`${this.apiUrl}/${id}`);
+  execute(menu: Partial<IMenuRequest>): Observable<IMenuRequest> {
+    return this.http
+      .post<IMenuRequest>('http://localhost:8080/menu', menu, {
+        headers: this.getHeaders(),
+      })
+      .pipe(catchError(this.handleError));
   }
 
-  updateMenu(
-    id: number,
-    menu: Partial<IMenuRequest>
-  ): Observable<IMenuRequest> {
-    return this.http.put<IMenuRequest>(`${this.apiUrl}/${id}`, menu);
+  private getHeaders(): HttpHeaders {
+    return new HttpHeaders()
+      .append('Authorization', 'token')
+      .append('Content-Type', 'application/json');
+  }
+
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    let errorMessage = 'An unknown error occurred!';
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = `A client-side error occurred: ${error.error.message}`;
+    } else {
+      errorMessage = `Backend returned code ${error.status}, body was: ${error.error}`;
+    }
+    console.error(errorMessage);
+    return throwError(errorMessage);
   }
 }

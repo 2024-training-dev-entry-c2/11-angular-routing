@@ -1,7 +1,12 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse,
+} from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { IOrderRequests } from '../../interfaces/orderRequest.interface';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -22,18 +27,27 @@ export class AddOrderService {
 
     console.log(order);
 
-    return this.http.post<IOrderRequests>(
-      'http://localhost:8080/orders',
-      order,
-      {
+    return this.http
+      .post<IOrderRequests>('http://localhost:8080/orders', order, {
         headers: this.getHeaders(),
-      }
-    );
+      })
+      .pipe(catchError(this.handleError));
   }
 
   private getHeaders(): HttpHeaders {
     return new HttpHeaders()
       .append('Authorization', 'token')
       .append('Content-Type', 'application/json');
+  }
+
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    let errorMessage = 'An unknown error occurred!';
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = `A client-side error occurred: ${error.error.message}`;
+    } else {
+      errorMessage = `Backend returned code ${error.status}, body was: ${error.error}`;
+    }
+    console.error(errorMessage);
+    return throwError(errorMessage);
   }
 }
