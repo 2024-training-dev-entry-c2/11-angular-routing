@@ -1,0 +1,38 @@
+<div class="container" [class]="customClass" aria-label="Data table">
+    @if(data && data.length > 0){
+    <table class="container__table">
+        <thead>
+            <tr>
+                @for (header of headers; track header) {
+                    <th scope="col">{{ header }}</th>
+                }
+                 @if (actions && actions.length > 0) {
+                  <th scope="col">Actions</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of data; track item; let i = $index) {
+                <tr>
+                    @for (header of headers; track header) {
+                         @if(header === 'date') {
+                            <td>{{item[header] | date: 'medium'}}</td>
+                        } @else {
+                           <td>{{ item[header] }}</td>
+                        }
+                    }
+                     @if (actions && actions.length > 0) {
+                     <td>
+                        @for(action of actions; track action) {
+                       <button class="{{action.label.toLowerCase().replace(' ','-')}}-button" (click)="onActionClick(action.handler,item)">{{action.label}}</button>
+                        }
+                    </td>
+                  }
+                </tr>
+            }
+        </tbody>
+    </table>
+} @else {
+  <p>{{noDataMessage}}</p>
+}
+</div>
