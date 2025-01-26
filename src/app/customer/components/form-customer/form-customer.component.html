@@ -1,12 +1,19 @@
 <section class="modal-container">
-    <article class="create-card">
-        <div class="create-card__header">
-            <h2 class="create-card__title">Crear nuevo cliente</h2>
+    <article class="form-card">
+        <div class="form-card__header">
+            <h2 class="form-card__title">
+                @if(selectedCustomer){
+                Editar cliente
+                } @else {
+                Crear nuevo cliente
+                }
+            </h2>
             <button (click)="close()"><fa-icon [icon]="faX"></fa-icon></button>
         </div>
 
-        <form [formGroup]="createCustomerForm" class="create-card__form" (submit)="createCustomer($event)">
-            <div class="create-card__form-group">
+        @if(customerForm){
+        <form [formGroup]="customerForm" class="form-card__form" (submit)="saveCustomer($event)">
+            <div class="form-card__form-group">
                 <app-form-group label="Nombres" placeholder="Sus nombres" [control]="nameControl" type="text" id="name"
                     [isSubmitted]="isSubmitted">
                 </app-form-group>
@@ -16,7 +23,7 @@
                 </app-form-group>
             </div>
 
-            <div class="create-card__form-group">
+            <div class="form-card__form-group">
                 <app-form-group label="Correo electrónico" placeholder="Su correo electrónico" [control]="emailControl"
                     type="email" id="email" [isSubmitted]="isSubmitted">
                 </app-form-group>
@@ -30,11 +37,17 @@
                 id="address" [isSubmitted]="isSubmitted">
             </app-form-group>
 
-            <div class="create-card__buttons">
-                <button class="create-card__cancel-button" type="button" (click)="close()">Cancelar</button>
-                <button class="create-card__save-button" type="submit">Guardar</button>
+            <div class="form-card__buttons">
+                <button class="form-card__cancel-button" type="button" (click)="close()">Cancelar</button>
+                <button class="form-card__save-button" type="submit">
+                    @if(selectedCustomer){
+                    Actualizar
+                    } @else {
+                    Guardar
+                    }
+                </button>
             </div>
         </form>
-
+        }
     </article>
 </section>

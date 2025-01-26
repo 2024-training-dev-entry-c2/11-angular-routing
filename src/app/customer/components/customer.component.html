@@ -9,8 +9,10 @@
                 <span>Crear nuevo cliente</span>
             </button>
             @if(showCreateCustomer){
-            <app-create-customer (closeModal)="closeCreateCustomerModal()"
-                (customerCreated)="addCustomer($event)"></app-create-customer>
+            <app-create-customer [selectedCustomer]="selectedCustomer" (closeModal)="closeCreateCustomerModal()"
+                (customerSaved)="addCustomer($event)" (customerUpdated)="replaceCustomer($event)"
+                (clearSelected)="clearSelectedCustomer()">
+            </app-create-customer>
             }
         </div>
         <table>
@@ -37,7 +39,7 @@
                     <td>{{ customer.address }}</td>
                     <td>{{ customer.isFrequent ? 'Si' : 'No' }}</td>
                     <td class="customers__buttons">
-                        <button class="customers__edit-button">
+                        <button class="customers__edit-button" (click)="showUpdateCustomerModal(customer)">
                             <fa-icon [icon]="faEdit"></fa-icon>
                         </button>
                         <button class="customers__delete-button">
