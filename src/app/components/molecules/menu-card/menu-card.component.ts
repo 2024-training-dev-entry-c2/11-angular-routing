@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ButtonComponent } from "../../atoms/button/button.component";
+import { IMenuResponse } from '../../../services/menu/interfaces/menu-interface';
 
 @Component({
   selector: 'app-menu-card',
@@ -8,7 +9,5 @@ import { ButtonComponent } from "../../atoms/button/button.component";
   styleUrl: './menu-card.component.scss',
 })
 export class MenuCardComponent {
-  @Input() title = '';
-  @Input() description = '';
-  @Input() dishesCount = 0;
+  @Input() menu!: IMenuResponse;
 }
