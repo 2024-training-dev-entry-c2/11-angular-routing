@@ -1,12 +1,7 @@
+<form [formGroup]="clientUpdatedForm" aria-label="form to update Client">
+    <app-modal (closeModal)="closeModal()" [data]="getData" [formGroup]="clientUpdatedForm">
+        <button button type="submit" (click)="updateClient()" class="modal__button modal__button--close" aria-label="
+        ">Update</button>
+    </app-modal>
 
-
-
-    <form [formGroup]="clientUpdatedForm" >
-       <app-modal (closeModal)="closeModal()" [data]="getData" [formGroup]="clientUpdatedForm">
-        <button button type="submit" (click)="updateClient()" class="modal__button modal__button--close">Update</button>
-       </app-modal>
-       
-   </form>
-
-
-
+</form>

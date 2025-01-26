@@ -27,9 +27,9 @@
                 }
                 <div class="actions__items">
                     <app-buttons [icon]="images[0]" [rowIndex]="$index"
-                        (buttonClick)="deleteData(item.id)"></app-buttons>
+                        (buttonClick)="deleteData(item.id)" ariaLabel="Remove"></app-buttons>
                     <app-buttons [icon]="images[1]" [rowIndex]="$index"
-                        (buttonClick)="updateData(item.id)"></app-buttons>
+                        (buttonClick)="updateData(item.id)" ariaLabel="Edit"></app-buttons>
                 </div>
             </tr>
             }

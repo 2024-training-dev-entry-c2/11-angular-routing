@@ -12,7 +12,7 @@
             <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
             @for (item of navItems; track $index) {
                 <li class="navbar__item" [class.active]="item.active" (click)="onNavItemClick(item)">
-                  <a class="navbar__link" [routerLink]="item.link">
+                  <a class="navbar__link" [routerLink]="item.link" [ariaLabel]="item.ariaLabel">
                     <span>{{item.label}}</span>
                   </a>
             }

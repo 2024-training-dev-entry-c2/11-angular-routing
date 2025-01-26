@@ -9,12 +9,12 @@ import { RouterLink } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   navItems = [
-    { label: 'Home', icon: 'fas fa-tachometer-alt', active: true,link: '/' },
-    { label: 'Dashboard', icon: 'fas fa-tachometer-alt', active: false,link: '/dashboard' },
-    { label: 'Clients', icon: 'far fa-address-book', active: false,link: '/clients' },
-    { label: 'Menus', icon: 'far fa-clone', active: false,link: '/menu' },
-    { label: 'Orders', icon: 'far fa-calendar-alt', active: false,link: '/orders' },
-    { label: "/ᐠ - ˕ -マ", icon: 'far fa-calendar-alt', active: false,link: '' },
+    { label: 'Home', icon: 'fas fa-tachometer-alt', active: true,link: '/' , ariaLabel: "Home" },
+    { label: 'Dashboard', icon: 'fas fa-tachometer-alt', active: false,link: '/dashboard' , ariaLabel: "Dashboard" },
+    { label: 'Clients', icon: 'far fa-address-book', active: false,link: '/clients' , ariaLabel: "Clients" },
+    { label: 'Menus', icon: 'far fa-clone', active: false,link: '/menu' , ariaLabel: "Menus" },
+    { label: 'Orders', icon: 'far fa-calendar-alt', active: false,link: '/orders' , ariaLabel: "Orders" },
+    { label: "/ᐠ - ˕ -マ", icon: 'far fa-calendar-alt', active: false,link: '' , ariaLabel: "Orders" },
 
   ];
 

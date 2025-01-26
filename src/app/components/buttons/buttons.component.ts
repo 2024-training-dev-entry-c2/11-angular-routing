@@ -7,12 +7,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './buttons.component.scss'
 })
 export class ButtonsComponent {
-  @Input() icon!: string; // Icono del botón
-  @Input() buttonIndex!: number; // Índice del botón (opcional)
-  @Input() rowIndex!: number; // Índice de la fila
-  @Output() buttonClick = new EventEmitter<number>(); // Evento para emitir al padre
+  @Input() icon!: string;
+  @Input() buttonIndex!: number;
+  @Input() rowIndex!: number;
+  @Input() ariaLabel!: string;
+  @Output() buttonClick = new EventEmitter<number>(); 
 
   handleClick(): void {
-    this.buttonClick.emit(this.rowIndex); // Emitir el índice de la fila
+    this.buttonClick.emit(this.rowIndex);
   }
 }
