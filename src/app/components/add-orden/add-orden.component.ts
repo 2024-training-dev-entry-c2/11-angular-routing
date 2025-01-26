@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { OrdenService } from '../../service/orden.service';
 import { ICreateOrden } from '../../inferfaces/create-orden.interface';
@@ -14,6 +14,8 @@ export class AddOrdenComponent {
   private ordenService = inject(OrdenService)
   private formBuilder = inject(FormBuilder);
   public mensajeExito: string | null = null;
+
+  @Input() ordenSelect: ICreateOrden | null = null;
 
   statusOptions = ['PENDING', 'IN_PREPARATION', 'COMPLETED', 'CANCELLED', 'DELIVERED'];
 
@@ -52,25 +54,66 @@ export class AddOrdenComponent {
   removeItem(index: number): void {
     this.items.removeAt(index);
   }
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['ordenSelect'] && this.ordenSelect) {
+      console.log('Orden seleccionada recibida:', this.ordenSelect);
 
+      this.ordenForm.patchValue({
+        priceTotal: this.ordenSelect.priceTotal,
+        clientId: this.ordenSelect.clientId,
+        statusOrder: this.ordenSelect.statusOrder,
+      });
+
+      this.items.clear();
+
+      this.ordenSelect.items.forEach(item => {
+        this.items.push(this.formBuilder.group({
+          name: [item.name, Validators.required],
+          price: [item.dish?.price || 0, Validators.required],
+          quantity: [item.quantity, Validators.required],
+          restaurantId: [1],
+          menuId: [1],
+          ordenId: [item.id],
+          dish: this.formBuilder.group({
+            id: [item.dish?.id || null],
+            name: [item.dish?.name || '', Validators.required],
+            price: [item.dish?.price || 0, Validators.required],
+            popular: [item.dish?.popular || false],
+          })
+        }));
+      });
+    }
+  }
   onSubmit(): void {
     if (this.ordenForm.valid) {
       const orderData: ICreateOrden = this.ordenForm.getRawValue() as ICreateOrden;
-
-      this.ordenService.addOrden(orderData).subscribe({
-        next: () => {
-          this.mensajeExito = '¡Orden creada con éxito!';
-          this.ordenForm.reset();
-
-          setTimeout(() => {
-            this.mensajeExito = null;
-          }, 3000);
-        },
-      });
+      console.log("orden:", JSON.stringify(orderData, null, 2));
+      if (this.ordenSelect) {
+        console.log(this.ordenSelect.id)
+        orderData.id = this.ordenSelect.id;
+        this.ordenService.updateOrden(orderData).subscribe({
+          next: () => {
+            this.mensajeExito = '¡Orden actualizada con éxito!';
+            this.ordenForm.reset();
+            setTimeout(() => {
+              this.mensajeExito = null;
+            }, 3000);
+          },
+        });
+      } else {
+        this.ordenService.addOrden(orderData).subscribe({
+          next: () => {
+            this.mensajeExito = '¡Orden creada con éxito!';
+            this.ordenForm.reset();
+            setTimeout(() => {
+              this.mensajeExito = null;
+            }, 3000);
+          },
+        });
+      }
     } else {
       console.log('Formulario inválido');
     }
   }
-
 }
 

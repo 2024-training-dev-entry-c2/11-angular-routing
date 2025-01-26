@@ -1,12 +1,12 @@
-export interface ICreateOrden {
+export interface IEditOrden {
   id?: number;
   priceTotal: number;
   statusOrder: string;
   clientId: number;
-  items: IItemCreate[];
+  items: IItemEdit[];
 }
 
-export interface IItemCreate {
+export interface IItemEdit {
   id?: number;
   name: string;
   price: number;
@@ -14,11 +14,4 @@ export interface IItemCreate {
   restaurantId: number;
   menuId: number;
   ordenId?: number;
-  dish?: Dish;
-}
-export interface Dish {
-  id: number;
-  name: string;
-  price: number;
-  popular: boolean;
 }
