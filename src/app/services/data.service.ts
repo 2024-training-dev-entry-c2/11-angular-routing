@@ -29,7 +29,7 @@ import { BehaviorSubject } from "rxjs";
     updateItem(predicate: (item: T) => boolean, updatedItem: T) {
       const currentData = this.dataSubject.value;
       const updatedData = currentData.map(item => 
-        predicate(item) ? updatedItem : item
+        predicate(item) ? { ...item, ...updatedItem } : item
       );
       this.dataSubject.next(updatedData);
     }

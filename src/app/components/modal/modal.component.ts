@@ -1,6 +1,5 @@
 import {
   Component,
-  inject,
   input,
   OnDestroy,
   OnInit,
@@ -9,10 +8,8 @@ import {
 import { Subscription, tap } from 'rxjs';
 import { ModalService } from '../../services/modal.service';
 import {
-  FormBuilder,
   FormGroup,
   ReactiveFormsModule,
-  Validators,
 } from '@angular/forms';
 
 @Component({

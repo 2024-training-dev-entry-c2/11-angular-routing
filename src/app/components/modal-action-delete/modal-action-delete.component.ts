@@ -28,13 +28,6 @@ export class ModalActionDeleteComponent implements OnInit {
     this.subscription = this.modalService.modalState$.subscribe(
       (state) => (this.isOpen = state)
     );
-
-    // // Subscribe to the client to delete
-    // this.clientToDeleteSubscription = this.clientsService.getClientToDelete().subscribe(
-    //   (client) => {
-    //     this.clientToDelete = client;
-    //   }
-    // );
     
   }
 

@@ -9,11 +9,16 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { getDishService } from '../../services/dishes.service';
 import { Observable, Subscription, tap } from 'rxjs';
 import { ModalDeleteService } from '../../services/modal-delete.service';
-import { ModalActionDeleteComponent } from "../modal-action-delete/modal-action-delete.component";
+import { ModalActionDeleteComponent } from '../modal-action-delete/modal-action-delete.component';
 
 @Component({
   selector: 'app-main-section-menus',
-  imports: [CurrencyPipe, ModalComponent, CommonModule, ModalActionDeleteComponent],
+  imports: [
+    CurrencyPipe,
+    ModalComponent,
+    CommonModule,
+    ModalActionDeleteComponent,
+  ],
   templateUrl: './main-section-menus.component.html',
   styleUrl: './main-section-menus.component.scss',
 })
@@ -22,18 +27,16 @@ export class MainSectionMenusComponent {
   private inputService = inject(getMenusService);
   private subscription!: Subscription;
   private menuToDeleteSubscription!: Subscription;
-  private menuToDelete: IMenu | null = null; 
-  
+  private menuToDelete: IMenu | null = null;
+
   public data: any;
   public menuData: Observable<IMenu[]>;
   public tableContent = input<string[]>();
-  
 
   public menuForm = this.formBuilder.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
     description: ['', [Validators.required]],
   });
-
 
   formData = [
     { labelName: 'Name', valueLabel: 'name', type: 'text' },
@@ -49,25 +52,24 @@ export class MainSectionMenusComponent {
     this.menuData = this.dataManagementService.data$;
   }
 
- 
   ngOnInit() {
     this.menuService.getData().subscribe();
 
     this.menuToDeleteSubscription = this.menuService
-    .getMenuToDelete()
-    .subscribe((menu) => {
-      this.menuToDelete = menu;
-    });
+      .getMenuToDelete()
+      .subscribe((menu) => {
+        this.menuToDelete = menu;
+      });
   }
 
   openAddModal() {
     this.modalService.openModal();
   }
 
-    openDeleteModal(menu: IMenu) {
-      this.deleteModalService.openModal();
-      this.menuService.setMenuToDelete(menu);
-    }
+  openDeleteModal(menu: IMenu) {
+    this.deleteModalService.openModal();
+    this.menuService.setMenuToDelete(menu);
+  }
 
   closeModal() {
     this.modalService.closeModal();
@@ -96,5 +98,4 @@ export class MainSectionMenusComponent {
       });
     }
   }
-
 }
