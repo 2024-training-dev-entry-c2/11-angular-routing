@@ -33,8 +33,8 @@ export class AddOrderComponent implements OnInit {
   menus: { id: number; name: string }[] = [];
   dishfoods: any[] = [];
   menuId: number = 0;
-  public filteredMenu: any = []; // Filtrado de platos
-  public filteredDishes: any[] = []; // Filtrado de platos
+  public filteredMenu: any = []; 
+  public filteredDishes: any[] = []; 
   @Output() updateList = new EventEmitter<void>();
 
   public addOrderForm = this.formBuilder.group({
@@ -45,8 +45,6 @@ export class AddOrderComponent implements OnInit {
   });
 
   addOrder() {
-    console.log('prueba');
-
     const updatePayload = {
       clientId: this.addOrderForm.get('clientId')?.value,
       localDate: this.addOrderForm.get('localDate')?.value,
@@ -55,7 +53,6 @@ export class AddOrderComponent implements OnInit {
     if (this.addOrderForm.valid) {
       this.order.addOrder(updatePayload as unknown as any).subscribe({
         next: (data) => {
-          console.log(data);
           alert('Order added successfully');
         },
         error: (error) => {
@@ -71,7 +68,6 @@ export class AddOrderComponent implements OnInit {
     this.clients.getClients().subscribe({
       next: (data) => {
         this.addOrderForm.get('clientId')?.setValue(data[0].id);
-        console.log(data);
         this.getClientData = data;
       },
       error: (error) => {
@@ -82,7 +78,6 @@ export class AddOrderComponent implements OnInit {
   getMenus() {
     this.menu.getMenus().subscribe({
       next: (data) => {
-        console.log(data);
         this.getMenuData = data;
         this.menus.splice(0, this.menus.length);
         this.dishfoods.splice(0, this.dishfoods.length);
@@ -118,7 +113,6 @@ export class AddOrderComponent implements OnInit {
 
   onMenuChange(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
-    console.log(selectElement);
 
     const menuId = this.addOrderForm.get('menuId')?.value;
     if (menuId != null) {

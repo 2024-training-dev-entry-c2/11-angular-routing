@@ -22,12 +22,12 @@
   align-items: center;
   font-size: 1.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  min-width: 200px; /* Establece un ancho mínimo para evitar estiramientos */
-  max-width: 360px; /* Opcional: ancho máximo */
+  min-width: 200px; 
+  max-width: 360px;
 }
 .card img {
-  min-width: 200px; /* Establece un ancho mínimo para evitar estiramientos */
-  max-width: 450px; /* Opcional: ancho máximo */
+  min-width: 200px; 
+  max-width: 450px; 
   object-fit: cover;
   border-radius: 8px;
 }
