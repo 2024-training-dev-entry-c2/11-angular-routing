@@ -36,14 +36,18 @@
       role="listitem"
       aria-label="List item"
     >
-      <input
+      <select
         class="custom-input__input custom-input__input--array"
-        [type]="config.type || 'number'"
         [formControlName]="$index"
-        [placeholder]="config.placeholder || ''"
-        aria-label="Input"
-        role="input"
-      />
+        aria-label="Select"
+        role="combobox"
+      >
+        @for (option of config.options; track option) {
+        <option [value]="option.value">
+          {{ option.label }}
+        </option>
+        }
+      </select>
       <button
         type="button"
         (click)="removeItem($index)"
@@ -56,12 +60,12 @@
     }
     <button
       type="button"
-      (click)="addItem()"
+      (click)="addItem('')"
       class="custom-input__array-button custom-input__array-button--add"
       aria-label="Add"
       role="button"
     >
-      Add Dish ID
+      Add Dish
     </button>
   </div>
   } @if (formGroup.get(config.name)?.invalid &&

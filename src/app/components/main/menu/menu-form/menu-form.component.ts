@@ -19,7 +19,13 @@ export class MenuFormComponent implements OnInit {
   formData: any = null;
   dishes: IDish[] = [];
 
-  formConfig = [
+  formConfig: {
+    name: string;
+    label: string;
+    type?: string;
+    errorMessage?: string;
+    options?: { label: string; value: number }[];
+  }[] = [
     {
       name: 'name',
       label: 'Name',
@@ -28,10 +34,10 @@ export class MenuFormComponent implements OnInit {
     },
     {
       name: 'dishIds',
-      label: 'Dishes IDs',
+      label: 'Dishes',
       type: 'array',
       errorMessage: 'At least one dish is required.',
-      options: [],
+      options: [], // Agregamos un campo para las opciones
     },
   ];
 
@@ -76,11 +82,10 @@ export class MenuFormComponent implements OnInit {
         (config) => config.name === 'dishIds'
       );
       if (dishIdsConfig) {
-        (dishIdsConfig.options as { label: string; value: number }[]) =
-          dishes.map((dish) => ({
-            label: dish.name,
-            value: dish.id,
-          }));
+        dishIdsConfig.options = dishes.map((dish) => ({
+          label: dish.name,
+          value: dish.id,
+        }));
       }
     });
   }

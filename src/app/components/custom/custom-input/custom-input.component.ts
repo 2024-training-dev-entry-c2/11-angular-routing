@@ -21,6 +21,7 @@ export class CustomInputComponent {
     type?: string;
     placeholder?: string;
     errorMessage?: string;
+    options?: { label: string; value: any }[];
   };
 
   get control(): FormControl | FormArray {
@@ -31,9 +32,9 @@ export class CustomInputComponent {
     return this.control instanceof FormArray;
   }
 
-  addItem(): void {
+  addItem(value: any): void {
     if (this.control instanceof FormArray) {
-      this.control.push(new FormControl('', Validators.required));
+      this.control.push(new FormControl(value, Validators.required));
     }
   }
 
