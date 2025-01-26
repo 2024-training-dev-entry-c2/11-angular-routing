@@ -1,1 +1,8 @@
-<p>menu works!</p>
+<app-table [title]="'Menús'" [columns]="columns" [data]="users" (delete)="deleteById($event)"
+    (update)="updateById($event)" (openModal)="openModal($event)">
+</app-table>
+
+<app-modal (close)="openModal($event)" [open]="isModalOpen">
+    <app-form [form]="form" [title]="title" [message]="message" [action]="action" [controls]="controls" (submit)="submit()">
+    </app-form>
+</app-modal>
