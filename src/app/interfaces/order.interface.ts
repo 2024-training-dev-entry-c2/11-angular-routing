@@ -11,5 +11,5 @@ export interface Order {
 export interface RequestOrder {
     clientId:number;
     localDate:Date;
-    dishId:number[];
+    dishfoodIds:number[];
 }

@@ -3,10 +3,11 @@ import { TabsComponent } from '../../../components/tabs/tabs.component';
 import { TableComponent } from '../../../components/table/table.component';
 import { OrderService } from '../../../services/order/order.service';
 import { Order } from '../../../interfaces/order.interface';
+import { AddOrderComponent } from '../add-order/add-order.component';
 
 @Component({
   selector: 'app-order',
-  imports: [TabsComponent, TableComponent],
+  imports: [TabsComponent, TableComponent,AddOrderComponent],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss',
 })

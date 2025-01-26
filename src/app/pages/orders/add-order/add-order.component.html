@@ -1,0 +1,48 @@
+<form [formGroup]="addOrderForm">
+
+         
+    <label for="menuId">Choose a Client </label>
+    <select formControlName="clientId">
+        @for (item of getClientData; track $index) {
+        <option value="{{item.id}}">{{item.name}}</option>
+        }
+    </select>
+    <label for="localDate">Date:</label>
+    <input id="localDate" type="date" formControlName="localDate" />
+    @if(addOrderForm.get('localDate')?.invalid && addOrderForm.get('localDate')?.touched){
+        <div >
+            <small>Date is required.</small>
+          </div>
+    }
+
+
+    <label for="menuId">Choose a menu option:</label>
+    <select formControlName="menuId" (change)="onMenuChange($event)" >
+        @for (item of menus; track $index) {
+        <option value="{{item.id}}">{{item.name}}</option>
+        }
+    </select>
+    <label for="dishfoodIds">Choose Dishes:</label> 
+    
+    <select id="dishfoodIds" (change)="addDish($event)">
+      <option value="" disabled selected>Select a dish</option>
+      @for(item of filteredDishes; track $index) {
+      <option value="{{item.id}}" (click)="addDish(item.id)">{{item.name}}</option>
+      }
+    </select>
+  
+    <!-- Platos seleccionados -->
+    <h3>Selected Dishes:</h3>
+    <ul>
+        @for(item of dishfoodList; track $index) {
+            <li >
+                {{ getDishName(item) }}
+                <button type="button" (click)="removeDish(item)">Remove</button>
+            </li>
+        }
+    </ul>
+  
+    <!-- Botón de envío -->
+    <button type="button" (click)="addOrder()">Submit Order</button>
+  </form>
+  
