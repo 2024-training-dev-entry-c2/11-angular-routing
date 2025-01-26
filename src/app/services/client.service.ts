@@ -13,7 +13,7 @@ export class ClientService {
     execute(): Observable<IClient[]> {
       return this.http.get<IClient[]>(this.urlbase);
     }
-    
+
     deleteClientById(id: number): Observable<void>{
       const confirmed = window.confirm(
         '¿Estás seguro de que deseas eliminar a este cliente?'
@@ -24,5 +24,7 @@ export class ClientService {
         return new Observable<void>();
       }
     }
-    
+    createClient(payload: IClient): Observable<IClient> {
+        return this.http.post<IClient>(this.urlbase, payload);
+      }
 }
