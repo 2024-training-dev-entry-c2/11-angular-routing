@@ -16,6 +16,13 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./pages/menus/menus.module').then((m) => m.MenusModule),
       },
+      {
+        path: 'customers',
+        loadChildren: () =>
+          import('./pages/customers/customers.module').then(
+            (m) => m.CustomersModule
+          ),
+      },
     ],
   },
 ];
