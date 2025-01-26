@@ -25,7 +25,7 @@ export const routes: Routes = [
       },
       { 
         path: 'pedidos', 
-        loadChildren: () => import('../../details/details.module').then(m => m.DetailsModule),
+        loadChildren: () => import('../../order/order.module').then(m => m.OrdersModule),
         outlet: "primary" 
       }
     ]
