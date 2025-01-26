@@ -76,8 +76,6 @@ if (this.menuUpdatedForm.valid) {
       },
     });
 }
-
-
   }
   closeModal() {
     this.closeModalMenu.emit();

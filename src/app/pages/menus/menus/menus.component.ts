@@ -8,6 +8,7 @@ import { AddMenuComponent } from '../add-menu/add-menu.component';
 import { UpdateMenuComponent } from '../update-menu/update-menu.component';
 import { DishfoodComponent } from '../../dish/dishfood/dishfood.component';
 import { UpdateDishComponent } from '../../dish/update-dish/update-dish.component';
+import { map, tap } from 'rxjs';
 
 @Component({
   selector: 'app-menus',
@@ -44,28 +45,22 @@ export class MenusComponent implements OnInit {
   public menus = inject(MenusService);
   public dish = inject(DishService);
   getMenus(): void {
-    this.menus.getMenus().subscribe({
-      next: (data) => {
-        this.getTabs.splice(0, this.getTabs.length);
-        this.dishfoods.splice(0, this.dishfoods.length);
-
-        data.forEach((menu) => {
-          this.getTabs.push({ id: menu.id, name: menu.name });
-
-          menu.dishfoods.forEach((dish: any) => {
-            this.dishfoods.push({
-              ...dish,
-              orderListSize: dish.orderList.length, // Agregar el tamaño de orderList
-            });
-          });
-        }); 
-
-        console.log(data);
-        
+    this.menus.getMenus()
+    .pipe(
+      map(data => {
+        const getTabs = data.map(menu => ({ id: menu.id, name: menu.name }));
+        const dishfoods = data.flatMap(menu => menu.dishfoods.map((dish: any) => ({ ...dish })));
+        return { getTabs, dishfoods }; 
+      }),
+    )
+    .subscribe({
+      next: ({ getTabs, dishfoods }) => {
+        this.getTabs.splice(0, this.getTabs.length, ...getTabs);
+        this.dishfoods.splice(0, this.dishfoods.length, ...dishfoods);
       },
       error: (error) => {
-        console.log(error);
-      },
+        console.error('Error al obtener los menús:', error);
+      }
     });
   }
 
@@ -98,6 +93,7 @@ export class MenusComponent implements OnInit {
       },
     });
   }
+  
   //update Menu
   dataMenu: Menu | any;
   MenuId: number = 0;
@@ -150,15 +146,11 @@ export class MenusComponent implements OnInit {
         this.showModalDishUpdate = true;
         this.DishId = $event;
         this.MenuId = id;
-        console.log($event);
-        console.log(this.DishData);
       },
       error: (error) => {
         console.log(error);
       },
-    });
-
-    
+    });    
   }
   closeModalDishupdate() {
     this.showModalDishUpdate = false;

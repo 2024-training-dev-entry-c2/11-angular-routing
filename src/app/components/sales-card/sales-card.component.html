@@ -5,11 +5,11 @@
         <p class="lead">{{subTitle}}</p>
         <div class="legends">
             <div class="info">
-                <span class="legend legend--this"></span>
+                <span class="legends legends--this"></span>
                 <p>This week</p>
             </div>
             <div class="info">
-                <span class="legend legend--prev"></span>
+                <span class="legends legends--prev"></span>
                 <p>Previous week</p>
             </div>
         </div>
@@ -18,7 +18,7 @@
     <canvas [id]="chartId"></canvas>
     <!-- Custom Axis -->
     <div class="axis">
-        @for (item of ticks; track $index) {
+        @for (item of ticksData; track $index) {
             <div class="tick" color="black">
                 {{ item.day }}
                 <span class="value value--this">{{ item.thisWeek }}</span>

@@ -6,7 +6,7 @@ import { Order } from '../../../interfaces/order.interface';
 import { AddOrderComponent } from '../add-order/add-order.component';
 import { UpdateOrderComponent } from '../update-order/update-order.component';
 import { AddMenuComponent } from '../../menus/add-menu/add-menu.component';
-import { timeout } from 'rxjs';
+import { map, timeout } from 'rxjs';
 
 @Component({
   selector: 'app-order',
@@ -40,21 +40,25 @@ export class OrderComponent implements OnInit {
 
   public orders = inject(OrderService);
   getOders(): void {
-    this.orders.getOrders().subscribe({
-      next: (data: any[]) => {
-        const transformedData = data.map((order) => ({
+    this.orders.getOrders()
+    .pipe(
+      map((data: any[]) => 
+        data.map(order => ({
           id: order.id,
           nameClient: order.client.name,
           localDate: order.localDate,
           dishCount: order.dishfoodIds,
           price: order.totalPrice,
-        }));
+        }))
+      ),
+    )
+    .subscribe({
+      next: (transformedData) => {
         this.orderData = transformedData;
-        console.log(transformedData);
       },
       error: (error) => {
-        console.log(error);
-      },
+        console.error('Error al obtener las órdenes:', error);
+      }
     });
   }
 

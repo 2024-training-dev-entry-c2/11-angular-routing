@@ -23,13 +23,23 @@
             @for (item of data; track $index) {
             <tr>
                 @for(key of columnKeys; track $index) {
+                @if (key === 'price') {
+                <td>{{ item[key] | currency }}</td>
+                }
+                @else {
+                @if (key === 'localDate') {
+                <td>{{ item[key] | date: 'medium' }}</td>
+                }
+                @else {
                 <td>{{ isArray(item[key]) ? item[key].length : item[key] }}</td>
                 }
+                }
+                }
                 <div class="actions__items">
-                    <app-buttons [icon]="images[0]" [rowIndex]="$index"
-                        (buttonClick)="deleteData(item.id)" ariaLabel="Remove"></app-buttons>
-                    <app-buttons [icon]="images[1]" [rowIndex]="$index"
-                        (buttonClick)="updateData(item.id)" ariaLabel="Edit"></app-buttons>
+                    <app-buttons [icon]="images[0]" [rowIndex]="$index" (buttonClick)="deleteData(item.id)"
+                        ariaLabel="Remove"></app-buttons>
+                    <app-buttons [icon]="images[1]" [rowIndex]="$index" (buttonClick)="updateData(item.id)"
+                        ariaLabel="Edit"></app-buttons>
                 </div>
             </tr>
             }

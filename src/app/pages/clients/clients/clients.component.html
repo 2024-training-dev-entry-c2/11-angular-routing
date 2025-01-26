@@ -1,8 +1,8 @@
-<app-tabs title="Clients Data " [tabs]="tabsList">
+<app-tabs title="Clients Data " [tabs]="tabsList" >
     <div  class="tab__content tab__content--form" tabContent0>
 
-        <form [formGroup]="clientForm" (ngSubmit)="submit()" class="form">
-            <!-- Reutilización del componente dinámico -->
+        <form [formGroup]="clientForm" (ngSubmit)="submit()" class="form__client" aria-label="form to add Client" aria-labelledby="form to add Client">
+
             <app-form [formFields]="fields" [formGroup]="clientForm">
             </app-form>
             <button type="submit" class="form__button form__button--submit">Iniciar Sesión</button>
