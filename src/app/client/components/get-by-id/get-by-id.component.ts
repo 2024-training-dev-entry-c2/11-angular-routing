@@ -4,6 +4,7 @@ import { ClientService } from '../../services/client.service';
 import { FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import { NotificationService } from '../../../notification/services/notification.service';
 
+
 @Component({
   selector: 'app-get-by-id',
   imports: [ReactiveFormsModule],
@@ -16,7 +17,6 @@ export class GetByIdComponent {
   private notificationService = inject(NotificationService);
 
   public id: number = 0;
-  public items = ['nombre','cedula','correo','telefono'];
   public client: IClient = {id:0, nombre:'', cedula:'', correo:'', telefono:''}
 
   public form = this.formBuilder.group({

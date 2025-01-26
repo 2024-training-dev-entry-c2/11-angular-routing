@@ -1,1 +1,32 @@
-<p>menu-get-by-id works!</p>
+<section class="get-by-id">
+    <article>
+        <h3 class="get-by-id__title">Obtener Menú por ID</h3>
+        <form [formGroup]="form" class="get-by-id__form" (ngSubmit)="onSubmit()">
+            <label class="get-by-id__label">
+                <span>ID:</span>
+                <input type="text" formControlName="id" class="get-by-id__input">
+            </label>
+            <button class="get-by-id__button">Enviar</button>
+        </form>
+    </article>
+
+    @if (menu) {
+    <article>
+        <h3 class="get-by-id__menu-title">{{ menu.nombre }}</h3>
+        <div>
+            @if(menu.platos){
+            <h4>Platos:</h4>
+            <div>
+                @for (plato of menu.platos; track $index) {
+                <div>
+                    <p>{{ plato.nombre }} <span>({{ plato.tipo}})</span></p>
+                    <p>{{ plato.precio | currency}}</p>
+                </div>
+                <p>{{ plato.descripcion }}</p>
+                }
+            </div>
+            }
+        </div>
+    </article>
+    }
+</section>

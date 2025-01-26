@@ -57,15 +57,16 @@ export class MenuFormComponent implements OnInit {
   }
 
   private loadMenuData(id: number): void {
-    this.menuService.getById(id).subscribe({
-      next: (menu) => {
+    this.menuService.processMenuData(
+      id,
+      (menu) => {
         this.form.patchValue(menu);
       },
-      error: (err) => {
+      (err) => {
         this.notificationService.setNotification('error', 'Error al cargar datos del menú.');
         console.error('Error al cargar datos del menú:', err);
       },
-    });
+    );
   }
 
   saveMenu(menu: IMenu) {
