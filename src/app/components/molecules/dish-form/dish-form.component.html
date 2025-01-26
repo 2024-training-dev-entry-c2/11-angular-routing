@@ -1,0 +1,13 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="dish-form">
+    <app-input-field label="Nombre del plato" [control]="nameControl" placeholder="Ej: Alfajor de arequipe"
+        [errorMessages]="{ required: 'El nombre del plato es obligatorio.', minlength: 'Debe tener al menos 3 caracteres.' }">
+    </app-input-field>
+
+    <app-input-field label="Precio" [control]="priceControl" type="number" placeholder="Ej: 8000"
+        [errorMessages]="{ required: 'El precio es obligatorio.', min: 'Debe ser mayor que 0.' }">
+    </app-input-field>
+
+    <button type="submit" [disabled]="form.invalid" class="dish-form__submit">
+        Crear Plato
+    </button>
+</form>
