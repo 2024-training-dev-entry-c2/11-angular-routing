@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-
+import { UpperCasePipe } from '@angular/common';
 @Component({
   selector: 'app-footer',
-  imports: [],
+  imports: [UpperCasePipe],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss'
 })

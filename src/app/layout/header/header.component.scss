@@ -1,3 +1,30 @@
+@use '../../ui/style/mixins.scss' as mixins;
+@use '../../ui/style/variables.scss' as variables;
+
 .header{
-    border: 1px solid;
+    @include mixins.contLine(space-between);
+    @include mixins.styleContainer(variables.$colorLightBeige,
+    variables.$colorMediumGray, 30px, 10px);
+    
+    &__restaurant-name{
+        text-decoration: none;
+        font-size: 40px;
+        color: #888888;
+    }
+
+    &__options{
+        @include mixins.contLine(space-between);
+        gap: 60px;
+        list-style: none;
+    }
+
+    &__option{
+        @include mixins.button();
+
+        &:hover{
+            @include mixins.styleContainer(#888888,#FFFFFF, 10px 22px 10px 22px,40px);
+        }
+    }
+
+
 }

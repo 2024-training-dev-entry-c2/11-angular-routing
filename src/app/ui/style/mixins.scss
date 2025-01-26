@@ -22,3 +22,10 @@
     @include contLine($justify); 
     @include contColumn($gap, $padding)
 }
+
+@mixin button(){
+    text-decoration: none;
+    color: #888888;
+    font-size: 17px;
+    font-weight: 500;
+}
