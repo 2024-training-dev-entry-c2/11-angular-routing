@@ -1,12 +1,18 @@
 <section class="main" aria-label="Menu Management">
   <app-title [title]="title"></app-title>
   <app-add [link]="addLink"></app-add>
+  @if (reservations.length>0) {
+  <app-hamburguer-img
+    [src]="srcImage"
+    [alt]="altImage"
+    [title]="titleImage"
+  ></app-hamburguer-img>
   <div class="main__container">
-    @if (reservations.length>0) { @for (reservation of reservations; track
-    $index) {
+    @for (reservation of reservations; track $index) {
     <app-reservation-card [reservation]="reservation"></app-reservation-card>
-    }} @else {
-    <app-no-data></app-no-data>
     }
   </div>
+  } @else {
+  <app-no-data></app-no-data>
+  }
 </section>

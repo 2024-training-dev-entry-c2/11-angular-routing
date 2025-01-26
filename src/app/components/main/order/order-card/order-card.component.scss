@@ -3,4 +3,11 @@
 
 .card {
   @include mixins.card();
+
+  &__list {
+    list-style: none;
+    &__item {
+      font-size: 1.3rem;
+    }
+  }
 }

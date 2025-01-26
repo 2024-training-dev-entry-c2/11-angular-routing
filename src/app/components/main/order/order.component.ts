@@ -1,17 +1,22 @@
 import { Component, Input } from '@angular/core';
 import { IOrderResponse } from '../../../interfaces/orderResponese.interface';
-import { Router } from '@angular/router';
-import { DeleteOrderService } from '../../../services/order/delete-order.service';
 import { TitleComponent } from '../../custom/title/title.component';
 import { AddComponent } from '../../custom/add/add.component';
 import { interval, Subscription, switchMap } from 'rxjs';
 import { GetAllOrderService } from '../../../services/order/get-all-order.service';
 import { OrderCardComponent } from './order-card/order-card.component';
 import { NoDataComponent } from '../../custom/no-data/no-data.component';
+import { HamburguerImgComponent } from '../../custom/hamburguer-img/hamburguer-img.component';
 
 @Component({
   selector: 'app-order',
-  imports: [TitleComponent, AddComponent, OrderCardComponent, NoDataComponent],
+  imports: [
+    TitleComponent,
+    AddComponent,
+    OrderCardComponent,
+    NoDataComponent,
+    HamburguerImgComponent,
+  ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss',
 })
@@ -20,6 +25,9 @@ export class OrderComponent {
   title = 'Orders ';
   addLink = '/order/add';
   private refreshSubscription!: Subscription;
+  srcImage = 'checkout.png';
+  altImage = 'checkout';
+  titleImage = 'Checkouts';
 
   constructor(private getAllOrderService: GetAllOrderService) {}
 

@@ -6,10 +6,17 @@ import { GetAllMenuService } from '../../../services/menu/get-all-menu.service';
 import { AddComponent } from '../../custom/add/add.component';
 import { interval, Subscription, switchMap } from 'rxjs';
 import { NoDataComponent } from '../../custom/no-data/no-data.component';
+import { HamburguerImgComponent } from '../../custom/hamburguer-img/hamburguer-img.component';
 
 @Component({
   selector: 'app-menu',
-  imports: [MenuCardComponent, TitleComponent, AddComponent, NoDataComponent],
+  imports: [
+    MenuCardComponent,
+    TitleComponent,
+    AddComponent,
+    NoDataComponent,
+    HamburguerImgComponent,
+  ],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss',
 })
@@ -17,6 +24,10 @@ export class MenuComponent implements OnInit {
   menus: IMenu[] = [];
   title = 'Menus ';
   addLink = '/menu/add';
+  srcImage = 'hamburguesa.png';
+  altImage = 'hamburguer';
+  titleImage = 'Menus';
+
   private refreshSubscription!: Subscription;
 
   constructor(private getAllMenusService: GetAllMenuService) {}

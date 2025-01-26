@@ -7,6 +7,7 @@ import { CustomerCardComponent } from './customer-card/customer-card.component';
 import { AddComponent } from '../../custom/add/add.component';
 import { TitleComponent } from '../../custom/title/title.component';
 import { NoDataComponent } from '../../custom/no-data/no-data.component';
+import { HamburguerImgComponent } from '../../custom/hamburguer-img/hamburguer-img.component';
 
 @Component({
   selector: 'app-customer',
@@ -15,6 +16,7 @@ import { NoDataComponent } from '../../custom/no-data/no-data.component';
     AddComponent,
     TitleComponent,
     NoDataComponent,
+    HamburguerImgComponent,
   ],
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.scss'],
@@ -24,6 +26,9 @@ export class CustomerComponent implements OnInit, OnDestroy {
   title = 'Customers';
   addLink = '/customer/add';
   private refreshSubscription!: Subscription;
+  srcImage = 'customer.png';
+  altImage = 'customer';
+  titleImage = 'Customers';
 
   constructor(private getAllCustomersService: GetAllCustomersService) {}
 

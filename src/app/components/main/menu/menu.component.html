@@ -1,11 +1,18 @@
 <section class="main" aria-label="Menu Management">
   <app-title [title]="title"></app-title>
   <app-add [link]="addLink"></app-add>
+  @if (menus.length > 0) {
+  <app-hamburguer-img
+    [src]="srcImage"
+    [alt]="altImage"
+    [title]="titleImage"
+  ></app-hamburguer-img>
   <div class="main__container">
-    @if (menus.length > 0) { @for (menu of menus; track $index) {
+    @for (menu of menus; track $index) {
     <app-menu-card [menu]="menu"></app-menu-card>
-    } } @else {
-    <app-no-data></app-no-data>
     }
   </div>
+  } @else {
+  <app-no-data></app-no-data>
+  }
 </section>

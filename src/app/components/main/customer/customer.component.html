@@ -1,11 +1,18 @@
 <section class="main" aria-label="Customer Management">
   <app-title [title]="title"></app-title>
   <app-add [link]="addLink"></app-add>
+  @if (customers.length>0) {
+  <app-hamburguer-img
+    [src]="srcImage"
+    [alt]="altImage"
+    [title]="titleImage"
+  ></app-hamburguer-img>
   <div class="main__container">
-    @if (customers.length>0) { @for (customer of customers; track $index) {
+    @for (customer of customers; track $index) {
     <app-customer-card [customer]="customer"></app-customer-card>
-    } } @else {
-    <app-no-data></app-no-data>
     }
   </div>
+  } @else {
+  <app-no-data></app-no-data>
+  }
 </section>

@@ -1,11 +1,18 @@
 <section class="main" aria-label="Orders Management">
   <app-title [title]="title"></app-title>
   <app-add [link]="addLink"></app-add>
+  @if (orders.length>0) {
+  <app-hamburguer-img
+    [src]="srcImage"
+    [alt]="altImage"
+    [title]="titleImage"
+  ></app-hamburguer-img>
   <div class="main__container">
-    @if (orders.length>0) { @for (order of orders; track $index) {
+    @for (order of orders; track $index) {
     <app-order-card [order]="order"></app-order-card>
-    }} @else {
-    <app-no-data></app-no-data>
     }
   </div>
+  } @else {
+  <app-no-data></app-no-data>
+  }
 </section>

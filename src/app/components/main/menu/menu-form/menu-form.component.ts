@@ -91,9 +91,13 @@ export class MenuFormComponent implements OnInit {
     });
 
     const dishIdsArray = this.form.get('dishIds') as FormArray;
-    menu.dishIds.forEach((dishId: number) => {
-      dishIdsArray.push(this.fb.control(dishId, Validators.required));
-    });
+    dishIdsArray.clear();
+
+    if (menu.dishIds && Array.isArray(menu.dishIds)) {
+      menu.dishIds.forEach((dishId: number) => {
+        dishIdsArray.push(this.fb.control(dishId, Validators.required));
+      });
+    }
   }
 
   submitAction(data: any): void {

@@ -6,10 +6,17 @@ import { AddComponent } from '../../custom/add/add.component';
 import { TitleComponent } from '../../custom/title/title.component';
 import { interval, Subscription, switchMap } from 'rxjs';
 import { NoDataComponent } from '../../custom/no-data/no-data.component';
+import { HamburguerImgComponent } from '../../custom/hamburguer-img/hamburguer-img.component';
 
 @Component({
   selector: 'app-dish',
-  imports: [DishCardComponent, AddComponent, TitleComponent, NoDataComponent],
+  imports: [
+    DishCardComponent,
+    AddComponent,
+    TitleComponent,
+    NoDataComponent,
+    HamburguerImgComponent,
+  ],
   templateUrl: './dish.component.html',
   styleUrl: './dish.component.scss',
 })
@@ -18,6 +25,9 @@ export class DishComponent implements OnInit {
   title = 'Dishes ';
   addLink = '/dish/add';
   private refreshSubscription!: Subscription;
+  srcImage = 'dish.png';
+  altImage = 'dish';
+  titleImage = 'Dishes';
 
   constructor(private getAllDishesService: GetAllDishesService) {}
 

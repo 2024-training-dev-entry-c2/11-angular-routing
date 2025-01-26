@@ -1,11 +1,18 @@
 <section class="main" aria-label="Dish Management">
   <app-title [title]="title"></app-title>
   <app-add [link]="addLink"></app-add>
+  @if (dishes.length>0) {
+  <app-hamburguer-img
+    [src]="srcImage"
+    [alt]="altImage"
+    [title]="titleImage"
+  ></app-hamburguer-img>
   <div class="main__container">
-    @if (dishes.length>0) { @for (dish of dishes; track $index) {
+    @for (dish of dishes; track $index) {
     <app-dish-card [dish]="dish"></app-dish-card>
-    }} @else {
-    <app-no-data></app-no-data>
     }
   </div>
+  } @else {
+  <app-no-data></app-no-data>
+  }
 </section>

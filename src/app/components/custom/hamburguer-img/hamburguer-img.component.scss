@@ -1,0 +1,15 @@
+.main {
+  &__image {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    filter: blur(3px);
+    z-index: -1;
+    opacity: 0.5;
+    transition: opacity 0.3s ease-in-out;
+    &:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+}

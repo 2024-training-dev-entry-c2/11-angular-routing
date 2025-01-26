@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuCardComponent } from '../menu/menu-card/menu-card.component';
 import { TitleComponent } from '../../custom/title/title.component';
 import { AddComponent } from '../../custom/add/add.component';
 import { IReservationResponse } from '../../../interfaces/reservationResponse.interface';
@@ -7,6 +6,7 @@ import { interval, Subscription, switchMap } from 'rxjs';
 import { GetAllReservationService } from '../../../services/reservation/get-all-reservation.service';
 import { ReservationCardComponent } from './reservation-card/reservation-card.component';
 import { NoDataComponent } from '../../custom/no-data/no-data.component';
+import { HamburguerImgComponent } from '../../custom/hamburguer-img/hamburguer-img.component';
 
 @Component({
   selector: 'app-reservation',
@@ -15,6 +15,7 @@ import { NoDataComponent } from '../../custom/no-data/no-data.component';
     AddComponent,
     ReservationCardComponent,
     NoDataComponent,
+    HamburguerImgComponent,
   ],
   templateUrl: './reservation.component.html',
   styleUrl: './reservation.component.scss',
@@ -24,6 +25,9 @@ export class ReservationComponent implements OnInit {
   addLink = '/reservation/add';
   reservations: IReservationResponse[] = [];
   private refreshSubscription!: Subscription;
+  srcImage = 'reservation.png';
+  altImage = 'reservation';
+  titleImage = 'Reservations';
 
   constructor(private getAllReservationsService: GetAllReservationService) {}
 
