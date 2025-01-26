@@ -1,4 +1,19 @@
 <section class="main">
+  <section class="main__restaurant-info">
+    <p>Dirección: {{infoRestaurant?.address | uppercase}}</p>
+    <p>Teléfono: {{infoRestaurant?.phoneNumber}}</p>
+    <p>Horario:  {{ openingDate | date:'HH:mm' }} - {{ closingDate | date:'HH:mm' }}</p>
+    <h2>Descripción</h2>
+    <p>En {{infoRestaurant?.name}}, tenemos {{infoRestaurant?.menuRestaurant?.description}}</p>
+    <h2>Platos Populares</h2>
+    <ul class="main__popular-dishes">
+      @for(dish of popularDishes; track dish){
+        <li class="main__card">
+          <p><span>Nombre:</span> {{ dish.name }}</p>
+          <p><span>Precio: </span>{{ dish.price | currency}} </p>
+        </li>
+      }
+    </ul>
+  </section>
 
-  <p>Contenido principal</p>
 </section>

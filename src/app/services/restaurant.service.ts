@@ -11,7 +11,7 @@ export class RestaurantService {
   urlbase= 'http://localhost:8080/api/restaurante';
 
 
-  execute(): Observable<IRestaurant[]> {
-      return this.http.get<IRestaurant[]>(`${this.urlbase}/1`);
+  execute(): Observable<IRestaurant> {
+      return this.http.get<IRestaurant>(`${this.urlbase}/1`);
     }
 }
