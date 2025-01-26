@@ -16,6 +16,7 @@ export class MenuMainComponent implements OnInit {
   menus: IMenu[] = []; 
   modalType: string = '';
   menuName: string = '';
+  currentMenuName: string = '';
   dishes: IDish[] = [];
   selectedMenuId: number | null = null;
 
@@ -86,7 +87,7 @@ export class MenuMainComponent implements OnInit {
           const updatedMenu: IMenu = { 
             idMenu: this.selectedMenuId, 
             menuName: this.menuName, 
-            dishes: this.dishes, // Los platos permanecen igual
+            dishes: this.dishes, 
           };
           this.updateMenu(this.selectedMenuId, updatedMenu);
         } else if (type === 'delete' && this.selectedMenuId) {
@@ -97,8 +98,8 @@ export class MenuMainComponent implements OnInit {
 
   loadMenuDetails(id: number): void {
     this.menuService.getMenuById(id).subscribe(
-      (menu) => {
-        this.menuName = menu.menuName;
+      (menu) => { 
+        this.currentMenuName = menu.menuName;
         this.dishes = menu.dishes;
       },
       (error) => {
