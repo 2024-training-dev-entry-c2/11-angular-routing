@@ -1,8 +1,8 @@
 <section class="clients">
   <section class="clients__view">
-    <app-get-client></app-get-client>
+    <app-get-client (editClientEvent)="editClient($event)"></app-get-client>
   </section>
   <section class="clients__add">
-    <app-add-client></app-add-client>
+    <app-add-client [clientSelect]="clientEdit"></app-add-client>
   </section>
 </section>

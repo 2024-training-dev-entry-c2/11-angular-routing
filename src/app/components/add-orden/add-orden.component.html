@@ -1,5 +1,5 @@
 <section class="orden-form">
-  <h2>Crear Orden</h2>
+  <h2>{{ isEditMode ? 'Editar Cliente' : 'Crear Cliente' }}</h2>
   @if(mensajeExito) {
     <div class="orden-form__mensaje-exito">
       {{ mensajeExito }}
@@ -59,7 +59,7 @@
     </div>
   <div class="orden-form__form-actions">
     <button type="button" (click)="addItem()">Agregar Item</button>
-    <button type="submit" id="submit">Crear Orden</button>
+    <button type="submit" id="submit">{{ isEditMode ? 'Editar Orden' : 'Crear Orden' }}</button>
     </div>
   </form>
 </section>

@@ -34,8 +34,6 @@ export class OrdenService {
     return this.http.post<IViewOrden>(this.urlbase, payload);
   }
   updateOrden(orden: ICreateOrden): Observable<IEditOrden> {
-    console.log(orden)
-    console.log(orden.id)
     return this.http.put<IEditOrden>(`${this.urlbase}/${orden.id}`, orden);
   }
 

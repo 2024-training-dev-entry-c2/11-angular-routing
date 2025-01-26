@@ -19,7 +19,6 @@ ngOnInit() {
     this.clienteService.execute().subscribe({
       next: (data: IClient[]) => {
         this.clients = data;
-        console.log(this.clients)
       },
       error: (error) => {
         console.error('Error al obtener la orden', error);

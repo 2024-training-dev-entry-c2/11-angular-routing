@@ -24,7 +24,13 @@ export class ClientService {
         return new Observable<void>();
       }
     }
+    getClientById(id: number): Observable<IClient> {
+      return this.http.get<IClient>(`${this.urlbase}/${id}`);
+    }
     createClient(payload: IClient): Observable<IClient> {
         return this.http.post<IClient>(this.urlbase, payload);
+      }
+    updateClient(client: IClient): Observable<IClient> {
+        return this.http.put<IClient>(`${this.urlbase}/${client.id}`, client);
       }
 }

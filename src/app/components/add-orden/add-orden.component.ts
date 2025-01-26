@@ -16,6 +16,7 @@ export class AddOrdenComponent {
   public mensajeExito: string | null = null;
 
   @Input() ordenSelect: ICreateOrden | null = null;
+  isEditMode: boolean = false;
 
   statusOptions = ['PENDING', 'IN_PREPARATION', 'COMPLETED', 'CANCELLED', 'DELIVERED'];
 
@@ -56,7 +57,7 @@ export class AddOrdenComponent {
   }
   ngOnChanges(changes: SimpleChanges) {
     if (changes['ordenSelect'] && this.ordenSelect) {
-      console.log('Orden seleccionada recibida:', this.ordenSelect);
+      this.isEditMode = true;
 
       this.ordenForm.patchValue({
         priceTotal: this.ordenSelect.priceTotal,
@@ -82,6 +83,8 @@ export class AddOrdenComponent {
           })
         }));
       });
+    }else {
+      this.isEditMode = false;
     }
   }
   onSubmit(): void {

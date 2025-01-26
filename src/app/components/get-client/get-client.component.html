@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody class="content__body">
-      @for(client of clients; track clients){
+      @for(client of clients; track client.id){
       <tr class="content__cliente">
         <td>{{client.id}}</td>
         <td>{{client.name}}</td>
