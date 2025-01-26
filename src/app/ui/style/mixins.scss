@@ -1,0 +1,24 @@
+@mixin contLine($justify: start) {
+    display: flex;
+    align-items: center;
+    justify-content: $justify;
+}
+
+@mixin contColumn($gap, $padding) {
+    flex-direction: column;
+    gap: $gap;
+    padding: $padding;
+}
+
+@mixin styleContainer($background, $fontColor, $padding, $bordeRadius) {
+    background-color: $background;
+    color: $fontColor;
+    padding: $padding;
+    text-decoration: none;
+    border-radius: $bordeRadius;
+}
+
+@mixin aside($justify: start, $gap, $padding){
+    @include contLine($justify); 
+    @include contColumn($gap, $padding)
+}
