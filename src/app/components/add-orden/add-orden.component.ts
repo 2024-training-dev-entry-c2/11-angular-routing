@@ -1,6 +1,6 @@
 import { Component, inject, Input, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { OrdenService } from '../../service/orden.service';
+import { OrdenService } from '../../services/orden.service';
 import { ICreateOrden } from '../../inferfaces/create-orden.interface';
 import { CommonModule } from '@angular/common';
 

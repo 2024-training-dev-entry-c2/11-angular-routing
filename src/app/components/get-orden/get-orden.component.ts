@@ -1,6 +1,6 @@
 import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { OrdenService } from '../../service/orden.service';
+import { OrdenService } from '../../services/orden.service';
 import { IViewOrden } from '../../inferfaces/view-orden.interface';
 import { BottonDeleteComponent } from '../botton-delete/botton-delete.component';
 import { CurrencyPipe } from '@angular/common';
@@ -24,7 +24,6 @@ export class GetOrdenComponent implements OnInit{
   @Output() editOrdenEvent = new EventEmitter<number>();
 
   ngOnInit() {
-
     this.ordenService.execute().subscribe({
       next: (data: IViewOrden[]) => {
         this.ordenes = data;

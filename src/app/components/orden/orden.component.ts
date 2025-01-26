@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { GetOrdenComponent } from '../get-orden/get-orden.component';
 import { AddOrdenComponent } from '../add-orden/add-orden.component';
 import { ICreateOrden } from '../../inferfaces/create-orden.interface';
-import { OrdenService } from '../../service/orden.service';
+import { OrdenService } from '../../services/orden.service';
 
 
 @Component({
