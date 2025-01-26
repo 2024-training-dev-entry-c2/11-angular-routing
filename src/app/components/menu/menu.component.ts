@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MenuHeaderComponent } from "../menu-content/menu-header/menu-header.component";
 import { SearchComponent } from "../search/search.component";
 import { MenuMainComponent } from "../menu-content/menu-main/menu-main.component";
+import { IMenu } from '../../interfaces/menu.interface';
 
 @Component({
   selector: 'app-menu',
@@ -12,7 +13,14 @@ import { MenuMainComponent } from "../menu-content/menu-main/menu-main.component
 export class MenuComponent {
   searchQuery: string = ''; 
 
+  @ViewChild(MenuMainComponent) menuMainComponent!: MenuMainComponent;
+
   onSearchQueryChange(query: string): void {
     this.searchQuery = query; 
+  }
+
+  onMenuAdded(newMenu: IMenu): void {
+    // Llamar al método del MenuMainComponent para añadir el nuevo menú
+    this.menuMainComponent.addMenu(newMenu);
   }
 }

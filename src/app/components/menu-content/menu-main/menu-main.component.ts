@@ -51,6 +51,11 @@ export class MenuMainComponent implements OnInit, OnChanges {
     );
   }
 
+  addMenu(newMenu: IMenu): void {
+    this.menus.push(newMenu);
+    this.filterMenus(); 
+  }
+
   filterMenus(): void {
     if (this.searchQuery) {
       this.filteredMenus = this.menus.filter(menu => 

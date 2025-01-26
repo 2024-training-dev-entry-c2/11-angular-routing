@@ -17,6 +17,8 @@ export class MenuHeaderComponent {
   menuName: string = '';
   dishes: string[] = [];
 
+  @Output() menuAdded = new EventEmitter<IMenu>();
+
   constructor(
     private menuService: MenuService,
     private modalService: ModalService,
@@ -48,6 +50,7 @@ export class MenuHeaderComponent {
       this.menuService.addMenu(newMenu).subscribe({
         next: response => {
           console.log('Menu agregado exitosamente:', response);
+          this.menuAdded.emit(response);
         },
         error: error => {
           console.error('Error al agregar el menu:', error);
