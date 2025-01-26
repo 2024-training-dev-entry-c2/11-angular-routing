@@ -60,6 +60,7 @@
 
       &-text {
         font-size: 1.2rem;
+        transition: color 0.3s;
         color: variables.$secondary-color;
         letter-spacing: 0.1rem;
       }
