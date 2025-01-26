@@ -1,0 +1,17 @@
+@if (showLoader) {
+<app-loader></app-loader>
+}
+
+<div class="container" aria-label="Bank Account List">
+    <h2>Bank Account List
+    </h2>
+    <div class="container__actions">
+        <button class="container__actions--button" (click)="openCreateModal()">Create Account</button>
+    </div>
+    <app-table [headers]="['accountNumber', 'owner', 'balance']" [data]="accounts"
+        [actions]="[{label: 'View Details', handler: showDetails.bind(this)}]">
+    </app-table>
+    @if(showModal) {
+    <app-modal [accountNumber]="selectedAccount" (close)="closeModal()"></app-modal>
+    }
+</div>

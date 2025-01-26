@@ -1,0 +1,11 @@
+<div class="layout">
+    <app-sidebar [userRoles]="userRoles" />
+    <div class="layout__content" role="main">
+        <nav class="nav">
+        <app-nav />
+        </nav>
+        <main>
+            <router-outlet />
+        </main>
+    </div>
+</div>
