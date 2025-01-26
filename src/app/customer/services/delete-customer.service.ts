@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,7 @@ import { environment } from '../../../environments/environment';
 export class DeleteCustomerService {
   private http = inject(HttpClient);
 
-  execute(id: number) {
-    return this.http.delete(environment.apiUrl + '/client/' + id);
+  execute(id: number): Observable<void> {
+    return this.http.delete<void>(environment.apiUrl + '/client/' + id);
   }
 }

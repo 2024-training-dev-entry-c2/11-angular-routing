@@ -1,14 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ListCustomersService } from '../services/list-customers.service';
-import { CreateCustomerService } from '../services/create-customer.service';
-import { UpdateCustomerService } from '../services/update-customer.service';
-import { DeleteCustomerService } from '../services/delete-customer.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPlus, faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { CreateCustomerComponent } from '../components/create-customer/create-customer.component';
+import { ICustomerResponse } from '../interfaces/customer.interface';
 
 @Component({
   selector: 'app-customer',
-  imports: [FontAwesomeModule],
+  imports: [FontAwesomeModule, CreateCustomerComponent],
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.scss',
 })
@@ -16,17 +15,27 @@ export class CustomerComponent implements OnInit {
   faPlus = faPlus;
   faTrash = faTrash;
   faEdit = faEdit;
+  showCreateCustomer = false;
 
   private listCustomersService = inject(ListCustomersService);
-  private createCustomerService = inject(CreateCustomerService);
-  private updateCustomerService = inject(UpdateCustomerService);
-  private deleteCustomerService = inject(DeleteCustomerService);
 
-  customers: any[] = [];
+  customers: ICustomerResponse[] = [];
 
   ngOnInit(): void {
-    this.listCustomersService.execute().subscribe((customers: any) => {
+    this.listCustomersService.execute().subscribe((customers) => {
       this.customers = customers;
     });
+  }
+
+  showCreateCustomerModal(): void {
+    this.showCreateCustomer = true;
+  }
+
+  closeCreateCustomerModal(): void {
+    this.showCreateCustomer = false;
+  }
+
+  addCustomer(newCustomer: ICustomerResponse): void {
+    this.customers = [...this.customers, newCustomer];
   }
 }

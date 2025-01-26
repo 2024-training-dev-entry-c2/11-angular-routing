@@ -4,10 +4,14 @@
             <h1>Clientes</h1>
         </div>
         <div class="customers__create-button-container">
-            <button class="customers__create-button">
+            <button class="customers__create-button" (click)="showCreateCustomerModal()">
                 <fa-icon [icon]="faPlus"></fa-icon>
                 <span>Crear nuevo cliente</span>
             </button>
+            @if(showCreateCustomer){
+            <app-create-customer (closeModal)="closeCreateCustomerModal()"
+                (customerCreated)="addCustomer($event)"></app-create-customer>
+            }
         </div>
         <table>
             <thead>
@@ -17,6 +21,8 @@
                     <th>APELLIDO</th>
                     <th>EMAIL</th>
                     <th>TELEFONO</th>
+                    <th>DIRECCIÓN</th>
+                    <th>FRECUENTE</th>
                     <th></th>
                 </tr>
             </thead>
@@ -28,6 +34,8 @@
                     <td>{{ customer.lastName }}</td>
                     <td>{{ customer.email }}</td>
                     <td>{{ customer.phone }}</td>
+                    <td>{{ customer.address }}</td>
+                    <td>{{ customer.isFrequent ? 'Si' : 'No' }}</td>
                     <td class="customers__buttons">
                         <button class="customers__edit-button">
                             <fa-icon [icon]="faEdit"></fa-icon>

@@ -1,6 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { ICustomer, ICustomerResponse } from '../interfaces/customer.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +10,10 @@ import { environment } from '../../../environments/environment';
 export class CreateCustomerService {
   private http = inject(HttpClient);
 
-  execute(payload: any) {
-    return this.http.post(environment.apiUrl + '/client', payload);
+  execute(payload: ICustomer): Observable<ICustomerResponse> {
+    return this.http.post<ICustomerResponse>(
+      environment.apiUrl + '/client',
+      payload
+    );
   }
 }

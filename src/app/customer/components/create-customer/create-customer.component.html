@@ -1,1 +1,40 @@
-<p>create-customer works!</p>
+<section class="modal-container">
+    <article class="create-card">
+        <div class="create-card__header">
+            <h2 class="create-card__title">Crear nuevo cliente</h2>
+            <button (click)="close()"><fa-icon [icon]="faX"></fa-icon></button>
+        </div>
+
+        <form [formGroup]="createCustomerForm" class="create-card__form" (submit)="createCustomer($event)">
+            <div class="create-card__form-group">
+                <app-form-group label="Nombres" placeholder="Sus nombres" [control]="nameControl" type="text" id="name"
+                    [isSubmitted]="isSubmitted">
+                </app-form-group>
+
+                <app-form-group label="Apellidos" placeholder="Sus apellidos" [control]="lastNameControl" type="text"
+                    id="lastName" [isSubmitted]="isSubmitted">
+                </app-form-group>
+            </div>
+
+            <div class="create-card__form-group">
+                <app-form-group label="Correo electrónico" placeholder="Su correo electrónico" [control]="emailControl"
+                    type="email" id="email" [isSubmitted]="isSubmitted">
+                </app-form-group>
+
+                <app-form-group label="Teléfono" placeholder="Su teléfono" [control]="phoneControl" type="text"
+                    id="phone" [isSubmitted]="isSubmitted">
+                </app-form-group>
+            </div>
+
+            <app-form-group label="Dirección" placeholder="Su dirección" [control]="addressControl" type="text"
+                id="address" [isSubmitted]="isSubmitted">
+            </app-form-group>
+
+            <div class="create-card__buttons">
+                <button class="create-card__cancel-button" type="button" (click)="close()">Cancelar</button>
+                <button class="create-card__save-button" type="submit">Guardar</button>
+            </div>
+        </form>
+
+    </article>
+</section>
