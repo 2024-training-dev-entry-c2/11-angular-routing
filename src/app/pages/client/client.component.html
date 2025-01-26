@@ -1,11 +1,8 @@
+<app-table [title]="'Clientes'" [columns]="columns" [data]="users" (delete)="deleteById($event)"
+    (update)="updateById($event)" (openModal)="openModal($event)">
+</app-table>
 
-
-<app-table 
-[title]="title" 
-[columns]="columns" 
-[data]="users" 
-(delete)="deleteById($event)" 
-(update)="updateById($event)"
-></app-table>
-
-<app-form [form]="form" [action]=""></app-form>
+<app-modal (close)="openModal($event)" [open]="isModalOpen">
+    <app-form [form]="form" [title]="title" [message]="message" [action]="action" [controls]="controls" (submit)="submit()">
+    </app-form>
+</app-modal>
