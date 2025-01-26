@@ -1,5 +1,8 @@
 .menu {
     margin-top: 10px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 25em;
 
     &__table {
         border-collapse: collapse;
@@ -61,6 +64,7 @@
         border: 1px solid rgb(139, 139, 139);
         width: 100px;
         justify-content: center;
+        cursor: pointer;
         transition: 0.5s transform;
 
         &:hover {
@@ -108,9 +112,6 @@
     transition: 0.4s;
 }
 
-// .active,
-// .accordion:hover {}
-
 .accordion:after {
     content: '\002B';
     font-weight: bold;
@@ -125,7 +126,6 @@
 .panel {
     padding: 0 18px;
     border-radius: 10px;
-    // border: 1px solid rgb(128, 128, 128);
     max-height: 0;
     overflow: hidden;
     font-size: 16px;
@@ -137,5 +137,16 @@
         li {
             margin-bottom: 5px;
         }
+    }
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &__input {
+        padding: 5px;
+        width: 360px;
     }
 }

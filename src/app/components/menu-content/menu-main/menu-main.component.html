@@ -42,11 +42,9 @@
 </main>
 
 <ng-template #modalTemplate>
-    <div *ngIf="modalType === 'edit'; else deleteContent">
-        <p>Nombre actual: {{currentMenuName}}</p>
-
-        <label for="menuName">Nuevo nombre:</label>
-        <input [(ngModel)]="menuName" id="menuName" placeholder="Nuevo nombre del menu" />
+    <div class="modal" *ngIf="modalType === 'edit'; else deleteContent">
+        <label for="menuName">Ingrese el nuevo nombre del Menu</label>
+        <input class="modal__input" [(ngModel)]="menuName" id="menuName" placeholder={{currentMenuName}} />
     </div>
     <ng-template #deleteContent>
         <p>¿Estas seguro de que deseas eliminar este menu?</p>
