@@ -17,7 +17,14 @@
                     <div class="panel">
                         <ul class="panel__list">
                             @for (dish of menu.dishes; track dish.idDish) {
-                            <li>- {{ dish.dishName }}</li>
+                            <li>
+                                <i aria-hidden="true">
+                                    <svg>
+                                        <use xlink:href="svg/food.svg#food"></use>
+                                    </svg>
+                                </i>
+                                {{ dish.dishName }}
+                            </li>
                             }
                         </ul>
                     </div>
