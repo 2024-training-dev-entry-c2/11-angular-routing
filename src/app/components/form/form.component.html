@@ -1,5 +1,13 @@
-<dialog class="modal" [open]="showModal">
-  <div class="modal-content">
-    <span class="close" (click)="showModal = false">&times;</span>
-    <app-form></app-form>
-  </div>
+<app-modal>
+  <form [formGroup]="form()" class="form" (ngSubmit)="submit">
+    <h3 class="form__title">{{ title() }}</h3>
+    <div class="form__group">
+      @for (control of controls(); track $index) {
+      <app-input [typeOf]="control.type" [span]="control.text" [placeholder]="control.placeholder" [formGroup]="form()"
+        [formControlName]="control.controlName"></app-input>
+      }
+    </div>
+    <h3>{{message()}}</h3>
+    <button class="form__button">{{action()}}</button>
+  </form>
+</app-modal>

@@ -1,0 +1,9 @@
+<label class="label" [formGroup]="formGroup()">
+    <span class="label__span">{{span()}}</span>
+    <input class="label__input" [formControlName]="formControlName()" [type]="typeOf()" [placeholder]="placeholder()">
+    <span class="label__error">
+        @if (notValid()) {
+            {{errorMessage}}
+        }
+    </span>
+</label>
