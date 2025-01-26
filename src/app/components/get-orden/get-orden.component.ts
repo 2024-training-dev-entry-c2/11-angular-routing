@@ -5,11 +5,12 @@ import { IViewOrden } from '../../inferfaces/view-orden.interface';
 import { BottonDeleteComponent } from '../botton-delete/botton-delete.component';
 import { CurrencyPipe } from '@angular/common';
 import { ICreateOrden } from '../../inferfaces/create-orden.interface';
+import { BottonEditComponent } from "../botton-edit/botton-edit.component";
 
 
 @Component({
   selector: 'app-get-orden',
-  imports: [ReactiveFormsModule, BottonDeleteComponent, CurrencyPipe],
+  imports: [ReactiveFormsModule, BottonDeleteComponent, CurrencyPipe, BottonEditComponent],
   templateUrl: './get-orden.component.html',
   styleUrl: './get-orden.component.scss'
 })

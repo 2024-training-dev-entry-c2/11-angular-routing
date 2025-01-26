@@ -7,15 +7,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './botton-delete.component.scss'
 })
 export class BottonDeleteComponent {
-  @Input() idOrden!: number;
+  @Input() id!: number;
   @Output() deleteEvent = new EventEmitter<number>();
 
-
-  deleteOrden(): void {
-    if (this.idOrden) {
-      this.deleteEvent.emit(this.idOrden);
-    } else {
-      console.error('idOrden es undefined');
-    }
+  onDelete(): void {
+    this.deleteEvent.emit(this.id);
   }
 }

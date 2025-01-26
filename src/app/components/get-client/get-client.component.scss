@@ -1,7 +1,6 @@
 @use "../../utils/variables.scss" as variables;
-@use "../../utils/mixin.scss" as mixin;
 
-.content{
+.content {
   padding-right: 5px;
   h1 {
     color: variables.$color-secondary;
@@ -36,21 +35,33 @@
       color: variables.$color-gradients;
     }
   }
-&__items {
-  list-style-type: none;
-  padding: 0;
 
-  li {
-    margin-bottom: 10px;
+  &__button-edit {
+    background: variables.$color-background-button;
+    color: variables.$color-text;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    color: variables.$color-background;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 
-    p {
-      margin: 0 0 5px 0;
+    &:hover {
+      background: variables.$color-secondary;
+    }
+  }
+
+  &__items {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 10px;
+
+      p {
+        margin: 0 0 5px 0;
+      }
     }
   }
 }
-
-}
-
-
-
-
