@@ -6,11 +6,11 @@ export interface ICreateOrden {
 }
 
 export interface IItemCreate {
-  id: number;
+  id?: number;
   name: string;
   price: number;
   quantity: number;
   restaurantId: number;
   menuId: number;
-  ordenId: number;
+  ordenId?: number;
 }

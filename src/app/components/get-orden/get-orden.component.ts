@@ -18,17 +18,17 @@ export class GetOrdenComponent implements OnInit{
   restaurantId = 11;
 
   ngOnInit() {
+
     this.ordenService.execute().subscribe({
       next: (data: IViewOrden[]) => {
         this.ordenes = data;
-
-        console.log(this.ordenes );
       },
       error: (error) => {
         console.error('Error al obtener la orden', error);
       }
     });
   }
+
   editOrden(id: number): void {
     console.log(`Editar orden con ID: ${id}`);
 

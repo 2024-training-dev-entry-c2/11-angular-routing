@@ -4,11 +4,9 @@
     <ul class="sidebar__list">
       @for ( item of menuItems; track item.id) {
       <li class="sidebar__item">
-        <img src="icon-orden.png">
         <a  [routerLink] = "item.link">
           {{item.title}}</a>
       </li>
-
       }
     </ul>
 

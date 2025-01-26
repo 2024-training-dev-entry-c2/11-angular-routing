@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { IViewOrden } from '../inferfaces/view-orden.interface';
 import {  Observable } from 'rxjs';
+import { ICreateOrden } from '../inferfaces/create-orden.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -21,5 +22,9 @@ export class OrdenService {
     } else {
       return new Observable<void>();
     }
+  }
+
+  addOrden(payload: ICreateOrden): Observable<IViewOrden> {
+    return this.http.post<IViewOrden>('http://localhost:8080/api/ordenes', payload);
   }
 }
