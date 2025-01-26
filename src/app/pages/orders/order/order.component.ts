@@ -5,11 +5,17 @@ import { OrderService } from '../../../services/order/order.service';
 import { Order } from '../../../interfaces/order.interface';
 import { AddOrderComponent } from '../add-order/add-order.component';
 import { UpdateOrderComponent } from '../update-order/update-order.component';
-import { AddMenuComponent } from "../../menus/add-menu/add-menu.component";
+import { AddMenuComponent } from '../../menus/add-menu/add-menu.component';
+import { timeout } from 'rxjs';
 
 @Component({
   selector: 'app-order',
-  imports: [TabsComponent, TableComponent, AddOrderComponent, UpdateOrderComponent],
+  imports: [
+    TabsComponent,
+    TableComponent,
+    AddOrderComponent,
+    UpdateOrderComponent,
+  ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss',
 })
@@ -40,10 +46,10 @@ export class OrderComponent implements OnInit {
           id: order.id,
           nameClient: order.client.name,
           localDate: order.localDate,
-          dishCount: order.dishfoodIds, 
-          price: order.totalPrice
+          dishCount: order.dishfoodIds,
+          price: order.totalPrice,
         }));
-        this.orderData= transformedData;
+        this.orderData = transformedData;
         console.log(transformedData);
       },
       error: (error) => {
@@ -57,16 +63,16 @@ export class OrderComponent implements OnInit {
       next: (data) => {
         this.updateOrderData = data;
         console.log(this.updateOrderData);
-        
+
         this.showModal = true;
         this.getOders();
       },
       error: (error) => {
         console.log(error);
       },
-    }); 
-  }   
-  
+    });
+  }
+
   deleteOrder($event: number) {
     this.orders.deleteOrder($event).subscribe({
       next: (data) => {
@@ -81,9 +87,14 @@ export class OrderComponent implements OnInit {
 
   showModal = false;
 
-
   closeModal() {
     this.showModal = false;
     this.getOders();
+  }
+  updateOrderList() {
+    setTimeout(() => {
+      console.log("Actualizando lista de pedidos");
+      this.getOders();
+    }, 2000);
   }
 }

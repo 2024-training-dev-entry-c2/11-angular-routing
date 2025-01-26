@@ -1,41 +1,52 @@
-<form [formGroup]="addOrderForm">
-    <label for="menuId">Choose a Client </label>
-    <select formControlName="clientId">
-        @for (item of getClientData; track $index) {
-        <option value="{{item.id}}">{{item.name}}</option>
-        }
-    </select>
-    <label for="localDate">Date:</label>
-    <input id="localDate" type="date" formControlName="localDate" />
-    @if(addOrderForm.get('localDate')?.invalid && addOrderForm.get('localDate')?.touched){
-    <div>
-        <small>Date is required.</small>
+<form [formGroup]="addOrderForm" class="order-form">
+    <div class="order-form__group">
+        <label for="clientId" class="order-form__label">Choose a Client</label>
+        <select formControlName="clientId" id="clientId" class="order-form__select">
+            @for (item of getClientData; track $index) {
+            <option value="{{item.id}}">{{item.name}}</option>
+            }
+        </select>
     </div>
-    }
-    <label for="menuId">Choose a menu option:</label>
-    <select formControlName="menuId" (change)="onMenuChange($event)">
-        @for (item of menus; track $index) {
-        <option value="{{item.id}}">{{item.name}}</option>
+    <div class="order-form__group">
+        <label for="localDate" class="order-form__label">Date:</label>
+        <input id="localDate" type="date" formControlName="localDate" class="order-form__input" />
+        @if(addOrderForm.get('localDate')?.invalid && addOrderForm.get('localDate')?.touched){
+        <div>
+            <small>Date is required.</small>
+        </div>
         }
-    </select>
-    <label for="dishfoodIds">Choose Dishes:</label>
+    </div>
+    <div class="order-form__group">
 
-    <select id="dishfoodIds" (change)="addDish($event)">
-        <option value="" disabled selected>Select a dish</option>
-        @for(item of filteredDishes; track $index) {
-        <option value="{{item.id}}" (click)="addDish(item.id)">{{item.name}}</option>
-        }
-    </select>
+        <label for="menuId" class="order-form__label">Choose a menu option:</label>
+        <select formControlName="menuId" (change)="onMenuChange($event)" class="order-form__select">
+            @for (item of menus; track $index) {
+            <option value="{{item.id}}">{{item.name}}</option>
+            }
+        </select>
+    </div>
+    <div class="order-form__group">
+        <label for="dishfoodIds" class="order-form__label">Choose Dishes:</label>
 
-    <h3>Selected Dishes:</h3>
-    <ul>
-        @for(item of dishfoodList; track $index) {
-        <li>
-            {{ getDishName(item) }}
-            <button type="button" (click)="removeDish(item)">Remove</button>
-        </li>
-        }
-    </ul>
-
-    <button type="button" (click)="addOrder()" (click)="updateListOrder()">Submit Order</button>
+        <select id="dishfoodIds" (change)="addDish($event)" class="order-form__select">
+            <option value="" disabled selected>Select a dish</option>
+            @for(item of filteredDishes; track $index) {
+            <option value="{{item.id}}" (click)="addDish(item.id)">{{item.name}}</option>
+            }
+        </select>
+    </div>
+    <div class="order-form__group">
+        <h3 class="order-form__subheading">Selected Dishes:</h3>
+        <ul class="order-form__list">
+            @for(item of dishfoodList; track $index) {
+            <li class="order-form__list-item">
+                {{ getDishName(item) }}
+                <button type="button" (click)="removeDish(item)"  class="order-form__remove-button">Remove</button>
+            </li>
+            }
+        </ul>
+    </div>
+    <div class="order-form__actions">
+        <button type="button" (click)="addOrder()" (click)="updateListOrder()" class="order-form__submit-button">Submit Order</button>
+    </div>
 </form>

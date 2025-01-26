@@ -3,7 +3,7 @@
 
 <form [formGroup]="menuAddForm" >
     <app-modal (closeModal)="closeModal()" [data]="getData" [formGroup]="menuAddForm">
-     <button button type="submit" (click)="addMenu()">Add</button>
+     <button button type="submit" (click)="addMenu() " class="modal__button modal__button--close">Add</button>
     </app-modal>
     
 </form>

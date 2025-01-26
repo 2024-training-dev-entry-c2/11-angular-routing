@@ -145,5 +145,7 @@ export class AddOrderComponent implements OnInit {
   }
   updateListOrder() {
     this.updateList.emit();
+    console.log("Actualizando lista de pedidos");
+    
   }
 }

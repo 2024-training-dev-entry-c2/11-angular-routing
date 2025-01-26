@@ -1,15 +1,7 @@
 <form [formGroup]="dishfoodUpdatedForm">
     <app-modal (closeModal)="closeModal()" [data]="getData" [formGroup]="dishfoodUpdatedForm">
 
-        <!-- <div selection>
-            <label for="menuId">Choose a menu option:</label>
-            <select formControlName="menuId">
-                @for (item of getDataMenus; track $index) {
-                <option value="{{item.id}}">{{item.name}}</option>
-                }
-            </select>
-        </div> -->
-        <button button type="submit" (click)="addMenu()">Add</button>
+        <button button type="submit" (click)="addMenu()" class="modal__button modal__button--close">Add</button>
     </app-modal>
 
 </form>

@@ -41,7 +41,7 @@
     <app-update-menu [showModalMenu]="showModalMenu" (closeModalMenu)="closeModalMenu()"></app-update-menu>
     }
     @if (showModalDish) {
-        <app-dishfood [showModalDish]="showModalDish" (closeModalDish)="closeModalDish()" [getMenuid]="1"></app-dishfood>
+        <app-dishfood [showModalDish]="showModalDish" (closeModalDish)="closeModalDish()" [getMenuid]="MenuId"></app-dishfood>
     }
     @if(showModalDishUpdate){
         <app-update-dish [showModalDish]="showModalDishUpdate" (closeModalDish)="closeModalDishupdate()" [getMenuid]="MenuId" [getData]="DishData"></app-update-dish>

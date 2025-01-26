@@ -1,49 +1,58 @@
 <p>update-order works!</p>
-<app-modal (closeModal)="closeModal()"  >
-    <form  form-optional [formGroup]="updateOrderForm">
+<app-modal (closeModal)="closeModal()" class="update-order">
+    <form form-optional [formGroup]="updateOrderForm" class="update-order__form">
+        <div class="update-order__group">
 
+            <label for="menuId" class="update-order__label">Choose a Client </label>
+            <select formControlName="clientId" class="update-order__select">
+                @for (item of getClientData; track $index) {
+                <option value="{{item.id}}">{{item.name}}</option>
+                }
+            </select>
 
-    <label for="menuId">Choose a Client </label>
-    <select formControlName="clientId">
-        @for (item of getClientData; track $index) {
-        <option value="{{item.id}}">{{item.name}}</option>
+        </div>
+        <div class="update-order__group">
+        <label for="localDate" class="update-order__label">Date:</label>
+        <input id="localDate" type="date" formControlName="localDate" class="update-order__input"/>
+        @if(updateOrderForm.get('localDate')?.invalid && updateOrderForm.get('localDate')?.touched){
+        <div>
+            <small  class="update-order__error-text">Date is required.</small>
+        </div>
         }
-    </select>
-    <label for="localDate">Date:</label>
-    <input id="localDate" type="date" formControlName="localDate" />
-    @if(updateOrderForm.get('localDate')?.invalid && updateOrderForm.get('localDate')?.touched){
-    <div>
-        <small>Date is required.</small>
     </div>
-    }
+    <div class="update-order__group">
 
+        <label for="menuId" class="update-order__label">Choose a menu option:</label>
+        <select formControlName="menuId" (change)="onMenuChange($event)" class="update-order__select">
+            @for (item of menus; track $index) {
+            <option value="{{item.id}}">{{item.name}}</option>
+            }
+        </select>
+    </div>
+    <div class="update-order__group">
+        <label for="dishfoodIds" class="update-order__label">Choose Dishes:</label>
 
-    <label for="menuId">Choose a menu option:</label>
-    <select formControlName="menuId" (change)="onMenuChange($event)">
-        @for (item of menus; track $index) {
-        <option value="{{item.id}}">{{item.name}}</option>
-        }
-    </select>
-    <label for="dishfoodIds">Choose Dishes:</label>
+        <select id="dishfoodIds" (change)="addDish($event)"  class="update-order__select">
+            <option value="" disabled selected>Select a dish</option>
+            @for(item of filteredDishes; track $index) {
+            <option value="{{item.id}}" (click)="addDish(item.id)">{{item.name}}</option>
+            }
+        </select>
+        </div>
+        <div class="update-order__group">
+        <h3 class="update-order__subheading">Selected Dishes:</h3>
+        <ul  class="update-order__list">
+            @for(item of dishfoodList; track $index) {
+            <li class="update-order__list-item">
+                {{ getDishName(item) }}
+                <button  class="update-order__remove-button" type="button" (click)="removeDish(item)">Remove</button>
+            </li>
+            }
+        </ul>
+    </div>
 
-    <select id="dishfoodIds" (change)="addDish($event)">
-        <option value="" disabled selected>Select a dish</option>
-        @for(item of filteredDishes; track $index) {
-        <option value="{{item.id}}" (click)="addDish(item.id)">{{item.name}}</option>
-        }
-    </select>
-
-    <h3>Selected Dishes:</h3>
-    <ul>
-        @for(item of dishfoodList; track $index) {
-        <li>
-            {{ getDishName(item) }}
-            <button type="button" (click)="removeDish(item)">Remove</button>
-        </li>
-        }
-    </ul>
-
-    <!-- Botón de envío -->
-    <button type="button" (click)="updateOrder()">Submit Order</button>
-</form>
+    <div class="update-order__actions">
+        <button type="button" (click)="updateOrder()" class="update-order__submit-button">Submit Order</button>
+    </div>
+    </form>
 </app-modal>
