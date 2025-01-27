@@ -15,12 +15,12 @@
                 }
                 <td class="table__item"> 
                     <div class="table__item__buttons-container">
-                        <a class="table__button table__button--update" [routerLink]="['actualizacion', column[0]]" aria-label="Actualizar columna">
+                        <a class="table__button table__button--update" [routerLink]="['actualizacion', column[0]]" aria-label="Actualizar columna" [tabindex]="$index">
                             <svg aria-hidden="true">
                                 <use xlink:href ="images/svg/update.svg#update-id"></use>
                             </svg>                       
                         </a>
-                        <a class="table__button table__button--delete" (click)="sendOnDelete(column[0])" aria-label="Eliminar columna">
+                        <a class="table__button table__button--delete" (click)="sendOnDelete(column[0])" aria-label="Eliminar columna" [tabindex]="$index+1">
                             <svg aria-hidden="true">
                                 <use xlink:href ="images/svg/delete.svg#delete-id"></use>
                             </svg>  

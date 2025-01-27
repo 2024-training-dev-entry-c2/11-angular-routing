@@ -6,7 +6,7 @@
             [routerLinkActiveOptions]="{ exact: true }"
             routerLinkActive="menu__link--active" 
             ariaCurrentWhenActive="page"
-            [attr.aria-index] = "$index">{{item.text}}</a>
+            [attr.aria-index] = "$index +1">{{item.text}}</a>
         </li>
     }
 </ul>
