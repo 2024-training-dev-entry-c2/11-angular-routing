@@ -50,4 +50,17 @@ export class OrderComponent implements OnInit {
     this.showOrderDetails = false;
     this.selectedOrder = null;
   }
+
+  changeStatus(order: IOrderResponse, status: string): void {
+    this.updateOrderService
+      .execute(order.id, {
+        clientId: order.client.id,
+        status: status,
+      })
+      .subscribe((updatedOrder) => {
+        this.orders = this.orders.map((o) =>
+          o.id === updatedOrder.id ? updatedOrder : o
+        );
+      });
+  }
 }

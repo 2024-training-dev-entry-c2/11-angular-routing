@@ -37,8 +37,12 @@
 
                     <td class="entity__buttons">
                         <button class="entity__detail-button" (click)="showOrderDetailsModal(order)">Detalle </button>
-                        <button class="entity__edit-button">Entregar </button>
-                        <button class="entity__delete-button">Cancelar </button>
+                        @if(order.status === 'PROCESSING'){
+                        <button class="entity__edit-button" (click)="changeStatus(order, 'COMPLETED')">Entregar
+                        </button>
+                        <button class="entity__delete-button" (click)="changeStatus(order, 'CANCELLED')">Cancelar
+                        </button>
+                        }
                     </td>
                 </tr>
                 }
