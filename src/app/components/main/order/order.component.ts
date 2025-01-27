@@ -32,7 +32,7 @@ export class OrderComponent {
   constructor(private getAllOrderService: GetAllOrderService) {}
 
   ngOnInit(): void {
-    this.refreshSubscription = interval(500)
+    this.refreshSubscription = interval(100)
       .pipe(switchMap(() => this.getAllOrderService.execute()))
       .subscribe({
         next: (data) => (this.orders = data),
