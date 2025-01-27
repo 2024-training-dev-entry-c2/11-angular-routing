@@ -18,7 +18,17 @@
         <td>{{client.name}}</td>
         <td>{{client.email}}</td>
         <td>{{client.numberPhone}}</td>
-        <td>{{client.isFrecuent}}</td>
+        <td>
+          @if(client.isFrecuent){
+          <p class="content__items--frecuent-true">
+            {{client.isFrecuent ? 'Si' : 'No'}}
+          </p>
+        }@else{
+          <p class="content__items--frecuent-false">
+            {{ client.isFrecuent ? 'Si' : 'No' }}
+          </p>
+        }
+        </td>
         <td>
           <app-botton-edit  [id]="client.id" (editEvent)="editClient(client.id)"></app-botton-edit>
           <app-botton-delete [id]="client.id" (deleteEvent)="deleteClient($event)"></app-botton-delete>
