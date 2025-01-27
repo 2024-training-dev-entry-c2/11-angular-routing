@@ -73,7 +73,7 @@ export class MenuComponent {
           this.message = 'Menú creado correctamente'; 
           this.getAllMenus();
         }),
-        delay(2000),
+        delay(1000),
         finalize(() => {
           this.form.reset();
           this.message = '';

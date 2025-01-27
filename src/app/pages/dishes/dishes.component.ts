@@ -164,7 +164,7 @@ export class DishesComponent {
                 this.form.reset();
                 this.message = '';
                 this.isModalOpen = false;
-              }, 1500);
+              }, 1000);
             })
           )
           .subscribe(console.log);

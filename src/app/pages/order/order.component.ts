@@ -104,7 +104,7 @@ export class OrderComponent {
           this.message = 'Orden creada correctamente';
           this.getAllOrders(); 
         }),
-        delay(2000),
+        delay(1000),
         finalize(() => {
           this.form.reset();
           this.message = '';
