@@ -1,0 +1,16 @@
+@if (isOpen) {
+  <div class="modal modal--open-edit" role="dialog" aria-labelledby="modalTitle" aria-hidden="false">
+    <section class="modal__content">
+      <span class="modal__close" (click)="closeModal()" role="button" aria-label="Close the modal">&times;</span>
+      <div class="modal__container">
+        <h1 id="modalTitle">Confirm Delete</h1>
+        <span id="modalDescription">Are you sure you want to delete this client?</span>
+
+        <div class="modal__btns">
+          <button class="modal__btn modal__btn--delete" (click)="deleteData()" role="button" aria-label="Delete this client">Delete</button>
+          <button class="modal__btn modal__btn--cancel" (click)="closeModal()" role="button" aria-label="Cancel and close the modal">Cancel</button>
+        </div>
+      </div>
+    </section>
+  </div>
+}

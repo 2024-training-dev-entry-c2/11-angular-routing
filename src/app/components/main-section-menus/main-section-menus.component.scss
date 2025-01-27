@@ -1,0 +1,8 @@
+@use '../../ui/styles/_section';
+@use '../../ui/styles/_container';
+@use '../../ui/styles/_mixin' as mixin;
+
+
+.section {
+  @include mixin.section();
+}

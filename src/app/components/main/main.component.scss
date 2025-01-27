@@ -1,0 +1,4 @@
+@use "../../ui/styles/_mixin" as mixin;
+.main {
+  @include mixin.main();
+}
