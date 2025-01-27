@@ -1,0 +1,58 @@
+<div class="modal" [class]="addClass">
+  @if (addClass != "") {
+  <div class="modal__overlay" (click)="close()"></div>
+
+  }
+  <div class="modal__content">
+    <header class="modal__header">
+      <h2 class="modal__title">{{ header }}</h2>
+      <button type="button" class="modal__close-button" (click)="close()" aria-label="X">
+        X
+      </button>
+    </header>
+    <div class="modal__body">
+      <ng-content></ng-content>
+      @if (formType == "create-account") {
+      <form class="form" [formGroup]="accountForm!" (ngSubmit)="onSubmit(accountForm!)">
+        @for (item of formFields; track $index) {
+        <app-input-form [label]="item.label" [controlName]="item.controlName" [formGroup]="item.formGroup!"
+          [fieldType]="item.type" [options]="item.options" [type]="item.inputType || 'text'"></app-input-form>
+
+        }
+        <button  aria-label="CREATE" class="form__sign-in-btn" type="submit" [disabled]="trySend && accountForm?.invalid">
+          CREATE
+        </button>
+      </form>
+      } @if (formType == "create-card") {
+      <form class="form" [formGroup]="cardForm!" (ngSubmit)="onSubmit(cardForm!)">
+        @for (item of formFields; track $index) {
+        <app-input-form [label]="item.label" [controlName]="item.controlName" [formGroup]="item.formGroup!"
+          [fieldType]="item.type" [options]="item.options" [type]="item.inputType || 'text'"></app-input-form>
+
+        }
+        <button  aria-label="CREATE"  class="form__sign-in-btn" type="submit" [disabled]="trySend && cardForm?.invalid">
+          CREATE
+        </button>
+      </form>
+      } @if(formType == "create-transaction") {
+      <form class="form" [formGroup]="transactionForm!" (ngSubmit)="onSubmitTransaction(transactionForm!)">
+        @for (item of formFields; track $index) {
+        <app-input-form [label]="item.label" [controlName]="item.controlName" [formGroup]="item.formGroup!"
+          [fieldType]="item.type" [options]="item.options" [type]="item.inputType || 'text'"></app-input-form>
+
+        }
+        <button aria-label="CREATE" class="form__sign-in-btn" type="submit" [disabled]="trySend && transactionForm?.invalid">
+          CREATE
+        </button>
+      </form>
+      }
+    </div>
+    <footer class="modal__footer">
+      <button aria-label="CANCEL" class="form__google-sign-in-btn" type="button" (click)="close()">
+        CANCEL
+      </button>
+    </footer>
+  </div>
+</div>
+
+<app-dialog-confirm (clickRightButton)="createProcess()" [presentDialog]="presentDialog"></app-dialog-confirm>

@@ -1,0 +1,21 @@
+<section class="dashboard">
+  <div class="main" tabindex="0">
+    <app-sidebar></app-sidebar>
+    <div class="main-content">
+      <app-header> </app-header>
+      <div style="padding-top: inherit">
+        <router-outlet />
+
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</section>
+<app-loader></app-loader>
+
+<app-toast></app-toast>
+
+@if (isModalVisible) {
+  <app-big-modal (closed)="closeModal()" ></app-big-modal>
+
+}

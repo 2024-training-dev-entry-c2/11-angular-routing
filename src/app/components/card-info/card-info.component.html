@@ -1,0 +1,26 @@
+<div class="bank-account-card" (click)="onClick(cardAccountNumber()!)">
+  <div class="account-info">
+    <div class="account-header">
+      <div class="icon-container">
+        <i [class]="iconClass()"></i>
+      </div>
+      <div class="account-details">
+        <span aria-hidden="true" class="account-name">{{type()}}</span>
+        <span class="account-number" aria-hidden="true">{{ cardAccountNumber() }}</span>
+      </div>
+      <div class="expire">
+        <span class="date" aria-hidden="true">{{ expireDate() }}</span>
+        <span class="title" aria-hidden="true">valid thru</span>
+      </div>
+    </div>
+  </div>
+  <div class="balance-row">
+    <div class="balance--title">
+        <span class="" aria-hidden="true">{{balanceType()}}</span>
+      </div>
+    <div class="balance">
+      <span class="" aria-hidden="true">${{ balance() }}</span>
+    </div>
+    
+  </div>
+</div>

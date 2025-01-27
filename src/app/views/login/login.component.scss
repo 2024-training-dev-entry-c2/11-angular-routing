@@ -1,0 +1,12 @@
+.login {
+  display: flex;
+  height: 100vh;
+  background-color: #f7fafa;
+
+  &__item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

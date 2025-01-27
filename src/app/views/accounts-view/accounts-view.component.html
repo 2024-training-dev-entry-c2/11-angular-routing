@@ -1,0 +1,28 @@
+<section>
+  <h2>Accounts</h2>
+  <br />
+  <div class="cards">
+    @if (accounts.length <=0 ) { <h2 class="empty">NO ACCOUNTS TO SHOW</h2>
+      } @else {
+      @for (item of accounts; track $index) {
+      <app-accounts-info [iconClass]="item.icon" [cardAccountNumber]="item.accountNumber" [balance]="item.balance"
+        balanceType="balance" [type]="item.title" (info)="handleClick($event)" />
+      }
+      }
+
+  </div>
+  <br />
+  <div class="cards">
+    @if(cards.length <= 0){ <h2 class="empty">NO CARDS TO SHOW</h2>
+      } @else {
+      @for (item of cards; track $index) {
+      <app-card-info [iconClass]="item.icon" [cardAccountNumber]="item.accountNumber" [balance]="item.balance"
+        balanceType="Limit" [type]="item.title" [expireDate]="item.expire" (info)="handleCardClick($event)" />
+      }
+      }
+
+      <br />
+  </div>
+  <br />
+  <app-transaction-table [transactions]="transactions" />
+</section>

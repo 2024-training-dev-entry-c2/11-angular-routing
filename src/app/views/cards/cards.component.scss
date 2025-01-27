@@ -1,0 +1,8 @@
+.cards{
+    display: flex;
+    overflow: auto;
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.2);
+    background: #def7e5;
+    border-radius: 20px;
+    scrollbar-width: none;
+}
