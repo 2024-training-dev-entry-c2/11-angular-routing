@@ -12,8 +12,13 @@ import { IMenuResponse } from '../../../services/menu/interfaces/menu-interface'
 export class MenuListComponent {
   @Input() menus: IMenuResponse[] = [];
   @Output() menuDeleted = new EventEmitter<void>();
+  @Output() menuUpdated = new EventEmitter<void>();
 
   onMenuDeleted() {
     this.menuDeleted.emit();
+  }
+
+  onMenuUpdated() {
+    this.menuUpdated.emit();
   }
 }

@@ -1,36 +1,27 @@
-import { CommonModule } from '@angular/common';
-import {
-  Component,
-  EventEmitter,
-  inject,
-  Input,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MenuForm } from '../../../interfaces/menu-interface';
+import { CommonModule } from '@angular/common';
 import { InputFieldComponent } from '../../atoms/input-field/input-field.component';
 
 @Component({
   selector: 'app-menu-form',
-  standalone: true,
   templateUrl: './menu-form.component.html',
   imports: [ReactiveFormsModule, CommonModule, InputFieldComponent],
   styleUrls: ['./menu-form.component.scss'],
 })
-export class MenuFormComponent {
+export class MenuFormComponent implements OnChanges {
   @Input() initialValues?: MenuForm;
   @Output() submitMenu = new EventEmitter<MenuForm>();
-  form = inject(FormBuilder).group({
-    name: ['', [Validators.required, Validators.minLength(3)]],
-    description: ['', [Validators.required, Validators.minLength(9)]],
-    dishIds: ['', [Validators.required]],
-  });
+  form: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      description: ['', [Validators.required, Validators.minLength(9)]],
+      dishIds: ['', [Validators.required]],
+    });
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['initialValues'] && this.initialValues) {
@@ -46,11 +37,9 @@ export class MenuFormComponent {
     if (this.form.valid) {
       const formValue = this.form.value;
       const menuForm: MenuForm = {
-        name: formValue.name ?? '',
-        description: formValue.description ?? '',
-        dishIds: (formValue.dishIds ?? '')
-          .split(',')
-          .map((id: string) => parseInt(id.trim(), 10)),
+        name: formValue.name,
+        description: formValue.description,
+        dishIds: formValue.dishIds.split(',').map((id: string) => parseInt(id.trim(), 10)),
       };
       this.submitMenu.emit(menuForm);
       this.form.reset({ name: '', description: '', dishIds: '' });

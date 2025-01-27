@@ -1,4 +1,5 @@
 <div class="menu-list">
-    <app-menu-card *ngFor="let menu of menus" [menu]="menu" (menuDeleted)="onMenuDeleted()">
+    <app-menu-card *ngFor="let menu of menus" [menu]="menu" (menuDeleted)="onMenuDeleted()"
+        (menuUpdated)="onMenuUpdated()">
     </app-menu-card>
 </div>
