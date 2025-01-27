@@ -1,0 +1,4 @@
+<app-menu-header (menuAdded)="onMenuAdded($event)"></app-menu-header>
+<hr>
+<app-search (searchQueryChange)="onSearchQueryChange($event)"></app-search>
+<app-menu-main [searchQuery]="searchQuery"></app-menu-main>

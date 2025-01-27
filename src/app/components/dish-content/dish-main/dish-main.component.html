@@ -1,0 +1,49 @@
+<main class="dish">
+    <table class="dish__table" aria-label="table">
+        <thead>
+            <tr>
+                @for (header of getHeaders(); track header.label) {
+                <th>{{ header.label }}</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (dish of filteredDishes; track dish.idDish) {
+            <tr>
+                <td>{{ dish.idDish }}</td>
+                <td>{{ dish.dishName }}</td>
+                <td>{{ dish.price | currency: 'USD' }}</td>
+                <td>{{ dish.description }}</td>
+                <td>{{ dish.isPopular ? 'Si' : 'No' }}</td>
+                <td class="dish__action">
+                    @for (action of getActions(); track action.label) {
+                    <a class="dish__button dish__button--{{ action.type }}"
+                        (click)="openModal(modalTemplate, action.type, dish.idDish)">
+                        <i class="dish__icon" aria-hidden="true">
+                            <svg>
+                                <use [attr.xlink:href]="action.icon"></use>
+                            </svg>
+                        </i>
+                        {{ action.label }}
+                    </a>
+                    }
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</main>
+
+<ng-template #modalTemplate>
+    <div class="modal" *ngIf="modalType === 'edit'; else deleteContent">
+        <label for="menuName">Ingrese el nuevo nombre del plato</label>
+        <input class="modal__input" [(ngModel)]="dishName" id="menuName" placeholder={{dishName}} />
+        <label for="price">Ingrese el nuevo precio</label>
+        <input class="modal__input" [(ngModel)]="price" id="price" placeholder={{price}} />
+        <label for="description">Ingrese la nueva descripcion</label>
+        <input class="modal__input" [(ngModel)]="description" id="descripcion" placeholder={{description}} />
+    </div>
+    <ng-template #deleteContent>
+        <p>¿Estas seguro de que deseas eliminar este plato?</p>
+    </ng-template>
+</ng-template>
