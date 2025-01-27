@@ -8,10 +8,11 @@
         [placeholder]="field()?.placeholder"
         [value]="initialData()"
         class="form__field__input"
+        [attr.aria-describedby]="'alert-'+field()?.key"
         />
     </div>
     @if (control?.invalid && control?.touched) {
-        <div class="form__alert">
+        <div class="form__alert" [id]="'alert-'+field()?.key">
           {{ field()?.errorMessage || 'Invalid input' }}
         </div>
     }

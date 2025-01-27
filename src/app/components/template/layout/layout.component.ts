@@ -14,7 +14,7 @@ export class LayoutComponent {
   private upperCase = new UpperCasePipe();
 
   items = [
-    {url: '', text: 'Inicio'},
+    {url: '/admin', text: 'Inicio'},
     {url: 'pedidos', text: 'Pedidos'},
     {url: 'clientes', text: 'Clientes'},
     {url: 'menus', text: 'Menús'},

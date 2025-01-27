@@ -14,7 +14,8 @@
                 </svg>
                 <span >{{user()}}</span>
             </div>
-            <a class="navigation__item" [routerLink]="contentBtn()?.url">{{contentBtn()?.text}}</a>
+            <a class="navigation__button" [routerLink]="contentBtn()?.url" role="button"
+            [attr.aria-label]="'Ir a ' + contentBtn()?.text">{{contentBtn()?.text}}</a>
         </div>
     </nav>
 </header>
