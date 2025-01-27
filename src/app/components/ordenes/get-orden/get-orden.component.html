@@ -1,0 +1,44 @@
+<section class="content" role="main">
+  <h1>Ordenes</h1>
+  <table class="content__table">
+    <thead class="coontent__head" role="rowgroup">
+      <tr>
+        <th scope="col">ID Orden</th>
+        <th scope="col">Total Precio</th>
+        <th scope="col">Estado de la Orden</th>
+        <th scope="col">Nombre del Cliente</th>
+        <th scope="col">Teléfono del Cliente</th>
+        <th scope="col">Platos</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody class="content__body" role="rowgroup">
+      @for(orden of ordenes; track orden.id){
+      <tr class="content__orden" role="row">
+        <td>{{ orden.id }}</td>
+        <td>{{ orden.priceTotal | currency}}</td>
+        <td>
+          <button type="button" [class]="getButtonClass(orden.statusOrder)" (click)="changeStatus(orden)">
+            {{ orden.statusOrder }}
+          </button>
+        </td>
+        <td>{{ orden.client.name }}</td>
+        <td>{{ orden.client.numberPhone }}</td>
+        <td>
+          <ul class="content__items" role="list">
+            @for(item of orden.items; track item.id){
+            <li role="listitem"><strong>Nombre:</strong> {{ item.dish.name }},</li>
+            <li role="listitem"><strong>Precio:</strong> {{ item.dish.price | currency}},</li>
+            <li role="listitem"><strong>Cantidad:</strong> {{ item.quantity }}</li>
+            }
+          </ul>
+        </td>
+        <td>
+          <app-botton-edit [id]="orden.id" (editEvent)="editOrden(orden.id)"></app-botton-edit>
+          <app-botton-delete [id]="orden.id" (deleteEvent)="deleteOrden($event)"></app-botton-delete>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</section>

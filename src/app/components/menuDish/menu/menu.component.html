@@ -1,0 +1,10 @@
+<section class="menu-restaurante" aria-label="Menú del Restaurante">
+  <section class="menu_restaurante__view" aria-labelledby="viewTitle">
+    <h2 id="viewTitle" class="visually-hidden">Vista del Menú</h2>
+    <app-get-menu (editDishEvent)="editDish($event)"></app-get-menu>
+  </section>
+  <section class="menu-restaurante__add">
+    <h2 id="addTitle" class="visually-hidden">Agregar Plato</h2>
+    <app-add-dish [dishSelect]="dishEdit"></app-add-dish>
+  </section>
+</section>

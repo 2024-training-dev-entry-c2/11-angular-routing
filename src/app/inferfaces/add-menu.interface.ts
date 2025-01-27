@@ -1,15 +1,14 @@
-
-export interface Dish {
+export interface IDish {
+  id: number,
   name: string;
   price: number;
   popular: boolean;
-  menuRestaurantId: number;
+  menuRestaurantId?: number;
 }
-
 export interface IAddMenuRequest {
   description: string;
   restaurantId: number;
-  dishes: Dish[];
+  dishes: IDish[];
 }
 export interface IAddMenuResponse {
     id: number,

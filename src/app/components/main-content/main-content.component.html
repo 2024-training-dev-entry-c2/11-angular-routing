@@ -1,4 +1,19 @@
-<section class="main">
-
-  <p>Contenido principal</p>
+<section class="main" aria-labelledby="restaurant-info-title">
+  <section class="main__restaurant-info">
+    <h2 id="restaurant-info-title">Información del Restaurante</h2>
+    <p>Dirección: {{infoRestaurant?.address | uppercase}}</p>
+    <p>Teléfono: {{infoRestaurant?.phoneNumber}}</p>
+    <p>Horario: {{ openingDate | date:'HH:mm' }} - {{ closingDate | date:'HH:mm' }}</p>
+    <h2 id="description-title">Descripción</h2>
+    <p>En {{infoRestaurant?.name}}, tenemos {{infoRestaurant?.menuRestaurant?.description}}</p>
+    <h2 id="popular-dishes-title">Platos Populares</h2>
+    <ul class="main__popular-dishes">
+      @for(dish of popularDishes; track dish){
+      <li class="main__card">
+        <p><span>Nombre:</span> {{ dish.name }}</p>
+        <p><span>Precio: </span>{{ dish.price | currency}} </p>
+      </li>
+      }
+    </ul>
+  </section>
 </section>
