@@ -1,0 +1,60 @@
+<div class="modal" role="dialog" aria-labelledby="order-modal-title" aria-modal="true">
+    <div class="modal__content">
+      <h2 id="order-modal-title" class="modal__title">{{ order ? 'Editar Orden' : 'Agregar Orden' }}</h2>
+      <form [formGroup]="orderForm" (ngSubmit)="onSave()" class="modal__form">
+        <!-- Cliente -->
+        <label class="modal__label">
+          ID Cliente:
+          <input formControlName="clientId" type="number" class="modal__input" />
+          <div *ngIf="orderForm.get('clientId')?.invalid && orderForm.get('clientId')?.touched" class="modal__error">
+            El ID del cliente es requerido.
+          </div>
+        </label>
+  
+        <!-- Fecha -->
+        <label class="modal__label">
+          Fecha:
+          <input formControlName="date" type="datetime-local" class="modal__input" />
+          <div *ngIf="orderForm.get('date')?.invalid && orderForm.get('date')?.touched" class="modal__error">
+            La fecha es requerida.
+          </div>
+        </label>
+  
+        <!-- Costo total -->
+        <label class="modal__label">
+          Costo Total:
+          <input formControlName="totalCost" type="number" step="0.01" class="modal__input" />
+          <div *ngIf="orderForm.get('totalCost')?.invalid && orderForm.get('totalCost')?.touched" class="modal__error">
+            El costo total debe ser un valor válido.
+          </div>
+        </label>
+  
+        <!-- Platos -->
+        <fieldset class="modal__fieldset">
+          <legend>Platos</legend>
+          <div class="modal__checkbox-list">
+            <label *ngFor="let dish of dishes" class="modal__checkbox">
+              <input
+                type="checkbox"
+                [value]="dish.id"
+                (change)="toggleDish(dish.id, $event)"
+                [checked]="isDishSelected(dish.id)"
+              />
+              {{ dish.name }}
+            </label>
+          </div>
+        </fieldset>
+  
+        <!-- Acciones -->
+        <div class="modal__actions">
+          <button type="submit" class="modal__button modal__button--save" [disabled]="orderForm.invalid">
+            Guardar
+          </button>
+          <button type="button" class="modal__button modal__button--cancel" (click)="onCancel()">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

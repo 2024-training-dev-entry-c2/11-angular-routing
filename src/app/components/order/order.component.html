@@ -1,0 +1,58 @@
+<div class="orders">
+    <h2 class="orders__title">Lista de Órdenes</h2>
+    <button 
+      class="orders__button orders__button--add" 
+      (click)="openModal(null)" 
+      aria-label="Agregar nueva orden">
+      Agregar Orden
+    </button>
+  
+    <div *ngIf="orders.length > 0; else noOrders" class="orders__table-container">
+      <table class="orders__table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">ID Cliente</th>
+            <th scope="col">Platos</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Costo Total</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders">
+            <td>{{ order.id }}</td>
+            <td>{{ order.clientId }}</td>
+            <td>{{ getDishNames(order.dishIds).join(', ') }}</td>
+            <td>{{ order.date | date: 'short' }}</td>
+            <td>{{ order.totalCost | currency }}</td>
+            <td>
+              <button 
+                class="orders__button orders__button--edit" 
+                (click)="openModal(order)" >
+                Editar
+              </button>
+              <button 
+                class="orders__button orders__button--delete" 
+                (click)="deleteOrder(order.id)" >
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <ng-template #noOrders>
+      <p class="orders__no-data">No hay órdenes registradas.</p>
+    </ng-template>
+  
+    <app-order-modal
+      *ngIf="isModalOpen"
+      [order]="selectedOrder"
+      [dishes]="dishes"
+      (save)="saveOrder($event)"
+      (cancel)="closeModal()"
+    ></app-order-modal>
+  </div>
+  

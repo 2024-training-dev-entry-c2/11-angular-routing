@@ -1,0 +1,41 @@
+<div class="modal-backdrop">
+    <div class="modal">
+      <h2>{{ client ? 'Editar Cliente' : 'Agregar Cliente' }}</h2>
+      <form [formGroup]="clientForm" (ngSubmit)="onSave()">
+        <label>
+          Nombre:
+          <input formControlName="name" type="text" />
+          <div *ngIf="clientForm.get('name')?.invalid && clientForm.get('name')?.touched">
+            El nombre es requerido.
+          </div>
+        </label>
+        <label>
+          Apellido:
+          <input formControlName="lastName" type="text" />
+          <div *ngIf="clientForm.get('lastName')?.invalid && clientForm.get('lastName')?.touched">
+            El apellido es requerido.
+          </div>
+        </label>
+        <label>
+          Email:
+          <input formControlName="email" type="email" />
+          <div *ngIf="clientForm.get('email')?.invalid && clientForm.get('email')?.touched">
+            Email inválido.
+          </div>
+        </label>
+        <label>
+          Teléfono:
+          <input formControlName="phone" type="text" />
+        </label>
+        <label>
+          Tipo:
+          <input formControlName="type" type="text" />
+        </label>
+        <div class="modal-actions">
+          <button type="submit" [disabled]="clientForm.invalid">Guardar</button>
+          <button type="button" (click)="onCancel()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

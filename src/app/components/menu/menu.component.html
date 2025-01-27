@@ -1,0 +1,46 @@
+<div class="menus-table">
+    <h2 class="menus-table__title">Lista de Menús</h2>
+    <button class="menus-table__button menus-table__button--add" (click)="openModal(null)">
+      Agregar Menú
+    </button>
+    <div *ngIf="menus.length > 0; else noMenus">
+      <table class="menus-table__table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Platos</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let menu of menus">
+            <td>{{ menu.name }}</td>
+            <td>{{ menu.description }}</td>
+            <td>
+              <ul>
+                <li *ngFor="let dish of menu.dishes">{{ dish.name }}</li>
+              </ul>
+            </td>
+            <td class="menus-table__body-cell menus-table__body-cell--actions">
+              <button (click)="openModal(menu)" class="menus-table__button menus-table__button--edit">Editar</button>
+              <button (click)="deleteMenu(menu.id)" class="menus-table__button menus-table__button--delete">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-template #noMenus>
+      <p>No hay menús registrados</p>
+    </ng-template>
+  
+    <app-menu-modal
+    *ngIf="isModalOpen"
+    [menu]="selectedMenu"
+    [dishes]="dishes"
+    (save)="saveMenu($event)"
+    (cancel)="closeModal()"
+  ></app-menu-modal>
+  
+  </div>
+  

@@ -1,0 +1,52 @@
+<div class="clients-table">
+  <h2 class="clients-table__title">Lista de Clientes</h2>
+  <div class="clients-table__actions">
+    <button class="clients-table__button clients-table__button--add" (click)="openModal(null)">Agregar Cliente</button>
+  </div>
+  @if (clients.length > 0) {
+  <div class="clients-table__wrapper" role="table" aria-label="Lista de Clientes">
+    <table class="clients-table__table">
+      <thead class="clients-table__header">
+        <tr class="clients-table__header-row">
+          <th class="clients-table__header-cell" scope="col">Nombre</th>
+          <th class="clients-table__header-cell" scope="col">Apellido</th>
+          <th class="clients-table__header-cell" scope="col">Email</th>
+          <th class="clients-table__header-cell" scope="col">Teléfono</th>
+          <th class="clients-table__header-cell" scope="col">Tipo</th>
+          <th class="clients-table__header-cell" scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody class="clients-table__body">
+        @for (client of clients; track $index) {
+        <tr class="clients-table__body-row">
+          <td class="clients-table__body-cell" data-label="Nombre">{{ client.name }}</td>
+          <td class="clients-table__body-cell" data-label="Apellido">{{ client.lastName }}</td>
+          <td class="clients-table__body-cell" data-label="Email">{{ client.email }}</td>
+          <td class="clients-table__body-cell" data-label="Teléfono">
+            {{ client.phone || 'No disponible' }}
+          </td>
+          <td class="clients-table__body-cell" data-label="Tipo">
+            {{ client.type || 'Sin tipo' }}
+          </td>
+          <td class="clients-table__body-cell clients-table__body-cell--actions">
+            <button class="clients-table__button clients-table__button--edit"
+              (click)="openModal(client)">Editar</button>
+            <button class="clients-table__button clients-table__button--delete"
+              (click)="deleteClient(client.id)">Eliminar</button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  }@else{
+  <p class="clients-table__empty">No hay clientes registrados</p>
+  }
+</div>
+
+<app-client-modal
+  *ngIf="isModalOpen"
+  [client]="selectedClient"
+  (save)="saveClient($event)"
+  (cancel)="closeModal()"
+></app-client-modal>
