@@ -43,6 +43,7 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   saveData() {
     this.onSaveTest.emit();
+    this.closeModal();
   }
 
   closeModal() {
