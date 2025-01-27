@@ -1,8 +1,20 @@
 .menu-card {
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 1rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-height: 380px;
+
+    &__image {
+        width: 100%;
+        padding: 0;
+        object-fit: cover;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    &__content {
+        padding: 1rem;
+    }
 
     &__title {
         font-size: 1.25rem;
@@ -13,6 +25,7 @@
         font-size: 1rem;
         color: #555;
         margin-bottom: 0.5rem;
+        text-wrap: wrap;
     }
 
     &__info {
