@@ -14,31 +14,33 @@ import { HeaderComponent } from "../../header/header.component";
 })
 export class OrderHeaderComponent {
   customerName: string = '';
-  orderStatus: string = '';
+  totalAmount: number = 0;
+  orderItems: string[] = [];
 
   @Output() orderAdded = new EventEmitter<IOrderResponseDto>();
 
   constructor(private orderService: OrderService) {}
 
   addOrderToAPI() {
-  //   if (this.customerName.trim() && this.orderStatus.trim()) {
-  //     const newOrder: IOrderResponseDto = {
-  //       idOrder: null, 
-  //       customerName: this.customerName.trim(),
-  //       items: [],
-  //     };
+    if (this.customerName.trim() && this.totalAmount) {
+      const newOrder: IOrderResponseDto = {
+        idOrder: 0, 
+        clientName: this.customerName.trim(),
+        totalAmount: this.totalAmount,
+        orderItems: [],
+      };
   
-  //     this.orderService.addOrder(newOrder).subscribe({
-  //       next: response => {
-  //         console.log('Order added successfully:', response);
-  //         this.orderAdded.emit(response);
-  //       },
-  //       error: error => {
-  //         console.error('Error adding order:', error);
-  //       }
-  //     });
-  //   } else {
-  //     alert('Por favor, ingresa todos los campos.');
-  //   }
+      this.orderService.addOrder(this.customerName, newOrder).subscribe({
+        next: response => {
+          console.log('Order added successfully:', response);
+          this.orderAdded.emit(response);
+        },
+        error: error => {
+          console.error('Error adding order:', error);
+        }
+      });
+    } else {
+      alert('Por favor, ingresa todos los campos.');
+    }
   }
 }

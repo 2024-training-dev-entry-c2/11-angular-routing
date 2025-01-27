@@ -19,7 +19,7 @@ searchQuery: string = '';
     this.searchQuery = query; 
   }
 
-  onMenuAdded(newOrder: IOrderResponseDto): void {
-    // this.orderMainComponent.addOrder(newOrder);
+  onOrderAdded(newOrder: IOrderResponseDto): void {
+    this.orderMainComponent.addOrder(newOrder);
   }
 }

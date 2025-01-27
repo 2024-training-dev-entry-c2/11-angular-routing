@@ -49,8 +49,8 @@ export class OrderMainComponent implements OnInit {
     );
   }
 
-   addOrder(newOrder: IOrderItemResponseDto): void {
-      // this.orders.push(newOrder);
+   addOrder(newOrder: IOrderResponseDto): void {
+      this.orders.push(newOrder);
       this.filterOrders(); 
     }
   
@@ -123,7 +123,7 @@ export class OrderMainComponent implements OnInit {
   updateOrder(id: number): void {
     const updatedOrder: IOrderResponseDto = {
       ...this.currentOrder,
-      clientName: this.clientName,
+      totalAmount: this.totalAmount,
     };
 
     this.orderService.updateOrder(id, updatedOrder).subscribe(
