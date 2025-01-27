@@ -1,0 +1,34 @@
+<button (click)="openModal()" class="container-modal__trigger">
+  {{ formConfig.title }}
+</button>
+
+@if (isModalOpen) {
+<div class="container-modal">
+  <div class="container-modal__fondo" (click)="closeModal()">
+    <div class="container-modal__contenido" (click)="$event.stopPropagation()">
+      <mat-icon
+        aria-hidden="false"
+        fontIcon="close"
+        class="container-modal__close"
+        (click)="closeModal()"
+      ></mat-icon>
+
+      <div class="container-modal__body">
+        <img
+          src="../../../../public/dishes/bebida2.jpg"
+          alt="Logo de bebidas"
+          class="container-modal__logo"
+        />
+
+        <div class="container-modal__container-form">
+          <h3 class="container-modal__title">
+            {{ formConfig.title }}
+          </h3>
+
+          <app-form [config]="formConfig"></app-form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}

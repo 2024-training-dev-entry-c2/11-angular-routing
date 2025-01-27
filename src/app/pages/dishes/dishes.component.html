@@ -1,0 +1,56 @@
+<section class="dishes" aria-label="pagina Platos">
+  <header class="dishes__header" aria-label="header Platos contiene navegación y botón para agregar plato">
+    <h1 class="dishes__title">Platos</h1>
+    <button class="dishes__add-btn" (click)="openForm()">Agregar Plato</button>
+    <app-form-create
+      [isOpenForm]="isModalForm"
+      (closeModalForm)="closeModalForm()"
+    ></app-form-create>
+  </header>
+
+  <div class="dishes__grid" aria-label="grid de platos">
+    <article class="dish-card">
+      @for(plato of this.dishes; track $index) {
+      <div class="dish-card__content">
+        <h3 class="dish-card__title">{{ plato.name }}</h3>
+        <p class="dish-card__description">
+          {{ plato.description }}
+        </p>
+
+        <div class="dish-card__details">
+          <div class="dish-card__price">{{ plato.price | currency }}</div>
+          <div class="dish-card__category">Plato tipico</div>
+        </div>
+
+        <div class="dish-card__actions">
+          <button
+            (click)="openModal(plato.id)"
+            class="dish-card__btn dish-card__btn--edit"
+          >
+            <mat-icon aria-hidden="false" fontIcon="edit"></mat-icon>
+          </button>
+
+          <app-modal-dishes
+            [isOpen]="isModalOpen"
+            [data]="{
+              id: plato.id,
+              name: plato.name,
+              description: plato.description,
+              price: plato.price
+            }"
+            [id]="idDish"
+            (closeModal)="closeModal()"
+          ></app-modal-dishes>
+
+          <button
+            class="dish-card__btn dish-card__btn--delete"
+            (click)="deleteDish(plato.id)"
+          >
+            <mat-icon aria-hidden="false" fontIcon="delete"></mat-icon>
+          </button>
+        </div>
+      </div>
+      }
+    </article>
+  </div>
+</section>

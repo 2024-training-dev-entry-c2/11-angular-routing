@@ -1,0 +1,47 @@
+<div class="modal" [class.modal--open]="isOpenForm">
+  <div class="modal__overlay" (click)="close()"></div>
+
+  <div class="modal__content">
+    <button class="modal__close" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+
+    <h2 class="modal__title">Crear plato</h2>
+
+    <form
+      [formGroup]="editForm"
+      (ngSubmit)="onSubmit()"
+      class="modal__form"
+      aria-label="Formulario para crear plato"
+    >
+      <div class="modal__form-group">
+        <input
+          type="text"
+          formControlName="name"
+          class="modal__input"
+          placeholder="Nombre del plato"
+        />
+      </div>
+
+      <div class="modal__form-group">
+        <input
+          type="email"
+          formControlName="description"
+          class="modal__input"
+          placeholder="Descripción del plato"
+        />
+      </div>
+
+      <div class="modal__form-group">
+        <input
+          type="number"
+          formControlName="price"
+          class="modal__input"
+          placeholder="Precio del plato"
+        />
+      </div>
+
+      <button type="submit" class="modal__submit">Crear</button>
+    </form>
+  </div>
+</div>

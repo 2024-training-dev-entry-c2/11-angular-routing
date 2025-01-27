@@ -1,8 +1,11 @@
 import { Routes } from '@angular/router';
+import { LayoutComponent } from './layout/layout.component';
 
 export const routes: Routes = [
   {
-    path: 'jacobo',
-    loadChildren: () => import('./components/admin/admin.routes').then((adminRoutes) => adminRoutes.routes)
-  }
+    path: '',
+    component: LayoutComponent,
+    loadChildren: () =>
+      import('./layout/layout.routes').then((m) => m.routesLayout),
+  },
 ];

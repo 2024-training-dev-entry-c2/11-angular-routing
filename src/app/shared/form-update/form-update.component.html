@@ -1,0 +1,21 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  class="formModal-form__form"
+  aria-label="Formualrio para editar plato"
+>
+  @for (field of config.fields; track field.name) {
+  <div class="formModal-form__group">
+    <input
+      [type]="field.type"
+      [formControlName]="field.name"
+      [placeholder]="field.placeholder"
+      class="formModal-form__input"
+    />
+  </div>
+  }
+
+  <button type="submit" class="formModal-form__submit">
+    {{ config.submitText }}
+  </button>
+</form>
