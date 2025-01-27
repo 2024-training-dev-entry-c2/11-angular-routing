@@ -38,7 +38,7 @@
                     <td>{{ dish.id }}</td>
                     <td>{{ dish.dishName }}</td>
                     <td>{{ dish.description }}</td>
-                    <td>{{ dish.basePrice }}</td>
+                    <td>{{ dish.basePrice | number:'1.0-0':'es-ES' }}</td>
                     <td>{{ dish.isPopular ? 'Si' : 'No' }}</td>
 
                     <td class="entity__buttons">

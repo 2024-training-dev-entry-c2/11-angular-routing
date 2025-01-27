@@ -4,7 +4,7 @@ import { HomeComponent } from '../../home/components/home.component';
 import { DishComponent } from '../../dish/components/dish.component';
 import { CustomerComponent } from '../../customer/components/customer.component';
 import { MenuComponent } from '../../menu/components/menu.component';
-import { OrderComponent } from '../../order/order/order.component';
+import { OrderComponent } from '../../order/components/order.component';
 
 export const routes: Routes = [
   {

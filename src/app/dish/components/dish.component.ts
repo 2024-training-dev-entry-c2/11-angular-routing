@@ -9,10 +9,20 @@ import { DeleteCardComponent } from '../../delete-card/delete-card.component';
 import { ListMenusService } from '../../menu/services/list-menus.service';
 import { IMenuResponse } from '../../menu/interfaces/menu.interface';
 import { forkJoin, switchMap } from 'rxjs';
+import { DecimalPipe } from '@angular/common';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+
+registerLocaleData(localeEs, 'es');
 
 @Component({
   selector: 'app-dish',
-  imports: [FontAwesomeModule, FormDishComponent, DeleteCardComponent],
+  imports: [
+    FontAwesomeModule,
+    FormDishComponent,
+    DeleteCardComponent,
+    DecimalPipe,
+  ],
   templateUrl: './dish.component.html',
   styleUrl: './dish.component.scss',
 })
