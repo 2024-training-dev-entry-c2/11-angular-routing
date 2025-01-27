@@ -1,25 +1,33 @@
 @if (isOpen && dishForm() != false) {
-    
-    <div class="modal is-open">
-        <section class="modal-content">
-            <span class="close" (click)="closeModal()" >&times;</span>
-            <div class="modal__container">
-                <h1>{{modalTitle()}}</h1>
-                <form class="modal__form" (ngSubmit)="onSaveTest" [formGroup]="inputForm()!">
-
-                    @for (item of formData(); track $index) {
-                        
-                        <label [for]="item.labelName" class="modal__label">{{item.labelName}}</label>
-                        <input [id]="item.labelName" [type]="item.type" class="modal__input"  [formControlName]="item.valueLabel">
-                    }
-                    
-                <div>
-                    <button type="submit" class="modal__btn" (click)="saveData()" aria-label="Button that saves the data of the form">Guardar</button>
-                </div>
-            </form>
+    <div class="modal modal--open" role="dialog" aria-labelledby="modalTitle" aria-hidden="false">
+      <section class="modal__content">
+        <span class="modal__close" (click)="closeModal()" role="button" aria-label="Close the modal">&times;</span>
+        <div class="modal__container">
+          <h1 id="modalTitle">{{modalTitle()}}</h1>
+          <form class="modal__form" (ngSubmit)="onSaveTest" [formGroup]="inputForm()!">
+            @for (item of formData(); track $index) {
+              <label [for]="item.labelName" class="modal__label" aria-label="Label for inputs of the form edit">{{item.labelName}}</label>
+              <input 
+                [id]="item.labelName" 
+                [type]="item.type" 
+                class="modal__input" 
+                [formControlName]="item.valueLabel" 
+                aria-label="Input for the data inside the form" 
+                aria-required="true">
+            }
+            <div>
+              <button 
+                type="submit" 
+                class="modal__btn" 
+                (click)="saveData()" 
+                aria-label="Save the data in the form" 
+                role="button">
+                Guardar
+              </button>
+            </div>
+          </form>
         </div>
-    </section>
-    
-</div>
-
-}
+      </section>
+    </div>
+  }
+  

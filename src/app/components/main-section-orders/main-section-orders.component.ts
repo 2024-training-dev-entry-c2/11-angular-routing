@@ -35,10 +35,8 @@ export class MainSectionOrdersComponent {
   private inputService = inject(getOrderService);
   private formBuilder = inject(FormBuilder);
   private subscription!: Subscription;
-  private orderToDeleteSubscription!: Subscription;
-  private orderToDelete: IOrders | null = null;
-  private orderToEditSubscription!: Subscription;
-  private orderToEdit: IOrders | null = null;
+  private dataToManage: IOrders | null = null;
+
   onSaveTest = output<void>();
   dishForm = false;
 
@@ -73,16 +71,16 @@ export class MainSectionOrdersComponent {
   ngOnInit() {
     this.orderService.getData().subscribe();
 
-    this.orderToDeleteSubscription = this.orderService
+    this.subscription = this.orderService
       .getOrderToDelete()
       .subscribe((order) => {
-        this.orderToDelete = order;
+        this.dataToManage = order;
       });
 
-    this.orderToEditSubscription = this.orderService
+    this.subscription = this.orderService
       .getOrderToEdit()
       .subscribe((orderEdit) => {
-        this.orderToEdit = orderEdit;
+        this.dataToManage = orderEdit;
       });
   }
 
@@ -141,8 +139,8 @@ export class MainSectionOrdersComponent {
   
 
   deleteData() {
-    if (this.orderToDelete) {
-      this.orderService.deleteData(this.orderToDelete.id).subscribe({
+    if (this.dataToManage) {
+      this.orderService.deleteData(this.dataToManage.id).subscribe({
         next: () => {
           this.deleteModalService.closeModal();
           console.log('Deleted successfully');
@@ -154,8 +152,9 @@ export class MainSectionOrdersComponent {
     }
   }
 
+ 
   onSaveEdit(): void {
-    if (this.orderToEdit && this.orderForm.valid) {
+    if (this.dataToManage && this.orderForm.valid) {
       const dishesText = this.dishesText?.value ?? '';
       const dishesArray = dishesText
         .split(',')
@@ -171,7 +170,7 @@ export class MainSectionOrdersComponent {
       // console.log('Edit Payload:', payload); 
   
       this.orderService
-        .editData(this.orderToEdit.id, payload as unknown as IOrders)
+        .editData(this.dataToManage.id, payload as unknown as IOrders)
         .subscribe({
           next: () => {
             this.editModalService.closeModal();
@@ -184,4 +183,8 @@ export class MainSectionOrdersComponent {
     }
   }
   
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
 }

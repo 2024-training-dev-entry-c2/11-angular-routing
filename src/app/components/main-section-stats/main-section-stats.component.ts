@@ -29,7 +29,7 @@ export class MainSectionStatsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // Realizar todas las solicitudes en paralelo
+    // solicitudes en paralelo
     const requests = forkJoin({
       orders: this.ordersService.getData().pipe(catchError(() => of([]))),
       menus: this.menusService.getData().pipe(catchError(() => of([]))),
@@ -37,7 +37,7 @@ export class MainSectionStatsComponent implements OnInit, OnDestroy {
       dishes: this.dishesService.getData().pipe(catchError(() => of([]))),
     });
 
-    // Suscribirse a las respuestas combinadas
+    // Suscribirse
     this.subscription = requests.subscribe((response) => {
       this.data.orders = response.orders;
       this.data.menus = response.menus;
@@ -52,7 +52,6 @@ export class MainSectionStatsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // Cancelar la suscripción al destruir el componente
     this.subscription.unsubscribe();
   }
 }

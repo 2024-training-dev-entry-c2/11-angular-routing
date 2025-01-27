@@ -10,10 +10,8 @@ import { DataManagementService } from './data.service';
 })
 export class getDishService {
   private apiUrl = 'http://localhost:8080/api/dishes';
-    private dishToDeleteSubject = new BehaviorSubject<IDishes | null>(null);
-    private dishToDelete$ = this.dishToDeleteSubject.asObservable();
-    private dishToEditSubject = new BehaviorSubject<IDishes | null>(null);
-    private dishToEdit$ = this.dishToEditSubject.asObservable();
+  private dataToManageSubject = new BehaviorSubject<IDishes | null>(null);
+  private dataToManage$ = this.dataToManageSubject.asObservable();
   
   constructor(
     private http: HttpClient,
@@ -34,19 +32,19 @@ export class getDishService {
 
 
   setDishToDelete(dish: IDishes) {
-    this.dishToDeleteSubject.next(dish);
+    this.dataToManageSubject.next(dish);
   }
 
   getDishToDelete() {
-    return this.dishToDelete$;
+    return this.dataToManage$;
   }
   
   setDishToEdit(dish: IDishes) {
-    this.dishToEditSubject.next(dish);
+    this.dataToManageSubject.next(dish);
   }
 
   getDishtToEdit() {
-    return this.dishToEdit$;
+    return this.dataToManage$;
   }
   
 

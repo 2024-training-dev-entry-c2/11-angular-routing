@@ -35,10 +35,7 @@ export class MainSectionDishesComponent {
   private formBuilder = inject(FormBuilder);
   private inputService = inject(getDishService);
   private subscription!: Subscription;
-  private dishToDeleteSubscription!: Subscription;
-  private dishToDelete: IDishes | null = null;
-  private dishToEditSubscription!: Subscription;
-  private dishToEdit: IDishes | null = null;
+  private dataToManage: IDishes | null = null;
   onSaveTest = output<void>();
 
   public dishForm = this.formBuilder.group({
@@ -70,16 +67,16 @@ export class MainSectionDishesComponent {
 
   ngOnInit() {
     this.dishService.getData().subscribe();
-    this.dishToDeleteSubscription = this.dishService
+    this.subscription = this.dishService
       .getDishToDelete()
       .subscribe((dish) => {
-        this.dishToDelete = dish;
+        this.dataToManage = dish;
       });
 
-    this.dishToEditSubscription = this.dishService
+    this.subscription = this.dishService
       .getDishtToEdit()
       .subscribe((dishEdit) => {
-        this.dishToEdit = dishEdit;
+        this.dataToManage = dishEdit;
       });
   }
 
@@ -117,8 +114,8 @@ export class MainSectionDishesComponent {
   }
 
   deleteData() {
-    if (this.dishToDelete) {
-      this.dishService.deleteData(this.dishToDelete.id).subscribe({
+    if (this.dataToManage) {
+      this.dishService.deleteData(this.dataToManage.id).subscribe({
         next: () => {
           this.deleteModalService.closeModal();
           console.log('Deleted successfully');
@@ -131,9 +128,9 @@ export class MainSectionDishesComponent {
   }
 
   onSaveEdit() {
-    if (this.dishToEdit && this.dishForm.valid) {
+    if (this.dataToManage && this.dishForm.valid) {
       this.dishService
-        .editData(this.dishToEdit.id, this.dishForm.value as unknown as IDishes)
+        .editData(this.dataToManage.id, this.dishForm.value as unknown as IDishes)
         .subscribe({
           next: () => {
             this.editModalService.closeModal();
@@ -144,5 +141,9 @@ export class MainSectionDishesComponent {
           },
         });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

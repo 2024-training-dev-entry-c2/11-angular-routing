@@ -29,10 +29,7 @@ export class MainSectionMenusComponent {
   private formBuilder = inject(FormBuilder);
   private inputService = inject(getMenusService);
   private subscription!: Subscription;
-  private menuToDeleteSubscription!: Subscription;
-  private menuToEditSubscription!: Subscription;
-  private menuToEdit: IMenu | null = null;
-  private menuToDelete: IMenu | null = null;
+  private dataToManage: IMenu | null = null;
 
   public data: any;
   public menuData: Observable<IMenu[]>;
@@ -61,16 +58,16 @@ export class MainSectionMenusComponent {
   ngOnInit() {
     this.menuService.getData().subscribe();
 
-    this.menuToDeleteSubscription = this.menuService
+    this.subscription = this.menuService
       .getMenuToDelete()
       .subscribe((menu) => {
-        this.menuToDelete = menu;
+        this.dataToManage = menu;
       });
 
-      this.menuToEditSubscription = this.menuService
+      this.subscription = this.menuService
       .getMenuToEdit()
       .subscribe((menuEdit) => {
-        this.menuToEdit = menuEdit;
+        this.dataToManage = menuEdit;
       });
   }
 
@@ -109,8 +106,8 @@ openEditModal(menuEdit: IMenu) {
   }
 
   deleteData() {
-    if (this.menuToDelete) {
-      this.menuService.deleteData(this.menuToDelete.id).subscribe({
+    if (this.dataToManage) {
+      this.menuService.deleteData(this.dataToManage.id).subscribe({
         next: () => {
           this.deleteModalService.closeModal();
           console.log('Deleted successfully');
@@ -124,9 +121,9 @@ openEditModal(menuEdit: IMenu) {
 
 
   onSaveEdit() {
-      if (this.menuToEdit && this.menuForm.valid) {
+      if (this.dataToManage && this.menuForm.valid) {
         this.menuService
-          .editData(this.menuToEdit.id, this.menuForm.value as unknown as IMenu)
+          .editData(this.dataToManage.id, this.menuForm.value as unknown as IMenu)
           .subscribe({
             next: () => {
               this.editModalService.closeModal();

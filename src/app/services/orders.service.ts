@@ -8,11 +8,9 @@ import { DataManagementService } from './data.service';
   providedIn: 'root'
 })
 export class getOrderService {
-    private apiUrl = 'http://localhost:8080/api/orders';
-    private orderToDeleteSubject = new BehaviorSubject<IOrders | null>(null);
-    private orderToDelete$ = this.orderToDeleteSubject.asObservable();
-    private orderToEditSubject = new BehaviorSubject<IOrders | null>(null);
-    private orderToEdit$ = this.orderToEditSubject.asObservable();
+  private apiUrl = 'http://localhost:8080/api/orders';
+  private dataToManageSubject = new BehaviorSubject<IOrders | null>(null);
+  private dataToManage$ = this.dataToManageSubject.asObservable();
     
     constructor(
       private http: HttpClient,
@@ -37,20 +35,20 @@ export class getOrderService {
     }
 
      setOrderToDelete(dish: IOrders) {
-        this.orderToDeleteSubject.next(dish);
+        this.dataToManageSubject.next(dish);
       }
     
       getOrderToDelete() {
-        return this.orderToDelete$;
+        return this.dataToManage$;
       }
 
 
       setOrderToEdit(dish: IOrders) {
-        this.orderToEditSubject.next(dish);
+        this.dataToManageSubject.next(dish);
       }
     
       getOrderToEdit() {
-        return this.orderToEdit$;
+        return this.dataToManage$;
       }
       
     

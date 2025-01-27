@@ -1,65 +1,21 @@
-
 .modal {
-    display: none;
-    position: fixed; 
-    z-index: 1; 
-    padding-top: 100px;
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%;
-    overflow: auto; 
-    background-color: rgb(0, 0, 0); 
-    background-color: rgba(0, 0, 0, 0.4); 
-    border: 10px;
-    &.is-open {
-        display: block;
-      }
-  
-    &__container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      height: 100%;
-      
-      justify-content: center;
-    }
-    &__form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-  
-      input::placeholder {
-        padding: 100px;
-      }
-    }
-  
-    &__btn {
-      padding: 5px 10px;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-      font-size: 14px;
-      background-color: #4caf50;
-      color: white;
-    }
-  
-    &__label {
-      font-size: 16px;
-    }
-    &__input {
-      border-radius: 6px;
-      border: 1px solid grey;
-      height: 32px;
-      width: 280px;
-    }
-    &__input::placeholder {
-      padding: 10px;
-    }
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 10px;
+
+  &--open {
+    display: block;
   }
-  
-  .modal-content {
+
+  &__content {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
@@ -68,31 +24,70 @@
     height: 90%;
     border-radius: 10px;
   }
-  
-  /* The Close Button */
-  .close {
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    height: 100%;
+    justify-content: center;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__label {
+    font-size: 16px;
+  }
+
+  &__input {
+    border-radius: 6px;
+    border: 1px solid grey;
+    height: 32px;
+    width: 280px;
+    
+    &::placeholder {
+      padding: 10px;
+    }
+  }
+
+  &__btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: #4caf50;
+    color: white;
+  }
+
+  &__close {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: #000;
-    text-decoration: none;
     cursor: pointer;
-  }
-  
-  @media (max-width: 768px) {
-    .stats-container {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .stat-item {
-      width: 80%;
-      max-width: 300px;
+
+    &:hover,
+    &:focus {
+      color: #000;
+      text-decoration: none;
     }
   }
-  
+}
+
+@media (max-width: 768px) {
+  .modal__container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .modal__input {
+    width: 80%;
+    max-width: 300px;
+  }
+}

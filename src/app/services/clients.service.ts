@@ -9,10 +9,8 @@ import { DataManagementService } from './data.service';
 })
 export class getClientsService {
   private apiUrl = 'http://localhost:8080/api/clients';
-  private clientToDeleteSubject = new BehaviorSubject<IClients | null>(null);
-  private clientToDelete$ = this.clientToDeleteSubject.asObservable();
-  private clientToEditSubject = new BehaviorSubject<IClients | null>(null);
-  private clientToEdit$ = this.clientToEditSubject.asObservable();
+  private dataToManageSubject = new BehaviorSubject<IClients | null>(null);
+  private dataToManage$ = this.dataToManageSubject.asObservable();
 
   constructor(
     private http: HttpClient,
@@ -34,19 +32,19 @@ export class getClientsService {
   }
 
   setClientToDelete(client: IClients) {
-    this.clientToDeleteSubject.next(client);
+    this.dataToManageSubject.next(client);
   }
 
   getClientToDelete() {
-    return this.clientToDelete$;
+    return this.dataToManage$;
   }
 
   setClientToEdit(client: IClients) {
-    this.clientToEditSubject.next(client);
+    this.dataToManageSubject.next(client);
   }
 
   getClientToEdit() {
-    return this.clientToEdit$;
+    return this.dataToManage$;
   }
 
   deleteData(clientId: number) {

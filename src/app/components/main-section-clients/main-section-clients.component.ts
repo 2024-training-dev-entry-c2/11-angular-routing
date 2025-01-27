@@ -25,10 +25,8 @@ export class MainSectionClientsComponent {
   private inputService = inject(getClientsService);
   private formBuilder = inject(FormBuilder);
   private subscription!: Subscription;
-  private clientToDeleteSubscription!: Subscription;
-  private clientToEditSubscription!: Subscription;
-  private clientToDelete: IClients | null = null;
-  private clientToEdit: IClients | null = null;
+  private dataToManage: IClients | null = null;
+
   onSaveTest = output<void>();
 
   public clientForm = this.formBuilder.group({
@@ -56,17 +54,19 @@ export class MainSectionClientsComponent {
   ngOnInit() {
     this.clientsService.getData().subscribe();
 
-    this.clientToDeleteSubscription = this.clientsService
+    this.subscription = this.clientsService
       .getClientToDelete()
       .subscribe((client) => {
-        this.clientToDelete = client;
+        this.dataToManage = client;
       });
 
-      this.clientToEditSubscription = this.clientsService
+      this.subscription = this.clientsService
       .getClientToEdit()
       .subscribe((clientEdit) => {
-        this.clientToEdit = clientEdit;
+        this.dataToManage = clientEdit;
       });
+
+      
 
 
   }
@@ -108,8 +108,8 @@ export class MainSectionClientsComponent {
   }
 
   deleteData() {
-    if (this.clientToDelete) {
-      this.clientsService.deleteData(this.clientToDelete.id).subscribe({
+    if (this.dataToManage) {
+      this.clientsService.deleteData(this.dataToManage.id).subscribe({
         next: () => {
           this.deleteModalService.closeModal();
           console.log('Deleted successfully');
@@ -123,8 +123,8 @@ export class MainSectionClientsComponent {
 
 
   onSaveEdit() {
-    if (this.clientToEdit && this.clientForm.valid) {
-      this.clientsService.editData(this.clientToEdit.id, this.clientForm.value as unknown as IClients)
+    if (this.dataToManage && this.clientForm.valid) {
+      this.clientsService.editData(this.dataToManage.id, this.clientForm.value as unknown as IClients)
         .subscribe({
           next: () => {
             this.editModalService.closeModal();
@@ -135,6 +135,10 @@ export class MainSectionClientsComponent {
           }
         });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
   
 }

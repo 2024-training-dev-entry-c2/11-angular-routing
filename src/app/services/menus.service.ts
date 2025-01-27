@@ -9,10 +9,8 @@ import { DataManagementService } from './data.service';
 })
 export class getMenusService {
   private apiUrl = 'http://localhost:8080/api/menus';
-  private menuToDeleteSubject = new BehaviorSubject<IMenu | null>(null);
-  private menuToDelete$ = this.menuToDeleteSubject.asObservable();
-  private menuToEditSubject = new BehaviorSubject<IMenu | null>(null);
-  private menuToEdit$ = this.menuToEditSubject.asObservable();
+ private dataToManageSubject = new BehaviorSubject<IMenu | null>(null);
+   private dataToManage$ = this.dataToManageSubject.asObservable();
 
   constructor(
     private http: HttpClient,
@@ -32,19 +30,19 @@ export class getMenusService {
   }
 
   setMenuToDelete(menu: IMenu) {
-    this.menuToDeleteSubject.next(menu);
+    this.dataToManageSubject.next(menu);
   }
 
   getMenuToDelete() {
-    return this.menuToDelete$;
+    return this.dataToManage$;
   }
 
   setMenuToEdit(menu: IMenu) {
-    this.menuToEditSubject.next(menu);
+    this.dataToManageSubject.next(menu);
   }
 
   getMenuToEdit() {
-    return this.menuToEdit$;
+    return this.dataToManage$;
   }
 
 
