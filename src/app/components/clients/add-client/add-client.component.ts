@@ -1,4 +1,4 @@
-import { Component, inject, Input, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ClientService } from '../../../services/client.service';
 import { IClient } from '../../../inferfaces/view-orden.interface';
@@ -14,6 +14,7 @@ export class AddClientComponent {
   private formBuilder = inject(FormBuilder);
   mensajeExito: string | null = null;
   @Input() clientSelect: IClient | null = null;
+  @Output() clientUpdated = new EventEmitter<void>();
   isEditMode: boolean = false;
 
    public clientForm = this.formBuilder.group({
@@ -47,6 +48,7 @@ onSubmit(): void {
           next: () => {
             this.mensajeExito = '¡Cliente actualizado con éxito!';
             this.clientForm.reset();
+            this.clientUpdated.emit();
             setTimeout(() => {
               this.mensajeExito = null;
             }, 3000);
@@ -57,6 +59,7 @@ onSubmit(): void {
           next: () => {
             this.mensajeExito = '¡Cliente creado con éxito!';
             this.clientForm.reset();
+            this.clientUpdated.emit();
             setTimeout(() => {
               this.mensajeExito = null;
             }, 3000);

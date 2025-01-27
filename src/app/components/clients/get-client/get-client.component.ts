@@ -15,16 +15,21 @@ export class GetClientComponent {
   clients: IClient[] = [];
   @Output() editClientEvent = new EventEmitter<number>();
 
-  ngOnInit() {
-    this.clienteService.execute().subscribe({
-      next: (data: IClient[]) => {
-        this.clients = data;
-      },
-      error: (error: any) => {
-        console.error('Error al obtener la orden', error);
-      },
-    });
-  }
+   ngOnInit() {
+      this.loadClients();
+    }
+
+    loadClients() {
+      this.clienteService.execute().subscribe({
+        next: (data: IClient[]) => {
+          this.clients = data;
+        },
+        error: (error: any) => {
+          console.error('Error al obtener la orden', error);
+        },
+      });
+    }
+
   editClient(id: number) {
     this.editClientEvent.emit(id);
   }

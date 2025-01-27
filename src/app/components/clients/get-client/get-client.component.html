@@ -30,8 +30,8 @@
         }
         </td>
         <td>
-          <app-botton-edit  [id]="client.id" (editEvent)="editClient(client.id)"></app-botton-edit>
-          <app-botton-delete [id]="client.id" (deleteEvent)="deleteClient($event)"></app-botton-delete>
+          <app-botton-edit  [id]="client.id!" (editEvent)="editClient(client.id!)"></app-botton-edit>
+          <app-botton-delete [id]="client.id!" (deleteEvent)="deleteClient($event)"></app-botton-delete>
         </td>
       </tr>
       }
