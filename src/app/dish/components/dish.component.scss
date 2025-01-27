@@ -1,0 +1,15 @@
+@use "../../ui/styles/mixins.scss" as mixins;
+@use "../../ui/styles/variables.scss" as variables;
+@import "../../customer/components/customer.component.scss";
+
+.entity {
+  &__group-title {
+    @include mixins.font(24px, 500);
+    color: variables.$color-font;
+    margin-bottom: 20px;
+  }
+
+  table {
+    margin-bottom: 40px;
+  }
+}

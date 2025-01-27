@@ -1,1 +1,59 @@
-<p>dish works!</p>
+<section class="container">
+    <article class="entity">
+        <div class="entity__header">
+            <h1>Platos</h1>
+        </div>
+
+        @for(dishList of dishes; track $index; let idx = $index){
+        <div class="entity__create-button-container">
+            <button class="entity__create-button" (click)="showCreateDishModal($index)">
+                <fa-icon [icon]="faPlus"></fa-icon>
+                <span>Crear nuevo plato</span>
+            </button>
+            @if(showSaveDish){
+            <app-form-dish [selectedDish]="selectedDish" [menuId]="selectedMenuId" (closeModal)="closeCreateDishModal()"
+                (dishSaved)="addDish($event)" (dishUpdated)="replaceDish($event)" (clearSelected)="clearSelectedDish()">
+            </app-form-dish>
+            }
+            @if(showDeleteDish){
+            <app-delete-card [selectedId]="selectedIdDish" [entityName]="'plato'" (closeModal)="closeDeleteDishModal()"
+                (onDelete)="deleteDish($event)"></app-delete-card>
+            }
+        </div>
+        <h2 class="entity__group-title">{{ menus[$index].menuName }}</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NOMBRE</th>
+                    <th>Descripción</th>
+                    <th>Precio base</th>
+                    <th>Popular</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for ( dish of dishList; track dish.id) {
+                <tr>
+                    <td>{{ dish.id }}</td>
+                    <td>{{ dish.dishName }}</td>
+                    <td>{{ dish.description }}</td>
+                    <td>{{ dish.basePrice }}</td>
+                    <td>{{ dish.isPopular ? 'Si' : 'No' }}</td>
+
+                    <td class="entity__buttons">
+                        <button class="entity__edit-button" (click)="showUpdateDishModal(dish, idx)">
+                            <fa-icon [icon]="faEdit"></fa-icon>
+                        </button>
+                        <button class="entity__delete-button" (click)="showDeleteDishModal(dish.id, idx)">
+                            <fa-icon [icon]="faTrash"></fa-icon>
+                        </button>
+
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        }
+    </article>
+</section>
