@@ -1,21 +1,23 @@
-<label class="label" [formGroup]="formGroup()">
+<label class="label" [formGroup]="formGroup()" aria-labelledby="label-title">
+    <span id="label-title" class="label__span">{{ span() }}</span>
 
-    <span class="label__span">{{span()}}</span>
     @switch (typeOf()) {
 
     @case ('multiselect') {
-    <select class="label__input" [formControlName]="formControlName()" (change)="addTag(handleSelectChange($event))">
+    <select class="label__input" [formControlName]="formControlName()" (change)="addTag(handleSelectChange($event))"
+        aria-describedby="selected-tags label-title">
         <option value="" disabled selected>{{ placeholder() }}</option>
         @for (option of options(); track $index) {
-        <option [value]="option.value">{{option.label}}</option>
+        <option [value]="option.value">{{ option.label }}</option>
         }
     </select>
-    
-    <div class="label__container">
+
+    <div class="label__container" id="selected-tags" aria-live="polite">
         @for (tag of selectedTags; track $index) {
         <span class="label__tags">
             {{ tag.label }}
-            <button type="button" class="label__button" (click)="removeTag(tag.value)">×</button>
+            <button type="button" class="label__button" (click)="removeTag(tag.value)"
+                [attr.aria-label]="'Eliminar etiqueta ' + tag.label">×</button>
         </span>
         }
         <h3 class="label__span">Precio Total: {{ totalPrice() | currency:'USD':'symbol':'1.2-2' }}</h3>
@@ -23,22 +25,23 @@
     }
 
     @case ('select') {
-    <select class="label__input" [formControlName]="formControlName()">
+    <select class="label__input" [formControlName]="formControlName()" aria-labelledby="label-title">
         <option value="" disabled selected>{{ placeholder() }}</option>
         @for (option of options(); track $index) {
-        <option [value]="option.value">{{option.label}}</option>
+        <option [value]="option.value">{{ option.label }}</option>
         }
     </select>
     }
 
     @case ('textarea') {
-    <textarea class="label__input" [formControlName]="formControlName()" [placeholder]="placeholder()"></textarea>
+    <textarea class="label__input" [formControlName]="formControlName()" [placeholder]="placeholder()"
+        aria-labelledby="label-title">
+    </textarea>
     }
 
     @default {
-    <input class="label__input" [formControlName]="formControlName()" [type]="typeOf()" [placeholder]="placeholder()">
+    <input class="label__input" [formControlName]="formControlName()" [type]="typeOf()" [placeholder]="placeholder()"
+        aria-labelledby="label-title">
     }
     }
-
-
 </label>

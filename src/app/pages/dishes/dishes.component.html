@@ -1,10 +1,15 @@
-<section class="container">
+<section class="container" aria-labelledby="section-title">
+
     <app-table [title]="'Platos'" [columns]="columns" [data]="dishes" (delete)="deleteById($event)"
-        (update)="updateById($event)" (openModal)="openModal($event)">
+        (update)="updateById($event)" (openModal)="openModal($event)" aria-label="Tabla de platos" role="table"
+        tabindex="0">
     </app-table>
-    
-    <app-modal (close)="openModal($event)" [open]="isModalOpen">
-        <app-form [form]="form" [title]="title" [message]="message" [action]="action" [controls]="controls" (submit)="submit()">
+
+    <app-modal (close)="openModal($event)" [open]="isModalOpen" aria-labelledby="modal-title" role="dialog"
+        tabindex="-1">
+        <h3 id="modal-title">{{ title }}</h3>
+        <app-form [form]="form" [title]="title" [message]="message" [action]="action" [controls]="controls"
+            (submit)="submit()" aria-labelledby="form-title" role="form" tabindex="0">
         </app-form>
     </app-modal>
 </section>

@@ -1,14 +1,20 @@
-<aside class="aside">
-    <a routerLink="/home" class="aside__logo">
-        <img src="./images/logo-full.svg" alt="Restaurant Logo" width="200px"/>
+<aside class="aside" role="complementary" aria-labelledby="aside-title">
+    <a routerLink="/home" class="aside__logo" aria-label="Ir a la página principal">
+        <img src="./images/logo-full.svg" alt="Restaurant Logo" width="200px" />
     </a>
-    <nav class="aside__nav">
+    <h2 id="aside-title" class="visually-hidden">Menú de navegación</h2>
+    <nav class="aside__nav" aria-label="Menú principal">
         <menu class="aside__menu">
             @for (item of items; track $index) {
-                <li><a [routerLink]="item.link" class="aside__link" routerLinkActive="aside__link--active">{{item.title}}</a></li>
+            <li>
+                <a [routerLink]="item.link" class="aside__link" routerLinkActive="aside__link--active"
+                    [attr.aria-label]="'Ir a ' + item.title">
+                    {{item.title}}
+                </a>
+            </li>
             }
         </menu>
     </nav>
-    
+
     <app-footer></app-footer>
 </aside>

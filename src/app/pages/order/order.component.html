@@ -1,10 +1,14 @@
-<section class="container">
+<section class="container" aria-label="Gestión de Órdenes">
     <app-table [title]="'Órdenes'" [columns]="columns" [data]="users" (delete)="deleteById($event)"
-        (update)="updateById($event)" (openModal)="openModal($event)">
+        (update)="updateById($event)" (openModal)="openModal($event)" aria-label="Tabla de órdenes" role="table"
+        tabindex="0">
     </app-table>
-    
-    <app-modal (close)="openModal($event)" [open]="isModalOpen">
-        <app-form [form]="form" [title]="title" [message]="message" [action]="action" [controls]="controls" (submit)="submit()" [totalPrice]="calculateTotalPrice()">
+
+    <app-modal (close)="openModal($event)" [open]="isModalOpen" aria-hidden="true" aria-labelledby="modal-title"
+        aria-label="Formulario de Órdenes" role="dialog" tabindex="-1">
+        <app-form [form]="form" [title]="title" [message]="message" [action]="action" [controls]="controls"
+            (submit)="submit()" [totalPrice]="calculateTotalPrice()" aria-label="Formulario para gestionar órdenes"
+            role="form" tabindex="0">
         </app-form>
     </app-modal>
 </section>
