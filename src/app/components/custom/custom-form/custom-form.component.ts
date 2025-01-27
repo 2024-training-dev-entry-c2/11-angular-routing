@@ -26,9 +26,11 @@ export class CustomFormComponent implements OnInit, OnChanges {
     label: string;
     type?: string;
     errorMessage?: string;
+    options?: { label: string; value: any }[];
   }[];
   @Input() formData!: any;
   @Input() submitAction!: (data: any) => void;
+  @Input() menuId!: number;
   formGroup!: FormGroup;
 
   constructor(private fb: FormBuilder, private location: Location) {}
@@ -47,9 +49,7 @@ export class CustomFormComponent implements OnInit, OnChanges {
     this.formGroup = this.fb.group(
       this.formConfig.reduce((acc, curr) => {
         if (curr.type === 'array') {
-          acc[curr.name] = this.fb.array([
-            this.fb.control('', Validators.required),
-          ]);
+          acc[curr.name] = this.fb.array([]);
         } else {
           acc[curr.name] = [
             curr.type === 'checkbox' ? false : '',
@@ -60,9 +60,8 @@ export class CustomFormComponent implements OnInit, OnChanges {
       }, {} as any)
     );
 
-    if (this.formData) {
-      this.formGroup.patchValue(this.formData);
-    }
+    console.log('Form Data:', this.formData);
+    this.formGroup.patchValue(this.formData);
   }
 
   submit(): void {

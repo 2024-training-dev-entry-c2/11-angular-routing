@@ -17,6 +17,7 @@
     <app-custom-input
       [formGroup]="formGroup"
       [config]="config"
+      [menuId]="config.label === 'Dishes' ? menuId : null"
     ></app-custom-input>
 
     }

@@ -8,7 +8,6 @@ import { IDish } from '../../../../interfaces/dishResponse.interface';
 import { CustomFormComponent } from '../../../custom/custom-form/custom-form.component';
 import { FormTitleComponent } from '../../../custom/form-title/form-title.component';
 import { IMenu } from '../../../../interfaces/menuResponse.interface';
-import { IMenuRequest } from '../../../../interfaces/menuRequest.interface';
 
 @Component({
   selector: 'app-menu-form',
@@ -77,37 +76,62 @@ export class MenuFormComponent implements OnInit {
   }
 
   loadDishes(): void {
-    this.getAllDishesService.execute().subscribe((dishes) => {
-      this.dishes = dishes;
+    this.getAllDishesService.execute().subscribe(
+      (dishes) => {
+        this.dishes = dishes;
 
-      const dishIdsConfig = this.formConfig.find(
-        (config) => config.name === 'dishIds'
-      );
-      if (dishIdsConfig) {
-        dishIdsConfig.options = dishes.map((dish) => ({
-          label: dish.name,
-          value: dish.id,
-        }));
+        const dishIdsConfig = this.formConfig.find(
+          (config) => config.name === 'dishIds'
+        );
+        if (dishIdsConfig) {
+          dishIdsConfig.options = dishes.map((dish) => ({
+            label: dish.name,
+            value: dish.id,
+          }));
+        }
+
+        if (this.formData) {
+          this.updateDishOptions();
+        }
+      },
+      (error) => {
+        console.error('Error loading dishes:', error);
       }
-    });
+    );
   }
 
-  setFormData(menu: IMenuRequest): void {
+  setFormData(menu: IMenu): void {
     this.form.patchValue({
       name: menu.name,
+      dishIds: menu.dishes.map((dish) => dish.id),
     });
 
     const dishIdsArray = this.form.get('dishIds') as FormArray;
     dishIdsArray.clear();
 
-    if (menu.dishIds && Array.isArray(menu.dishIds)) {
-      menu.dishIds.forEach((dishId: number) => {
-        dishIdsArray.push(this.fb.control(dishId, Validators.required));
+    if (menu.dishes) {
+      menu.dishes.forEach((dish: IDish) => {
+        dishIdsArray.push(this.fb.control(dish.id, Validators.required));
       });
+    }
+
+    if (this.dishes.length > 0) {
+      this.updateDishOptions();
     }
   }
 
-  submitAction(data: IMenu): void {
+  updateDishOptions(): void {
+    const dishIdsArray = this.form.get('dishIds') as FormArray;
+    dishIdsArray.controls.forEach((control, index) => {
+      const dishId = control.value;
+      const dish = this.dishes.find((d) => d.id === dishId);
+      if (dish) {
+        control.setValue(dish.id);
+      }
+    });
+  }
+
+  submitAction(data: any): void {
     if (this.menuId) {
       this.editMenuService.updateMenu(this.menuId, data).subscribe(() => {
         this.router.navigate(['/menu']);
