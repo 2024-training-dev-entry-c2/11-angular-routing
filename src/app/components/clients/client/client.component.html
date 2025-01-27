@@ -4,6 +4,6 @@
     <app-get-client (editClientEvent)="editClient($event)"></app-get-client>
   </section>
   <section class="clients__add" aria-label="Agregar/editar cliente">
-    <app-add-client [clientSelect]="clientEdit"></app-add-client>
+    <app-add-client [clientSelect]="clientEdit" (clientUpdated)="onClientUpdated()"></app-add-client>
   </section>
 </section>
