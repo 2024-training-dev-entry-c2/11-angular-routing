@@ -8,7 +8,7 @@
         ]; track item.title){
         <li>
             <a class="home__link" [routerLink]="item.link">
-                <img [src]="item.imgSrc" [alt]="item.title" />
+                <img aria-hidden="true" [src]="item.imgSrc" [alt]="item.title" />
                 <span>{{item.title}}</span>
             </a>
         </li>

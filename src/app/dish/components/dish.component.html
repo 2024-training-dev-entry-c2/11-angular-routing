@@ -6,7 +6,7 @@
 
         @for(dishList of dishes; track $index; let idx = $index){
         <div class="entity__create-button-container">
-            <button class="entity__create-button" (click)="showCreateDishModal($index)">
+            <button aria-expanded="false" class="entity__create-button" (click)="showCreateDishModal($index)">
                 <fa-icon [icon]="faPlus"></fa-icon>
                 <span>Crear nuevo plato</span>
             </button>
