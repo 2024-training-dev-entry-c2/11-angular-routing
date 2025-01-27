@@ -1,0 +1,110 @@
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 20px;
+
+    &__title {
+        font-size: 2em;
+        color: #333;
+    }
+}
+
+.account-section {
+    width: 80%;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    &__title {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    &__button {
+        background: #00cec9;
+        color: #fff;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 25px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s ease-in-out;
+
+        &:hover {
+            background: darken(#00cec9, 10%);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+}
+
+.account-list {
+    list-style: none;
+    padding: 0;
+}
+
+.account-item {
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.account-link {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+
+    &:hover {
+        background-color: #eee;
+    }
+}
+
+.account-item__number {
+    font-weight: bold;
+}
+
+.account-item__username {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.account-item__balance {
+    margin-left: 10px;
+}
+
+.dashboard-footer {
+    margin-top: 20px;
+    width: 80%;
+    max-width: 800px;
+}
+
+
+.dashboard-footer__logout {
+    width: 100%;
+    background-color: #dc3545;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #c82333;
+    }
+}

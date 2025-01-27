@@ -1,0 +1,19 @@
+<div class="modal">
+    <div class="modal-content">
+        <h2 class="modal-title">Crear Usuario</h2>
+        <form [formGroup]="createUserForm" (ngSubmit)="onCreateUser()">
+            <div class="modal-form-group">
+                <label class="modal-label">Nombre</label>
+                <input class="modal-input" type="text" formControlName="name">
+            </div>
+            <div class="modal-form-group">
+                <label class="modal-label">Documento</label>
+                <input class="modal-input" type="text" formControlName="documentId">
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-button modal-button--primary" type="submit">Crear</button>
+                <button class="modal-button modal-button--secondary" type="button" (click)="close()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>

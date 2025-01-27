@@ -1,0 +1,54 @@
+<app-header></app-header>
+
+<div class="account-detail-container" *ngIf="account">
+    <h2>Detalle de la Cuenta</h2>
+    <div class="account-info">
+        <p>Usuario: {{ user?.name }}</p>
+        <p>Documento: {{ user?.documentId }}</p>
+        <p>Código de Cuenta: {{ account.accountNumber }}</p>
+        <p>Saldo: {{ account.balance | currency:'USD' }}</p>
+    </div>
+
+    <h3>Historial de Transacciones</h3>
+    <table class="transactions-table">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Tipo</th>
+                <th>Monto</th>
+                <th>Costo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let transaction of transactions">
+                <td>{{ transaction.timestamp | date:'short' }}</td>
+                <td>{{ transaction.type }}</td>
+                <td>{{ transaction.amount | currency:'USD' }}</td>
+                <td>{{ transaction.fee | currency:'USD' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Realizar Transacción</h3>
+    <form [formGroup]="transactionForm" (ngSubmit)="openConfirmationDialog()">
+        <div class="form-group">
+            <label for="type">Tipo:</label>
+            <select id="type" formControlName="type">
+                <option value="BRANCH_DEPOSIT">Depósito (Sucursal)</option>
+                <option value="ATM_DEPOSIT">Depósito (Cajero Automático)</option>
+                <option value="TRANSFER_DEPOSIT">Depósito (Otra Cuenta)</option>
+                <option value="PHYSICAL_PURCHASE">Compra (Establecimiento Físico)</option>
+                <option value="WEB_PURCHASE">Compra (Página Web)</option>
+                <option value="ATM_WITHDRAWAL">Retiro (Cajero Automático)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="amount">Monto:</label>
+            <input type="number" id="amount" formControlName="amount">
+        </div>
+        <button type="submit" [disabled]="transactionForm.invalid">Realizar Transacción</button>
+    </form>
+
+    <app-confirmation-dialog *ngIf="isDialogOpen"></app-confirmation-dialog>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,20 @@
+<div class="modal">
+    <div class="modal-content">
+        <h2 class="modal-title">Crear Cuenta</h2>
+        <form [formGroup]="createAccountForm" (ngSubmit)="onCreateAccount()">
+            <div class="modal-form-group">
+                <label class="modal-label">Usuario</label>
+                <select class="modal-input" formControlName="userId" required="required">
+                    <option *ngFor="let user of users" [value]="user.id">
+                        {{user.name}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="modal-buttons">
+                <button class="modal-button modal-button--primary" type="submit">Crear</button>
+                <button class="modal-button modal-button--secondary" type="button" (click)="close(false)">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>

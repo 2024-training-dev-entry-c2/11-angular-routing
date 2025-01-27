@@ -1,17 +1,12 @@
 export interface IAuth {
   email: string;
   password: string;
-  address: IAddress;
-  tags: string[];
+  role: string;
 }
 
-export interface IAddress {
-  street: string;
-  number: number;
-  zipCode: number;
-}
 
 export interface IAuthenticationResponse {
+  id: string;
+  email: string;
   token: string;
-  message: string;
 }
