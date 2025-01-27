@@ -52,4 +52,8 @@ export class MenuPageComponent implements OnInit {
   onMenuCreated(): void {
     this.fetchMenus();
   }
+
+  onMenuDeleted(): void {
+    this.fetchMenus();
+  }
 }
