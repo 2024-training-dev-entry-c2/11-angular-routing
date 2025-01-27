@@ -1,6 +1,6 @@
 <article class="pedido-card">
   <span>Id de cliente: {{ idCliente() }}</span>
-  <span>Precio del pedido: {{ precio() }}</span>
+  <span>Precio del pedido: {{ precio() | currency:'USD'  }}</span>
   <div class="pedido-card__button">
     <app-add-button (buttonClicked)="onClickModifyButton()" />
     <app-modify-button (buttonClicked)="onClickRemoveButton()" />
