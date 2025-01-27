@@ -1,0 +1,27 @@
+<section class="menu">
+  <main class="menu__main">
+    <h2>Menus</h2>
+
+    <menu class="menu__cards">
+      @if (menu.length > 0) { @for (item of menu; track $index) {
+      <li>
+        <app-simple-card
+          [image]="item.urlImage"
+          [link]="'/menu/' + item.id"
+          [title]="item.nombre"
+          (buttonRemoveClick)="deleteMenu(item.id)"
+          (buttonModifyClick)="selectMenuToUpdate(item)"
+        />
+      </li>
+      } }@else {
+      <li>
+        <span>No hay menus</span>
+      </li>
+      }
+    </menu>
+  </main>
+  <app-form-menu
+    [menuSelected]="menuSelected"
+    (buttonSubmitClick)="addOrUpdate($event)"
+  />
+</section>

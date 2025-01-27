@@ -1,9 +1,10 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from '../layout/layout.component';
 import { ContentComponent } from '../content/content.component';
-import { HomeComponent } from '../home/home.component';
-import { LoginComponent } from '../login/login.component';
 import { adminGuard } from './admin.guard';
+import { HeaderComponent } from '../header/header.component';
+import { MenuComponent } from '../../pages/menu/menu.component';
+import { PlatosComponent } from '../../pages/platos/platos.component';
 
 export const routes: Routes = [
   {
@@ -12,22 +13,12 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: ContentComponent,
+        component: HeaderComponent,
         outlet: 'header'
       },
       {
         path: '',
-        component: ContentComponent,
-        outlet: 'left-side'
-      },
-      {
-        path: '',
-        component: HomeComponent,
-      },
-      {
-        path: '',
-        component: ContentComponent,
-        outlet: 'right-side'
+        component: MenuComponent,
       },
       {
         path: '',
@@ -37,10 +28,8 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'login/:manuel/:id',
+    path: 'menu/:id',
     component: LayoutComponent,
-    canActivate: [adminGuard],
-    data: { isLogged: true },
     children: [
       {
         path: '',
@@ -49,19 +38,7 @@ export const routes: Routes = [
       },
       {
         path: '',
-        component: ContentComponent,
-        outlet: 'left-side',
-        data: { isBrota: true }
-      },
-      {
-        path: '',
-        component: LoginComponent,
-        data: { isCurrent: true }
-      },
-      {
-        path: '',
-        component: ContentComponent,
-        outlet: 'right-side'
+        component: PlatosComponent,
       },
       {
         path: '',
@@ -69,5 +46,25 @@ export const routes: Routes = [
         outlet: 'footer'
       }
     ]
-  }
+  },
+  {
+    path: 'client',
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        component: HeaderComponent,
+        outlet: 'header'
+      },
+      {
+        path: '',
+        component: MenuComponent,
+      },
+      {
+        path: '',
+        component: ContentComponent,
+        outlet: 'footer'
+      }
+    ]
+  },
 ];
