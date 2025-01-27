@@ -38,7 +38,7 @@ export class MenuGetByIdComponent {
 
   onSubmit() {
     if (this.form.invalid) {
-      console.log('Formulario inválido');
+      this.notificationService.setNotification('error', 'Formulario invalido');
       return;
     }
 

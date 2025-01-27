@@ -44,7 +44,7 @@ export class MenuFormComponent implements OnInit {
 
   onSubmit() {
     if (this.form.invalid) {
-      console.log('Formulario inválido');
+      this.notificationService.setNotification('error', 'Formulario invalido');
       return;
     }
     const menu: IMenu = this.form.value as IMenu;

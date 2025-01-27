@@ -6,7 +6,7 @@
         @include mixins.form(center, 40px, 30px);
         @include mixins.styleContainer(#615A57, variables.$colorWhite, 30px, 20px);
         width: 320px;
-        height: 200px;
+        height: auto;
         margin-top: 5%;
         margin-left: 40%;
     }

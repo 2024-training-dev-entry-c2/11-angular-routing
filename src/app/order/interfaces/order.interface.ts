@@ -3,7 +3,7 @@ export interface IOrder {
     detalles: IDetails[],
     total?: number,
     estado?: string,
-    fechaPedido?: string,
+    fechaPedido?: Date | number[],
     idCliente: number
 }
 

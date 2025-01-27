@@ -37,7 +37,7 @@ export class GetByIdComponent {
 
   onSubmit(){
     if (this.form.invalid) {
-      console.log("formulario invalido");
+      this.notificationService.setNotification('error', 'Formulario invalido');
       console.log(this.form.value);
       return;
     }

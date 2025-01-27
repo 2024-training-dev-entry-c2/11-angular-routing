@@ -36,7 +36,7 @@ export class DishGetByIdComponent {
 
   onSubmit(): void {
     if (this.form.invalid) {
-      console.log('Formulario inválido:', this.form.value);
+      this.notificationService.setNotification('error', 'Formulario invalido');
       return;
     }
 

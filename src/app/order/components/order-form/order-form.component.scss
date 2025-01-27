@@ -1,0 +1,63 @@
+@use '../../../ui/style/variables.scss' as variables;
+@use '../../../ui/style/mixins.scss' as mixins;
+
+.form {
+    @include mixins.form(center, 40px, 30px);
+    @include mixins.styleContainer(#615A57, variables.$colorWhite, 30px, 20px);
+    width: 550px;
+    height: auto;
+
+    &__title {
+        font-size: 27px;
+    }
+
+    &__label {
+        display: flex;
+        gap: 15px;
+        padding: 3px
+    }
+
+    &__input {
+        border-radius: 5px;
+        width: 250px;
+        height: 25px;
+        border: 1px solid #ccc;
+        
+        &:focus {
+            outline: none;
+            border-color: white;
+            box-shadow: 0 0 10px black;
+        }
+    }
+
+    &__button--delete {
+        border: 1px solid #ccc;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        @include mixins.styleContainer(#F0E7E4,#000000, 5px 11px 5px 11px,40px);
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    &__button--add {
+        border: 1px solid #ccc;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        @include mixins.styleContainer(#F0E7E4,#000000, 5px 11px 5px 11px,40px);
+    }
+
+    &__button--submit {
+        border: 1px solid #ccc;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        @include mixins.styleContainer(#F0E7E4,#000000, 10px 22px 10px 22px,40px);
+        &:hover{
+            @include mixins.styleContainer(#888888,#FFFFFF, 10px 22px 10px 22px,40px);
+        }
+    }
+    
+
+}
