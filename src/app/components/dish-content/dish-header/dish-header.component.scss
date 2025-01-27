@@ -1,0 +1,29 @@
+@use '../../../ui/styles/variables.scss' as variables;
+@use '../../../ui/styles/mixins.scss' as mixins;
+
+.modal {
+    @include mixins.container-column(5px);
+
+    &__checkbox {
+        @include mixins.container-gap(5px);
+    }
+
+    &__textarea {
+        @include mixins.border(1px solid rgba(0, 0, 0, 0.361), 5px);
+        padding: 5px;
+        width: 340px;
+    }
+
+    &__input {
+        @include mixins.border(1px solid rgba(0, 0, 0, 0.361), 5px);
+        padding: 5px;
+        width: 340px;
+
+        &--checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+    }
+
+}

@@ -1,0 +1,4 @@
+<app-dish-header (dishAdded)="onDishAdded($event)"></app-dish-header>
+<hr>
+<app-search (searchQueryChange)="onSearchQueryChange($event)"></app-search>
+<app-dish-main [searchQuery]="searchQuery"></app-dish-main>

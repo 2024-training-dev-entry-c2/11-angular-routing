@@ -1,0 +1,8 @@
+<app-header title="Menus" buttonText="Agregar Menu" iconPath="svg/plus.svg#plus" [modalContent]="menuModalTemplate"
+    (actionConfirmed)="addMenuToAPI()">
+</app-header>
+
+<ng-template #menuModalTemplate>
+    <p>Ingresa el nombre de tu nuevo Menu</p>
+    <input class="modal-input" [(ngModel)]="menuName" placeholder="Nombre del menu" />
+</ng-template>

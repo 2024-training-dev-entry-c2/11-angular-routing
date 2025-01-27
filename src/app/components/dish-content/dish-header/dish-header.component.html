@@ -1,0 +1,15 @@
+<app-header title="Platos" buttonText="Agregar Plato" iconPath="svg/plus.svg#plus" [modalContent]="menuModalTemplate"
+    (actionConfirmed)="addDishToAPI()"></app-header>
+
+<ng-template #menuModalTemplate>
+    <div class="modal">
+        <p>Ingresa la información del nuevo plato:</p>
+        <input class="modal__input" [(ngModel)]="dishName" placeholder="Nombre del plato" />
+        <input class="modal__input" type="number" [(ngModel)]="price" placeholder="Precio del plato" />
+        <textarea class="modal__textarea" [(ngModel)]="description" placeholder="Descripción del plato"></textarea>
+        <div class="modal__checkbox">
+            <label>¿Es popular? </label>
+            <input class="modal__input--checkbox" type="checkbox" [(ngModel)]="isPopular" />
+        </div>
+    </div>
+</ng-template>
