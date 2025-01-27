@@ -1,4 +1,4 @@
-<form [formGroup]="dishfoodUpdatedForm" aria-label="form to update Dish">
+<form [formGroup]="dishfoodUpdatedForm" aria-label="form to update Dish" class="form__update-dish">
     <app-modal (closeModal)="closeModal()" [data]="getData" [formGroup]="dishfoodUpdatedForm">
 
         <button button type="submit" (click)="updateMenu()" class="modal__button modal__button--close" aria-label="button to update Dish">Update</button>

@@ -10,14 +10,19 @@ $color-actions-separator: #5f5e5e;
 $colot-text-dark: #000;
 $color-text-light: hsl(0, 0%, 100%);
 $color-gray-light: hsl(0, 0%, 50%);
-
-
+$text-color: #333;
+$primary-color: #4a90e2;
+$button-color: #e74c3c;
+$text-color: #333;
+$primary-color: #4a90e2;
+$error-color: #e74c3c;
 //* Tipografías
 $font-primary: "Inter", serif;
 
 //* Tamaños
 $font-size-very-small: 0.6875rem;
 $font-size-small: 0.875rem;
+$font-size-medium:1.5rem;
 
 //* grosor de fuente
 $font-weight-light: 450;
@@ -44,3 +49,4 @@ $indicator-height: 4px;
 $accent: #ef4044;
 $accent-inactive: desaturate($accent, 85%);
 $secondary: $accent-inactive;
+$border-radius: 8px;

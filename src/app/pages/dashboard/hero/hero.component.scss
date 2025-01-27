@@ -23,8 +23,8 @@
     font-size: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    min-width: 250px; /* Establece un ancho mínimo para evitar estiramientos */
-    max-width: 400px; /* Opcional: ancho máximo */
+    min-width: 250px; 
+    max-width: 400px; 
   }
   
   .slider-btn {
@@ -39,17 +39,18 @@
     height: 40px;
     cursor: pointer;
     z-index: 1;
+    &.left {
+      left: 10px;
+    }
+    
+    &.right {
+      right: 10px;
+    }
+    
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
   }
   
-  .slider-btn.left {
-    left: 10px;
-  }
-  
-  .slider-btn.right {
-    right: 10px;
-  }
-  
-  .slider-btn:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-  }
+
   
