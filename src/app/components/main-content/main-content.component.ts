@@ -17,18 +17,22 @@ export class MainContentComponent {
  infoRestaurant: IRestaurant | null = null;
  dishes: Dish[] | null = null;
  popularDishes: Dish[] = [];
- openingDate: Date = new Date();
- closingDate: Date = new Date();
+ openingDate: Date | null = null;
+ closingDate: Date | null = null;
 
  ngOnInit() {
      this.restaurantService.execute().subscribe({
        next: (data: IRestaurant) => {
          this.infoRestaurant = data;
          console.log(this.infoRestaurant)
-         this.closingDate.setHours(this.infoRestaurant.closingHours[0]);
-         this.closingDate.setMinutes(this.infoRestaurant.closingHours[1]);
+         this.openingDate = new Date();
          this.openingDate.setHours(this.infoRestaurant.openingHours[0]);
          this.openingDate.setMinutes(this.infoRestaurant.openingHours[1]);
+
+         this.closingDate = new Date();
+         this.closingDate.setHours(this.infoRestaurant.closingHours[0]);
+         this.closingDate.setMinutes(this.infoRestaurant.closingHours[1]);
+
          this.dishes = this.infoRestaurant.menuRestaurant.dishes;
          this.popularDishes = this.dishes.filter(dish => dish.popular);
        },
