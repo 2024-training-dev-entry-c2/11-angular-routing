@@ -1,0 +1,19 @@
+<form [formGroup]="menuForm" class="form-pedidos" (ngSubmit)="submit()">
+  <div>
+    <label>Nombre</label>
+    <input
+      formControlName="nombre"
+      [value]="menuSelected()?.nombre"
+      type="text"
+    />
+  </div>
+  <div>
+    <label>URL-Image</label>
+    <input
+      formControlName="urlImage"
+      [value]="menuSelected()?.urlImage"
+      type="text"
+    />
+  </div>
+  <button>Enviar</button>
+</form>

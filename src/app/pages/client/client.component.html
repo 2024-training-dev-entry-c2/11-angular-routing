@@ -1,0 +1,28 @@
+<section class="client">
+  <main class="client__main">
+    <h2>Clientes</h2>
+
+    <menu class="client__cards">
+      @if (clients.length > 0) { @for (item of clients; track $index) {
+      <li>
+        <app-client-card 
+          [name]="item.nombre"
+          [email]="item.email"
+          [tel]="item.telefono" 
+          (buttonRemoveClick)="delete(item.id)" 
+          (buttonModifyClick)="selectToUpdate(item)"
+        />
+      </li>
+      } }@else {
+      <li>
+        <span>No hay clientes</span>
+      </li>
+      }
+    </menu>
+  </main>
+  <app-form-client
+    [clientSelected]="clientSelected"
+    (buttonSubmitClick)="addOrUpdate($event)"
+  />
+</section>
+ 

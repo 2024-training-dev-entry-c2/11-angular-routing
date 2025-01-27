@@ -1,9 +1,11 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from '../layout/layout.component';
 import { ContentComponent } from '../content/content.component';
-import { HomeComponent } from '../home/home.component';
-import { LoginComponent } from '../login/login.component';
-import { adminGuard } from './admin.guard';
+import { HeaderComponent } from '../header/header.component';
+import { MenuComponent } from '../../pages/menu/menu.component';
+import { PlatosComponent } from '../../pages/platos/platos.component';
+import { ClientComponent } from '../../pages/client/client.component';
+import { PedidosComponent } from '../../pages/pedidos/pedidos.component';
 
 export const routes: Routes = [
   {
@@ -12,62 +14,98 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: ContentComponent,
-        outlet: 'header'
+        component: HeaderComponent,
+        outlet: 'header',
+      },
+      {
+        path: '',
+        component: MenuComponent,
       },
       {
         path: '',
         component: ContentComponent,
-        outlet: 'left-side'
+        outlet: 'footer',
       },
-      {
-        path: '',
-        component: HomeComponent,
-      },
-      {
-        path: '',
-        component: ContentComponent,
-        outlet: 'right-side'
-      },
-      {
-        path: '',
-        component: ContentComponent,
-        outlet: 'footer'
-      }
-    ]
+    ],
   },
   {
-    path: 'login/:manuel/:id',
+    path: 'menu/:id',
     component: LayoutComponent,
-    canActivate: [adminGuard],
-    data: { isLogged: true },
     children: [
       {
         path: '',
         component: ContentComponent,
-        outlet: 'header'
+        outlet: 'header',
+      },
+      {
+        path: '',
+        component: PlatosComponent,
       },
       {
         path: '',
         component: ContentComponent,
-        outlet: 'left-side',
-        data: { isBrota: true }
+        outlet: 'footer',
+      },
+    ],
+  },
+  {
+    path: 'client',
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        component: HeaderComponent,
+        outlet: 'header',
       },
       {
         path: '',
-        component: LoginComponent,
-        data: { isCurrent: true }
+        component: ClientComponent,
       },
       {
         path: '',
         component: ContentComponent,
-        outlet: 'right-side'
+        outlet: 'footer',
+      },
+    ],
+  },
+  {
+    path: 'platos',
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        component: HeaderComponent,
+        outlet: 'header',
+      },
+      {
+        path: '',
+        component: PlatosComponent,
       },
       {
         path: '',
         component: ContentComponent,
-        outlet: 'footer'
-      }
-    ]
-  }
+        outlet: 'footer',
+      },
+    ],
+  },
+  {
+    path: 'pedidos',
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        component: HeaderComponent,
+        outlet: 'header',
+      },
+      {
+        path: '',
+        component: PedidosComponent,
+      },
+      {
+        path: '',
+        component: ContentComponent,
+        outlet: 'footer',
+      },
+    ],
+  },
 ];

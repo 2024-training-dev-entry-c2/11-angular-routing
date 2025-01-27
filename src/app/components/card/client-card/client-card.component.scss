@@ -1,0 +1,17 @@
+
+.client-card{
+    display: flex;
+    flex-direction: column;
+    outline: 1px solid #101010;
+    overflow: hidden;
+
+    &__name{
+        text-align: center;
+    }
+
+    &__button{
+        padding-top: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
