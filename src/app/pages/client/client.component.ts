@@ -114,12 +114,12 @@ export class ClientComponent implements OnInit {
         tap(result => {
           this.message = 'Cliente actualizado correctamente'; 
           this.getAllClients();
-
-          setTimeout(() => {
+          }),
+          delay(1000),
+          finalize(() => {
             this.form.reset();
             this.message = '';
             this.isModalOpen = false;
-          }, 1500);
           })
         ).subscribe(console.log);
     }

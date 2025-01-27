@@ -1,13 +1,13 @@
-<section class="container" aria-label="Gestión de Clientes">
-    <app-table [title]="'Clientes'" [columns]="columns" [data]="users" (delete)="deleteById($event)"
-        (update)="updateById($event)" (openModal)="openModal($event)" aria-label="Tabla de clientes" role="table"
+<section class="container" aria-label="Gestion de Menu">
+    <app-table [title]="'Menú'" [columns]="columns" [data]="users" (delete)="deleteById($event)"
+        (update)="updateById($event)" (openModal)="openModal($event)" aria-label="Tabla de menu" role="table"
         tabindex="0">
     </app-table>
 
-    <app-modal (close)="openModal($event)" [open]="isModalOpen" aria-hidden="true" aria-label="Formulario de Clientes"
+    <app-modal (close)="openModal($event)" [open]="isModalOpen" aria-hidden="true" aria-label="Formulario de Menu"
         role="dialog" tabindex="-1">
         <app-form [form]="form" [title]="title" [message]="message" [action]="action" [controls]="controls"
-            (submit)="submit()" aria-label="Formulario para gestionar clientes" role="form" tabindex="0">
+            (submit)="submit()" aria-label="Formulario para gestionar menus" role="form" tabindex="0">
         </app-form>
     </app-modal>
 </section>

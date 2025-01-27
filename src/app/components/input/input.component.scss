@@ -1,3 +1,6 @@
+@use "../../ui/styles/mixins.scss" as mixins;
+@use "../../ui/styles/variables.scss" as variables;
+
 .label {
     display: flex;
     flex-direction: column;
@@ -7,7 +10,7 @@
     &__span {
       font-size: 0.875rem;
       font-weight: bold;
-      color: #333;
+      color: #e3e3e3;
       margin-bottom: 0.5rem;
     }
   
@@ -32,22 +35,21 @@
   
     &__error {
       font-size: 0.875rem;
-      color: #e74c3c;
+      color: variables.$red;
       margin-top: 0.5rem;
       display: block;
       line-height: 1.2;
     }
 
     &__container {
-      display: flex;
-      flex-wrap: wrap;
+      @include mixins.flex(column, center, center, 16px);
       gap: 8px;
       margin-top: 8px;
     }
 
     &__tags {
       display: flex;
-      align-items: center;
+      flex-direction: row ;
       background-color: #e0f7fa;
       padding: 4px 8px;
       border-radius: 16px;
@@ -60,7 +62,14 @@
     margin-left: 8px;
     cursor: pointer;
     font-weight: bold;
-    color: #ff5252;
+    color: variables.$red;
+    }
+
+    &__price {
+      font-size: 1rem;
+      font-weight: bold;
+      color: variables.$white;
+      margin-top: 50px;
     }
     
   

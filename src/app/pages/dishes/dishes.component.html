@@ -6,7 +6,6 @@
 
     <app-modal (close)="openModal($event)" [open]="isModalOpen" aria-labelledby="modal-title" role="dialog"
         tabindex="-1">
-        <h3 id="modal-title">{{ title }}</h3>
         <app-form [form]="form" [title]="title" [message]="message" [action]="action" [controls]="controls"
             (submit)="submit()" aria-labelledby="form-title" role="form" tabindex="0">
         </app-form>
