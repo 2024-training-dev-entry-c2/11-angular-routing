@@ -2,8 +2,8 @@ import { Component, inject, OnInit } from '@angular/core';
 import { SimpleCardComponent } from '../../components/card/simple-card/simple-card.component';
 import { MenuService } from '../../services/menu.service';
 import { FormMenuComponent } from '../../components/forms/form-menu/form-menu.component';
-import { IMenu } from '../../interfaces/menu/menu.interface';
-
+import { IMenu } from '../../interfaces/menu.interface';
+ 
 @Component({
   selector: 'app-menu',
   imports: [SimpleCardComponent, FormMenuComponent],

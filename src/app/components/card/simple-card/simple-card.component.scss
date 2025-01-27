@@ -20,19 +20,6 @@
     &__button{
         display: flex;
         justify-content: space-between;
-
-        button{
-            border: none;
-            padding: 5px;
-        }
-
-        &--add{
-
-            background-color: #2ef971;
-        }
-        &--modify{
-            background-color: blue;
-        }
     }
 }
 

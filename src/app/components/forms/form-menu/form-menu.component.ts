@@ -1,6 +1,6 @@
 import { Component, inject, input, output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IMenu } from '../../../interfaces/menu/menu.interface';
+import { IMenu } from '../../../interfaces/menu.interface';
 
 @Component({
   selector: 'app-form-menu',

@@ -5,6 +5,7 @@ import { adminGuard } from './admin.guard';
 import { HeaderComponent } from '../header/header.component';
 import { MenuComponent } from '../../pages/menu/menu.component';
 import { PlatosComponent } from '../../pages/platos/platos.component';
+import { ClientComponent } from '../../pages/client/client.component';
 
 export const routes: Routes = [
   {
@@ -58,7 +59,7 @@ export const routes: Routes = [
       },
       {
         path: '',
-        component: MenuComponent,
+        component: ClientComponent,
       },
       {
         path: '',
