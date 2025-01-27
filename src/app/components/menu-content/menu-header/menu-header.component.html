@@ -1,16 +1,8 @@
-<header class="menu-header">
-    <h2>Menus</h2>
-    <button class="menu-header__button" (click)="openModal(modalTemplate)">
-        <i class="menu-header__icon" aria-hidden="true">
-            <svg>
-                <use xlink:href="svg/plus.svg#plus"></use>
-            </svg>
-        </i>
-        Agregar Menu
-    </button>
-</header>
+<app-header title="Menus" buttonText="Agregar Menu" iconPath="svg/plus.svg#plus" [modalContent]="menuModalTemplate"
+    (actionConfirmed)="addMenuToAPI()">
+</app-header>
 
-<ng-template #modalTemplate>
+<ng-template #menuModalTemplate>
     <p>Ingresa el nombre de tu nuevo Menu</p>
     <input class="modal-input" [(ngModel)]="menuName" placeholder="Nombre del menu" />
 </ng-template>

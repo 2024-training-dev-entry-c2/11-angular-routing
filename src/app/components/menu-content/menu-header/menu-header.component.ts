@@ -1,15 +1,14 @@
 import { Component, EventEmitter, Output, TemplateRef, ViewContainerRef } from '@angular/core';
-import { ModalComponent } from '../../modal/modal.component';
 import { MenuService } from '../../../services/menu.service';
 import { IMenu } from '../../../interfaces/menu.interface';
 import { CommonModule } from '@angular/common';
-import { ModalService } from '../../../services/modal.service';
 import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from "../../header/header.component";
 
 @Component({
   selector: 'app-menu-header',
   standalone: true,
-  imports: [ CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, HeaderComponent],
   templateUrl: './menu-header.component.html',
   styleUrl: './menu-header.component.scss'
 })
@@ -21,20 +20,7 @@ export class MenuHeaderComponent {
 
   constructor(
     private menuService: MenuService,
-    private modalService: ModalService,
-    private viewContainerRef: ViewContainerRef
   ) {}
-
-  openModal(modalTemplate: TemplateRef<any>) {
-    this.modalService
-      .open(modalTemplate, this.viewContainerRef, {
-        title: 'Agregar Menu',
-        buttonName: 'Agregar',
-      })
-      .subscribe(() => {
-        this.addMenuToAPI();
-      });
-  }
 
     addMenuToAPI() {
     if (this.menuName.trim()) {

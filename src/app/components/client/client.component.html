@@ -1,1 +1,4 @@
-<p>client works!</p>
+<app-client-header (clientAdded)="onClientAdded($event)"></app-client-header>
+<hr>
+<app-search (searchQueryChange)="onSearchQueryChange($event)"></app-search>
+<app-client-main [searchQuery]="searchQuery"></app-client-main>

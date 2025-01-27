@@ -1,0 +1,48 @@
+<main class="client">
+    <table class="client__table">
+        <thead>
+            <tr>
+                @for (header of getHeaders(); track header.label) {
+                <th>{{ header.label }}</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (client of filteredClients; track client.idClient) {
+            <tr>
+                <td>{{ client.idClient }}</td>
+                <td>{{ client.clientName }}</td>
+                <td>{{ client.email }}</td>
+                <td>{{ client.phoneNumber }}</td>
+                <td>{{ client.address }}</td>
+                <td>{{ client.registrationDate | date: 'shortDate' }}</td>
+                <td>{{ client.frequentUser ? 'Si' : 'No' }}</td>
+                <td>{{ client.vip ? 'Si' : 'No' }}</td>
+                <td class="client__action">
+                    @for (action of getActions(); track action.label) {
+                    <a class="client__button client__button--{{ action.type }}"
+                        (click)="openModal(modalTemplate, action.type, client.idClient)">
+                        <i class="client__icon" aria-hidden="true">
+                            <svg>
+                                <use [attr.xlink:href]="action.icon"></use>
+                            </svg>
+                        </i>
+                        {{ action.label }}
+                    </a>
+                    }
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</main>
+
+<ng-template #modalTemplate>
+    <div class="modal" *ngIf="modalType === 'edit'; else deleteContent">
+        <label for="menuName">Ingrese el nuevo nombre del Menu</label>
+        <!-- <input class="modal__input" [(ngModel)]="menuName" id="menuName" placeholder={{currentMenuName}} /> -->
+    </div>
+    <ng-template #deleteContent>
+        <p>¿Estas seguro de que deseas eliminar este menu?</p>
+    </ng-template>
+</ng-template>
