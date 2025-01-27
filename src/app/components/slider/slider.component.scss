@@ -1,61 +1,72 @@
-@use "../../../ui/styles/variables.scss" as var;
-@use "../../../ui/styles/mixins.scss" as mix;
-
 .slider__container {
-  @include mix.container(var.$spacing-medium, 1270px);
   position: relative;
+  width: 1270px;
   overflow: hidden;
+  margin: 2rem auto;
+  padding: 1rem 0.8rem;
 }
 
 .slider {
-  @include mix.flex(row, flex-start, stretch, var.$spacing-small);
-  @include mix.transition(transform, 0.3s);
+  display: flex;
+  gap: 1rem;
+  transition: transform 0.3s ease-in-out;
 }
 
 .card {
-  @include mix.size(calc(100% / 3 - var.$spacing-small), 210px);
-  background-color: var.$primary-color;
-  color: var.$color-text-light;
-  @include mix.flex(center, center);
-  @include mix.border-shadow(var.$border-radius-small, 0 4px 6px rgba(0, 0, 0, 0.1));
-  font-size: var.$font-size-medium;
-  min-width: 200px;
-  max-width: 360px;
+  flex: 0 0 calc(100% / 3 - 1rem);
+  height: 210px;
+  background-color: #007bff;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 200px; /* Establece un ancho mínimo para evitar estiramientos */
+  max-width: 360px; /* Opcional: ancho máximo */
+}
+.card img {
+  min-width: 200px; /* Establece un ancho mínimo para evitar estiramientos */
+  max-width: 450px; /* Opcional: ancho máximo */
+  object-fit: cover;
+  border-radius: 8px;
+}
+.card:hover {
 
-  img {
-    @include mix.size(100%, auto);
-    object-fit: cover;
-    border-radius: var.$border-radius-small;
-  }
-
-  &:hover {
-    animation: vibrate 0.5s linear both;
-  }
+  animation: vibrate 0.5s linear both;
 }
 
-.slider {
-  &__btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    @include mix.size(40px);
-    @include mix.border-shadow(50%);
-    @include mix.button-style(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8), var.$color-text-light);
-    z-index: 1;
-    cursor: pointer;
-  }
-
-  &__btn--left {
-    left: 10px;
-  }
-
-  &__btn--right {
-    right: 10px;
-  }
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 1;
 }
 
+.slider-btn.left {
+  left: 10px;
+}
+
+.slider-btn.right {
+  right: 10px;
+}
+
+.slider-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.vibrate {
+  animation: vibrate 1.5s linear both;
+}
 @keyframes vibrate {
-  0%, 100% {
+  0% {
     transform: translate(0);
   }
   20% {
@@ -69,5 +80,8 @@
   }
   80% {
     transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
   }
 }
