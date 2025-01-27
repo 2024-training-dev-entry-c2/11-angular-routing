@@ -1,33 +1,54 @@
-<section class="menu">
-  <header class="menu__header">
+<section
+  class="menu"
+  aria-label="pagina Menú contiene navegación y botón para agregar menú"
+>
+  <header class="menu__header" aria-label="header menu">
     <h1 class="menu__title">Menú</h1>
-    <button class="menu__add-btn">
-      Agregar Plato
-    </button>
+    <button class="menu__add-btn" (click)="openForm()">Agregar Menú</button>
+    <app-form-create-menu
+      [isOpenFormMenu]="isModalForm"
+      (closeModalFormMenu)="closeModalForm()"
+    ></app-form-create-menu>
   </header>
 
   <div class="menu__grid">
     <article class="menu-card">
-
+      @for(menu of this.menus; track $index) {
       <div class="menu-card__content">
-        <h3 class="menu-card__title">Pasta Carbonara</h3>
+        <h3 class="menu-card__title">{{ menu.name }}</h3>
         <p class="menu-card__description">
-          Pasta italiana con salsa cremosa, panceta, huevo y queso parmesano
+          {{ menu.description }}
         </p>
 
         <div class="menu-card__details">
-          <div class="menu-card__category">Pasta</div>
+          <div class="menu-card__category">
+            @for(dish of menu.dishes; track $index) {
+            <span class="menu-card__dish">{{ dish.name }}, </span>
+            }
+          </div>
         </div>
 
         <div class="menu-card__actions">
-          <button class="menu-card__btn menu-card__btn--edit">
+          <button
+            class="menu-card__btn menu-card__btn--edit"
+            (click)="openModal(menu.id)"
+          >
             <mat-icon aria-hidden="false" fontIcon="edit"></mat-icon>
           </button>
-          <button class="menu-card__btn menu-card__btn--delete">
+          <app-form-create-update
+            [isOpen]="isModalUpdate"
+            [menuId]="selectedMenuId"
+            (closeModal)="closeModal()"
+          ></app-form-create-update>
+          <button
+            class="menu-card__btn menu-card__btn--delete"
+            (click)="deleteMenu(menu.id)"
+          >
             <mat-icon aria-hidden="false" fontIcon="delete"></mat-icon>
           </button>
         </div>
       </div>
+      }
     </article>
   </div>
 </section>

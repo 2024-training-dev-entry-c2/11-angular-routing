@@ -17,6 +17,7 @@
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.2s;
+
     &:hover {
       background-color: variables.$tercery-color;
       transition: background-color 0.2s;

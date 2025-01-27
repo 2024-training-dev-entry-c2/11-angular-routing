@@ -1,7 +1,14 @@
-<section class="orders">
+<section class="orders" aria-label="pagina Órdenes">
   <h1 class="orders__title">Órdenes</h1>
+  <button class="orders__add-btn" (click)="openModalFormOrder()">
+    Añadir Orden
+  </button>
 
-  <div class="orders__container">
+  <app-order-create
+    [isOpenFormOrder]="isModalFormOrder"
+    (closeModalFormOrder)="closeModalFormOrder()"
+  ></app-order-create>
+  <div class="orders__container" aria-label="grid de ordenes">
     <table class="orders__table">
       <thead class="orders__thead">
         <tr class="orders__tr orders__tr--header">
@@ -14,29 +21,35 @@
           <th class="orders__th">Acciones</th>
         </tr>
       </thead>
+
+      @for(order of this.orders; track $index) {
       <tbody class="orders__tbody">
         <tr class="orders__tr">
-          <td class="orders__td">#ORD-001</td>
+          <td class="orders__td">#ORD-{{ order.id }}</td>
           <td class="orders__td">
             <div class="orders__user">
-              <img class="orders__user-avatar" src="assets/avatar.jpg" alt="Usuario">
               <div class="orders__user-info">
-                <span class="orders__user-name">Carlos García</span>
-                <span class="orders__user-email">carlosfdemail.com</span>
+                <span class="orders__user-name">{{ order.user?.name }}</span>
+                <span class="orders__user-email">{{ order.user?.email }}</span>
               </div>
             </div>
           </td>
           <td class="orders__td">
             <div class="orders__dishes">
-              <span class="orders__dish">Pasta Carbonara x2</span>
-              <span class="orders__dish">Ensalada César x1</span>
+              @for(detail of order.orderDetails; track $index) {
+              <span class="orders__dish">{{ detail.dish?.name }}</span>
+              }
             </div>
           </td>
-          <td class="orders__td">$45.90</td>
           <td class="orders__td">
-            <span class="orders__status orders__status--pending">Pendiente</span>
+            ${{ 25 * $index + ((16 * 2) % 4) || "N/A" }}
           </td>
-          <td class="orders__td">2024-01-25 14:30</td>
+          <td class="orders__td">
+            <span class="orders__status orders__status--pending"
+              >Pendiente</span
+            >
+          </td>
+          <td class="orders__td">{{ order.date }}</td>
           <td class="orders__td orders__td--actions">
             <button class="orders__btn orders__btn--view">
               <mat-icon aria-hidden="false" fontIcon="visibility"></mat-icon>
@@ -44,15 +57,16 @@
             <button class="orders__btn orders__btn--edit">
               <mat-icon aria-hidden="false" fontIcon="edit"></mat-icon>
             </button>
-            <button class="orders__btn orders__btn--delete">
+            <button
+              class="orders__btn orders__btn--delete"
+              (click)="deleteOrder(order.id)"
+            >
               <mat-icon aria-hidden="false" fontIcon="delete"></mat-icon>
             </button>
           </td>
         </tr>
       </tbody>
+      }
     </table>
   </div>
-
-  <app-modal></app-modal>
-
 </section>

@@ -1,11 +1,12 @@
 @use '../../ui/variables.scss' as variables;
 @use '../../ui/mixins.scss' as mixins;
-.home{
+
+.home {
   @include mixins.flex-style(row, wrap, 0px);
   width: 100%;
   font-family: variables.$font-family-merriweather;
 
-  &__title{
+  &__title {
     font-size: 72px;
     width: 50%;
     margin: 0px;
@@ -13,7 +14,7 @@
     text-align: center;
   }
 
-  &__portainer{
+  &__portainer {
     width: 50%;
     display: flex;
     justify-content: center;
@@ -21,7 +22,7 @@
     margin-bottom: 4rem;
   }
 
-  &__description{
+  &__description {
     font-size: 16px;
     width: 70%;
     margin-top: 20px;
@@ -29,14 +30,14 @@
     line-height: 25px;
   }
 
-  &__container{
+  &__container {
     @include mixins.flex-style(row, wrap, 0px);
     width: 100%;
     justify-content: center;
     gap: 20px;
   }
 
-  &__actions{
+  &__actions {
     @include mixins.flex-style(column, wrap, 0px);
     width: 100%;
     justify-content: center;

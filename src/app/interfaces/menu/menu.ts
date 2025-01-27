@@ -2,7 +2,9 @@ export interface Imenu {
   id: number;
   name: string;
   description: string;
-  dishes: Dish[];
+  dishIds: Dish[];
+  restaurantId?: number;
+  dishes?: Dish[];
 }
 
 export interface Dish {
@@ -12,4 +14,18 @@ export interface Dish {
   price: number;
   isPopular: boolean;
   popular: boolean;
+}
+
+export interface ImenuAlternativo {
+  name: string;
+  description: string;
+  dishIds: Dish[];
+  restaurantId?: number;
+  dishes?: Dish[];
+}
+export interface ImenuAlternative {
+  name: string;
+  description: string;
+  dishes: Dish[];
+  restaurantId?: number;
 }

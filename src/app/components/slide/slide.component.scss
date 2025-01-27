@@ -11,6 +11,7 @@
   background-color: variables.$color-white;
   width: 400px;
   color: variables.$typografy-color;
+
   &__title {
     @include mixins.text-style(16px, 900, normal);
     margin: 5px 0px;

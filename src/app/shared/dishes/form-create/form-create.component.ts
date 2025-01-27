@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { DishesComponent } from '../../../pages/dishes/dishes.component';
+import { Idish } from '../../../interfaces/dish/dish';
 
 @Component({
   selector: 'app-form-create',
@@ -17,7 +18,7 @@ import { DishesComponent } from '../../../pages/dishes/dishes.component';
 export class FormCreateComponent {
   @Input() isOpenForm = false;
   @Output() closeModalForm = new EventEmitter<void>();
-
+  public plato!: Idish;
   editForm!: FormGroup;
 
   constructor(private fb: FormBuilder, private dish: DishesComponent) {}
@@ -38,6 +39,12 @@ export class FormCreateComponent {
     console.log(this.editForm.value);
 
     if (this.editForm.valid) {
+      // this.plato = {
+      //   name: this.editForm.value.name,
+      //   description: this.editForm.value.description,
+      //   price: this.editForm.value.price,
+      //   isPopular: false,
+      // };
       this.dish.createDish(this.editForm.value);
       console.log('Crear plato se creooo');
       this.close();

@@ -5,25 +5,25 @@ import { MatIconModule } from '@angular/material/icon';
   selector: 'app-header',
   imports: [MatIconModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
   public listMenu = [
     {
-      name: "Menú",
-      path: "#"
+      name: 'Menú',
+      path: '#',
     },
     {
-      name: "Platos",
-      path: "#"
+      name: 'Platos',
+      path: '#',
     },
     {
-      name: "Pedidos",
-      path: "#"
+      name: 'Pedidos',
+      path: '#',
     },
     {
-      name: "Clientes",
-      path: "#"
+      name: 'Clientes',
+      path: '#',
     },
-  ]
+  ];
 }

@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { FormComponent } from '../form/form.component';
 import { IFormConfig } from '../../interfaces/client/fields';

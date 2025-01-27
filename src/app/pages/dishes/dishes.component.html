@@ -1,5 +1,5 @@
-<section class="dishes">
-  <header class="dishes__header">
+<section class="dishes" aria-label="pagina Platos">
+  <header class="dishes__header" aria-label="header Platos contiene navegación y botón para agregar plato">
     <h1 class="dishes__title">Platos</h1>
     <button class="dishes__add-btn" (click)="openForm()">Agregar Plato</button>
     <app-form-create
@@ -8,7 +8,7 @@
     ></app-form-create>
   </header>
 
-  <div class="dishes__grid">
+  <div class="dishes__grid" aria-label="grid de platos">
     <article class="dish-card">
       @for(plato of this.dishes; track $index) {
       <div class="dish-card__content">

@@ -1,14 +1,14 @@
 <div class="modal" [class.modal--open]="isOpen">
   <div class="modal__overlay" (click)="close()"></div>
 
-  <div class="modal__content">
+  <div class="modal__content" aria-label="modal para editar plato">
     <button class="modal__close" (click)="close()">
       <mat-icon>close</mat-icon>
     </button>
 
     <h2 class="modal__title">Editar cliente</h2>
 
-    <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="modal__form">
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="modal__form" aria-label="Formulario para editar plato">
       <div class="modal__form-group">
         <input
           type="text"

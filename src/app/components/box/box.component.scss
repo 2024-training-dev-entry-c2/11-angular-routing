@@ -33,9 +33,7 @@
   }
 
   &__item {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    @include mixins.flex-style(row, wrap, 5px);
     align-items: center;
     justify-content: space-evenly;
     gap: 0.5rem;
@@ -46,8 +44,7 @@
     border: 1px solid variables.$primary-color;
 
     &-title {
-      font-size: 0.875rem;
-      font-weight: 900;
+      @include mixins.text-style(0.875rem, 600, normal);
       margin: 0px;
       color: variables.$primary-color;
       width: 100%;

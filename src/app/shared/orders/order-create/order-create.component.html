@@ -1,0 +1,61 @@
+<div class="modal" [class.modal--open]="isOpenFormOrder">
+  <div class="modal__overlay" (click)="close()"></div>
+
+  <div class="modal__content">
+    <button class="modal__close" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+
+    <h2 class="modal__title">Crear Orden</h2>
+
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="modal__form">
+      <div class="modal__form-group">
+        <input
+          type="date"
+          formControlName="date"
+          class="modal__input"
+          placeholder="Fecha"
+        />
+      </div>
+
+      <div class="modal__form-group--select">
+        <select
+          formControlName="usuarios"
+          multiple
+          class="modal__input"
+          placeholder="usuarios"
+        >
+          <option value="" disabled>Selecciona el usuario</option>
+          @for(user of this.users; track $index) {
+          <option value="{{ user.id }}">{{ user.name }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="modal__form-group--select">
+        <select
+          formControlName="dishIds"
+          multiple
+          class="modal__input"
+          placeholder="platos"
+        >
+          <option value="" disabled>Selecciona los platos</option>
+          @for(dish of this.platos; track $index) {
+          <option value="{{ dish.id }}">{{ dish.name }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="modal__form-group--select">
+        <input
+          type="number"
+          formControlName="quantity"
+          class="modal__input"
+          placeholder="cantidad"
+        />
+      </div>
+
+      <button type="submit" class="modal__submit">Crear</button>
+    </form>
+  </div>
+</div>

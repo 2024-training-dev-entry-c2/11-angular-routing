@@ -27,6 +27,7 @@
     justify-content: space-between;
     width: 100%;
     background-color: rgb(239, 239, 239);
+
     & tr {
       width: 100%;
     }
@@ -59,12 +60,6 @@
     &:nth-child(even) {
       background-color: rgb(239, 239, 239);
     }
-
-    // &:nth-child(even) {
-    //   // background-color: variables.$secundary-color;
-    // }
-
-
   }
 
   &__td {
@@ -74,10 +69,11 @@
     color: variables.$primary-color;
     width: 100%;
   }
+
   &__td--placeholder {
-   text-align: center;
-   font-size: 23px;
-   padding-left: 7px;
-   color: variables.$tercery-color;
+    text-align: center;
+    font-size: 23px;
+    padding-left: 7px;
+    color: variables.$tercery-color;
   }
 }

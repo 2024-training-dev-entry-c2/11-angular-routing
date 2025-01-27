@@ -6,7 +6,7 @@
     class="header__icon"
   ></mat-icon>
 
-  <menu class="header__menu">
+  <menu class="header__menu" aria-label="Menu principal">
     @for (lista of listMenu; track $index) {
     <li class="header__li">{{ lista.name }}</li>
     }

@@ -13,6 +13,7 @@
   &__close {
     padding: 10px 0px 0px 20px;
     font-size: 25px;
+
     &:hover {
       color: variables.$primary-color;
       cursor: pointer;
@@ -56,6 +57,21 @@
 
     }
 
+  }
+
+  &__cazuela {
+    width: 90px;
+    position: relative;
+    top: 50px;
+    left: 100px;
+  }
+
+  &__info {
+    padding: 0px 20px;
+    font-size: 16px;
+    font-size: variables.$font-family-merriweather;
+    margin: 0px;
+    margin-bottom: 5px;
   }
 
   &__name {

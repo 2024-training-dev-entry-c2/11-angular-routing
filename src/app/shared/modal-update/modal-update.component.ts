@@ -12,8 +12,12 @@ import { IFormConfig } from '../../interfaces/client/fields';
 export class ModalUpdateComponent {
   @Input() formConfig!: IFormConfig;
   @Input() id: number = 0;
-  @Input() data: { name: string; email: string; phone: number; address: string; } | undefined;
-  @Input() dataDsh: { name: string; description: string; price: number; } | undefined;
+  @Input() data:
+    | { name: string; email: string; phone: number; address: string }
+    | undefined;
+  @Input() dataDsh:
+    | { name: string; description: string; price: number }
+    | undefined;
 
   isModalOpen = false;
 

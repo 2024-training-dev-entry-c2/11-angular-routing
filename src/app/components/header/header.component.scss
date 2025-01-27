@@ -9,9 +9,11 @@
   color: variables.$typografy-color;
   align-items: center;
 
+
   &__icon {
     color: variables.$color-white;
     cursor: pointer;
+
     &:hover {
       color: variables.$tercery-color;
     }
