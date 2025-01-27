@@ -10,11 +10,11 @@ import { RouterOutlet,RouterLink } from '@angular/router';
 export class LayoutClientComponent {
   options = [{
     url: "agregar",
-    name: "agregar"
+    name: "Agregar"
   },
   {
     url: "buscar",
-    name: "buscar"
+    name: "Buscar"
   }
   ]
 }

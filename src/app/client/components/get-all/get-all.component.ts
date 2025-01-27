@@ -2,7 +2,6 @@ import { Component,inject,OnInit } from '@angular/core';
 import { IClient } from '../../interfaces/client.interface';
 import { ClientService } from '../../services/client.service';
 import { RouterLink } from '@angular/router';
-
 @Component({
   selector: 'app-get-all',
   imports: [RouterLink],
@@ -11,7 +10,7 @@ import { RouterLink } from '@angular/router';
 })
 export class GetAllComponent implements OnInit{
   clients: IClient[] = [];
-
+  items=["Nombre","ID","Cedula","Correo","Telefono","Tipo","Acciones"]
   private clienteService = inject(ClientService);
 
   ngOnInit() {

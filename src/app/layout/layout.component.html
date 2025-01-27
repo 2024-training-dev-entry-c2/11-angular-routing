@@ -1,10 +1,10 @@
 <body class="layout">
-    <header class="layout__header"><app-header/></header>
-    <main class="layout__main">
+    <header class="layout__header" role="banner"><app-header/></header>
+    <main class="layout__main" aria-label="main">
         <app-notification></app-notification>
         <router-outlet></router-outlet>
     </main>
-    <footer class="layout__footer"><app-footer/></footer>
+    <footer class="layout__footer" aria-label="footer"><app-footer/></footer>
 </body>
 
 

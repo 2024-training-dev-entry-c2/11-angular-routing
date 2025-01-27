@@ -7,6 +7,6 @@ import { FormComponent } from '../form/form.component';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
-  public title: String = "Registrar Clientes";
+  public title: String = "Registrar Cliente";
   public action: String = "save";
 }

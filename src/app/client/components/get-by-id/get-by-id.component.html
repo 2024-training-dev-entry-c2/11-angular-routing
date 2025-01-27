@@ -1,27 +1,29 @@
 <section class="get-by-id">
-    <article>
-        <h3 class="get-by-id__title">Obtener cliente por ID</h3>
-        <form [formGroup]="form" class="get-by-id__form" (ngSubmit)="onSubmit()">
-            <label class="get-by-id__label">
-                <span>ID:</span>
-                <input type="text" formControlName="id" class="get-by-id__input">
-            </label>
-            <button class="get-by-id__button">Enviar</button>
-        </form>
-    </article>
-
-    <article>
-        <h3>cliente</h3>
-        <div>
-            <div>
-                <h4>{{client.nombre}}</h4>
+    <div class="get-by-id__container">
+        <article class="get-by-id__article">
+            <h3 class="get-by-id__title">Obtener cliente por su ID</h3>
+            <form [formGroup]="form" class="get-by-id__form" (ngSubmit)="onSubmit()" aria-label="form">
+                <label class="get-by-id__label">
+                    <span >ID:</span>
+                    <input type="text" formControlName="id" class="get-by-id__input" aria-required="true">
+                </label>
+                <button class="get-by-id__button" aria-label="send form">Enviar</button>
+            </form>
+        </article>
+    
+        <article class="get-by-id__client-info">
+            <h3 class="get-by-id__client-title">Cliente</h3>
+            <div class="get-by-id__client-container">
+                <ul class="get-by-id__client-details" aria-label="result">
+                    <li class="get-by-id__client-item">Nombre: {{client.nombre}}</li>
+                    <li class="get-by-id__client-item">Cédula: {{client.cedula}}</li>
+                    <li class="get-by-id__client-item">Correo: {{client.correo}}</li>
+                    <li class="get-by-id__client-item">Teléfono: {{client.telefono}}</li>
+                    <li class="get-by-id__client-item">Tipo: {{client.tipo}}</li>
+                </ul>
             </div>
-            <ul>
-                <li><span>Cedula:</span> {{client.cedula}}</li>
-                <li><span>Correo:</span> {{client.correo}}</li>
-                <li><span>Telefono:</span> {{client.telefono}}</li>
-                <li><span>Tipo:</span> {{client.tipo}} </li>
-            </ul>
-        </div>
-    </article>
+        </article>
+    </div>
 </section>
+
+
