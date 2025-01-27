@@ -14,43 +14,4 @@
       @include mixin.button;
     }
   }
-
-  &__card {
-    @include mixin.card;
-
-    &__header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-      &--icon {
-        margin-right: 10px;
-        font-size: 24px;
-        color: #3b82f6;
-      }
-      &--number {
-        font-size: 1.2rem;
-        font-weight: bold;
-        margin: 0;
-      }
-    }
-
-    &__details {
-      text-align: left;
-      &--item {
-        display: flex;
-        align-items: center;
-        font-size: 0.9rem;
-        color: $grey-strong;
-        margin-bottom: 5px;
-      }
-    }
-  }
-}
-
-.icon {
-  margin-right: 5px;
-  color: $bg-blue;
-  &--money {
-    color: green;
-  }
 }

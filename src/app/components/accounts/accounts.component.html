@@ -11,36 +11,7 @@
   </div>
 
   @for (account of accounts; track $index) {
-  <div class="accounts__card" role="listitem">
-    <div class="accounts__card__header">
-      <span class="accounts__card__header--icon" aria-hidden="true">
-        <fa-icon [icon]="faUniversity" class="icon" />
-      </span>
-      <h3 class="accounts__card__header--number" tabindex="0">
-        {{ account.accountNumber }}
-      </h3>
-    </div>
-    <div class="accounts__card__details">
-      <p class="accounts__card__details--item">
-        <span aria-hidden="true">
-          <fa-icon [icon]="faUser" class="icon" />
-        </span>
-        User: {{ account.user.name }}
-      </p>
-      <p class="accounts__card__details--item">
-        <span aria-hidden="true">
-          <fa-icon [icon]="faIdCard" class="icon" />
-        </span>
-        Document ID: {{ account.user.documentId }}
-      </p>
-      <p class="accounts__card__details--item">
-        <span aria-hidden="true">
-          <fa-icon [icon]="faMoneyBillWave" class="icon icon--money" />
-        </span>
-        Balance: {{ account.balance | currency : "USD" }}
-      </p>
-    </div>
-  </div>
+  <app-card-account [account]="account"></app-card-account>
   } @if (isCreateModalOpen) {
   <app-create-account
     (close)="closeCreateModal()"

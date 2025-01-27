@@ -14,38 +14,6 @@
       @include mixin.button;
     }
   }
-
-  &__card {
-    @include mixin.card;
-    align-items: center;
-
-    &__avatar {
-      display: flex;
-      justify-content: center;
-
-      &--img {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-    }
-
-    &__details {
-      text-align: center;
-    }
-
-    &__name {
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    &__document {
-      font-size: 0.9rem;
-      color: $grey-strong;
-    }
-  }
 }
 
 app-spinner {

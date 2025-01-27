@@ -5,10 +5,11 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { finalize } from 'rxjs';
 import { SpinnerComponent } from '../spinner/spinner.component';
 import { DataService } from '../../core/data.service';
+import { CardUserComponent } from './card-user/card-user.component';
 
 @Component({
   selector: 'app-users',
-  imports: [CreateUserComponent, SpinnerComponent],
+  imports: [CreateUserComponent, SpinnerComponent, CardUserComponent],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
 })

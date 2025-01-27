@@ -4,21 +4,14 @@ import {
   AccountResponse,
 } from '../../interfaces/account.interface';
 import { AccountService } from '../../services/account.service';
-import { CommonModule } from '@angular/common';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {
-  faUser,
-  faUniversity,
-  faMoneyBillWave,
-  faIdCard,
-} from '@fortawesome/free-solid-svg-icons';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { DataService } from '../../core/data.service';
 import { finalize, Subscription } from 'rxjs';
+import { CardAccountComponent } from './card-account/card-account.component';
 
 @Component({
   selector: 'app-accounts',
-  imports: [CommonModule, FontAwesomeModule, CreateAccountComponent],
+  imports: [CreateAccountComponent, CardAccountComponent],
   templateUrl: './accounts.component.html',
   styleUrl: './accounts.component.scss',
 })
@@ -26,11 +19,6 @@ export class AccountsComponent implements OnInit, OnDestroy {
   accounts: AccountResponse[] = [];
   isCreateModalOpen: boolean = false;
   private subscription: Subscription | undefined;
-
-  faUser = faUser;
-  faUniversity = faUniversity;
-  faMoneyBillWave = faMoneyBillWave;
-  faIdCard = faIdCard;
 
   constructor(
     private accountService: AccountService,
