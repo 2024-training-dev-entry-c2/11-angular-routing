@@ -1,3 +1,5 @@
+@use '../../../../ui/variables.scss';
+
 .menu-table {
   &__grid {
     display: grid;
@@ -8,7 +10,7 @@
 
 .menu-card {
   position: relative;
-  background: #ffffff;
+  background: variables.$orange;
   border: 1px solid #e9ecef;
   border-radius: 0.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -24,7 +26,7 @@
 
   &__subtitle {
     font-size: 1rem;
-    color: #6c757d;
+    color: #1f1f1f;
     margin-bottom: 1rem;
   }
 
@@ -56,7 +58,7 @@
     &__price {
       font-size: 1rem;
       font-weight: 500;
-      color: #28a745; 
+      color: #000000; 
       white-space: nowrap; 
     }
   }
@@ -76,7 +78,7 @@
     transition: background-color 0.2s ease;
 
     &--edit {
-      background-color: #ffc107;
+      background-color: #3498db;
       color: #000;
     }
 

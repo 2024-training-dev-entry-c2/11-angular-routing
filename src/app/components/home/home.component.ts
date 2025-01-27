@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { catchError, concatMap, delay, filter, forkJoin, map, mergeMap, Observable, of, switchMap, take, takeUntil, tap } from 'rxjs';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

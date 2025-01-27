@@ -28,12 +28,6 @@ export class DynamicInputComponent {
     return this.formGroup.get(this.config.name) as FormControl | FormArray;
   }
 
-  addItem(value: any): void {
-    if (this.control instanceof FormArray) {
-      this.control.push(new FormControl(value, Validators.required));
-    }
-  }
-
   getFormArrayControls(control: FormControl | FormArray): FormControl[] {
     return (control as FormArray).controls as FormControl[];
   }

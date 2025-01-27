@@ -1,14 +1,16 @@
+@use '../../../../ui/variables.scss';
+
 .dish-table {
-  padding: 2rem;
+  padding-left: 2rem;
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(3 , 1fr);
+    grid-template-columns: repeat(4 , 1fr);
     gap: 1.5rem;
   }
 
   .dish-card {
-    background: #fff;
+    background: variables.$orange;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -26,7 +28,7 @@
 
     &__menu {
       font-size: 0.7rem;
-      color: #888;
+      color: #383838;
       margin-bottom: 0.5rem;
       text-transform: uppercase;
       font-weight: 600;
@@ -35,19 +37,19 @@
     &__title {
       font-size: 1.5rem;
       font-weight: bold;
-      color: #333;
+      color: black;
     }
 
     &__description {
-      font-size: 1rem;
-      color: #666;
+      font-size: 1.2rem;
+      color: #111010;
       margin: 0.5rem 0;
     }
 
     &__price {
       font-size: 1.25rem;
       font-weight: bold;
-      color: #27ae60;
+      color: #000000;
     }
 
     &__actions {

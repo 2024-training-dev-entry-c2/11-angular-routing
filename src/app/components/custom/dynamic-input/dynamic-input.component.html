@@ -27,6 +27,21 @@
           </option>
         }
       </select>
+    }@else if (config.type == "selectM") {
+      <select
+        class="dynamic-input__input"
+        [id]="config.name"
+        aria-label="Select"
+        role="combobox"
+        multiple
+        [formControlName]="config.name"
+      >
+        @for (option of config.options; track $index) {
+          <option [value]="option.value">
+            {{ option.label }}
+          </option>
+        }
+      </select>
     } @else {
       <input
         class="dynamic-input__input"
@@ -66,15 +81,6 @@
           </select>
         </div>
       }
-      <button
-        type="button"
-        (click)="addItem('')"
-        class="dynamic-input__array-button dynamic-input__array-button--add"
-        aria-label="Add"
-        role="button"
-      >
-        Add Dish
-      </button>
     </div>
   } 
 

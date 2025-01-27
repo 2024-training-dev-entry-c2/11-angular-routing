@@ -1,3 +1,5 @@
+@use '../../../../ui/variables.scss';
+
 .client-table {
     display: flex;
     flex-wrap: wrap;
@@ -5,9 +7,9 @@
     justify-content: flex-start;
   
     &__card {
-      background-color: #ffffff;
+      background-color: variables.$orange;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
       width: calc(25.333% - 1.33rem);
       padding: 1.5rem;
       display: flex;
@@ -26,7 +28,7 @@
   
       &-email,
       &-frequent {
-        color: #555;
+        color: #111111;
       }
   
       &-actions {

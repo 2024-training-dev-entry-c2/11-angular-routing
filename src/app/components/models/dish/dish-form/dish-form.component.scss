@@ -1,10 +1,13 @@
 .dish-form {
-    background-color: #fff; /* Fondo blanco para el formulario */
-    border-radius: 12px; /* Bordes redondeados */
+    position: relative;
+    top: 10%;
+    left: 100%;
+    background-color: #fff; 
+    border-radius: 12px; 
     padding: 2rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     max-width: 500px;
-    margin: 2rem auto; /* Centrado del formulario */
+    margin: 2rem auto; 
   
     &__header {
       text-align: center;
@@ -50,7 +53,7 @@
       transition: border-color 0.3s;
   
       &:focus {
-        border-color: #ffbf6d; /* Contraste con el fondo de la página */
+        border-color: #ffbf6d; 
       }
     }
   
@@ -61,7 +64,7 @@
   
     &__error {
       font-size: 0.9rem;
-      color: #ff4d4f; /* Rojo para el mensaje de error */
+      color: #ff4d4f; 
       margin-top: 0.25rem;
     }
   
@@ -72,7 +75,7 @@
   
     &__select {
       appearance: none;
-      padding-right: 2.5rem; /* Espacio para el icono del dropdown */
+      padding-right: 2.5rem; 
     }
   
     &__submit {
@@ -86,7 +89,7 @@
       transition: background-color 0.3s;
   
       &:hover {
-        background-color: #e6a34f; /* Un tono más oscuro de naranja */
+        background-color: #e6a34f;
       }
   
       &:disabled {

@@ -1,28 +1,17 @@
 <section class="menu-form">
-    <header class="menu-form__header">
-      <h1 class="menu-form__title">Actualizar Menú</h1>
-      <p class="menu-form__description">Edita el nombre del menú aquí.</p>    
-    </header>
-  
-    <form [formGroup]="menuForm" (ngSubmit)="submit()" class="menu-form__form">
-      <div class="menu-form__group">
-        <label for="name" class="menu-form__label">Nombre del Menú</label>
-        <input
-          type="text"
-          id="name"
-          formControlName="name"
-          class="menu-form__input"
-          placeholder="Escribe el nuevo nombre"
-          required
-        />
-        <div *ngIf="menuForm.get('name')?.touched && menuForm.get('name')?.invalid" class="menu-form__error">
-          El nombre del menú es requerido.
-        </div>
-      </div>
-  
-      <button type="submit" class="menu-form__submit" [disabled]="menuForm.invalid">
-        Actualizar Menú
-      </button>
-    </form>
-  </section>
-  
+  <header class="menu-form__header">
+    <h1 class="menu-form__title">{{menuId? 'Actualizar Menu' : 'Crear menu'}}</h1>
+    <p class="menu-form__description">Edita el nombre del menú aquí.</p>    
+  </header>
+
+  <form [formGroup]="menuForm" (ngSubmit)="submit()" class="menu-form__form">
+    <app-dynamic-input 
+      [config]="menuConfig" 
+      [formGroup]="menuForm">
+    </app-dynamic-input>
+
+    <button type="submit" class="menu-form__submit" [disabled]="menuForm.invalid">
+      Actualizar Menú
+    </button>
+  </form>
+</section>

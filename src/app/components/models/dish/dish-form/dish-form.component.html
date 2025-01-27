@@ -1,7 +1,7 @@
 <section class="dish-form">
   <header class="dish-form__header">
     <h1 class="dish-form__title">{{dishId ? 'Actualizar Plato' : 'Agregar Plato'}}</h1>
-    <p class="dish-form__description">Actualiza la información de tu plato aquí.</p>
+    <p class="dish-form__description">{{dishId? 'Actualiza la información de tu plato aquí.': 'Agrega la informacion del plato aqui'}}</p>
   </header>
 
   <form [formGroup]="dishForm" (ngSubmit)="submit()" class="dish-form__form">

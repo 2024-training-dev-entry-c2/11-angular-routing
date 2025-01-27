@@ -1,31 +1,15 @@
-<main class="main">
-  <div class="content">
-    <div class="right-side">
-      <div class="pill-group">
-        @for (item of [
-          { title: 'Login', link:'/login' },
-          { title: 'A', link: '/layout' }
-        ]; track item.title) {
-          <a
-            class="pill"
-            [routerLink]="item.link"
-            rel="noopener"
-          >
-            <span>{{ item.title }}</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="14"
-              viewBox="0 -960 960 960"
-              width="14"
-              fill="currentColor"
-            >
-              <path
-                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"
-              />
-            </svg>
-          </a>
-        }
-      </div>
+<main class="homepage">
+  <div class="homepage__background-circle homepage__background-circle--left"></div>
+  <div class="homepage__background-circle homepage__background-circle--right"></div>
+
+  <div class="homepage__container">
+    <div class="homepage__row">
+      <img src="/images/image1.png" alt="Imagen 1" class="homepage__image homepage__image--top-left">
+      <img src="/images/image2.png" alt="Imagen 2" class="homepage__image homepage__image--top-right">
+    </div>
+    <div class="homepage__row homepage__row--bottom">
+      <img src="/images/image3.png" alt="Imagen 3" class="homepage__image homepage__image--bottom-left">
+      <img src="/images/image4.png" alt="Imagen 4" class="homepage__image homepage__image--bottom-right">
     </div>
   </div>
 </main>

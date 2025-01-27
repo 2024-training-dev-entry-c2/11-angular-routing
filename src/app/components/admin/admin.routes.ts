@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from '../layout/layout.component';
 import { HomeComponent } from '../home/home.component';
-import { LoginComponent } from '../login/login.component';
 import { adminGuard } from './admin.guard';
 import { AsideComponent } from '../aside/aside.component';
 import { MenuComponent } from '../models/menu/menu.component';
@@ -72,23 +71,4 @@ export const routes: Routes = [
       },
     ]
   },
-  {
-    path: 'login',
-    component: LayoutComponent,
-    canActivate: [adminGuard],
-    data: { isLogged: true },
-    children: [
-      {
-        path: '',
-        component: AsideComponent,
-        outlet: 'left-side',
-        data: { isBrota: true }
-      },
-      {
-        path: '',
-        component: LoginComponent,
-        data: { isCurrent: true }
-      },
-    ]
-  }
 ];

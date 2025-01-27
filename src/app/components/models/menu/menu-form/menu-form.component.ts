@@ -4,10 +4,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { EditMenuService } from '../../../../services/menu/edit-menu.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddMenuService } from '../../../../services/menu/add-menu.service';
+import { DynamicInputComponent } from 'src/app/components/custom/dynamic-input/dynamuc-input.component';
 
 @Component({
   selector: 'app-menu-form',
-  imports: [ReactiveFormsModule ,CommonModule],
+  imports: [ReactiveFormsModule ,CommonModule, DynamicInputComponent],
   templateUrl: './menu-form.component.html',
   styleUrl: './menu-form.component.scss'
 })
@@ -17,9 +18,17 @@ export class MenuFormComponent implements OnInit {
   private addMenuService = inject(AddMenuService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
-  private menuId: number | null = null
+  protected menuId: number | null = null
   isLoading = true;
   isEditing = false;
+
+  menuConfig = {
+    name: 'name',
+    label: 'Nombre del Menú',
+    type: 'text',
+    placeholder: 'Escribe el nuevo nombre',
+    required: true
+  };
 
   constructor(private fb: FormBuilder) {
     this.menuForm = this.fb.group({

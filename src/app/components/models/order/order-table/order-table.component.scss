@@ -1,3 +1,5 @@
+@use '../../../../ui/variables.scss';
+
 .order__list {
     display: flex;
     flex-wrap: wrap;
@@ -6,7 +8,7 @@
   }
   
   .order__card {
-    background-color: #fff;
+    background-color: variables.$orange;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     width: 350px;
@@ -24,12 +26,12 @@
       & .order__card-title {
         font-size: 1.5rem;
         font-weight: bold;
-        color: #333;
+        color: #050505;
       }
   
       & .order__card-client {
         font-size: 1rem;
-        color: #777;
+        color: #141414;
         margin-top: 0.5rem;
       }
     }

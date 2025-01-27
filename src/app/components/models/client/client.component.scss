@@ -1,18 +1,24 @@
+@use '../../../ui/variables.scss';
+
 .client-page {
     padding: 0.5rem;
+    background-color: rgb(206, 206, 206) ;
   
     &__header {
+      padding-left: 30px;
       margin-bottom: 2rem;
     }
   
     &__title {
-      font-size: 1.8rem;
+      font-size: 3rem;
+      font-weight: 700;
       margin-bottom: 0.5rem;
+      color:variables.$title;
     }
   
     &__description {
       font-size: 1rem;
-      color: #666;
+      color: #222222;
     }
   
     &__list {
