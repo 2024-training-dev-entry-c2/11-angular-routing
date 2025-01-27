@@ -1,0 +1,53 @@
+<!-- <section class="get-all-dish">
+    <h1 class="get-all-dish__title">PLATOS</h1>
+    @for (dish of dishes; track $index) {
+    <article class="get-all-dish__info">
+        <div class="get-all-dish__header">
+            <h2>{{ dish.nombre }}</h2>
+            <p>id: {{ dish.id }}</p>
+            <a [routerLink]="['actualizar', dish.id]">Actualizar</a>
+            <a [routerLink]="['eliminar', dish.id]">Eliminar</a>
+        </div>
+        <div class="get-all-dish__body">
+            <p>Descripción: {{ dish.descripcion }}</p>
+            <p>Precio: {{ dish.precio | currency}}</p>
+            <p>Tipo: {{ dish.tipo }}</p>
+            <p>ID Menú: {{ dish.idMenu }}</p>
+        </div>
+    </article>
+    <hr>
+    }
+</section> -->
+
+<section class="get-all-dish">
+    <h1 class="get-all-dish__title">PLATOS</h1>
+    <article class="get-all-dish__info" aria-label="dishes information">
+        <table class="get-all-dish__table">
+            <thead>
+                <tr role="row">
+                    @for(item of items; track $index){
+                        <th role="columnheader">{{item}}</th>
+                    } 
+                </tr>
+            </thead>
+            <tbody>
+                @for(dish of dishes; track $index){
+                <tr>
+                    <td role="cell">{{ dish.nombre }}</td>
+                    <td role="cell">{{ dish.id }}</td>
+                    <td role="cell">{{ dish.descripcion }}</td>
+                    <td role="cell">{{ dish.precio | currency }}</td>
+                    <td role="cell">{{ dish.tipo }}</td>
+                    <td role="cell">{{ dish.idMenu }}</td>
+                    <td>
+                        <div class="get-all-dish__buttons">
+                            <a role="button" aria-label="update dish" class="get-all-dish__button" [routerLink]="['actualizar', dish.id]">Actualizar</a>
+                            <a role="button" aria-label="delete dish" class="get-all-dish__button--secundary" [routerLink]="['eliminar', dish.id]">Eliminar</a>
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </article>
+</section>

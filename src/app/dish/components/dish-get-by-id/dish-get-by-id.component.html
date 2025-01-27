@@ -1,0 +1,31 @@
+<section class="get-by-id-dish">
+    <div class="get-by-id-dish__container">
+        <article class="get-by-id-dish__article">
+            <h3 class="get-by-id-dish__title">Obtener plato por ID</h3>
+            <form [formGroup]="form" class="get-by-id-dish__form" (ngSubmit)="onSubmit()" aria-label="form">
+                <label class="get-by-id-dish__label">
+                    <span>ID:</span>
+                    <input type="text" formControlName="id" class="get-by-id-dish__input" aria-required="true">
+                </label>
+                <button class="get-by-id-dish__button" aria-label="send form">Enviar</button>
+            </form>
+        </article>
+
+        @if (dish) {
+        <article class="get-by-id-dish__dish-info">
+            <h3 class="get-by-id-dish__dish-title">Plato</h3>
+            <div class="get-by-id-dish__dish-container">
+                <div class="get-by-id-dish__dish-name">
+                    <h4>{{ dish.nombre }}</h4>
+                </div>
+                <ul class="get-by-id-dish__dish-details" aria-label="result">
+                    <li class="get-by-id-dish__dish-item"><span>Descripción:</span> {{ dish.descripcion }}</li>
+                    <li class="get-by-id-dish__dish-item"><span>Precio:</span> {{ dish.precio | currency }}</li>
+                    <li class="get-by-id-dish__dish-item"><span>Tipo:</span> {{ dish.tipo }}</li>
+                    <li class="get-by-id-dish__dish-item"><span>ID Menú:</span> {{ dish.idMenu }}</li>
+                </ul>
+            </div>
+        </article>
+        }
+    </div>
+</section>

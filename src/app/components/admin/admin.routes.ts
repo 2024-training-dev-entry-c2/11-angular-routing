@@ -1,73 +1,39 @@
 import { Routes } from '@angular/router';
-import { LayoutComponent } from '../layout/layout.component';
-import { ContentComponent } from '../content/content.component';
-import { HomeComponent } from '../home/home.component';
-import { LoginComponent } from '../login/login.component';
+import { LayoutComponent } from '../../layout/layout.component';
 import { adminGuard } from './admin.guard';
+
 
 export const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
     children: [
-      {
-        path: '',
-        component: ContentComponent,
-        outlet: 'header'
+      { 
+        path: '', 
+        redirectTo: 'menus', 
+        pathMatch: 'full' 
       },
-      {
-        path: '',
-        component: ContentComponent,
-        outlet: 'left-side'
+      { 
+        path: 'clientes', 
+        loadChildren: () => import('../../client/client.module').then(m => m.ClientModule),
+        outlet: "primary" 
       },
-      {
-        path: '',
-        component: HomeComponent,
+      { 
+        path: 'menus', 
+        loadChildren: () => import('../../menu/menu.module').then(m => m.MenuModule),
+        outlet: "primary" 
       },
-      {
-        path: '',
-        component: ContentComponent,
-        outlet: 'right-side'
+      { 
+        path: 'platos', 
+        loadChildren: () => import('../../dish/dish.module').then(m => m.DishModule),
+        outlet: "primary" 
       },
-      {
-        path: '',
-        component: ContentComponent,
-        outlet: 'footer'
+      { 
+        path: 'pedidos', 
+        loadChildren: () => import('../../order/order.module').then(m => m.OrdersModule),
+        outlet: "primary" 
       }
     ]
   },
-  {
-    path: 'login/:manuel/:id',
-    component: LayoutComponent,
-    canActivate: [adminGuard],
-    data: { isLogged: true },
-    children: [
-      {
-        path: '',
-        component: ContentComponent,
-        outlet: 'header'
-      },
-      {
-        path: '',
-        component: ContentComponent,
-        outlet: 'left-side',
-        data: { isBrota: true }
-      },
-      {
-        path: '',
-        component: LoginComponent,
-        data: { isCurrent: true }
-      },
-      {
-        path: '',
-        component: ContentComponent,
-        outlet: 'right-side'
-      },
-      {
-        path: '',
-        component: ContentComponent,
-        outlet: 'footer'
-      }
-    ]
-  }
+  
 ];
