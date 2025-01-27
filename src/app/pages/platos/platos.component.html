@@ -1,10 +1,10 @@
-<section class="platos">
+<section class="platos" aria-labelledby="platos-heading">
   <main class="platos__main">
-    <h2>Platos</h2>
+    <h2 id="platos-heading">Platos</h2>
 
-    <menu class="platos__cards">
+    <menu class="platos__cards" role="list" aria-label="Lista de platos">
       @if (platos.length > 0) { @for (item of platos; track $index) {
-      <li>
+      <li role="listitem">
         <app-plato-card
           [name]="item.nombre"
           [price]="item.precio"
@@ -13,15 +13,17 @@
           (buttonModifyClick)="selectToUpdate(item)"
         />
       </li>
-      } }@else {
+      } } @else {
       <li>
         <span>No hay platos</span>
       </li>
       }
     </menu>
   </main>
+
   <app-form-platos
     [platoSelected]="platoSelected"
     (buttonSubmitClick)="addOrUpdate($event)"
+    aria-labelledby="form-platos-heading"
   />
 </section>

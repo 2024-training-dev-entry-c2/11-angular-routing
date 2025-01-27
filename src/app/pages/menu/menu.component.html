@@ -1,10 +1,10 @@
-<section class="menu">
+<section class="menu" aria-labelledby="menu-heading">
   <main class="menu__main">
-    <h2>Menus</h2>
+    <h2 id="menu-heading">Menus</h2>
 
-    <menu class="menu__cards">
+    <menu class="menu__cards" role="list" aria-label="Lista de menús">
       @if (menu.length > 0) { @for (item of menu; track $index) {
-      <li>
+      <li role="listitem">
         <app-simple-card
           [image]="item.urlImage"
           [link]="'/menu/' + item.id"
@@ -13,15 +13,17 @@
           (buttonModifyClick)="selectMenuToUpdate(item)"
         />
       </li>
-      } }@else {
+      } } @else {
       <li>
-        <span>No hay menus</span>
+        <span>No hay menús disponibles</span>
       </li>
       }
     </menu>
   </main>
+
   <app-form-menu
     [menuSelected]="menuSelected"
     (buttonSubmitClick)="addOrUpdate($event)"
+    aria-labelledby="form-menu-heading"
   />
 </section>

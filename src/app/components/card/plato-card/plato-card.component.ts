@@ -1,10 +1,11 @@
 import { Component, input, output } from '@angular/core';
 import { AddButtonComponent } from '../../button/add-button/add-button.component';
 import { ModifyButtonComponent } from '../../button/modify-button/modify-button.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-plato-card',
-  imports: [AddButtonComponent, ModifyButtonComponent],
+  imports: [AddButtonComponent, ModifyButtonComponent, CommonModule],
   templateUrl: './plato-card.component.html',
   styleUrl: './plato-card.component.scss',
 })
