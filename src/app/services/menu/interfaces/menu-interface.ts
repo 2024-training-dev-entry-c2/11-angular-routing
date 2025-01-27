@@ -7,7 +7,7 @@ export interface ICreateMenuRequest {
 }
 
 export interface IMenuResponse {
-  nemuId: number;
+  menuId: number;
   name: string;
   description: string;
   dishes: IDishResponse[];
