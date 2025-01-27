@@ -1,0 +1,67 @@
+@use '../../../ui/style/variables.scss' as variables;
+@use '../../../ui/style/mixins.scss' as mixins;
+
+.get-all-order{
+    display: flex;
+    @include mixins.contColumn(15px, 0);
+
+    &__title {
+        text-align: center;
+        font-size: 33px;
+        margin-bottom: 60px;
+    }
+
+    &__subtitle {
+        padding-bottom: 20px;
+    }
+
+    &__info{
+        @include mixins.styleContainer(#C7BEBA, variables.$colorBlack, 20px, 10px);
+        @include mixins.form(start, 20px, 20px);
+        margin-top: 0;
+        align-items:start;
+    }
+
+    &__header{
+        @include mixins.contLine();
+        gap: 80px;
+    }
+
+    &__button{
+        @include mixins.button();
+        color: #157433;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+
+    &__button--secundary{
+        @include mixins.button();
+        color: rgb(199, 31, 31);
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+
+    &__body{
+        padding: 10px;
+        font-weight: 500;
+    }
+
+    &__order-id{
+        font-weight: bold;
+    }
+
+    &__detail{
+        padding: 10px;
+        list-style: none;
+    }
+
+    &__total{
+        padding-top: 10px;
+    }
+    
+
+
+
+}
