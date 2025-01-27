@@ -1,0 +1,99 @@
+.header {
+    $self: &;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: #1a1a1a;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+    &__brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+  
+      img {
+        width: 40px;
+        height: 40px;
+        filter: brightness(0) invert(1);
+        transition: transform 0.3s ease;
+  
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+  
+      h1 {
+        color: #ffffff;
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+    }
+  
+    &__user {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+  
+    &__user-name {
+      color: #ffffff;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+    }
+
+    &__balance {
+      padding: 0.5rem 1rem;
+      background-color: #f8f9fa;
+      border-radius: 4px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+  
+    &__logout {
+      padding: 0.5rem 1.25rem;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      background: transparent;
+      color: #ffffff;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+  
+      &:hover {
+        background: #ffffff;
+        color: #1e3c72;
+        transform: translateY(-2px);
+      }
+  
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  
+    @media (max-width: 768px) {
+      padding: 1rem;
+      
+      &__brand {
+        h1 {
+          font-size: 1.2rem;
+        }
+      }
+  
+      &__user {
+        gap: 0.75rem;
+      }
+  
+      &__user-name {
+        padding: 0.4rem 0.8rem;
+      }
+  
+      &__logout {
+        padding: 0.4rem 1rem;
+      }
+    }
+  }

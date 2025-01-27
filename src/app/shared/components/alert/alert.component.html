@@ -1,0 +1,7 @@
+<div class="alert-container">
+    @if(alert(); as alert) {
+      <div class="alert alert--{{alert.type}}">
+        {{alert.message}}
+      </div>
+    }
+  </div>

@@ -1,0 +1,36 @@
+// minimalist-table.component.scss
+.minimalist-table {
+    width: 100%;
+    overflow-x: auto;
+    
+    &__container {
+      width: 100%;
+      min-width: 100%;
+      border-collapse: collapse;
+    }
+  
+    &__header-row {
+      border-bottom: 1px solid #1a1a1a;
+    }
+  
+    &__header-cell {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      font-weight: 500;
+      color: #1a1a1a;
+    }
+  
+    &__row {
+      border-bottom: 1px solid #1a1a1a;
+      
+      &:hover {
+        background-color: #f9f9f9;
+      }
+    }
+  
+    &__cell {
+      padding: 0.75rem 1rem;
+      white-space: nowrap;
+      color: #1a1a1a;
+    }
+  }

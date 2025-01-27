@@ -1,0 +1,31 @@
+<div class="login">
+  <h1 class="login__title">Welcome Back</h1>
+  @if (loginForm) {
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login__form">
+      <input 
+        type="email" 
+        formControlName="email"
+        class="login__input"
+        placeholder="Email">
+        
+      <input 
+        type="password" 
+        formControlName="password"
+        class="login__input"
+        placeholder="Password">
+        
+      <button type="submit" class="login__button">
+        Login
+      </button>
+    </form> 
+
+    <div class="login__register">
+      <p>Don't have an account? 
+        <button class="login__register-link" (click)="toRegister()">
+          Register here
+        </button>
+      </p>
+    </div>
+    
+  }
+</div>

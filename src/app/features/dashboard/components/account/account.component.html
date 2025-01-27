@@ -1,0 +1,30 @@
+<div class="account">
+    <div class="account__container">
+      <h2 class="account__title">Create Account</h2>
+      <form [formGroup]="accountForm" (ngSubmit)="onSubmit()" class="account__form">
+        <div class="account__form-group">
+          <label class="account__label">User ID</label>
+
+          <select formControlName="userId" class="account__input">
+            @for(user of users; track user.id) {
+              <option [value]="user.id">{{user.name}} - {{user.documentId}}</option>
+            }
+          </select>  
+
+        </div>
+
+        <button type="submit" class="account__button">Create Account</button>
+      </form>
+    </div>
+
+    <div class="account__table">
+        <h1></h1>
+        <app-minimalistic-table 
+          [columns]="columns" 
+          [data]="data">
+        </app-minimalistic-table>
+    </div>
+
+  </div>
+
+  

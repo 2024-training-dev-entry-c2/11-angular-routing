@@ -1,0 +1,12 @@
+// footer.component.scss
+.footer {
+    &__container {
+        padding: 1rem;
+        text-align: center;
+    }
+
+    &__text {
+        color: #666;
+        font-size: 0.9rem;
+    }
+}

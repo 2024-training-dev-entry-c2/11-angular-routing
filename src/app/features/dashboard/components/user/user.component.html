@@ -1,0 +1,29 @@
+<div class="user-form">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" formControlName="name">
+      @if (submitted) {
+      <small class="error">Name is required</small>
+      }
+    </div>
+
+    <div class="form-group">
+      <label>Document ID</label>
+      <input type="text" formControlName="documentId">
+      @if (submitted) {
+      <small class="error">Document ID is required</small>
+      }
+    </div>
+
+    <button type="submit">Register</button>
+
+  </form>
+
+</div>
+
+<app-minimalistic-table 
+      [columns]="columns"
+      [data]="data"
+      class="user-table">
+</app-minimalistic-table>

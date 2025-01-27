@@ -1,0 +1,32 @@
+<nav class="sidebar" [class.collapsed]="isCollapsed">
+  <button class="sidebar__toggle" (click)="toggleSidebar()"></button>
+
+  <ul class="sidebar__menu">
+    
+    <li class="sidebar__item">
+      <a (click)="selectMenu('users')" [class.active]="menuService.selectedMenu() === 'users'">
+        <i class="fas fa-chart-line"></i>
+        <span>Users</span>
+      </a>
+    </li>
+    <li class="sidebar__item">
+      <a (click)="selectMenu('accounts')" [class.active]="menuService.selectedMenu() === 'accounts'">
+        <i class="fas fa-bell"></i>
+        <span>Accounts</span>
+      </a>
+    </li>
+    <li class="sidebar__item">
+      <a (click)="selectMenu('transactions')" [class.active]="menuService.selectedMenu() === 'transactions'">
+        <i class="fas fa-chart-pie"></i>
+        <span>Transactions</span>
+      </a>
+    </li>
+    <li class="sidebar__item sidebar__logout">
+      <a (click)="logout()">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </a>
+    </li>
+    
+  </ul>
+</nav>
