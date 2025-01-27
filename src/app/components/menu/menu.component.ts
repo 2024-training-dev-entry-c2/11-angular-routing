@@ -20,7 +20,6 @@ export class MenuComponent {
   }
 
   onMenuAdded(newMenu: IMenu): void {
-    // Llamar al método del MenuMainComponent para añadir el nuevo menú
     this.menuMainComponent.addMenu(newMenu);
   }
 }

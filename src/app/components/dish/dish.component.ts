@@ -11,7 +11,6 @@ import { IDish } from '../../interfaces/menu.interface';
   styleUrl: './dish.component.scss'
 })
 export class DishComponent {
-  menu = { menuId: 1, menuName: 'Menu1' };
   searchQuery: string = ''; 
 
   @ViewChild(DishMainComponent) dishMainComponent!: DishMainComponent;

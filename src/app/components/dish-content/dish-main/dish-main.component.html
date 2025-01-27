@@ -5,18 +5,18 @@
                 @for (header of getHeaders(); track header.label) {
                 <th>{{ header.label }}</th>
                 }
-                <th>Menu ID</th> <!-- Nueva columna para el Menu ID -->
             </tr>
         </thead>
         <tbody>
+
             @for (dish of filteredDishes; track dish.idDish) {
+
             <tr>
                 <td>{{ dish.idDish }}</td>
                 <td>{{ dish.dishName }}</td>
                 <td>{{ dish.price | currency: 'USD' }}</td>
                 <td>{{ dish.description }}</td>
                 <td>{{ dish.isPopular ? 'Si' : 'No' }}</td>
-                <!-- <td>{{ menuId }}</td> Mostrar el Menu ID -->
                 <td class="dish__action">
                     @for (action of getActions(); track action.label) {
                     <a class="dish__button dish__button--{{ action.type }}"

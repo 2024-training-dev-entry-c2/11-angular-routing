@@ -3,11 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { DishService } from '../../../services/dish.service';
 import { ModalService } from '../../../services/modal.service';
 import { IDish } from '../../../interfaces/dish.interface';
-import { CurrencyPipe } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
+import { IMenu } from '../../../interfaces/menu.interface';
+import { MenuService } from '../../../services/menu.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-dish-main',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, FormsModule, CommonModule],
   templateUrl: './dish-main.component.html',
   styleUrls: ['./dish-main.component.scss'],
 })
@@ -20,26 +23,22 @@ export class DishMainComponent implements OnInit {
   description: string = '';
   isPopular: boolean = false;
   selectedDishId: number | null = null;
-  menuId!: number;  // Capturado desde la URL
+  menuId!: number;  
+  filteredMenus: IMenu[] = []; 
+  menus: IMenu[] = []; 
 
-  @Input() searchQuery: string = ''; // Para filtrar los platos
+  @Input() searchQuery: string = ''; 
 
   constructor(
     private dishService: DishService,
+    private menuService: MenuService,
     private modalService: ModalService,
     private viewContainerRef: ViewContainerRef,
-    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.menuId = +params['menuId']; // Convertir a número
-      if (!this.menuId) {
-        console.error('El ID del menú es necesario para cargar los platos.');
-        return;
-      }
-      this.loadDishes();  // Cargar platos después de obtener el ID
-    });
+    this.filteredMenus = [];
+      this.loadDishes(); 
   }
 
   getHeaders() {
@@ -49,7 +48,6 @@ export class DishMainComponent implements OnInit {
       { label: 'Precio' },
       { label: 'Descripción' },
       { label: 'Es Popular' },
-      { label: 'Menu ID' },
       { label: 'Acciones' },
     ];
   }
@@ -62,21 +60,32 @@ export class DishMainComponent implements OnInit {
   }
 
   loadDishes(): void {
-    if (!this.menuId) {
-      console.error('El ID del menú es necesario para cargar los platos.');
-      return;
-    }
+    this.filteredDishes = [];
+    this.menuService.getMenus().subscribe(
+      (menus) => {
+        this.menus = menus; 
+        this.filteredMenus = menus;
 
-    this.dishService.getAllDishesFromMenu(this.menuId).subscribe(
-      (dishes) => {
-        this.dishes = dishes;
-        this.filteredDishes = [...dishes];
-      },
-      (error) => {
-        console.error('Error al cargar los platos:', error);
-      }
-    );
+        for (let i = 0; i < this.filteredMenus.length; i++) {
+          this.dishService.getAllDishesFromMenu(this.filteredMenus[i].idMenu).subscribe(
+            (dishes) => {
+              this.dishes.push(...dishes); 
+              this.filteredDishes = [...this.dishes]; 
+              console.log('NECESITO ESTO', this.filteredDishes);
+            },
+            (error) => {
+              console.error('Error al cargar los platos:', error);
+            }
+          );
+        }
+      });
+    
   }
+
+  addDish(newDish: IDish): void {
+        this.dishes.push(newDish);
+        this.filterDishes(); 
+      }
 
   filterDishes(): void {
     if (this.searchQuery) {
@@ -95,7 +104,7 @@ export class DishMainComponent implements OnInit {
     if (type === 'edit' && id) {
       this.loadDishDetails(id);
     } else {
-      this.resetModalFields();  // Reiniciar campos si es agregar
+      this.resetModalFields();
     }
 
     this.modalService
@@ -120,11 +129,6 @@ export class DishMainComponent implements OnInit {
   }
 
   loadDishDetails(id: number): void {
-    if (!this.menuId) {
-      console.error('El ID del menú es necesario para cargar los detalles del plato.');
-      return;
-    }
-
     this.dishService.getDishFromMenu(this.menuId, id).subscribe(
       (dish) => {
         this.dishName = dish.dishName;
@@ -147,7 +151,7 @@ export class DishMainComponent implements OnInit {
     this.dishService.updateDishInMenu(this.menuId, id, updatedDish).subscribe(
       () => {
         console.log('Plato actualizado.');
-        this.loadDishes();  // Recargar los platos
+        this.loadDishes();  
       },
       (error) => {
         console.error('Error al actualizar el plato:', error);
@@ -164,7 +168,7 @@ export class DishMainComponent implements OnInit {
     this.dishService.deleteDishFromMenu(this.menuId, id).subscribe(
       () => {
         console.log('Plato eliminado.');
-        this.loadDishes();  // Recargar los platos
+        this.loadDishes();  
       },
       (error) => {
         console.error('Error al eliminar el plato:', error);
