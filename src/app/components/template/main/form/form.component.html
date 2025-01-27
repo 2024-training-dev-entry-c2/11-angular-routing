@@ -1,0 +1,29 @@
+@if (formFields() || formDynamicField()) {
+<dialog class="form__container" role="dialog">
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <header class="form__header">
+            <button class="form__button-close" (click)="onCloseForm()">x</button>
+            <h3 class="form__title">{{title()}}</h3>
+        </header>
+        <div class="form__content">
+            @for (field  of formFields(); track $index) {
+                <app-form-field [field]="field" [form]="form" [initialData]="initialData()?.[$index]?.content || ''"></app-form-field>
+            }
+            @if(formDynamicField()){                
+                <div [formArrayName]="formArrayName()!" class="form__content__dynamic-section">
+                    @for (item of getFormArrayControls(); track item; let i = $index){
+                        <app-form-dynamic-field [form]="form" [formArray]="items" 
+
+                        [field]="{index: $index, field: formDynamicField()!}" [formArrayname]="formArrayName()!" 
+                        (onDelete)="deleteItem(i)"></app-form-dynamic-field>
+                    }
+                </div>
+                <button class="form__button form__button--dynamic" (click)="addItem()">{{dynamicButtonText()}}</button>
+            }
+        </div>
+        <button type="submit" class="form__button" [disabled]="form.invalid">
+            {{ buttonText() }}
+        </button>
+    </form> 
+</dialog>
+}

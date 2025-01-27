@@ -1,0 +1,90 @@
+@use '../../../../ui/styles/variables.scss' as vr;
+@use '../../../../ui/styles/mixins.scss' as mx;
+
+.form{
+    @include mx.flex-container(start, center, 20px, column);
+    position: relative;
+    max-height: 80%;
+    min-width: 430px;
+    padding: 30px;
+    background-color: vr.$color-white;
+    border-radius: 5px;
+    overflow-y: auto;
+
+    &__container{
+        @include mx.flex-container(center, center);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #0000002b;
+        z-index: 100;
+    }
+
+    &__header{
+        margin-bottom: 20px;
+    }
+
+    &__button-close{
+        position: absolute;
+        font-weight: 600;
+        top: 10px;
+        right: 10px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        text-align: center;
+        border: none;
+        background: none;
+
+        &:hover{
+            background-color: vr.$color-gray-secondary;
+        }
+    }
+
+    &__title{
+        font-size: 30px;
+    }
+
+    &__content{
+        @include mx.flex-container(center, center,10px, column);
+        &__dynamic-section{
+            width: 100%;
+        }
+    }
+
+    &__button{
+        width: 100px;
+        padding: 5px;
+        background: vr.$color-green;
+        color: rgb(255, 255, 255);
+        font-size: 15px;
+        font-weight: 500;
+        border: none;
+        border-radius: 100px;
+        box-shadow: 1px 1px 8px #0000003f;
+        cursor: pointer;
+
+        
+        &:disabled{
+            background: vr.$color-green-hover;           
+            color: vr.$color-gray-secondary;
+            cursor:auto;
+        }
+        
+        &:hover{
+            background: vr.$color-green-hover;                
+        }
+
+        &--dynamic{            
+            padding: 8px 5px;
+            width: 100px;
+            font-size: 12px;
+            background: #345995;
+            &:hover{
+                background: #274370;                
+            }
+        }
+    }
+}

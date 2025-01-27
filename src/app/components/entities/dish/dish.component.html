@@ -1,0 +1,10 @@
+<app-container>
+    <h1 class="title-section">Dashboard de Platos</h1>
+    <app-options text="Agregar Plato" class="container__wrapper"></app-options>
+    <app-board class="container__wrapper"
+    [titles]="tableContent.titles"
+    [items]="tableContent.content"
+    (onDelete)="deleteMenu($event)"
+    ></app-board>
+    <router-outlet/>
+</app-container>

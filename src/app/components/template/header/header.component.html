@@ -1,0 +1,21 @@
+<header class="header">
+    <nav class="navigation" role="navigation">
+        <a [routerLink]="iconUrl()" class="navigation__item" tabindex="0" aria-label="Ir al Inicio">
+            <svg aria-hidden="true">
+                <use xlink:href ="images/svg/logo.svg#logo-id"></use>
+            </svg>
+            <span aria-hidden="true">CHEFLY</span>
+        </a>
+        <div class="navigation__options">
+            <app-menu [items]="items()"></app-menu>
+            <div class="navigation__user">
+                <svg aria-hidden="true" aria-label="Icono de persona representando al admin">
+                    <use xlink:href ="images/svg/admin.svg#admin-id"></use>
+                </svg>
+                <span >{{user()}}</span>
+            </div>
+            <a class="navigation__button" [routerLink]="contentBtn()?.url" role="button"
+            [attr.aria-label]="'Ir a ' + contentBtn()?.text">{{contentBtn()?.text}}</a>
+        </div>
+    </nav>
+</header>

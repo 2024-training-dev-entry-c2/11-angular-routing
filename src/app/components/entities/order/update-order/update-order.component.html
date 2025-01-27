@@ -1,0 +1,12 @@
+<app-form
+[title]="formContent.title"
+[formFields]="formContent.fields"
+[formDynamicField]="formContent.dynamicField"
+[initialData]="initialStaticData"
+[initialDynamicData]="initialDynamicData"
+formArrayName="dishes"
+buttonText="Actualizar"
+dynamicButtonText="Agregar plato"
+(onSuccess)="onSendForm($event)"
+(onClose)="this.router.navigate(['../../'], { relativeTo: this.route });"
+></app-form>

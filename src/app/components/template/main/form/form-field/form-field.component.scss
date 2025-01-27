@@ -1,0 +1,41 @@
+@use '../../../../../ui/styles/variables.scss' as vr;
+@use '../../../../../ui/styles/mixins.scss' as mx;
+
+.form{
+    &__group{
+        @include mx.flex-container(start,center,10px,column);
+        margin-bottom: 20px;
+    }
+    
+    &__field{
+        @include mx.flex-container(center,center,8px,column);
+        width: 350px;
+        
+        &__label{
+            width: 80%;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: left;
+        }
+    
+        &__input{
+            width: 80%;
+            padding: 3px;
+            border-radius: 3px;
+            outline: none;
+            border: none;
+            border-bottom: solid 2px #00000028;
+        }
+    }
+    
+    &__alert{
+        margin: 5px 0;
+        width: 80%;
+        font-size: 13px;
+        text-align: center;
+        color: vr.$color-white;
+        background: vr.$color-red;
+        padding: 5px;
+        border-radius: 4px;
+    }        
+}

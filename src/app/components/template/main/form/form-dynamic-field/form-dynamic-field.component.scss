@@ -1,0 +1,64 @@
+@use '../../../../../ui/styles/variables.scss' as vr;
+@use '../../../../../ui/styles/mixins.scss' as mx;
+
+.form{
+    &__group{
+        @include mx.flex-container(center);
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    &__group-name{
+        width: 80%;
+    }
+
+    &__label{
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    &__field{
+        @include mx.flex-container(center,center, 15px);
+        
+
+        &__input{
+            width: 100%;
+            padding: 3px;
+            border-radius: 3px;
+            outline: none;
+            border: none;
+            border-bottom: solid 2px #00000028;
+        }
+
+        &__options{
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        &__buttons-container{
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    }
+
+    &__button{
+        @include mx.flex-container(center,center);
+        border: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        font-size: 16px;
+        cursor: pointer;
+
+        &--delete{
+            background: vr.$color-red;
+            color: vr.$color-white;
+        }
+
+        & svg{
+            width: 15px;
+            height: 15px;
+        }
+    }
+}
