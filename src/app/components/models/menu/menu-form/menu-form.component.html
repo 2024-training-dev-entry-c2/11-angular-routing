@@ -1,0 +1,17 @@
+<section class="menu-form">
+  <header class="menu-form__header">
+    <h1 class="menu-form__title">{{menuId? 'Actualizar Menu' : 'Crear menu'}}</h1>
+    <p class="menu-form__description">Edita el nombre del menú aquí.</p>    
+  </header>
+
+  <form [formGroup]="menuForm" (ngSubmit)="submit()" class="menu-form__form">
+    <app-dynamic-input 
+      [config]="menuConfig" 
+      [formGroup]="menuForm">
+    </app-dynamic-input>
+
+    <button type="submit" class="menu-form__submit" [disabled]="menuForm.invalid">
+      Actualizar Menú
+    </button>
+  </form>
+</section>

@@ -1,0 +1,27 @@
+@use '../../../../ui/variables.scss';
+
+
+.order {
+    padding: 2rem;
+    background-color: rgb(206, 206, 206) ;
+  
+    &__title {
+      font-size: 2rem;
+      font-weight: bold;
+      color:variables.$title;
+      margin-bottom: 1rem;
+    }
+  
+    &__description {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    &__add svg{
+        margin-bottom: 1rem;
+        width: 80px;
+        height: 80px;
+    }
+  }
+  

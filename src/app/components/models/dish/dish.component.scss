@@ -1,0 +1,29 @@
+@use '../../../ui/variables.scss';
+
+.dish-component {
+    background-color: rgb(206, 206, 206) ;
+    padding: 0.5rem;
+
+    &__header {
+      margin-bottom: 1rem;
+      padding-left: 70px;
+    }
+  
+    &__title {
+      font-size: 2rem;
+      color:variables.$title;
+    }
+  
+    &__description {
+      font-size: 1rem;
+      color: #666;
+    }
+  
+    &__list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between; 
+      padding: 2rem;
+  }
+  }
+  

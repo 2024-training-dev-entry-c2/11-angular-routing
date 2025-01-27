@@ -1,0 +1,22 @@
+<section class="order-form">
+  <header class="order-form__header">
+    <h1 class="order-form__title">{{ orderId ? 'Actualizar Orden' : 'Crear Orden' }}</h1>
+    <p class="order-form__description">Seleccione un cliente y los platos para la orden.</p>
+  </header>
+
+  <form [formGroup]="orderForm" (ngSubmit)="submit()" class="order-form__form">
+    <app-dynamic-input
+      [formGroup]="orderForm"
+      [config]="clientConfig"
+    ></app-dynamic-input>
+
+    <app-dynamic-input
+      [formGroup]="orderForm"
+      [config]="dishConfig"
+    ></app-dynamic-input>
+
+    <button type="submit" class="order-form__submit" [disabled]="orderForm.invalid">
+      Guardar Orden
+    </button>
+  </form>
+</section>
