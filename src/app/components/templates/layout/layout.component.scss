@@ -7,7 +7,6 @@
     &__header {
         grid-area: header;
         border: 1px solid #ddd;
-        height: 100px;
     }
 
     &__left-side {
@@ -18,7 +17,7 @@
     &__body {
         grid-area: body;
         border: 1px solid #ddd;
-        height: calc(100vh - 204px);
+        min-height: calc(100vh - 131px);
     }
 
     &__right-side {
@@ -29,6 +28,5 @@
     &__footer {
         grid-area: footer;
         border: 1px solid #ddd;
-        height: 50px;
     }
 }
