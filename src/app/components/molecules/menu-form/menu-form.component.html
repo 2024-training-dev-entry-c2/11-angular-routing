@@ -12,7 +12,7 @@
     </app-input-field>
 
     <button type="submit" [disabled]="form.invalid" class="menu-form__submit">
-        Crear Menú
+        {{ initialValues ? 'Actualizar Menú' : 'Crear Menú' }}
     </button>
 
 </form>

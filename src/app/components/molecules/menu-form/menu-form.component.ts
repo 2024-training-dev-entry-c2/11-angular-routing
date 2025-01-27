@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -17,6 +24,7 @@ import { InputFieldComponent } from '../../atoms/input-field/input-field.compone
   styleUrls: ['./menu-form.component.scss'],
 })
 export class MenuFormComponent {
+  @Input() initialValues?: MenuForm;
   @Output() submitMenu = new EventEmitter<MenuForm>();
   form = inject(FormBuilder).group({
     name: ['', [Validators.required, Validators.minLength(3)]],
@@ -24,13 +32,25 @@ export class MenuFormComponent {
     dishIds: ['', [Validators.required]],
   });
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['initialValues'] && this.initialValues) {
+      this.form.patchValue({
+        name: this.initialValues.name,
+        description: this.initialValues.description,
+        dishIds: this.initialValues.dishIds.join(', '),
+      });
+    }
+  }
+
   onSubmit(): void {
     if (this.form.valid) {
       const formValue = this.form.value;
       const menuForm: MenuForm = {
         name: formValue.name ?? '',
         description: formValue.description ?? '',
-        dishIds: (formValue.dishIds ?? '').split(',').map((id: string) => parseInt(id.trim(), 10)),
+        dishIds: (formValue.dishIds ?? '')
+          .split(',')
+          .map((id: string) => parseInt(id.trim(), 10)),
       };
       this.submitMenu.emit(menuForm);
       this.form.reset({ name: '', description: '', dishIds: '' });
