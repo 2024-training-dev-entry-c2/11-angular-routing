@@ -1,73 +1,91 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from '../layout/layout.component';
-import { ContentComponent } from '../content/content.component';
-import { HomeComponent } from '../home/home.component';
-import { LoginComponent } from '../login/login.component';
-import { adminGuard } from './admin.guard';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { OverviewComponent } from '../overview/overview.component';
+import { MenuComponent } from '../menu/menu.component';
+import { DishComponent } from '../dish/dish.component';
+import { ClientComponent } from '../client/client.component';
+import { OrderComponent } from '../order/order.component';
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: LayoutComponent,
-    children: [
-      {
+    {
         path: '',
-        component: ContentComponent,
-        outlet: 'header'
+        component: LayoutComponent,
+        children: [
+          {
+            path: '',
+            component: SidebarComponent,
+            outlet: 'sidebar'
+          },
+          {
+            path: '',
+            component: OverviewComponent,
+            outlet: 'body'
+          }
+        ]
       },
       {
-        path: '',
-        component: ContentComponent,
-        outlet: 'left-side'
+        path: 'menus',
+        component: LayoutComponent,
+        children: [
+          {
+            path: '',
+            component: SidebarComponent,
+            outlet: 'sidebar'
+          },
+          {
+            path: '',
+            component: MenuComponent,
+            outlet: 'body'
+          }
+        ]
       },
       {
-        path: '',
-        component: HomeComponent,
+        path: 'dishes',
+        component: LayoutComponent,
+        children: [
+          {
+            path: '',
+            component: SidebarComponent,
+            outlet: 'sidebar'
+          },
+          {
+            path: '',
+            component: DishComponent,
+            outlet: 'body'
+          }
+        ]
       },
       {
-        path: '',
-        component: ContentComponent,
-        outlet: 'right-side'
+        path: 'clients',
+        component: LayoutComponent,
+        children: [
+          {
+            path: '',
+            component: SidebarComponent,
+            outlet: 'sidebar'
+          },
+          {
+            path: '',
+            component: ClientComponent,
+            outlet: 'body'
+          }
+        ]
       },
       {
-        path: '',
-        component: ContentComponent,
-        outlet: 'footer'
+        path: 'orders',
+        component: LayoutComponent,
+        children: [
+          {
+            path: '',
+            component: SidebarComponent,
+            outlet: 'sidebar'
+          },
+          {
+            path: '',
+            component: OrderComponent,
+            outlet: 'body'
+          }
+        ]
       }
-    ]
-  },
-  {
-    path: 'login/:manuel/:id',
-    component: LayoutComponent,
-    canActivate: [adminGuard],
-    data: { isLogged: true },
-    children: [
-      {
-        path: '',
-        component: ContentComponent,
-        outlet: 'header'
-      },
-      {
-        path: '',
-        component: ContentComponent,
-        outlet: 'left-side',
-        data: { isBrota: true }
-      },
-      {
-        path: '',
-        component: LoginComponent,
-        data: { isCurrent: true }
-      },
-      {
-        path: '',
-        component: ContentComponent,
-        outlet: 'right-side'
-      },
-      {
-        path: '',
-        component: ContentComponent,
-        outlet: 'footer'
-      }
-    ]
-  }
 ];

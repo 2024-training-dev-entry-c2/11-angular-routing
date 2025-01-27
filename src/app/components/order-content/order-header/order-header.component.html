@@ -1,0 +1,10 @@
+<app-header title="Orders" buttonText="Agregar Orden" iconPath="svg/plus.svg#plus" [modalContent]="orderModalTemplate"
+    (actionConfirmed)="addOrderToAPI()">
+</app-header>
+
+<ng-template #orderModalTemplate>
+    <label>Ingres el nombre del cliente</label>
+    <input class="modal-input" [(ngModel)]="customerName" placeholder={{customerName}} />
+    <label>Ingrese el precio total</label>
+    <input class="modal-input" [(ngModel)]="totalAmount" placeholder={{totalAmount}} />
+</ng-template>
