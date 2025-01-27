@@ -7,6 +7,7 @@ import { UsersComponent } from './components/users/users.component';
 import { AccountsComponent } from './components/accounts/accounts.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { RegisterComponent } from './views/register/register.component';
+import { tokenGuard } from './guards/token.guard';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [authGuard] },
@@ -14,6 +15,7 @@ export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    canActivate: [tokenGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
