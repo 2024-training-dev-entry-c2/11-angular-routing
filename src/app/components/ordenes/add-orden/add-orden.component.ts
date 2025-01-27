@@ -1,4 +1,4 @@
-import { Component, inject, Input, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { OrdenService } from '../../../services/orden.service';
 import { ICreateOrden } from '../../../inferfaces/create-orden.interface';
@@ -16,6 +16,7 @@ export class AddOrdenComponent {
   public mensajeExito: string | null = null;
 
   @Input() ordenSelect: ICreateOrden | null = null;
+  @Output() ordenUpdated = new EventEmitter<void>();
   isEditMode: boolean = false;
 
   statusOptions = ['PENDING', 'IN_PREPARATION', 'COMPLETED', 'CANCELLED', 'DELIVERED'];
@@ -49,7 +50,6 @@ export class AddOrdenComponent {
       ordenId: [0]
     });
     this.items.push(newItem);
-    console.log('Items después de agregar:', this.items.value);
   }
 
   removeItem(index: number): void {
@@ -98,6 +98,7 @@ export class AddOrdenComponent {
           next: () => {
             this.mensajeExito = '¡Orden actualizada con éxito!';
             this.ordenForm.reset();
+            this.ordenUpdated.emit();
             setTimeout(() => {
               this.mensajeExito = null;
             }, 3000);
@@ -108,6 +109,7 @@ export class AddOrdenComponent {
           next: () => {
             this.mensajeExito = '¡Orden creada con éxito!';
             this.ordenForm.reset();
+            this.ordenUpdated.emit();
             setTimeout(() => {
               this.mensajeExito = null;
             }, 3000);

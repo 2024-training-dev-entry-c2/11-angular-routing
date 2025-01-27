@@ -5,41 +5,55 @@ import { IViewOrden } from '../../../inferfaces/view-orden.interface';
 import { BottonDeleteComponent } from '../../bottons/botton-delete/botton-delete.component';
 import { CurrencyPipe } from '@angular/common';
 import { ICreateOrden } from '../../../inferfaces/create-orden.interface';
-import { BottonEditComponent } from "../../bottons/botton-edit/botton-edit.component";
-
+import { BottonEditComponent } from '../../bottons/botton-edit/botton-edit.component';
 
 @Component({
   selector: 'app-get-orden',
-  imports: [ReactiveFormsModule, BottonDeleteComponent, CurrencyPipe, BottonEditComponent],
+  imports: [
+    ReactiveFormsModule,
+    BottonDeleteComponent,
+    CurrencyPipe,
+    BottonEditComponent,
+  ],
   templateUrl: './get-orden.component.html',
-  styleUrl: './get-orden.component.scss'
+  styleUrl: './get-orden.component.scss',
 })
-export class GetOrdenComponent implements OnInit{
-
+export class GetOrdenComponent implements OnInit {
   private ordenService = inject(OrdenService);
 
   ordenes: IViewOrden[] = [];
-  items: IViewOrden[]=[];
+  items: IViewOrden[] = [];
   restaurantId = 11;
   ordenEdit: ICreateOrden | null = null;
   @Output() editOrdenEvent = new EventEmitter<number>();
 
-  statusOptions = ['PENDING', 'IN_PREPARATION', 'COMPLETED', 'CANCELLED', 'DELIVERED'];
+  statusOptions = [
+    'PENDING',
+    'IN_PREPARATION',
+    'COMPLETED',
+    'CANCELLED',
+    'DELIVERED',
+  ];
   statusClassMap: Map<string, string> = new Map([
     ['PENDING', 'content__btn-pending'],
     ['IN_PREPARATION', 'content__btn-in-preparation'],
     ['COMPLETED', 'content__btn-completed'],
     ['CANCELLED', 'content__btn-cancelled'],
-    ['DELIVERED', 'content__btn-delivered']
+    ['DELIVERED', 'content__btn-delivered'],
   ]);
+
   ngOnInit() {
+    this.loadOrdenes();
+  }
+
+  loadOrdenes() {
     this.ordenService.execute().subscribe({
       next: (data: IViewOrden[]) => {
         this.ordenes = data;
       },
       error: (error) => {
         console.error('Error al obtener la orden', error);
-      }
+      },
     });
   }
   getButtonClass(status: string): string {
@@ -56,7 +70,7 @@ export class GetOrdenComponent implements OnInit{
       },
       error: (error: any) => {
         console.error('Error al eliminar la orden:', error);
-      }
+      },
     });
   }
   changeStatus(orden: IViewOrden): void {
@@ -66,15 +80,14 @@ export class GetOrdenComponent implements OnInit{
 
     this.ordenService.updateStatusOrden(orden.id, newStatus).subscribe({
       next: (updatedOrden: IViewOrden) => {
-        const index = this.ordenes.findIndex(o => o.id === updatedOrden.id);
+        const index = this.ordenes.findIndex((o) => o.id === updatedOrden.id);
         if (index !== -1) {
           this.ordenes[index] = updatedOrden;
         }
       },
       error: (error: any) => {
         console.error('Error al actualizar el estado:', error);
-      }
+      },
     });
   }
-
 }
