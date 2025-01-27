@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { TableComponent } from "../../components/table/table.component";
 import { IResponseClients, ISendClient} from '../../interfaces/client.interface';
 import { GetAllService } from '../../services/get-all.service';
-import { tap } from 'rxjs';
+import { delay, finalize, tap } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IValidator } from '../../interfaces/validator.interface';
 import { Env } from '../../env';
@@ -54,9 +54,9 @@ export class ClientComponent implements OnInit {
   });
 
   public controls: IValidator[] = [
-    {text: 'Nombre', type: 'input', inputType: "text", controlName: 'name', placeholder: 'Juan', isMultiline: false},
-    {text: 'Apellido', type: 'input', inputType: "text", controlName: 'lastName', placeholder: 'Perez', isMultiline: false},
-    {text: 'Correo', type: 'input', inputType: "email", controlName: 'email', placeholder: 'juan@perez.com', isMultiline: false},
+    {text: 'Nombre', type: 'input', inputType: "text", controlName: 'name', placeholder: 'Juan'},
+    {text: 'Apellido', type: 'input', inputType: "text", controlName: 'lastName', placeholder: 'Perez'},
+    {text: 'Correo', type: 'input', inputType: "email", controlName: 'email', placeholder: 'juan@perez.com'},
   ];
 
   ngOnInit(): void {
@@ -74,12 +74,12 @@ export class ClientComponent implements OnInit {
           tap(result => {
             this.message = 'Cliente creado correctamente'; 
             this.getAllClients();
-
-            setTimeout(() => {
-              this.form.reset();
-              this.message = '';
-              this.isModalOpen = false;
-            }, 1500);
+          }),
+          delay(2000),
+          finalize(() => {
+            this.form.reset();
+            this.message = '';
+            this.isModalOpen = false;
           })
         ).subscribe(console.log);
     }

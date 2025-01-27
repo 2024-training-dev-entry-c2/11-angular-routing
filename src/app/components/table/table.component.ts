@@ -1,10 +1,10 @@
 import { Component, input, output } from '@angular/core';
 import { IColumn } from '../../interfaces/column-table.interface';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-table',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, DatePipe],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })

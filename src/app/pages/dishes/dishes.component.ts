@@ -34,7 +34,7 @@ export class DishesComponent {
 
     public menus: { id: number; name: string }[] = [];
     
-    public users: IResponseDishes[] = [];
+    public dishes: IResponseDishes[] = [];
     public columns = [
       { field: 'name', header: 'Nombre' },
       { field: 'menuName', header: 'Pertenece al Menú' },
@@ -58,10 +58,10 @@ export class DishesComponent {
     });
   
     public controls: IValidator[] = [
-      {text: 'Nombre del Plato', type: 'input', inputType: "text", controlName: 'name', placeholder: 'Huevos con jamón', isMultiline: false},
-      {text: 'Descripción', type: 'input', inputType: "text", controlName: 'description', placeholder: 'Huevos cocidos con jamón serrano', isMultiline: true},
-      {text: 'Precio', type: 'input', inputType: "number", controlName: 'price', placeholder: '10', isMultiline: false},
-      {text: 'Menu', type: 'select', inputType: "text", controlName: 'menu', placeholder: 'Selecciona un Menú', isMultiline: false, options: []},
+      {text: 'Nombre del Plato', type: 'input', inputType: "text", controlName: 'name', placeholder: 'Huevos con jamón'},
+      {text: 'Descripción', type: 'textarea', inputType: "text", controlName: 'description', placeholder: 'Huevos cocidos con jamón serrano'},
+      {text: 'Precio', type: 'input', inputType: "number", controlName: 'price', placeholder: '10'},
+      {text: 'Menu', type: 'select', inputType: "text", controlName: 'menu', placeholder: 'Selecciona un Menú', options: []},
     ];
   
     
@@ -122,7 +122,7 @@ export class DishesComponent {
     getAllDishes(): void {
       this.getDishes.execute<IResponseDishes[]>(this.url)
       .pipe(
-        tap(result => this.users = result)
+        tap(result => this.dishes = result)
       ).subscribe(console.log);
     }
   
@@ -131,7 +131,7 @@ export class DishesComponent {
       this.action = 'Actualizar';
       this.title = 'Actualizar Plato';
     
-      const dish = this.users.find(user => user.id === dishId); 
+      const dish = this.dishes.find(dish => dish.id === dishId); 
     
       this.form.patchValue({
         id: dishId, 

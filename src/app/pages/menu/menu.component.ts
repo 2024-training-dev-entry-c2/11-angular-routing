@@ -53,8 +53,8 @@ export class MenuComponent {
   });
 
   public controls: IValidator[] = [
-    {text: 'Nombre del Menú', type: 'input', inputType: "text", controlName: 'name', placeholder: 'Desayuno', isMultiline: false},
-    {text: 'Descripción', type: 'textarea', inputType: "textarea", controlName: 'description', placeholder: 'Desayuno fantástico', isMultiline: true},
+    {text: 'Nombre del Menú', type: 'input', inputType: "text", controlName: 'name', placeholder: 'Desayuno'},
+    {text: 'Descripción', type: 'textarea', inputType: "textarea", controlName: 'description', placeholder: 'Desayuno fantástico'},
   ];
 
   ngOnInit(): void {

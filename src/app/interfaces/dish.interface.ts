@@ -11,4 +11,5 @@ export interface ISendDish {
     description: string;
     price: number;
     menuId: number;
+    dishType: string;
   }

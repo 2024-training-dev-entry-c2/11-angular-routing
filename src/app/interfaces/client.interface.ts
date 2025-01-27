@@ -9,5 +9,5 @@ export interface ISendClient {
     name: string;
     lastName: string;
     email: string;
-    userType: string;
+    clientType: string;
   }

@@ -17,10 +17,12 @@
                 @for (column of columns(); track $index) {
                 <td>
                     {{
-                    column.field === 'price'
-                    ? (resolveField(data, column.field) | currency:'USD':'symbol':'1.2-2')
-                    : resolveField(data, column.field)
-                    }}
+                        column.field === 'price' || column.field === 'totalPrice'
+                        ? (resolveField(data, column.field) | currency:'USD':'symbol':'1.2-2')
+                        : column.field === 'orderDate'
+                        ? (resolveField(data, column.field) | date:'dd/M/yy, HH:mm a':'es')
+                        : resolveField(data, column.field)
+                        }}
                 </td>
                 }
                 <td>

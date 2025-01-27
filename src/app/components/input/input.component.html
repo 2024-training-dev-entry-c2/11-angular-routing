@@ -1,20 +1,44 @@
 <label class="label" [formGroup]="formGroup()">
+
     <span class="label__span">{{span()}}</span>
-    @if (isMultiline()) {
-    <textarea class="label__input" [formControlName]="formControlName()" [placeholder]="placeholder()"></textarea>
-    } @else if (typeOf() === 'select') {
+    @switch (typeOf()) {
+
+    @case ('multiselect') {
+    <select class="label__input" [formControlName]="formControlName()" (change)="addTag(handleSelectChange($event))">
+        <option value="" disabled selected>{{ placeholder() }}</option>
+        @for (option of options(); track $index) {
+        <option [value]="option.value">{{option.label}}</option>
+        }
+    </select>
+    
+    <div class="label__container">
+        @for (tag of selectedTags; track $index) {
+        <span class="label__tags">
+            {{ tag.label }}
+            <button type="button" class="label__button" (click)="removeTag(tag.value)">×</button>
+        </span>
+        }
+        <h3 class="label__span">Precio Total: {{ totalPrice() | currency:'USD':'symbol':'1.2-2' }}</h3>
+    </div>
+    }
+
+    @case ('select') {
     <select class="label__input" [formControlName]="formControlName()">
         <option value="" disabled selected>{{ placeholder() }}</option>
         @for (option of options(); track $index) {
         <option [value]="option.value">{{option.label}}</option>
         }
     </select>
-    } @else {
+    }
+
+    @case ('textarea') {
+    <textarea class="label__input" [formControlName]="formControlName()" [placeholder]="placeholder()"></textarea>
+    }
+
+    @default {
     <input class="label__input" [formControlName]="formControlName()" [type]="typeOf()" [placeholder]="placeholder()">
     }
-    <span class="label__error">
-        @if (notValid()) {
-        {{errorMessage}}
-        }
-    </span>
+    }
+
+
 </label>
