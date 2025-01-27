@@ -1,0 +1,10 @@
+<div class="customer-page">
+    <app-heading level="h1" text="Clientes Disponibles"></app-heading>
+    <app-button (click)="openCreateCustomerModal()" text="Agregar Cliente" type="primary" icon="add"></app-button>
+    <app-customer-list [customers]="customers" (editCustomer)="onEditCustomer($event)"></app-customer-list>
+
+    <app-modal [isOpen]="isModalOpen" (close)="closeCustomerModal()">
+        <app-customer-form-modal [initialValues]="selectedCustomer" (close)="closeCustomerModal()"
+            (submit)="createCustomer($event)"></app-customer-form-modal>
+    </app-modal>
+</div>
