@@ -4,6 +4,7 @@ import { IViewOrden } from '../inferfaces/view-orden.interface';
 import {  Observable } from 'rxjs';
 import { ICreateOrden } from '../inferfaces/create-orden.interface';
 import { IEditOrden } from '../inferfaces/edit-orden.interface';
+import { IUpdateStatusOrden } from '../inferfaces/update-status.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -35,6 +36,9 @@ export class OrdenService {
   }
   updateOrden(orden: ICreateOrden): Observable<IEditOrden> {
     return this.http.put<IEditOrden>(`${this.urlbase}/${orden.id}`, orden);
+  }
+  updateStatusOrden(id: number, statusOrder: string): Observable<IViewOrden> {
+    return this.http.put<IViewOrden>(`${this.urlbase}/${id}/${statusOrder}`, null);
   }
 
   saveOrden(orden: ICreateOrden): Observable<IViewOrden | ICreateOrden > {

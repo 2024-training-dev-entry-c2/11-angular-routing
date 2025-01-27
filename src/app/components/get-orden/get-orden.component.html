@@ -17,7 +17,11 @@
       <tr class="content__orden">
         <td>{{ orden.id }}</td>
         <td>{{ orden.priceTotal | currency}}</td>
-        <td>{{ orden.statusOrder }}</td>
+        <td>
+          <button type="button" [class]="getButtonClass(orden.statusOrder)" (click)="changeStatus(orden)">
+            {{ orden.statusOrder }}
+          </button>
+        </td>
         <td>{{ orden.client.name }}</td>
         <td>{{ orden.client.numberPhone }}</td>
         <td>

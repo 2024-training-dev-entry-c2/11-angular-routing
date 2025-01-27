@@ -24,6 +24,14 @@ export class GetOrdenComponent implements OnInit{
   ordenEdit: ICreateOrden | null = null;
   @Output() editOrdenEvent = new EventEmitter<number>();
 
+  statusOptions = ['PENDING', 'IN_PREPARATION', 'COMPLETED', 'CANCELLED', 'DELIVERED'];
+  statusClassMap: Map<string, string> = new Map([
+    ['PENDING', 'content__btn-pending'],
+    ['IN_PREPARATION', 'content__btn-in-preparation'],
+    ['COMPLETED', 'content__btn-completed'],
+    ['CANCELLED', 'content__btn-cancelled'],
+    ['DELIVERED', 'content__btn-delivered']
+  ]);
   ngOnInit() {
     this.ordenService.execute().subscribe({
       next: (data: IViewOrden[]) => {
@@ -34,7 +42,9 @@ export class GetOrdenComponent implements OnInit{
       }
     });
   }
-
+  getButtonClass(status: string): string {
+    return this.statusClassMap.get(status) || '';
+  }
   editOrden(id: number) {
     this.editOrdenEvent.emit(id);
   }
@@ -49,6 +59,22 @@ export class GetOrdenComponent implements OnInit{
       }
     });
   }
+  changeStatus(orden: IViewOrden): void {
+    const currentIndex = this.statusOptions.indexOf(orden.statusOrder);
+    const nextIndex = (currentIndex + 1) % this.statusOptions.length;
+    const newStatus = this.statusOptions[nextIndex];
 
+    this.ordenService.updateStatusOrden(orden.id, newStatus).subscribe({
+      next: (updatedOrden: IViewOrden) => {
+        const index = this.ordenes.findIndex(o => o.id === updatedOrden.id);
+        if (index !== -1) {
+          this.ordenes[index] = updatedOrden;
+        }
+      },
+      error: (error: any) => {
+        console.error('Error al actualizar el estado:', error);
+      }
+    });
+  }
 
 }
