@@ -23,7 +23,7 @@
         border-bottom: 1px solid #ddd;
     }
 
-    &__button{
+    &__button{        
         width: 30px;
         height: 30px;
         border-radius: 50%;
@@ -54,9 +54,18 @@
         background-color: #59d759;
         color: #fff;
         font-size: 15px;
-        padding: 5px 20px;
+        padding: 5px;
+        width: 160px;
         border: none;
         border-radius: 100px;
         cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        & svg{
+            width: 15px;
+            height: 15px;
+        }
     }
 }

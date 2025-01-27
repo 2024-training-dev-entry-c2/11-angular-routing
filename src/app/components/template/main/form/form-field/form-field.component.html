@@ -1,1 +1,18 @@
-<p>form-field works!</p>
+<div class="form__group" [formGroup]="form()!">
+    <div class="form__field">
+        <label [for]="field()?.key" class="form__field__label">{{ field()?.label }}</label>
+        <input
+        [id]="field()?.key"
+        [type]="field()?.type"
+        [formControlName]="field()!.key"
+        [placeholder]="field()?.placeholder"
+        [value]="initialData()"
+        class="form__field__input"
+        />
+    </div>
+    @if (control?.invalid && control?.touched) {
+        <div class="form__alert">
+          {{ field()?.errorMessage || 'Invalid input' }}
+        </div>
+    }
+</div>

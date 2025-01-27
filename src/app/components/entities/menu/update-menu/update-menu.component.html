@@ -1,0 +1,8 @@
+<app-form
+[title]="formContent.title"
+[formFields]="formContent.fields"
+buttonText="Actualizar"
+[initialData]="initialData"
+(onSuccess)="onSendForm($event)"
+(onClose)="this.router.navigate(['../../'], { relativeTo: this.route });"
+></app-form>

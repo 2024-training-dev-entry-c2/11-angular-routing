@@ -1,5 +1,7 @@
+import { IDishOrderRequest } from "../dish-order/dish-order.request.interface";
+
 export interface IOrderRequest{
     clientId: number;
-    name: string;
-    LocalDate: Date;
+    dishes: IDishOrderRequest[];
+    date: Date;
 }

@@ -1,4 +1,9 @@
 @use '../src/app/ui/styles/reset.scss';
+@use '../src/app/ui/styles/variables.scss' as vr;
+
+body{
+    font-family: vr.$font-primary;
+}
 
 .container__wrapper{
     width: 100%;

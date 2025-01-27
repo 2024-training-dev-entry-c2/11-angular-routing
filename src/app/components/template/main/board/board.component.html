@@ -13,17 +13,19 @@
                 @for(item of column; track $index){
                     <td class="table__item" [innerHTML]="item"></td>
                 }
-                <td class="table__item table__item--actions"> 
-                    <button class="table__button table__button--update" (click)="sendOnUpdate(column[0])" aria-label="Actualizar columna">
-                        <svg aria-hidden="true">
-                            <use xlink:href ="images/svg/update.svg#update-id"></use>
-                        </svg>                       
-                    </button>
-                    <button class="table__button table__button--delete" (click)="sendOnDelete(column[0])" aria-label="Eliminar columna">
-                        <svg aria-hidden="true">
-                            <use xlink:href ="images/svg/delete.svg#delete-id"></use>
-                        </svg>  
-                    </button>
+                <td class="table__item"> 
+                    <div class="table__item__buttons-container">
+                        <a class="table__button table__button--update" [routerLink]="['actualizacion', column[0]]" aria-label="Actualizar columna" tabindex="0">
+                            <svg aria-hidden="true">
+                                <use xlink:href ="images/svg/update.svg#update-id"></use>
+                            </svg>                       
+                        </a>
+                        <a class="table__button table__button--delete" (click)="sendOnDelete(column[0])" aria-label="Eliminar columna" tabindex="1">
+                            <svg aria-hidden="true">
+                                <use xlink:href ="images/svg/delete.svg#delete-id"></use>
+                            </svg>  
+                        </a>
+                    </div>
                 </td>
             </tr>
         }

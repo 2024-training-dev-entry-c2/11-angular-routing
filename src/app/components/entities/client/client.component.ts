@@ -1,17 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { GetClientsService } from '../../../services/client/get-clients.service';
-import { PostClientService } from '../../../services/client/post-client.service';
-import { PutClientService } from '../../../services/client/put-client.service';
 import { DeleteClientService } from '../../../services/client/delete-client.service';
 import { IClientResponse } from '../../../interfaces/client/client.response.interface';
-import { IClientRequest } from '../../../interfaces/client/client.request.interface';
-import { FormComponent } from '../../template/main/form/form.component';
 import { BoardComponent } from "../../template/main/board/board.component";
 import { ContainerComponent } from "../../template/main/container/container.component";
+import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-client',
-  imports: [FormComponent, BoardComponent, ContainerComponent],
+  imports: [BoardComponent, ContainerComponent, RouterOutlet, RouterLink],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss'
 })
@@ -24,18 +22,22 @@ export class ClientComponent {
     ]
   };
 
-  
   tableContent:{ titles: string[]; content: string[][];} = { titles: [], content: [] };
-  idToUpdate: string | null = null;
 
   getClientsService = inject(GetClientsService);
-  postClientService = inject(PostClientService);
-  putClientService = inject(PutClientService);
   deleteClientService = inject(DeleteClientService);
-  isVisibleForm: boolean = false; 
+
+  router = inject(Router);
+  route = inject(ActivatedRoute);
 
   ngOnInit(){
     this.getData();
+
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd ))
+      .subscribe(async() => {
+        await this.getData();
+    });
   }
 
   getData(): void{
@@ -56,22 +58,6 @@ export class ClientComponent {
     this.tableContent={titles, content};
   }
 
-  createClient(dishData: IClientRequest): void {
-    this.postClientService.execute(dishData).subscribe(
-      () => {
-        this.getData();
-      }
-    );
-  }
-
-  updateClient(id:string, dishData: IClientRequest): void{
-    this.putClientService.execute(id,dishData).subscribe(
-      () => {
-        this.getData();
-      }
-    );
-  }
-
   deleteClient(id:string): void {
     this.deleteClientService.execute(id).subscribe(()=>{
       this.getData();
@@ -79,23 +65,4 @@ export class ClientComponent {
     );
   }
 
-  onUpdateClick(event:string){
-    this.idToUpdate = event;
-  }
-
-
-  onSendForm(event: any){
-    const clientRequest : IClientRequest = {name:'', email:''};
-    clientRequest.name = event.name;
-    clientRequest.email = event.email;
-    console.log(clientRequest);
-    this.createClient(clientRequest);
-  }
-
-  onSendUpdatedForm(event: any){
-    const clientRequest : IClientRequest = {name:'', email:''};
-    clientRequest.name = event.name;
-    clientRequest.email = event.email;
-    this.updateClient(event.idItem, clientRequest);
-  }
 }

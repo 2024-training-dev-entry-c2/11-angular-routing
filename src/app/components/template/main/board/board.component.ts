@@ -1,8 +1,9 @@
 import { Component, input, output } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-board',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss'
 })

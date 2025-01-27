@@ -48,42 +48,6 @@
         font-size: 30px;
     }
 
-    &__group{
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    &__field{
-        display: flex;
-        align-items: center;
-        width: 300px;
-        gap: 10px;
-
-        &__label{
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        &__input{
-            width: 100%;
-            padding: 3px;
-            border-radius: 3px;
-            outline: none;
-            border: solid 1px #00000028;
-        }
-    }
-
-    &__alert{
-        width: 300px;
-        font-size: 14px;
-        color: red;
-        background: rgba(255, 0, 0, 0.121);
-        padding: 5px;
-        border-radius: 4px;
-        border: solid 1px red;
-    }
-
     &__button{
         width: 100px;
         padding: 5px;
@@ -95,13 +59,13 @@
         border-radius: 100px;
         box-shadow: 1px 1px 8px #0000003f;
         cursor: pointer;
-
+    
         &:disabled{
             background: rgb(83, 199, 83);           
             color: rgb(211, 211, 211);
             cursor:auto;
         }
-
+    
         &:hover{
             background: rgb(83, 199, 83);                
         }

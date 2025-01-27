@@ -1,30 +1,17 @@
 <app-container>
     <div class="container__wrapper options">
-        <button class="options__add-button" (click)="isVisibleForm=true;">Agregar cliente</button>
+        <a class="options__add-button" routerLink="registro">
+            <svg aria-hidden="true">
+                <use xlink:href ="images/svg/add.svg#add-id"></use>
+            </svg>  
+            <span>Agregar cliente</span>            
+        </a>
     </div>
 
     <app-board class="container__wrapper"
     [titles]="tableContent.titles"
     [items]="tableContent.content"
-    (onUpdate)="onUpdateClick($event)"
     (onDelete)="deleteClient($event)"
     ></app-board>
-
-    @if (isVisibleForm) {
-        <app-form
-        [title]="formContent.title"
-        [formFields]="formContent.fields"
-        buttonText="Enviar"
-        (onSuccess)="onSendForm($event)"
-        (onClose)="isVisibleForm=false;"
-        ></app-form>
-    }
-
-    <!-- <app-form
-    [idItem]="idToUpdate!"
-    title="Actualizar menú"
-    [formFields]="formContent.fields"
-    buttonText="Actualizar"
-    (onSuccess)="onSendUpdatedForm($event)"
-    ></app-form> -->
+    <router-outlet/>
 </app-container>

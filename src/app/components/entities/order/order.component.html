@@ -1,1 +1,17 @@
-<p>order works!</p>
+<app-container>
+    <div class="container__wrapper options">
+        <a class="options__add-button" routerLink="registro">
+            <svg aria-hidden="true">
+                <use xlink:href ="images/svg/add.svg#add-id"></use>
+            </svg>  
+            <span>Registrar pedido</span>            
+        </a>
+    </div>
+
+    <app-board class="container__wrapper"
+    [titles]="tableContent.titles"
+    [items]="tableContent.content"
+    (onDelete)="deleteOrder($event)"
+    ></app-board>
+    <router-outlet/>
+</app-container>

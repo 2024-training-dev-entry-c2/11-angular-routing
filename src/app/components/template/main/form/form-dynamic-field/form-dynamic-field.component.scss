@@ -1,0 +1,51 @@
+.form{
+    &__group{
+        width: 100%;
+    }
+    &__group-name{
+        width: 100%;
+    }
+
+    &__field{
+        display: flex;
+        gap: 5px;
+
+        &__input{
+            width: 100%;
+            padding: 3px;
+            border-radius: 3px;
+            outline: none;
+            border: solid 1px #00000028;
+        }
+
+        &__options{
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        &__buttons-container{
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    }
+
+    &__button{
+        border: none;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        cursor: pointer;
+
+        &--delete{
+            background: #fe4a49;
+            color: white;
+        }
+
+        & svg{
+            width: 10px;
+            height: 10px;
+        }
+    }
+}

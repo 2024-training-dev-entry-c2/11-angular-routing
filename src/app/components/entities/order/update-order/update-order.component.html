@@ -1,0 +1,9 @@
+<app-form
+[title]="formContent.title"
+[formFields]="formContent.fields"
+[formDynamicField]="formContent.dynamicField"
+formArrayName="dishes"
+buttonText="Actualizar"
+(onSuccess)="onSendForm($event)"
+(onClose)="this.router.navigate(['../../'], { relativeTo: this.route });"
+></app-form>
