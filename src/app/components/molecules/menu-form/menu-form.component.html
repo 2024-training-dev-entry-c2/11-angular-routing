@@ -1,0 +1,18 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="menu-form">
+    <app-input-field label="Nombre del menú" [control]="nameControl" placeholder="Ej: Menú del día"
+        [errorMessages]="{ required: 'El nombre del menú es obligatorio.', minlength: 'Debe tener al menos 3 caracteres.' }">
+    </app-input-field>
+
+    <app-input-field label="Descripción" [control]="descriptionControl" placeholder="Ej: Menú especial del día"
+        [errorMessages]="{ required: 'La descripción es obligatoria.', minlength: 'Debe tener al menos 9 caracteres.' }">
+    </app-input-field>
+
+    <app-input-field label="IDs de Platos" [control]="dishIdsControl" placeholder="Ej: 1,2,3"
+        [errorMessages]="{ required: 'Debe asociar al menos un plato.' }">
+    </app-input-field>
+
+    <button type="submit" [disabled]="form.invalid" class="menu-form__submit">
+        {{ initialValues ? 'Actualizar Menú' : 'Crear Menú' }}
+    </button>
+
+</form>

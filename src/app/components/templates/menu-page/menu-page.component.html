@@ -1,0 +1,9 @@
+<div class="menu-page">
+    <app-heading level="h1" text="Menús Disponibles"></app-heading>
+    <app-button (click)="openModal()" text="Crear Menú" type="primary" icon="add"></app-button>
+    <app-menu-list [menus]="menus" (menuDeleted)="onMenuDeleted()" (menuUpdated)="onMenuUpdated()"></app-menu-list>
+
+    <app-modal [isOpen]="isModalOpen" (close)="closeModal()">
+        <app-menu-manager (menuCreated)="onMenuCreated()"></app-menu-manager>
+    </app-modal>
+</div>

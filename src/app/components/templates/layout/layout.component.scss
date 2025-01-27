@@ -1,0 +1,29 @@
+.layout {
+    width: 100%;
+    display: grid;
+    grid:
+        "header header header" auto "left-side body right-side" 1fr "footer footer footer" auto / auto 1fr auto;
+
+    &__header {
+        grid-area: header;
+    }
+
+    &__left-side {
+        grid-area: left-side;
+        width: 10vw;
+    }
+
+    &__body {
+        grid-area: body;
+        min-height: calc(100vh - 127px);
+    }
+
+    &__right-side {
+        grid-area: right-side;
+        width: 10vw;
+    }
+
+    &__footer {
+        grid-area: footer;
+    }
+}

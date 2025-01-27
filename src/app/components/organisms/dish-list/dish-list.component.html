@@ -1,0 +1,18 @@
+<div class="dish-list">
+    <div class="dish-list__header">
+        <h2>Lista de Platos</h2>
+        <button (click)="fetchDishes()" class="dish-list__refresh">🔄 Recargar</button>
+    </div>
+
+    <div *ngIf="dishes.length > 0; else emptyState">
+        <ul class="dish-list__items">
+            <li *ngFor="let dish of dishes" class="dish-list__item">
+                <span>{{ dish.name }} - ${{ dish.price.toFixed(2) }}</span>
+            </li>
+        </ul>
+    </div>
+
+    <ng-template #emptyState>
+        <p>No hay platos disponibles.</p>
+    </ng-template>
+</div>

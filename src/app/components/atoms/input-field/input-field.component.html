@@ -1,0 +1,8 @@
+<div class="input-field">
+    <label [for]="label" class="input-field__label">{{ label }}</label>
+    <input [type]="type" [formControl]="control" [placeholder]="placeholder" id="{{ label }}"
+        class="input-field__input" />
+    @if(hasError){<div class="input-field__error">
+        {{ errorMessage }}
+    </div>}
+</div>

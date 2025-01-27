@@ -1,0 +1,8 @@
+<div class="customer-list">
+  <app-customer-card
+    *ngFor="let customer of customers"
+    [customer]="customer"
+    (edit)="onEditCustomer($event)"
+    (delete)="onDeleteCustomer($event)"
+  ></app-customer-card>
+</div>
