@@ -1,5 +1,5 @@
 import { NgFor } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MenuCardComponent } from '../../molecules/menu-card/menu-card.component';
 import { IMenuResponse } from '../../../services/menu/interfaces/menu-interface';
 
@@ -11,4 +11,9 @@ import { IMenuResponse } from '../../../services/menu/interfaces/menu-interface'
 })
 export class MenuListComponent {
   @Input() menus: IMenuResponse[] = [];
+  @Output() menuDeleted = new EventEmitter<void>();
+
+  onMenuDeleted() {
+    this.menuDeleted.emit();
+  }
 }
