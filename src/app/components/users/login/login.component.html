@@ -1,0 +1,47 @@
+<section class="login-page">
+    <div class="login-page__box">
+        <div class="login-page__card">
+            <div class="login-page__card-header">
+                <a href="../../index2.html" class="h1"> <fa-icon [icon]="faPiggyBank"></fa-icon> <b>Banking </b>App</a>
+            </div>
+            <div class="login-page__card-body">
+                <p class="login-page__box-message">Inicia sesión para continuar</p>
+
+                <form [formGroup]="loginForm" (ngSubmit)="submit()" class="login-page__form">
+
+                    <label class="login__label">
+                        <span class="login__text">Correo</span>
+                        <input class="login__input" type="email" formControlName="email" required="true">
+                    </label>
+                    <label class="login__label">
+                        <span class="login__text">Contraseña</span>
+                        <input class="login__input" type="password" name="password" formControlName="password"
+                            required="true">
+                    </label>
+
+                    <button class="login__button">Enviar</button>
+
+                    <button class="auth__button" [routerLink]="'/register'">¿No tienes cuenta? Registrate <fa-icon
+                            [icon]="faUserPlus"></fa-icon> </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<form [formGroup]="loginForm" class="login" (ngSubmit)="submit()">
+    <h3 class="login__title">Iniciar sesión</h3>
+    <label class="login__label">
+        <span class="login__text">Correo</span>
+        <input class="login__input" type="email" formControlName="email" required="true">
+    </label>
+    <label class="login__label">
+        <span class="login__text">Contraseña</span>
+        <input class="login__input" type="password" name="password" formControlName="password" required="true">
+    </label>
+
+    <button class="login__button">Enviar</button>
+
+    <button class="auth__button" [routerLink]="'/register'">¿No tienes cuenta? Registrate <fa-icon
+            [icon]="faUserPlus"></fa-icon> </button>
+</form>

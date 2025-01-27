@@ -1,0 +1,20 @@
+<form [formGroup]="registerForm" class="login" (ngSubmit)="submit()">
+    <h3 class="login__title">Registrarse</h3>
+    <label class="login__label">
+        <span class="login__text">Correo</span>
+        <input class="login__input" type="email" formControlName="email">
+    </label>
+    <label class="login__label">
+        <span class="login__text">Contraseña</span>
+        <input class="login__input" type="password" name="password" formControlName="password">
+    </label>
+    <label class="login__label">
+        <span class="login__text">Documento</span>
+        <input class="login__input" type="text" name="documentId" formControlName="documentId">
+    </label>
+
+    <button class="login__button">Registrar</button>
+
+    <button class="auth__button" [routerLink]="'/login'">¿Ya tienes cuenta? Inicia sesión <fa-icon
+            [icon]="faRightToBracket"></fa-icon> </button>
+</form>

@@ -1,0 +1,22 @@
+<app-header aria-current="page"></app-header>
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h2 class="dashboard-header__title">Bienvenido, {{username}}</h2>
+    </div>
+    <section class="account-section" aria-labelledby="account-title">
+        <h3 class="account-section__title">Cuentas</h3>
+        <ul class="account-list">
+            <li *ngFor="let account of accounts" class="account-item">
+                <a [routerLink]="['/account', account.accountNumber]" class="account-link">
+                    <span class="account-item__username">Usuario: {{ account.user.name }}</span>
+                    <span class="account-item__number">Cuenta: {{ account.accountNumber }}</span>
+                    <span class="account-item__balance">Saldo: {{ account.balance | currency }}</span>
+                </a>
+            </li>
+        </ul>
+        <button class="account-section__button" aria-label="Crear una nueva cuenta bancaria" aria-describedby="create-account-info" (click)="openModal()">Crear Cuenta</button>
+    </section>
+
+    <app-create-account-modal *ngIf="isModalOpen" (closeModal)="closeModal()" aria-live="polite"></app-create-account-modal>
+</div>
+<app-footer></app-footer>
