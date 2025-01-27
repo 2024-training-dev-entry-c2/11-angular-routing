@@ -8,7 +8,7 @@ import { ClientCardComponent } from "../../components/card/client-card/client-ca
 
 @Component({
   selector: 'app-client',
-  imports: [SimpleCardComponent, FormMenuComponent, FormClientComponent, ClientCardComponent],
+  imports: [FormClientComponent, ClientCardComponent],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss',
 })

@@ -16,13 +16,7 @@
 .rightSide { grid-area: rightSide; }
 .footer { grid-area: footer; }
 
-.header,
-.leftSide,
-.body,
-.rightSide,
-.footer {
-  border: 1px solid;
-}
+
 
 body {
   font-family: Helvetica;

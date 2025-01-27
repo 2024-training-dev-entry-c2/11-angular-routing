@@ -1,0 +1,19 @@
+<form [formGroup]="pedidoForm" class="form-pedidos" (ngSubmit)="submit()">
+  <div>
+    <label>Precio</label>
+    <input
+      formControlName="precio"
+      [value]="pedidoSelected()?.precio"
+      type="text"
+    />
+  </div>
+  <div>
+    <label>Id cliente</label>
+    <input
+      formControlName="idCliente"
+      [value]="pedidoSelected()?.idCliente"
+      type="text"
+    />
+  </div>
+  <button>Enviar</button>
+</form>

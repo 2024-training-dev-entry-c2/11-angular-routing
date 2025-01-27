@@ -1,1 +1,27 @@
-<p>platos works!</p>
+<section class="platos">
+  <main class="platos__main">
+    <h2>Platos</h2>
+
+    <menu class="platos__cards">
+      @if (platos.length > 0) { @for (item of platos; track $index) {
+      <li>
+        <app-plato-card
+          [name]="item.nombre"
+          [price]="item.precio"
+          [image]="item.urlImage"
+          (buttonRemoveClick)="delete(item.id)"
+          (buttonModifyClick)="selectToUpdate(item)"
+        />
+      </li>
+      } }@else {
+      <li>
+        <span>No hay platos</span>
+      </li>
+      }
+    </menu>
+  </main>
+  <app-form-platos
+    [platoSelected]="platoSelected"
+    (buttonSubmitClick)="addOrUpdate($event)"
+  />
+</section>
