@@ -2,6 +2,8 @@ export interface IFormField {
   name: string;
   type: string;
   placeholder: string;
+  description?: string;
+  price?: boolean;
 }
 
 export interface IFormConfig {

@@ -1,3 +1,6 @@
+@use '../../ui/variables.scss' as variables;
+@use '../../ui/mixins.scss' as mixins;
+
 .dishes {
 
   &__header {
@@ -10,24 +13,27 @@
   &__title {
     font-size: 2rem;
     font-weight: 500;
-    color: #333;
+    color: variables.$typografy-color;
   }
 
   &__add-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    background-color: #6366f1;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 500;
+    position: absolute;
+    right: 25%;
+    background: variables.$primary-color;
+    color: variables.$color-white;
+    border: 1px solid variables.$color-white;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
+    font-weight: bold;
     transition: background-color 0.2s;
 
     &:hover {
-      background-color: #4f46e5;
+      background-color: variables.$tercery-color;
+      transition: background-color 0.2s;
+      color: variables.$typografy-color;
+      border: 1px solid variables.$color-white;
+      font-weight: bold;
     }
 
     mat-icon {
@@ -38,37 +44,22 @@
   }
 
   &__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 20px;
+    height: 100vh;
   }
 }
 
 .dish-card {
-  background: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
   border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s, box-shadow 0.2s;
 
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-  }
-
-  &__image-container {
-    position: relative;
-    padding-top: 35%;
-  }
-
-  &__image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  overflow: auto;
 
   &__badge {
     position: absolute;
@@ -78,20 +69,18 @@
     border-radius: 9999px;
     font-size: 0.75rem;
     font-weight: 500;
+    background-color: #991b1b;
 
-    &--available {
-      background-color: #dcfce7;
-      color: #166534;
-    }
-
-    &--out-of-stock {
-      background-color: #fee2e2;
-      color: #991b1b;
-    }
   }
 
   &__content {
+    background: white;
     padding: 1.5rem;
+    border: 1px solid variables.$primary-color;
+    width: 200px;
+    height: 160px;
+    border-radius: 8px;
+
   }
 
   &__title {
@@ -118,14 +107,14 @@
   &__price {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #6366f1;
+    color: variables.$primary-color;
   }
 
   &__category {
     font-size: 0.875rem;
-    color: #64748b;
+    color: variables.$typografy-color;
     padding: 0.25rem 0.75rem;
-    background-color: #f1f5f9;
+    background-color: variables.$tercery-color;
     border-radius: 9999px;
   }
 
@@ -158,10 +147,11 @@
   }
 
   &__actions {
+    position: relative;
+    top: 1px;
     display: flex;
     gap: 0.5rem;
     justify-content: flex-end;
-    padding-top: 1rem;
     border-top: 1px solid #e2e8f0;
   }
 

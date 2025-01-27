@@ -1,51 +1,56 @@
 <section class="dishes">
   <header class="dishes__header">
     <h1 class="dishes__title">Platos</h1>
-    <button class="dishes__add-btn">Agregar Plato</button>
+    <button class="dishes__add-btn" (click)="openForm()">Agregar Plato</button>
+    <app-form-create
+      [isOpenForm]="isModalForm"
+      (closeModalForm)="closeModalForm()"
+    ></app-form-create>
   </header>
 
   <div class="dishes__grid">
     <article class="dish-card">
-      <div class="dish-card__image-container">
-        <img
-          src="assets/dishes/ensalada-cesar.jpg"
-          alt="Ensalada César"
-          class="dish-card__image"
-        />
-        <span class="dish-card__badge dish-card__badge--out-of-stock"
-          >No disponible</span
-        >
-      </div>
-
+      @for(plato of this.dishes; track $index) {
       <div class="dish-card__content">
-        <h3 class="dish-card__title">Ensalada César</h3>
+        <h3 class="dish-card__title">{{ plato.name }}</h3>
         <p class="dish-card__description">
-          Lechuga romana fresca con aderezo césar, crutones y queso parmesano
+          {{ plato.description }}
         </p>
 
         <div class="dish-card__details">
-          <div class="dish-card__price">$12.90</div>
-          <div class="dish-card__category">Ensaladas</div>
-        </div>
-
-        <div class="dish-card__ingredients">
-          <h4 class="dish-card__ingredients-title">Ingredientes:</h4>
-          <ul class="dish-card__ingredients-list">
-            <li>Lechuga romana</li>
-            <li>Aderezo césar</li>
-            <li>Crutones</li>
-          </ul>
+          <div class="dish-card__price">{{ plato.price | currency }}</div>
+          <div class="dish-card__category">Plato tipico</div>
         </div>
 
         <div class="dish-card__actions">
-          <button class="dish-card__btn dish-card__btn--edit">
+          <button
+            (click)="openModal(plato.id)"
+            class="dish-card__btn dish-card__btn--edit"
+          >
             <mat-icon aria-hidden="false" fontIcon="edit"></mat-icon>
           </button>
-          <button class="dish-card__btn dish-card__btn--delete">
+
+          <app-modal-dishes
+            [isOpen]="isModalOpen"
+            [data]="{
+              id: plato.id,
+              name: plato.name,
+              description: plato.description,
+              price: plato.price
+            }"
+            [id]="idDish"
+            (closeModal)="closeModal()"
+          ></app-modal-dishes>
+
+          <button
+            class="dish-card__btn dish-card__btn--delete"
+            (click)="deleteDish(plato.id)"
+          >
             <mat-icon aria-hidden="false" fontIcon="delete"></mat-icon>
           </button>
         </div>
       </div>
+      }
     </article>
   </div>
 </section>
