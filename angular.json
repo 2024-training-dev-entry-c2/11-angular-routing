@@ -3,7 +3,11 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+<<<<<<< HEAD
     "restaurante-angular": {
+=======
+    "routing-test": {
+>>>>>>> f625066c92f7a71c66e9424319e85907be9b8338
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +21,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+<<<<<<< HEAD
             "outputPath": "dist/restaurante-angular",
+=======
+            "outputPath": "dist/routing-test",
+>>>>>>> f625066c92f7a71c66e9424319e85907be9b8338
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -64,10 +72,17 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
+<<<<<<< HEAD
               "buildTarget": "restaurante-angular:build:production"
             },
             "development": {
               "buildTarget": "restaurante-angular:build:development"
+=======
+              "buildTarget": "routing-test:build:production"
+            },
+            "development": {
+              "buildTarget": "routing-test:build:development"
+>>>>>>> f625066c92f7a71c66e9424319e85907be9b8338
             }
           },
           "defaultConfiguration": "development"
