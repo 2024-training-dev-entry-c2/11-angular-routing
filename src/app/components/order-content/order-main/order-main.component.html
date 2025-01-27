@@ -51,8 +51,8 @@
 
 <ng-template #modalTemplate>
     <div class="modal" *ngIf="modalType === 'edit'; else deleteContent">
-        <label for="orderStatus">Ingrese el nuevo estado de la Orden</label>
-        <input class="modal__input" [(ngModel)]="orderStatus" id="orderStatus" placeholder={{currentOrderStatus}} />
+        <label for="orderStatus">Ingrese el nuevo precio total</label>
+        <input class="modal__input" [(ngModel)]="totalAmount" id="orderStatus" placeholder={{totalAmount}} />
     </div>
     <ng-template #deleteContent>
         <p>¿Estas seguro de que deseas eliminar esta orden?</p>

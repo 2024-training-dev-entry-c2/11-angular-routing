@@ -1,8 +1,9 @@
+@use '../../../ui/styles/variables.scss' as variables;
+@use '../../../ui/styles/mixins.scss' as mixins;
+
 .menu {
+    @include mixins.scroll(25em);
     margin-top: 10px;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    height: 25em;
 
     &__table {
         border-collapse: collapse;
@@ -54,14 +55,11 @@
     }
 
     &__button {
-        display: flex;
+        @include mixins.container-gap(5px);
+        @include mixins.border(1px solid rgba(139, 139, 139), 5px);
         text-decoration: none;
         color: black;
         padding: 5px;
-        border-radius: 5px;
-        gap: 5px;
-        align-items: center;
-        border: 1px solid rgb(139, 139, 139);
         width: 100px;
         justify-content: center;
         cursor: pointer;
@@ -73,11 +71,11 @@
         }
 
         &--edit {
-            background-color: #5a73f1c2;
+            background-color: variables.$blue;
         }
 
         &--delete {
-            background-color: #f3173d9e;
+            background-color: variables.$red;
         }
     }
 
@@ -99,13 +97,12 @@
 
 .accordion {
     background-color: transparent;
-    border: 1px solid black;
+    border: none;
     color: black;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
     width: 100%;
-    border: none;
     text-align: left;
     outline: none;
     font-size: 16px;
@@ -153,9 +150,7 @@
 }
 
 .modal {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    @include mixins.container-column(10px);
 
     &__input {
         padding: 5px;

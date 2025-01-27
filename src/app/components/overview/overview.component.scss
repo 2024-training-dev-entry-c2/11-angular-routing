@@ -1,3 +1,6 @@
+@use '../../ui/styles/variables.scss' as variables;
+@use '../../ui/styles/mixins.scss' as mixins;
+
 .bento {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -5,10 +8,8 @@
     margin-bottom: 20px;
 
     &__item {
-        display: flex;
-        align-items: center;
+        @include mixins.container-gap(10px);
         justify-content: center;
-        gap: 10px;
         padding: 10px;
         border-radius: 10px;
         box-shadow: 0px 0px 6px 0px;

@@ -3,7 +3,7 @@ import { MenuService } from '../../../services/menu.service';
 import { IDish, IMenu } from '../../../interfaces/menu.interface';
 import { ModalService } from '../../../services/modal.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-menu-main',

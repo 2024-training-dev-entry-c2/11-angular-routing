@@ -1,22 +1,19 @@
+@use '../../../ui/styles/variables.scss' as variables;
+
+@use '../../../ui/styles/mixins.scss' as mixins;
+
 .modal {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    height: 20em;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    @include mixins.container-column(5px);
+    @include mixins.scroll(20em);
 
     &__checkbox {
-        display: flex;
-        align-items: center;
-        gap: 5px;
+        @include mixins.container-gap(5px);
     }
 
     &__input {
+        @include mixins.border(1px solid rgba(0, 0, 0, 0.361), 5px);
         padding: 5px;
         width: 340px;
-        border: 1px solid rgba(0, 0, 0, 0.361);
-        border-radius: 5px;
 
         &--checkbox {
             width: 20px;

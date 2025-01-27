@@ -16,7 +16,7 @@ export class OrderMainComponent implements OnInit {
   filteredOrders: IOrderResponseDto[] = []; 
   modalType: string = '';
   orderStatus: string = '';
-  currentOrderStatus: string = '';
+  totalAmount: number = 0;
   items: IOrderItemResponseDto[] = [];
   selectedOrderId: number | null = null;
   clientName: string = '';

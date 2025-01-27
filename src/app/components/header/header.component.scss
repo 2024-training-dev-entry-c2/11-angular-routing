@@ -1,16 +1,16 @@
+@use '../../ui/styles/variables.scss' as variables;
+@use '../../ui/styles/mixins.scss' as mixins;
+
 .header {
     display: flex;
     justify-content: space-between;
 
     &__button {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        background-color: #29b3418a;
+        @include mixins.container-gap(5px);
+        @include mixins.border(1px solid rgb(139, 139, 139), 5px);
+        background-color: variables.$green;
         padding: 2px 6px;
         font-size: 16px;
-        border: 1px solid rgb(139, 139, 139);
-        border-radius: 5px;
         cursor: pointer;
         transition: 0.5s transform;
 

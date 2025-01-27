@@ -20,7 +20,6 @@ searchQuery: string = '';
   }
 
   onMenuAdded(newOrder: IOrderResponseDto): void {
-    // Llamar al método del MenuMainComponent para añadir el nuevo menú
     // this.orderMainComponent.addOrder(newOrder);
   }
 }

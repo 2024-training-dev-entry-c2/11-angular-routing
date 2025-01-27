@@ -8,9 +8,7 @@
             </tr>
         </thead>
         <tbody>
-
             @for (dish of filteredDishes; track dish.idDish) {
-
             <tr>
                 <td>{{ dish.idDish }}</td>
                 <td>{{ dish.dishName }}</td>
@@ -35,7 +33,6 @@
         </tbody>
     </table>
 </main>
-
 
 <ng-template #modalTemplate>
     <div class="modal" *ngIf="modalType === 'edit'; else deleteContent">

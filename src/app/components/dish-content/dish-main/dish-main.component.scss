@@ -1,3 +1,6 @@
+@use '../../../ui/styles/variables.scss' as variables;
+@use '../../../ui/styles/mixins.scss' as mixins;
+
 .dish {
     margin-top: 10px;
     overflow-x: scroll;
@@ -39,14 +42,11 @@
     }
 
     &__button {
-        display: flex;
+        @include mixins.container-gap(5px);
+        @include mixins.border(1px solid rgb(139, 139, 139), 5px);
         text-decoration: none;
         color: black;
         padding: 5px;
-        border-radius: 5px;
-        gap: 5px;
-        align-items: center;
-        border: 1px solid rgb(139, 139, 139);
         width: 100px;
         justify-content: center;
         cursor: pointer;
@@ -58,11 +58,11 @@
         }
 
         &--edit {
-            background-color: #5a73f1c2;
+            background-color: variables.$blue;
         }
 
         &--delete {
-            background-color: #f3173d9e;
+            background-color: variables.$red;
         }
     }
 
@@ -83,22 +83,16 @@
 }
 
 .modal {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+    @include mixins.container-column(5px);
 
     &__checkbox {
-        display: flex;
-        align-items: center;
-        gap: 5px;
+        @include mixins.container-gap(5px);
     }
 
     &__input {
+        @include mixins.border(1px solid rgb(0, 0, 0, 0.361), 5px);
         padding: 5px;
         width: 340px;
-        border: 1px solid rgba(0, 0, 0, 0.361);
-        border-radius: 5px;
-
     }
 
 }

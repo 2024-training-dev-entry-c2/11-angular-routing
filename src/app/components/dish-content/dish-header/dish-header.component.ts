@@ -17,7 +17,7 @@ export class DishHeaderComponent {
   description: string = '';
   isPopular: boolean = false;
 
-  @Input() menuId!: number; // Se recibe el ID del menú como entrada.
+  @Input() menuId!: number;
   @Output() dishAdded = new EventEmitter<IDish>();
 
   constructor(private dishService: DishService) {}

@@ -1,14 +1,15 @@
+@use '../../../ui/styles/variables.scss' as variables;
+@use '../../../ui/styles/mixins.scss' as mixins;
+
 .menu {
     list-style: none;
     margin-bottom: 150px;
 
     &__item {
-        display: flex;
-        align-items: center;
-        gap: 5px;
+        @include mixins.container-gap(5px);
         margin-bottom: 5px;
         text-decoration: none;
-        color: black;
+        color: variables.$black;
         font-size: 16px;
 
         svg {

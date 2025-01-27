@@ -1,5 +1,4 @@
 import { Component, OnInit, TemplateRef, ViewContainerRef, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { DishService } from '../../../services/dish.service';
 import { ModalService } from '../../../services/modal.service';
 import { IDish } from '../../../interfaces/dish.interface';
@@ -27,7 +26,6 @@ export class DishMainComponent implements OnInit {
   filteredMenus: IMenu[] = []; 
   menus: IMenu[] = []; 
   dishMenuMap: Map<number, number> = new Map();
-
 
   @Input() searchQuery: string = ''; 
 
@@ -81,7 +79,6 @@ export class DishMainComponent implements OnInit {
           );
         }
       });
-    
   }
 
   addDish(newDish: IDish): void {
@@ -162,7 +159,7 @@ export class DishMainComponent implements OnInit {
   }
 
   deleteDish(dishId: number): void {
-    const menuId = this.dishMenuMap.get(dishId); // Intentar obtener el menuId
+    const menuId = this.dishMenuMap.get(dishId); 
   
     if (!menuId) {
       console.error('No se encontró el ID del menú para este plato. Mapa actual:', this.dishMenuMap);
@@ -175,7 +172,6 @@ export class DishMainComponent implements OnInit {
       () => {
         console.log(`Plato eliminado exitosamente: ${dishId} del menú ${menuId}`);
   
-        // Actualizar las listas locales
         this.dishes = this.dishes.filter(dish => dish.idDish !== dishId);
         this.filteredDishes = this.filteredDishes.filter(dish => dish.idDish !== dishId);
   
@@ -186,7 +182,6 @@ export class DishMainComponent implements OnInit {
       }
     );
   }
-  
   
   resetModalFields(): void {
     this.dishName = '';
