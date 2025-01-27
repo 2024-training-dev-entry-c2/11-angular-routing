@@ -1,0 +1,13 @@
+<div class="customer-card">
+    <img class="customer-card__image" src="../../../../assets/images/Profile_avatar_placeholder_large.png"
+        alt="Imagen de {{ customer.name }} {{ customer.lastName }}" />
+    <div class="customer-card__content">
+        <app-heading [level]="'h3'" [text]="customer.name + ' ' + customer.lastName"></app-heading>
+        <p class="customer-card__info">{{ customer.email }}</p>
+        <p class="customer-card__info">{{ customer.phone }}</p>
+        <div class="customer-card__actions">
+            <app-button text="Editar" type="secondary" icon="edit" (click)="onEdit()"></app-button>
+            <app-button text="Eliminar" type="primary" icon="delete" (click)="onDelete()"></app-button>
+        </div>
+    </div>
+</div>
