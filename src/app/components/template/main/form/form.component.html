@@ -12,10 +12,13 @@
             @if(formDynamicField()){                
                 <div [formArrayName]="formArrayName()!">
                     @for (item of getFormArrayControls(); track item; let i = $index){
-                        <app-form-dynamic-field [form]="form" [formArray]="items" [field]="{index: $index, field: formDynamicField()!}" [formArrayname]="formArrayName()!" (onDelete)="deleteItem(i)"></app-form-dynamic-field>
+                        <app-form-dynamic-field [form]="form" [formArray]="items" 
+
+                        [field]="{index: $index, field: formDynamicField()!}" [formArrayname]="formArrayName()!" 
+                        (onDelete)="deleteItem(i)"></app-form-dynamic-field>
                     }
                 </div>
-                <button (click)="addItem()">Agregar ítem</button>
+                <button class="form__button form__button--dynamic" (click)="addItem()">{{dynamicButtonText()}}</button>
             }
         </div>
         <button type="submit" class="form__button" [disabled]="form.invalid">

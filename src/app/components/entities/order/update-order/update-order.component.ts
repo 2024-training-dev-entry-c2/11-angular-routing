@@ -42,11 +42,8 @@ export class UpdateOrderComponent {
 
   id: string | null = null;
 
-  initialData: { key: keyof IOrderResponse; content: string | [] }[] = [
-    { key: "date", content: "" },
-    { key: "client", content:"" },
-    { key: "dishes", content: [] }
-  ];
+  initialStaticData: { key: keyof IOrderRequest; content: Date | string | number }[] = [];
+  initialDynamicData: { key: string; content: string | number, quantity: number }[] = [];
 
   router = inject(Router);
   route = inject(ActivatedRoute);
@@ -56,15 +53,18 @@ export class UpdateOrderComponent {
   ngOnInit(){
     this.id = this.route.snapshot.paramMap.get('id');
     this.getOrderService.execute(this.id!).subscribe((response)=>{
-      this.initialData.forEach(dataField => {
-        if (response[dataField.key] !== undefined) {
-          dataField.content = response[dataField.key].toString();
-        }
-      });
-      console.log('Datos actualizados:');
-      this.initialData.forEach(dataField => {
-        console.log(`${dataField.key}: ${dataField.content}`);
-      });
+      this.initialStaticData = [
+        { key: 'date', content: response.date },
+        { key: 'clientId', content: response.client?.id || '' } 
+      ];
+      this.initialDynamicData = [];
+      if (Array.isArray(response.dishes)) {
+        response.dishes.forEach(dish => {
+          this.initialDynamicData.push(
+            { key: 'dishId', content: dish.dishId, quantity: dish.quantity },
+          );
+        });
+      }
     })
   }  
 

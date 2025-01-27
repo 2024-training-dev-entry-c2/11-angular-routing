@@ -4,6 +4,7 @@
 [formDynamicField]="formContent.dynamicField"
 formArrayName="dishes"
 buttonText="Enviar"
+dynamicButtonText="Agregar plato"
 (onSuccess)="onSendForm($event)"
 (onClose)="this.router.navigate(['../'], { relativeTo: this.route });"
 ></app-form>
