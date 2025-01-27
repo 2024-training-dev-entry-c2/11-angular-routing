@@ -19,21 +19,20 @@
     color: variables.$color-secondary;
     font-weight: bold;
     font-family: variables.$font-family-secondary;
-    background: white;
+    background: variables.$color-background;
     border: none;
     cursor: pointer;
-    &:hover{
-        color: variables.$color-background;
-        background: variables.$color-secondary;
-        text-shadow: 1px 1px 2px variables.$color-background;
-      }
-}
+    &:hover {
+      color: variables.$color-background;
+      background: variables.$color-secondary;
+      text-shadow: 1px 1px 2px variables.$color-background;
+    }
+  }
 
   &__nav {
     display: flex;
     width: 100%;
     height: 80dvh;
-
   }
   &__list {
     width: 100%;
@@ -51,7 +50,7 @@
       text-decoration: none;
       color: variables.$color-background;
     }
-    &:hover{
+    &:hover {
       font-weight: bold;
       text-shadow: 1px 1px 3px variables.$color-background;
     }

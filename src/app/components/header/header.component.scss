@@ -1,7 +1,6 @@
 @use "../../utils/variables.scss" as variables;
 @use "../../utils/mixin.scss" as mixin;
 
-
 .header {
   @include mixin.container(space-between);
   width: 100%;
@@ -11,15 +10,13 @@
     @include mixin.allison-regular;
     padding: 0 0 0 20px;
     color: variables.$color-secondary;
-    h1{
+    h1 {
       text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     }
-
   }
   &__profile {
     @include mixin.container(center);
     color: variables.$color-secondary;
-
   }
   &__message {
     @include mixin.container(space-between);

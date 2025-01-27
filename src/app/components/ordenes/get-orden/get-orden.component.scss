@@ -1,0 +1,94 @@
+@use "../../../utils/variables.scss" as variables;
+@use "../../../utils/mixin.scss" as mixin;
+
+.content {
+  padding-right: 5px;
+  h1 {
+    color: variables.$color-secondary;
+    text-align: center;
+    margin: 0 0 10px 0;
+    font-size: 20px;
+  }
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: variables.$color-background;
+    font-family: variables.$font-family-secondary;
+
+    th,
+    td {
+      border: 1px solid variables.$color-gradients;
+      padding: 10px 12px;
+      font-size: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background-color: variables.$color-secondary;
+      color: variables.$color-background;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    tr {
+      border-bottom: 1px solid variables.$color-lines;
+    }
+    tr:hover {
+      color: variables.$color-gradients;
+    }
+    button {
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-family: variables.$font-family-secondary;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px variables.$color-text;
+      color: variables.$color-background;
+      font-size: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background: variables.$color-secondary;
+        opacity: 0.9;
+      }
+    }
+  }
+  &__btn-pending {
+    background-color: #f3e5ab;
+    color: #333;
+  }
+
+  &__btn-in-preparation {
+    background-color: #ffcc99;
+    color: #333;
+  }
+
+  &__btn-completed {
+    background-color: #c5e1a5;
+    color: #333;
+  }
+
+  &__btn-cancelled {
+    background-color: #ffabab;
+    color: #333;
+  }
+
+  &__btn-delivered {
+    background-color: #a5d6a7;
+    color: #333;
+  }
+
+  &__items {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 10px;
+
+      p {
+        margin: 0 0 5px 0;
+      }
+    }
+  }
+}
