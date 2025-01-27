@@ -1,0 +1,75 @@
+.client-table {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 3rem;
+    justify-content: flex-start;
+  
+    &__card {
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: calc(25.333% - 1.33rem);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+  
+      &-info {
+        margin-bottom: 0.1rem;
+      }
+  
+      &-name {
+        font-size: 1.4rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+  
+      &-email,
+      &-frequent {
+        color: #555;
+      }
+  
+      &-actions {
+        display: flex;
+        justify-content: space-between; /* Alinea los botones a la izquierda y derecha */
+        margin-top: 1rem;
+      }
+  
+      .btn--edit,
+      .btn--delete {
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 1rem;
+      }
+  
+      .btn--edit {
+        background-color: #4d90ff; /* Color azul para el botón de editar */
+        color: white;
+        border: none;
+  
+        &:hover {
+          background-color: #357ae8; /* Color más oscuro al pasar el mouse */
+        }
+      }
+  
+      .btn--delete {
+        background-color: #ff4d4f; /* Rojo para el botón de eliminar */
+        color: white;
+        border: none;
+  
+        &:hover {
+          background-color: #d9363e;
+        }
+      }
+    }
+  
+    /* Media query para pantallas pequeñas, donde las tarjetas ocuparán todo el ancho */
+    @media (max-width: 768px) {
+      &__card {
+        width: 100%;
+      }
+    }
+  }
+  

@@ -1,0 +1,33 @@
+<div class="menu-table">
+  <div class="menu-table__grid">
+    @let data = menus | async;
+    @for (menu of data; track $index){
+    <article class="menu-card">
+      <div class="menu-card__content">
+        <h2 class="menu-card__title">{{ menu.name }}</h2>
+        <p class="menu-card__subtitle">
+          {{ (menu.dishes ?? []).length > 0 ? 'Platillos incluidos:' : 'Sin platillos asociados' }}
+        </p>
+
+        <ul *ngIf="(menu.dishes ?? []).length > 0" class="menu-card__dish-list">
+          <li *ngFor="let dish of menu.dishes ?? []" class="menu-card__dish-item">
+            <div class="dish">
+              <h3 class="dish__title">{{ dish.name }}</h3>
+              <p class="dish__price"><strong>Precio:</strong> ${{ dish.price }}</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="menu-card__actions">
+          <button class="menu-card__button menu-card__button--edit" (click)="goToEditMenu(menu.id)">
+            ✏️ Editar
+          </button>
+          <button class="menu-card__button menu-card__button--delete" (click)="deleteMenu(menu.id)">
+            🗑️ Eliminar
+          </button>
+        </div>
+      </div>
+    </article>
+    }
+  </div>
+</div>

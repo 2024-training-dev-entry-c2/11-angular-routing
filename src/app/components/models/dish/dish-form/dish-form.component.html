@@ -1,0 +1,39 @@
+<section class="dish-form">
+  <header class="dish-form__header">
+    <h1 class="dish-form__title">{{dishId ? 'Actualizar Plato' : 'Agregar Plato'}}</h1>
+    <p class="dish-form__description">Actualiza la información de tu plato aquí.</p>
+  </header>
+
+  <form [formGroup]="dishForm" (ngSubmit)="submit()" class="dish-form__form">
+    
+    <div class="dish-form__group">
+      <app-dynamic-input
+        [formGroup]="dishForm"
+        [config]="nameConfig"
+      ></app-dynamic-input>
+    </div>
+
+    <div class="dish-form__group">
+      <app-dynamic-input
+        [formGroup]="dishForm"
+        [config]="descriptionConfig"
+      ></app-dynamic-input>
+    </div>
+
+    <div class="dish-form__group">
+      <app-dynamic-input
+        [formGroup]="dishForm"
+        [config]="priceConfig"
+      ></app-dynamic-input>
+    </div>
+
+    <div class="dish-form__group">
+      <app-dynamic-input
+        [formGroup]="dishForm"
+        [config]="menuConfig"
+      ></app-dynamic-input>
+    </div>
+
+    <button type="submit" class="dish-form__submit" [disabled]="dishForm.invalid">Actualizar Plato</button>
+  </form>
+</section>

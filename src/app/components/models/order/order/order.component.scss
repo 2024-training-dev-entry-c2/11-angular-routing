@@ -1,0 +1,24 @@
+.order {
+    padding: 2rem;
+    background-color: #f9f9f9;
+  
+    &__title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+  
+    &__description {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    &__add svg{
+        margin-bottom: 1rem;
+        width: 80px;
+        height: 80px;
+    }
+  }
+  

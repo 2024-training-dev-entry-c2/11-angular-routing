@@ -1,0 +1,20 @@
+<section class="dish-table">
+    <div class="dish-table__grid">
+      @let data = dishes | async;
+      @for (dish of data; track $index) {
+        <article class="dish-card">
+          <div class="dish-card__content">
+            <small class="dish-card__menu">{{ dish.menu.name }}</small>
+            <h2 class="dish-card__title">{{ dish.name }}</h2>
+            <p class="dish-card__description">{{ dish.description }}</p>
+            <p class="dish-card__price">$ {{ dish.price }}</p>
+            <div class="dish-card__actions">
+                <button class="dish-card__button dish-card__button--edit" (click)="goToEditDish(dish.id)">Editar</button>
+                <button class="dish-card__button dish-card__button--delete" (click)="deleteDish(dish.id)">Eliminar</button>
+              </div>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+  

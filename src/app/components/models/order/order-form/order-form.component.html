@@ -1,0 +1,36 @@
+<section class="order-form">
+    <header class="order-form__header">
+      <h1 class="order-form__title">{{orderId ? 'Actualizar Orden' : 'Crear Orden'}}</h1>
+      <p class="order-form__description">Seleccione un cliente y los platos para la orden.</p>
+    </header>
+  
+    <form [formGroup]="orderForm" (ngSubmit)="submit()" class="order-form__form">
+      <!-- Cliente -->
+      <div class="order-form__group">
+        <label for="clientId" class="order-form__label">Cliente</label>
+        <select id="clientId" formControlName="clientId" class="order-form__input">
+          <option value="" disabled>Seleccione un cliente</option>
+          <option *ngFor="let client of clients" [value]="client.id">{{ client.name }}</option>
+        </select>
+        <div *ngIf="orderForm.get('clientId')?.invalid && orderForm.get('clientId')?.touched" class="order-form__error">
+          Debe seleccionar un cliente.
+        </div>
+      </div>
+  
+      <!-- Platos -->
+      <div class="order-form__group">
+        <label for="dishIds" class="order-form__label">Platos</label>
+        <select id="dishIds" formControlName="dishIds" class="order-form__input" multiple>
+          <option *ngFor="let dish of dishes" [value]="dish.id">{{ dish.name }}</option>
+        </select>
+        <div *ngIf="orderForm.get('dishIds')?.invalid && orderForm.get('dishIds')?.touched" class="order-form__error">
+          Debe seleccionar al menos un plato.
+        </div>
+      </div>
+  
+      <button type="submit" class="order-form__submit" [disabled]="orderForm.invalid">
+        Guardar Orden
+      </button>
+    </form>
+  </section>
+  

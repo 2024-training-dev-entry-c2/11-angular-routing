@@ -1,0 +1,26 @@
+.client-page {
+    padding: 0.5rem;
+  
+    &__header {
+      margin-bottom: 2rem;
+    }
+  
+    &__title {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+  
+    &__description {
+      font-size: 1rem;
+      color: #666;
+    }
+  
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between; 
+        margin-top: 2rem;
+        padding: 2rem;
+    }
+  }
+  

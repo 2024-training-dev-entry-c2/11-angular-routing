@@ -1,0 +1,54 @@
+<section class="client-form">
+  <header class="client-form__header">
+    <h1 class="client-form__title">{{ clientId ? 'Actualizar Cliente' : 'Agregar Cliente' }}</h1>
+    <p class="client-form__description">
+      {{ clientId ? 'Actualiza la información de tu cliente aquí.' : 'Añade un nuevo cliente al sistema.' }}
+    </p>
+  </header>
+
+  <form [formGroup]="clientForm" (ngSubmit)="submit()" class="client-form__form">
+    <!-- Nombre -->
+    <div class="client-form__group">
+      <app-dynamic-input
+        [formGroup]="clientForm"
+        [config]="{
+          name: 'name',
+          label: 'Nombre',
+          placeholder: 'Escribe el nombre',
+          errorMessage: 'El nombre es requerido.'
+        }">
+      </app-dynamic-input>
+    </div>
+
+    <!-- Apellido -->
+    <div class="client-form__group">
+      <app-dynamic-input
+        [formGroup]="clientForm"
+        [config]="{
+          name: 'lastName',
+          label: 'Apellido',
+          placeholder: 'Escribe el apellido',
+          errorMessage: 'El apellido es requerido.'
+        }">
+      </app-dynamic-input>
+    </div>
+
+    <!-- Correo Electrónico -->
+    <div class="client-form__group">
+      <app-dynamic-input
+        [formGroup]="clientForm"
+        [config]="{
+          name: 'email',
+          label: 'Correo Electrónico',
+          placeholder: 'Escribe el correo',
+          errorMessage: 'Introduce un correo válido.'
+        }">
+      </app-dynamic-input>
+    </div>
+
+    <!-- Botón de Enviar -->
+    <button type="submit" class="client-form__submit" [disabled]="clientForm.invalid">
+      {{ clientId ? 'Actualizar Cliente' : 'Agregar Cliente' }}
+    </button>
+  </form>
+</section>
