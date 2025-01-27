@@ -42,10 +42,14 @@ export class MenuPageComponent implements OnInit {
 
   closeModal(): void {
     this.isModalOpen = false;
+    this.fetchMenus();
   }
 
   onSubmitMenu(menu: MenuForm): void {
-    // Handle menu submission logic here
     this.closeModal();
+  }
+
+  onMenuCreated(): void {
+    this.fetchMenus();
   }
 }
