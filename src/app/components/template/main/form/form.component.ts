@@ -47,7 +47,7 @@ export class FormComponent {
       const quantity = field.quantity;
       
       const newItem = this.formBuilder.group({
-        [key!]: [[keyvalue], Validators.required],
+        [key!]: [keyvalue, Validators.required],
         quantity: [quantity, [Validators.required, Validators.min(1)]] 
       });
       this.items.push(newItem);

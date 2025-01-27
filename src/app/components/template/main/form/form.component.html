@@ -10,7 +10,7 @@
                 <app-form-field [field]="field" [form]="form" [initialData]="initialData()?.[$index]?.content || ''"></app-form-field>
             }
             @if(formDynamicField()){                
-                <div [formArrayName]="formArrayName()!">
+                <div [formArrayName]="formArrayName()!" class="form__content__dynamic-section">
                     @for (item of getFormArrayControls(); track item; let i = $index){
                         <app-form-dynamic-field [form]="form" [formArray]="items" 
 

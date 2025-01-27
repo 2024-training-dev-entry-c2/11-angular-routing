@@ -1,21 +1,32 @@
+@use '../../../../../ui/styles/variables.scss' as vr;
+@use '../../../../../ui/styles/mixins.scss' as mx;
+
 .form{
     &__group{
+        @include mx.flex-container(center);
         width: 100%;
+        margin-bottom: 20px;
     }
     &__group-name{
-        width: 100%;
+        width: 80%;
+    }
+
+    &__label{
+        font-size: 14px;
+        font-weight: 500;
     }
 
     &__field{
-        display: flex;
-        gap: 5px;
+        @include mx.flex-container(center,center, 15px);
+        
 
         &__input{
             width: 100%;
             padding: 3px;
             border-radius: 3px;
             outline: none;
-            border: solid 1px #00000028;
+            border: none;
+            border-bottom: solid 2px #00000028;
         }
 
         &__options{
@@ -32,20 +43,22 @@
     }
 
     &__button{
+        @include mx.flex-container(center,center);
         border: none;
-        width: 15px;
-        height: 15px;
+        width: 25px;
+        height: 25px;
         border-radius: 50%;
+        font-size: 16px;
         cursor: pointer;
 
         &--delete{
-            background: #fe4a49;
-            color: white;
+            background: vr.$color-red;
+            color: vr.$color-white;
         }
 
         & svg{
-            width: 10px;
-            height: 10px;
+            width: 15px;
+            height: 15px;
         }
     }
 }

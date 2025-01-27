@@ -2,15 +2,13 @@
 @use '../../../../ui/styles/mixins.scss' as mx;
 
 .form{
-    @include mx.flex-container(center, center, 20px, column);
+    @include mx.flex-container(start, center, 20px, column);
     position: relative;
-    top:-80px;
-    max-height: 60%;
-    min-width: 500px;
+    max-height: 80%;
+    min-width: 430px;
     padding: 30px;
-    background-color: #fff;
+    background-color: vr.$color-white;
     border-radius: 5px;
-    overflow: hidden;
     overflow-y: auto;
 
     &__container{
@@ -30,17 +28,18 @@
 
     &__button-close{
         position: absolute;
+        font-weight: 600;
         top: 10px;
         right: 10px;
-        width: 18px;
-        height: 18px;
+        width: 20px;
+        height: 20px;
         border-radius: 50%;
         text-align: center;
         border: none;
         background: none;
 
         &:hover{
-            background-color: #ddd;
+            background-color: vr.$color-gray-secondary;
         }
     }
 
@@ -49,13 +48,16 @@
     }
 
     &__content{
-        @include mx.flex-container(start, center,10px, column);
+        @include mx.flex-container(center, center,10px, column);
+        &__dynamic-section{
+            width: 100%;
+        }
     }
 
     &__button{
         width: 100px;
         padding: 5px;
-        background: rgb(89, 215, 89);
+        background: vr.$color-green;
         color: rgb(255, 255, 255);
         font-size: 15px;
         font-weight: 500;
@@ -66,16 +68,16 @@
 
         
         &:disabled{
-            background: rgb(83, 199, 83);           
-            color: rgb(211, 211, 211);
+            background: vr.$color-green-hover;           
+            color: vr.$color-gray-secondary;
             cursor:auto;
         }
         
         &:hover{
-            background: rgb(83, 199, 83);                
+            background: vr.$color-green-hover;                
         }
 
-        &--dynamic{
+        &--dynamic{            
             padding: 8px 5px;
             width: 100px;
             font-size: 12px;
