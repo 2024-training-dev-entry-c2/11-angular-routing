@@ -1,17 +1,16 @@
-export interface IAuth {
+export interface LoginCredentials {
   email: string;
   password: string;
-  address: IAddress;
-  tags: string[];
 }
 
-export interface IAddress {
-  street: string;
-  number: number;
-  zipCode: number;
-}
-
-export interface IAuthenticationResponse {
+export interface AuthResponse {
+  id: string;
+  email: string;
   token: string;
-  message: string;
+}
+
+export interface RegisterCredentials {
+  email: string;
+  password: string;
+  role: string;
 }

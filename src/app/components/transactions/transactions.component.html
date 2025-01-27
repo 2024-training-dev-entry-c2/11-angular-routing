@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="container__header">
+    <h2>Transactions</h2>
+    <button class="container__header__button" (click)="openCreateModal()">
+      Create transaction
+    </button>
+  </div>
+  @if (isLoading) { 
+    <app-spinner></app-spinner>
+  } @else {
+  <app-transaction-list [transactions]="transactions"></app-transaction-list>
+  } @if (isCreateModalOpen) {
+  <app-create-transaction
+    (close)="closeCreateModal()"
+    (create)="onCreateTransaction($event)"
+  ></app-create-transaction>
+  }
+</div>

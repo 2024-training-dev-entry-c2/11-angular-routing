@@ -1,0 +1,10 @@
+<header class="header">
+  <div class="header__group">
+    <fa-icon [icon]="faMoneyBillWave" class="icon icon--money" />
+    <p>Balance: ${{ selectedAccount?.balance }}</p>
+  </div>
+  <div>
+    {{ admin.email }}
+    <button class="header__logout" (click)="logout()">Logout</button>
+  </div>
+</header>

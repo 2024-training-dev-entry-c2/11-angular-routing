@@ -1,0 +1,50 @@
+<app-modal (close)="onClose()" [title]="'Create transaction'">
+  <form [formGroup]="transactionForm" (ngSubmit)="openModalConfirm()">
+    <div class="form-group">
+      <label class="form-group__label" for="amount">Amount:</label>
+      <input
+        type="text"
+        id="amount"
+        class="form-group__input"
+        formControlName="amount"
+        (keypress)="onKeyPress($event)"
+        (focus)="onValueChange('amountError')"
+        (change)="onValueChange('amountError')"
+        [ngClass]="{ 'form-group__input--invalid': formErrors.amountError }"
+      />
+      @if(formErrors.amountError){
+      <span class="form-group__error">
+        Amount is required and must be greater than 0.
+      </span>
+      }
+    </div>
+
+    <div class="form-group">
+      <label class="form-group__label" for="type">Type:</label>
+      <select
+        id="type"
+        class="form-group__select"
+        formControlName="type"
+        (change)="onValueChange('typeError')"
+        [ngClass]="{ 'form-group__input--invalid': formErrors.typeError }"
+      >
+        <option value="" disabled selected>Select a type</option>
+        @for (type of transactionTypes; track $index) {
+        <option [value]="type.value">{{ type.name }}</option>
+        }
+      </select>
+      @if(formErrors.typeError){
+      <span class="form-group__error"> Type is required. </span>
+      }
+    </div>
+
+    <app-buttons (close)="onClose()"></app-buttons>
+  </form>
+</app-modal>
+@if (dialogConfirm) {
+<app-dialog-confirmation
+  [title]="'Create Transaction'"
+  [text]="'Are you sure you want to create this transaction?'"
+  (confirm)="handleConfirmation($event)"
+></app-dialog-confirmation>
+}

@@ -1,0 +1,22 @@
+<div class="dropdown">
+  <div class="dropdown__button" (click)="toggleDropdown()">
+    @if (selectedAccount) {
+    <div class="dropdown__preview">
+      <small>Selected account:</small>
+      <span>{{ selectedAccount.accountNumber }}</span>
+    </div>
+    } @else {
+    <span>Select an account</span>
+    }
+  </div>
+  @if (showDropdown) {
+  <div class="dropdown__content">
+    @for (account of accounts(); track $index) {
+    <div (click)="selectAccount(account)" class="dropdown__content__option">
+      <small>User: {{ account.user.name }}</small>
+      <p>{{ account.accountNumber }}</p>
+    </div>
+    }
+  </div>
+  }
+</div>

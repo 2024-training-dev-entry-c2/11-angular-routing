@@ -1,0 +1,30 @@
+<div class="users">
+  <div class="users__create">
+    <button class="users__create__button" (click)="openCreateModal()">
+      Add new user
+    </button>
+  </div>
+
+  @if (isLoading) {
+  <app-spinner></app-spinner>
+  } @else { @for (user of users; track $index) {
+  <div class="users__card">
+    <div class="users__card__avatar">
+      <img
+        class="users__card__avatar--img"
+        src="assets/images/user.jpg"
+        alt="User Avatar"
+      />
+    </div>
+    <div class="users__card__details">
+      <h3 class="users__card__name">{{ user.name }}</h3>
+      <p class="users__card__document">Document ID: {{ user.documentId }}</p>
+    </div>
+  </div>
+  } } @if (isCreateModalOpen) {
+  <app-create-user
+    (close)="closeCreateModal()"
+    (create)="onCreateUser($event)"
+  ></app-create-user>
+  }
+</div>

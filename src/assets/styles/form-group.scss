@@ -1,0 +1,29 @@
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+
+  &__label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  &__input,
+  &__select,
+  &__textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    &--invalid {
+      border-color: red;
+    }
+  }
+
+  &__error {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+}

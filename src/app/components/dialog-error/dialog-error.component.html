@@ -1,0 +1,16 @@
+<div class="modal">
+  <div class="modal__content">
+    <div class="modal__header">
+      <h2 class="modal__title">Error</h2>
+      <span class="modal__close-button" (click)="onCancel()">x</span>
+    </div>
+    <div class="modal__body">
+      <p class="modal__text">{{ text }}</p>
+    </div>
+    <div class="modal__footer">
+      <button type="button" class="modal__cancel--button" (click)="onCancel()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>

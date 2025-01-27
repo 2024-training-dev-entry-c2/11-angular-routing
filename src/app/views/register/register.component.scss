@@ -1,0 +1,97 @@
+@use "../../../assets/styles/variables" as *;
+
+.register {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f4f6;
+
+  &__container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 448px;
+    width: 100%;
+
+    &__title {
+      text-align: center;
+      font-weight: bold;
+      color: $bg-blue;
+      font-size: 32px;
+    }
+
+    &__form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      &__group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 4px;
+
+        & label {
+          font-size: 16px;
+          color: #4a5568;
+          font-weight: 500;
+        }
+
+        & input,
+        & select {
+          padding: 12px;
+          border-radius: 6px;
+          border: 1px solid #d1d5db;
+          font-size: 16px;
+          color: #374151;
+          outline: none;
+          transition: border-color 0.15s ease-in-out,
+            box-shadow 0.15s ease-in-out;
+
+          &:focus {
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 0.2rem rgba(96, 165, 250, 0.25);
+          }
+        }
+
+        &--invalid {
+          border-color: red !important;
+        }
+        &__error {
+          color: red;
+          font-size: 14px;
+        }
+      }
+
+      &__button {
+        width: 100%;
+        color: #ffffff;
+        background-color: $bg-blue;
+        padding: 12px 0;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 500;
+        border: none;
+
+        &:hover {
+          background-color: #1d4ed8;
+        }
+      }
+    }
+
+    &__login {
+      text-align: center;
+      font-size: 16px;
+      color: #4a5568;
+      font-weight: 500;
+      margin-top: 18px;
+
+      & a {
+        text-decoration: none;
+        color: $bg-blue;
+      }
+    }
+  }
+}

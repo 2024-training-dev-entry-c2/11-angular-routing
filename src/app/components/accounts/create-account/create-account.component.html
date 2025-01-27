@@ -1,0 +1,26 @@
+<app-modal (close)="onClose()" [title]="'Create account'">
+  <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label class="form-group__label" for="userId">User:</label>
+      <select
+        id="userId"
+        class="form-group__select"
+        formControlName="userId"
+        (change)="onFalseError()"
+        [ngClass]="{ 'form-group__select--invalid': formError }"
+      >
+        <option value="" disabled selected>Select a user</option>
+        @for (user of users; track $index) {
+        <option [value]="user.id">
+          {{ user.name }}
+        </option>
+        }
+      </select>
+      @if(formError){
+      <span class="form-group__error"> User is required. </span>
+      }
+    </div>
+
+    <app-buttons (close)="onClose()"></app-buttons>
+  </form>
+</app-modal>

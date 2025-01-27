@@ -1,0 +1,39 @@
+<div class="accounts">
+  <div class="accounts__create">
+    <button class="accounts__create__button" (click)="openCreateModal()">
+      Add new account
+    </button>
+  </div>
+
+  @for (account of accounts; track $index) {
+  <div class="accounts__card">
+    <div class="accounts__card__header">
+      <span class="accounts__card__header--icon">
+        <fa-icon [icon]="faUniversity" class="icon" />
+      </span>
+      <h3 class="accounts__card__header--number">
+        {{ account.accountNumber }}
+      </h3>
+    </div>
+    <div class="accounts__card__details">
+      <p class="accounts__card__details--item">
+        <fa-icon [icon]="faUser" class="icon" /> User:
+        {{ account.user.name }}
+      </p>
+      <p class="accounts__card__details--item">
+        <fa-icon [icon]="faIdCard" class="icon" /> Document ID:
+        {{ account.user.documentId }}
+      </p>
+      <p class="accounts__card__details--item">
+        <fa-icon [icon]="faMoneyBillWave" class="icon icon--money" /> Balance:
+        {{ account.balance | currency : "USD" }}
+      </p>
+    </div>
+  </div>
+  } @if (isCreateModalOpen) {
+  <app-create-account
+    (close)="closeCreateModal()"
+    (create)="onCreateAccount($event)"
+  ></app-create-account>
+  }
+</div>

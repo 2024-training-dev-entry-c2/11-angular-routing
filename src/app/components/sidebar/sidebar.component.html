@@ -1,0 +1,14 @@
+<section class="sidebar">
+  <div class="sidebar__container">
+    <img class="sidebar__logo" src="assets/images/logo.png" alt="Logo app" />
+    <app-dropdown [accounts]="accounts"></app-dropdown>
+  </div>
+  <div class="sidebar__links">
+    @for (link of links; track $index) {
+    <a [routerLink]="link.link" rel="noopener" class="sidebar__links__item">
+      <fa-icon [icon]="link.icon" class="sidebar__links__icon"></fa-icon>
+      <span>{{ link.name }}</span>
+    </a>
+    }
+  </div>
+</section>
