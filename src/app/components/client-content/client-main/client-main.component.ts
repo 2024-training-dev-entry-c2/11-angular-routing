@@ -65,7 +65,7 @@ export class ClientMainComponent implements OnInit {
       {
         label: 'Eliminar',
         type: 'delete',
-        icon: 'svg/trash.svg#trash',
+        icon: 'svg/delete.svg#delete',
       },
     ];
   }
@@ -122,12 +122,36 @@ export class ClientMainComponent implements OnInit {
             frequentUser: this.frequentUser,
             vip: this.vip,
           };
-          // this.updateClient(this.selectedClientId, updatedClient);
+          this.updateClient(this.selectedClientId, updatedClient);
         } else if (type === 'delete' && this.selectedClientId) {
-          // this.deleteClient(this.selectedClientId);
+          this.deleteClient(this.selectedClientId);
         }
       });
   }
+
+  deleteClient(id: number): void {
+      this.clientService.deleteClient(id).subscribe(
+        () => {
+          console.log('Client deleted');
+          this.loadClients();
+        },
+        (error) => {
+          console.error('Error deleting client', error);
+        }
+      );
+    }
+  
+    updateClient(id: number, updatedClient: IClient): void {
+      this.clientService.updateClient(id, updatedClient).subscribe(
+        () => {
+          console.log('Client updated');
+          this.loadClients();
+        },
+        (error) => {
+          console.error('Error updating client', error);
+        }
+      );
+    }
 
   loadClientDetails(id: number): void {
     this.clientService.getClientById(id).subscribe(

@@ -1,35 +1,28 @@
-.menu-header {
+.modal {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 5px;
+    height: 20em;
+    overflow-y: scroll;
+    overflow-x: hidden;
 
-    &__button {
+    &__checkbox {
         display: flex;
         align-items: center;
         gap: 5px;
-        background-color: #29b3418a;
-        padding: 2px 6px;
-        font-size: 16px;
-        border: 1px solid rgb(139, 139, 139);
-        border-radius: 5px;
-        cursor: pointer;
-        transition: 0.5s transform;
+    }
 
-        &:hover {
-            transform: scale(1.05);
+    &__input {
+        padding: 5px;
+        width: 340px;
+        border: 1px solid rgba(0, 0, 0, 0.361);
+        border-radius: 5px;
+
+        &--checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
         }
     }
 
-    &__icon {
-        padding: 4px 4px 0px 0px;
-    }
-
-    svg {
-        width: 25px;
-        height: 25px;
-        fill: none;
-        stroke: currentColor;
-        stroke-width: 1.5;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-    }
 }

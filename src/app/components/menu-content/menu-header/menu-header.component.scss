@@ -1,41 +1,7 @@
-// .menu-header {
-//     display: flex;
-//     justify-content: space-between;
-
-//     &__button {
-//         display: flex;
-//         align-items: center;
-//         gap: 5px;
-//         background-color: #29b3418a;
-//         padding: 2px 6px;
-//         font-size: 16px;
-//         border: 1px solid rgb(139, 139, 139);
-//         border-radius: 5px;
-//         cursor: pointer;
-//         transition: 0.5s transform;
-
-//         &:hover {
-//             transform: scale(1.05);
-//         }
-//     }
-
-//     &__icon {
-//         padding: 4px 4px 0px 0px;
-//     }
-
-//     svg {
-//         width: 25px;
-//         height: 25px;
-//         fill: none;
-//         stroke: currentColor;
-//         stroke-width: 1.5;
-//         stroke-linecap: round;
-//         stroke-linejoin: round;
-//     }
-// }
-
 .modal-input {
     margin-top: 10px;
     padding: 5px;
     width: 360px;
+    border: 1px solid rgba(0, 0, 0, 0.361);
+    border-radius: 5px;
 }
