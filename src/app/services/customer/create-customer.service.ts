@@ -15,7 +15,7 @@ export class CreateCustomerService {
 
   execute(customer: ICreateCustomerRequest): Observable<ICustomerResponse> {
     return this.http.post<ICustomerResponse>(
-      `${ENV.BASE_URL}/customer`,
+      `${ENV.BASE_URL}/customers`,
       customer
     );
   }
