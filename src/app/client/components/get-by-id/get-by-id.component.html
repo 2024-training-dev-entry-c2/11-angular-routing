@@ -4,13 +4,14 @@
             <h3 class="get-by-id__title">Obtener cliente por su ID</h3>
             <form [formGroup]="form" class="get-by-id__form" (ngSubmit)="onSubmit()" aria-label="form">
                 <label class="get-by-id__label">
-                    <span >ID:</span>
+                    <span>ID:</span>
                     <input type="text" formControlName="id" class="get-by-id__input" aria-required="true">
                 </label>
                 <button class="get-by-id__button" aria-label="send form">Enviar</button>
             </form>
         </article>
-    
+
+        @if(client){
         <article class="get-by-id__client-info">
             <h3 class="get-by-id__client-title">Cliente</h3>
             <div class="get-by-id__client-container">
@@ -23,7 +24,6 @@
                 </ul>
             </div>
         </article>
+        }
     </div>
 </section>
-
-

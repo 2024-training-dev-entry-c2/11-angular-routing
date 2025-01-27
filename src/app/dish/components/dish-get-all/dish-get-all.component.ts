@@ -12,7 +12,7 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class DishGetAllComponent {
   dishes: IDish[] = [];
-
+  items=["Nombre","ID","Descripcion","Precio","Tipo","Id Menu","Acciones"]
   private dishService = inject(DishService);
 
   ngOnInit() {

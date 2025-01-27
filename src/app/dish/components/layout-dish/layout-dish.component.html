@@ -1,12 +1,16 @@
-<section class="layout-dish">
-    <aside class="layout-dish__aside-left">
-        <nav class="layout-dish__nav">
-            <ul class="layout-dish__options">
+<section class="layout-dish" aria-label="Dish layout">
+    <aside class="layout-dish__aside-left" aria-label="Sidebar">
+        <nav class="layout-dish__nav" aria-label="Main navigation">
+            <ul class="layout-dish__options" role="menubar">
                 @for(option of options; track $index){
-                <li><a [routerLink]="option.url">{{option.name}}</a></li>
+                <li class="layout-dish__option">
+                    <a role="button" [routerLink]="option.url">{{option.name}}</a>
+                </li>
                 }
             </ul>
         </nav>
     </aside>
-    <main class="layout-dish__main"><router-outlet></router-outlet></main>
+    <main class="layout-dish__main" aria-label="Main content">
+        <router-outlet></router-outlet>
+    </main>
 </section>
