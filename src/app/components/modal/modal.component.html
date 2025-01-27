@@ -1,0 +1,26 @@
+@if (isOpen) {
+  <div class="modal modal--open" role="dialog" aria-labelledby="modalTitle" aria-hidden="false">
+      <section class="modal__content">
+          <span class="modal__close" (click)="closeModal()" role="button" aria-label="Close the modal">&times;</span>
+          <div class="modal__container">
+              <h1 id="modalTitle">{{modalTitle()}}</h1>
+              <form class="modal__form" (ngSubmit)="onSaveTest" [formGroup]="inputForm()!">
+                  @for (item of formData(); track $index) {
+                      <label [for]="item.labelName" class="modal__label">{{item.labelName}}</label>
+                      <input 
+                          aria-label="Input field for saving data"
+                          aria-required="true"
+                          [id]="item.labelName"
+                          [type]="item.type"
+                          class="modal__input" 
+                          [formControlName]="item.valueLabel"
+                      >
+                  }
+                  <div>
+                      <button type="submit" class="modal__btn" (click)="saveData()" role="button" aria-label="Save the data entered in the form">Guardar</button>
+                  </div>
+              </form>
+          </div>
+      </section>
+  </div>
+}

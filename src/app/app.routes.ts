@@ -10,12 +10,5 @@ export const routes: Routes = [
           { path: '', loadChildren: () => import('./components/routes/route.routes').then((webRoutes) => webRoutes.routes) },
         ],
       },
-      {
-        path: 'clients',
-        component: LayoutComponent,
-        children: [
-          { path: '', loadChildren: () => import('./components/routes/route.routes').then((webRoutes) => webRoutes.routes) },
-        ],
-      },
-
+      
 ];
