@@ -1,0 +1,17 @@
+@use "../../../ui/styles/variables.scss" as vars;
+@use "../../../ui/styles/mixins.scss" as mix;
+
+.actions {
+  &__button {
+    @include mix.flex(row, center, center);
+    height: 100%;
+    border: none;
+    left: 100%;
+    background-color: transparent;
+    cursor: pointer;
+  }
+}
+
+.icon use {
+  transform: scale(1.1);
+}

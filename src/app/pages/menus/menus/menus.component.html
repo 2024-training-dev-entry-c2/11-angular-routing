@@ -1,0 +1,52 @@
+<section class="section__main">
+    <h1 class="title__home">Menus List</h1>
+    <div class="tabs__container">
+        <ul class="tabs__buttons">
+            @for(item of getTabs; track $index) {
+            <li class="tab-button" [class.active]="activeTab === $index" (click)="selectTab($index)">
+
+                <span>{{item.name}}</span>
+                <div class="actions__items">
+                    <app-buttons [icon]="images[0]" [rowIndex]="$index" (buttonClick)="deleteMenu(item.id)"
+                        ariaLabel="Remove"></app-buttons>
+                    <app-buttons [icon]="images[1]" [rowIndex]="$index" (buttonClick)="getMenu(item.id)"
+                        ariaLabel="Edit"></app-buttons>
+                </div>
+            </li>
+
+            }
+            <li id="section__add-menu" (click)="openModalMenu()">Add Menu</li>
+        </ul>
+        <div class="slider">
+            <div class="slider__indicator" [style.transform]="'translateX(' + (activeTab * 100) + '%)'"></div>
+        </div>
+        <div class="tab__content">
+            @for(item of getTabs; track $index) {
+            @if(activeTab === $index){
+            <app-table title="DishFoods" [data]="getMenuDishes(item.name)" (deleteId)="deleteDish($event)"
+                (updateId)="openModalDishupdate($event,item.id)"></app-table>
+
+            <div class="actions__button-dish">
+                <button (click)="openModalDish(item.id)">Add Dish</button>
+            </div>
+            }
+            }
+
+        </div>
+    </div>
+    @if(showModal){
+    <app-add-menu [showModalMenu]="showModal" (closeModalMenu)="closeModal()" [getData]="dataMenu"
+        [getMenuId]="MenuId"></app-add-menu>
+    }
+    @if(showModalMenu){
+    <app-update-menu [showModalMenu]="showModalMenu" (closeModalMenu)="closeModalMenu()"></app-update-menu>
+    }
+    @if (showModalDish) {
+    <app-dishfood [showModalDish]="showModalDish" (closeModalDish)="closeModalDish()"
+        [getMenuid]="MenuId"></app-dishfood>
+    }
+    @if(showModalDishUpdate){
+    <app-update-dish [showModalDish]="showModalDishUpdate" (closeModalDish)="closeModalDishupdate()"
+        [getMenuid]="MenuId" [getData]="DishData"></app-update-dish>
+    }
+</section>

@@ -1,0 +1,9 @@
+
+
+
+<form [formGroup]="menuUpdatedForm" aria-label="form to add Menu" class="form__add-menu">
+    <app-modal (closeModal)="closeModal()" [data]="getData" [formGroup]="menuUpdatedForm">
+     <button button type="submit" (click)="updateMenu()" class="modal__button modal__button--close" aria-label="button to add Menu">Update</button>
+    </app-modal>
+    
+</form>

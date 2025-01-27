@@ -1,0 +1,12 @@
+<app-tabs title="Order Data " [tabs]="tabsList">
+    <div class="tab__content" tabContent0>
+        <app-add-order (updateList)="updateOrderList()" ></app-add-order>
+    </div>
+    <div class="tab__content" tabContent1>
+        <app-table title="Orders" [data]="orderData" (deleteId)="deleteOrder($event)"
+            (updateId)="getOrder($event)"></app-table>
+    </div>
+</app-tabs>
+@if(showModal){
+<app-update-order [showModalMenu]="showModal" (closeModalMenu)="closeModal()" [getOrderData]="updateOrderData"></app-update-order>
+}

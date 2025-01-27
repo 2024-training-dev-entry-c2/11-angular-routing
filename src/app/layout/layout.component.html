@@ -1,0 +1,19 @@
+<section class="layout">
+    <div class="header">
+        <app-header></app-header>
+    </div>
+    <div class="leftSide">
+        
+        <router-outlet name="left-side"></router-outlet>
+    </div>
+    <div class="body">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="rightSide">
+        <router-outlet name="right-side"></router-outlet>
+    </div>
+    <div class="footer">
+        <router-outlet name="footer"></router-outlet>
+        
+    </div>
+</section>
