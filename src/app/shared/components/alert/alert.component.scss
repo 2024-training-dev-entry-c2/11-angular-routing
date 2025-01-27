@@ -1,0 +1,64 @@
+// Variables para los colores de las alertas
+$alert-success: #282f28;
+$alert-error: #672520;
+$alert-warning: #583706;
+$alert-text-color: #fff;
+
+// Contenedor principal de la alerta
+.alert-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999; // Asegura que esté encima de todo
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none; // Evita interferencia con otros elementos
+}
+
+// Estilos base para las alertas
+.alert {
+  min-width: 300px;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: $alert-text-color;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeInOut 4s ease-in-out forwards;
+  pointer-events: all; // Habilita interacción si es necesario
+
+  // Variantes de tipo de alerta
+  &--success {
+    background-color: $alert-success;
+  }
+
+  &--error {
+    background-color: $alert-error;
+  }
+
+  &--warning {
+    background-color: $alert-warning;
+  }
+}
+
+// Animación para que la alerta aparezca y desaparezca
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}

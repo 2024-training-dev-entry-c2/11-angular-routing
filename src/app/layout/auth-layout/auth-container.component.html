@@ -1,0 +1,13 @@
+<div class="auth">
+  <app-alert></app-alert>
+  <div class="auth__form-section">
+    <div class="auth__form-section-container">
+      <div *ngIf="isLoginMode">
+        <app-login (switchMode)="toggleMode()"></app-login>
+      </div>
+      <div *ngIf="!isLoginMode">
+        <app-register (switchMode)="toggleMode()"></app-register>
+      </div>
+    </div>
+  </div>
+</div>

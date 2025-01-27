@@ -1,0 +1,39 @@
+<div class="transaction">
+    <div class="transaction__container">
+      <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()" class="transaction__form">
+        <div class="transaction__form-group">
+          <label class="transaction__label">Type</label>
+          <select formControlName="type" class="transaction__input">
+            <option value="ATM_DEPOSIT">ATM Deposit</option>
+            <option value="ATM_WITHDRAWAL">ATM Withdrawal</option>
+            <option value="BRANCH_DEPOSIT">Branch Deposit</option>
+            <option value="PHYSICAL_PURCHASE">Physical Purchase</option>
+            <option value="TRANSFER_DEPOSIT">Transfer Deposit</option>
+            <option value="WEB_PURCHASE">Web Purchase</option>
+          </select>
+        </div>
+
+        <div class="transaction__form-group">
+          <label class="transaction__label">Account Number</label>
+          <select formControlName="accountNumber" class="transaction__input">
+            @for(account of accounts; track account.id) {
+              <option [value]="account.accountNumber">
+                {{account.accountNumber}}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="transaction__form-group">
+          <label class="transaction__label">Amount</label>
+          <input type="number" formControlName="amount" class="transaction__input">
+        </div>
+
+        <button type="submit" class="transaction__button">Create Transaction</button>
+      </form>
+    </div>
+
+    <div class="transaction__table">
+      <app-minimalistic-table [columns]="columns" [data]="data"></app-minimalistic-table>
+    </div>
+  </div>

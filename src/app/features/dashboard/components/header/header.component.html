@@ -1,0 +1,16 @@
+<header class="header">
+    <div class="header__brand">
+      <img src="https://cdn-icons-png.flaticon.com/512/3781/3781699.png" alt="Bank Logo">
+      <h1>Banking System</h1>
+    </div>
+    
+    <div class="header__user">
+      <div class="header__balance">
+        Total Balance: ${{ totalBalance }}
+      </div>
+      <span class="header__user-name">{{ userLogged }}</span>
+      <button class="header__logout" (click)="logout()">
+        Logout
+      </button>
+    </div>
+  </header>

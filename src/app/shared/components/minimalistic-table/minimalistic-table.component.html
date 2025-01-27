@@ -1,0 +1,24 @@
+<div class="minimalist-table">
+    <table class="minimalist-table__container">
+      <thead>
+        <tr class="minimalist-table__header-row">
+          @for (column of columns; track column) {
+            <th class="minimalist-table__header-cell">
+              {{ column }}
+            </th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of data; track row) {
+          <tr class="minimalist-table__row">
+            @for (column of columns; track column) {
+              <td class="minimalist-table__cell">
+                {{ row[column] }}
+              </td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+   </div>
