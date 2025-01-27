@@ -3,11 +3,11 @@
         <img src="./images/logo-full.svg" alt="Restaurant Logo" width="200px"/>
     </a>
     <nav class="aside__nav">
-        <menu>
-            <li><a routerLink="/client" routerLinkActive="active">Cliente</a></li>
-            <li><a routerLink="/menu" routerLinkActive="active">Menú</a></li>
-            <li><a routerLink="/dishes" routerLinkActive="active">Platos</a></li>
-            <li><a routerLink="/order" routerLinkActive="active">Órdenes</a></li>
+        <menu class="aside__menu">
+            @for (item of items; track $index) {
+                <li><a [routerLink]="item.link" class="aside__link" routerLinkActive="aside__link--active">{{item.title}}</a></li>
+            }
         </menu>
     </nav>
+    <app-footer></app-footer>
 </aside>
