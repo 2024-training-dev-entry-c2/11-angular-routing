@@ -1,29 +1,57 @@
+@use '../../ui/styles/variables.scss' as variables;
+@use '../../ui/styles/mixins.scss' as mixins;
+
 .home {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    &__container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: variables.$background-color; 
+  animation: fadeIn 1.5s ease-in-out; 
+
+  &__container {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-    }
-  
-    &__image {
+      animation: slideUp 1s ease-in-out; 
+  }
+
+  &__image {
       width: 300px;
       height: auto;
       margin-bottom: 20px;
-    }
-  
-    &__welcome {
-      font-size: 2rem;
+      transition: transform 0.5s ease, filter 0.5s ease; // Transición suave para hover
+      filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.2)); 
+
+      &:hover {
+          transform: scale(1.1); 
+          filter: brightness(1.2); 
+      }
+  }
+
+  &__welcome {
+      font-size: 2.5rem;
       margin: 10px 0;
-      color: #333;
-    }
-  
-    &__description {
+      color: variables.$white;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
+      animation: fadeIn 2s ease-in-out; 
+  }
+
+  &__description {
       font-size: 1.2rem;
       color: #666;
-    }
+      animation: fadeIn 2.5s ease-in-out;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
   }
+}
+
+@keyframes fadeIn {
+ @include mixins.fade-in;
+}
+
+@keyframes slideUp {
+  @include mixins.slide-up;
+}

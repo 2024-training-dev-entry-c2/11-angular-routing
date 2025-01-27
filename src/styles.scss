@@ -10,7 +10,9 @@
     font-family: 'Poppins', sans-serif;
 }
 
-body {
+html, body {
     background-color: variables.$background-color;
-
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }

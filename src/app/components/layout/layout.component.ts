@@ -9,5 +9,13 @@ import { AsideComponent } from "../aside/aside.component";
   styleUrl: './layout.component.scss'
 })
 export class LayoutComponent {
+  public isAnimating = false;
 
+  animateTransition(): void {
+    this.isAnimating = true;
+
+    setTimeout(() => {
+      this.isAnimating = false;
+    }, 500);
+  }
 }
