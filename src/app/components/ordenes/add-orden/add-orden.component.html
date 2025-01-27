@@ -1,7 +1,7 @@
-<section class="orden-form">
-  <h2>{{ isEditMode ? 'Editar Orden' : 'Crear Orden' }}</h2>
+<section class="orden-form" role="form" aria-labelledby="formTitle">
+  <h2 id="formTitle">{{ isEditMode ? 'Editar Orden' : 'Crear Orden' }}</h2>
   @if(mensajeExito) {
-    <div class="orden-form__mensaje-exito">
+    <div class="orden-form__mensaje-exito" role="status" aria-live="polite">
       {{ mensajeExito }}
     </div>
   }
@@ -10,11 +10,11 @@
 
       <div class="orden-form__input-inline">
         <label>Total Precio:</label>
-        <input formControlName="priceTotal" type="number" step="0.01" />
+        <input formControlName="priceTotal" type="number" step="0.01" aria-required="true"/>
       </div>
       <div>
         <label>ID del Cliente:</label>
-        <input formControlName="clientId" type="number" />
+        <input formControlName="clientId" type="number" aria-required="true"/>
       </div>
     </div>
     <div class="orden-form__form-group">
@@ -36,21 +36,21 @@
             <div class="orden-form__inline-group">
               <div class="orden-form__input-inline">
                 <label for="item-price-{{ i }}">Precio:</label>
-                <input id="item-price-{{ i }}"  formControlName="price" type="number" step="0.01" />
+                <input id="item-price-{{ i }}"  formControlName="price" type="number" step="0.01" aria-required="true"/>
               </div>
               <div class="orden-form__input-inline">
                 <label for="item-quantity-{{ i }}">Cantidad:</label>
-                <input id="item-quantity-{{ i }}" formControlName="quantity" type="number" />
+                <input id="item-quantity-{{ i }}" formControlName="quantity" type="number" aria-required="true"/>
               </div>
             </div>
             <div class="orden-form__inline-group">
               <div class="orden-form__input-inline">
                 <label for="item-restaurantId-{{ i }}">ID del Restaurante:</label>
-                <input id="item-restaurantId-{{ i }}" formControlName="restaurantId"type="number"/>
+                <input id="item-restaurantId-{{ i }}" formControlName="restaurantId"type="number" aria-required="true"/>
               </div>
               <div class="orden-form__input-inline">
                 <label for="item-menuId-{{ i }}">ID del Menú:</label>
-                <input id="item-menuId-{{ i }}" formControlName="menuId" type="number"/>
+                <input id="item-menuId-{{ i }}" formControlName="menuId" type="number" aria-required="true"/>
               </div>
             </div>
           </div>

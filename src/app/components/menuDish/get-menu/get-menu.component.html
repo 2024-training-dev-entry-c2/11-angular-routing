@@ -1,32 +1,32 @@
-<section class="content">
+<section class="content" role="main">
   <h1>Menú del Restaurante</h1>
-  <p>Descripción:  {{menuDescription}}</p>
+  <p>Descripción: {{menuDescription}}</p>
   <table class="content__table">
-    <thead class="content__head">
+    <thead class="content__head" role="rowgroup">
       <tr>
-        <th>Platos</th>
-        <th>Popularidad</th>
-        <th>Acciones</th>
+        <th scope="col">Platos</th>
+        <th scope="col">Popularidad</th>
+        <th scope="col">Acciones</th>
       </tr>
     </thead>
     <tbody class="content__body">
       @for(dish of dishes; track dish.id) {
       <tr class="content__menu">
         <ul class="content__items">
-        <td>
+          <td>
             <li><strong>Nombre:</strong> {{dish.name}}</li>
             <li> <strong>Precio:</strong> ${{dish.price}}</li>
           </td>
         </ul>
         <td>
           @if(dish.popular){
-            <p class="content__items--popular-true">
-              {{ dish.popular ? 'Popular' : 'No Popular' }}
-            </p>
+          <p class="content__items--popular-true">
+            {{ dish.popular ? 'Popular' : 'No Popular' }}
+          </p>
           }@else{
-            <p class="content__items--popular-false">
-              {{ dish.popular ? 'Popular' : 'No Popular' }}
-            </p>
+          <p class="content__items--popular-false">
+            {{ dish.popular ? 'Popular' : 'No Popular' }}
+          </p>
           }
         </td>
         <td>
@@ -34,6 +34,6 @@
           <app-botton-delete [id]="dish.id" (deleteEvent)="deleteDish($event)"></app-botton-delete>
         </td>
       </tr>
-    }
+      }
     </tbody>
   </table>
