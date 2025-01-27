@@ -1,0 +1,37 @@
+@use './variables.scss' as vr;
+
+
+@mixin font-to-use($fontsize, $fontweight : 500, $font: vr.$font-primary){
+    font-family: $font;
+    font-size: px-to-rem($fontsize);
+    font-weight: $fontweight;
+}
+
+@mixin text-properties($text-wrap, $line-height:normal, $letter-spacing:normal){
+    text-wrap: $text-wrap;
+    line-height: $line-height;
+    letter-spacing: $letter-spacing;
+}
+
+@mixin flex-container($justify, $align: start, $gap:0, $direction: row, $wrap: nowrap){
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+    flex-wrap: $wrap;
+    gap: $gap;
+}
+
+@mixin button-parameters($background, $border:none , $border-radius: 0, $color: vr.$color-white, $box-shadow: none){
+    background: $background;
+    border: $border;
+    border-radius: $border-radius;
+    color: $color;
+    box-shadow: $box-shadow;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@function px-to-rem($px, $base: 16) {
+    @return $px / $base * 1rem;
+}

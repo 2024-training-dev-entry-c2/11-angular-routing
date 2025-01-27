@@ -7,8 +7,7 @@ import { IDishRequest } from '../../../../interfaces/dish/dish.request.interface
 @Component({
   selector: 'app-register-dish',
   imports: [FormComponent],
-  templateUrl: './register-dish.component.html',
-  styleUrl: './register-dish.component.scss'
+  templateUrl: './register-dish.component.html'
 })
 export class RegisterDishComponent {
   formContent={

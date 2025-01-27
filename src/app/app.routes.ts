@@ -12,12 +12,15 @@ import { RegisterMenuComponent } from './components/entities/menu/register-menu/
 import { UpdateMenuComponent } from './components/entities/menu/update-menu/update-menu.component';
 import { RegisterOrderComponent } from './components/entities/order/register-order/register-order.component';
 import { UpdateOrderComponent } from './components/entities/order/update-order/update-order.component';
+import { HomeComponent } from './components/template/main/home/home.component';
 
 export const routes: Routes = [
+    { path: '', redirectTo: '/admin', pathMatch: 'full' },
     {
         path: 'admin', 
         component: LayoutComponent,
         children: [
+            {path:'', component: HomeComponent},        
             {
                 path: 'platos', 
                 component: DishComponent,

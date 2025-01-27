@@ -9,8 +9,7 @@ import { IClientResponse } from '../../../../interfaces/client/client.response.i
 @Component({
   selector: 'app-update-client',
   imports: [FormComponent],
-  templateUrl: './update-client.component.html',
-  styleUrl: './update-client.component.scss'
+  templateUrl: './update-client.component.html'
 })
 export class UpdateClientComponent {
   formContent = {

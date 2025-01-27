@@ -5,12 +5,12 @@ import { PutMenuService } from '../../../../services/menu/put-menu.service';
 import { IMenuResponse } from '../../../../interfaces/menu/menu.response.interface';
 import { IMenuRequest } from '../../../../interfaces/menu/menu.request.interface';
 import { GetMenuService } from '../../../../services/menu/get-menu.service';
+import { CurrencyPipe, DatePipe, TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-update-menu',
-  imports: [FormComponent],
-  templateUrl: './update-menu.component.html',
-  styleUrl: './update-menu.component.scss'
+  imports: [FormComponent],  
+  templateUrl: './update-menu.component.html'
 })
 export class UpdateMenuComponent {
   formContent={
@@ -28,7 +28,8 @@ export class UpdateMenuComponent {
   route = inject(ActivatedRoute);
   getMenuService = inject(GetMenuService);
   putMenuService = inject(PutMenuService);
-
+  
+  
   ngOnInit(){
     this.id = this.route.snapshot.paramMap.get('id');
     this.getMenuService.execute(this.id!).subscribe((response)=>{

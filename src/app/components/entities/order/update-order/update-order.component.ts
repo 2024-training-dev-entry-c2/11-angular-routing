@@ -9,8 +9,7 @@ import { IOrderRequest } from "../../../../interfaces/order/order.request.interf
 @Component({
   selector: "app-update-order",
   imports: [FormComponent],
-  templateUrl: "./update-order.component.html",
-  styleUrl: "./update-order.component.scss",
+  templateUrl: "./update-order.component.html"
 })
 export class UpdateOrderComponent {
   formContent = {

@@ -7,8 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-register-client',
   imports: [FormComponent],
-  templateUrl: './register-client.component.html',
-  styleUrl: './register-client.component.scss'
+  templateUrl: './register-client.component.html'
 })
 export class RegisterClientComponent {
   formContent={

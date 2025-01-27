@@ -7,8 +7,7 @@ import { IMenuRequest } from '../../../../interfaces/menu/menu.request.interface
 @Component({
   selector: 'app-register-menu',
   imports: [FormComponent],
-  templateUrl: './register-menu.component.html',
-  styleUrl: './register-menu.component.scss'
+  templateUrl: './register-menu.component.html'
 })
 export class RegisterMenuComponent {
   formContent={

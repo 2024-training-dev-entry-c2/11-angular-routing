@@ -1,19 +1,19 @@
 import { Component, inject } from '@angular/core';
 import { GetDishesService } from '../../../services/dish/get-dishes.service';
-import { PostDishService } from '../../../services/dish/post-dish.service';
-import { PutDishService } from '../../../services/dish/put-dish.service';
 import { DeleteDishService } from '../../../services/dish/delete-dish.service';
 import { IDishResponse } from '../../../interfaces/dish/dish.response.interface';
 import { ContainerComponent } from '../../template/main/container/container.component';
 import { BoardComponent } from '../../template/main/board/board.component';
-import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
+import { OptionsComponent } from '../../template/main/options/options.component';
+import { CurrencyPipe, TitleCasePipe } from '@angular/common'
 
 @Component({
   selector: 'app-dish',
-  imports: [ContainerComponent, BoardComponent, RouterOutlet, RouterLink],
-  templateUrl: './dish.component.html',
-  styleUrl: './dish.component.scss'
+  imports: [ContainerComponent, BoardComponent, OptionsComponent, RouterOutlet],
+  providers:[TitleCasePipe, CurrencyPipe],
+  templateUrl: './dish.component.html'
 })
 export class DishComponent {
   tableContent:{ titles: string[]; content: string[][];} = { titles: [], content: [] };
@@ -24,6 +24,9 @@ export class DishComponent {
 
   router = inject(Router);
   route = inject(ActivatedRoute);
+
+  titlePipe = inject(TitleCasePipe);
+  currencyPipe = inject(CurrencyPipe);
 
   ngOnInit(){
     this.getData();
@@ -41,13 +44,13 @@ export class DishComponent {
   }
 
   private transformMenuResponse(dishes: IDishResponse[]): void {
-    const titles = ['#', 'Plato', 'Descripción', 'Precio', 'Estado', 'MenuId'];
+    const titles = ['#', 'Plato', 'Descripción', 'Precio', 'Tipo Plato', 'MenuId'];
     const content = dishes.map(dish =>[
       dish.id.toString(),
-      dish.name,
+      this.titlePipe.transform(dish.name),
       dish.description,
-      dish.price.toString(),
-      dish.state,
+      (this.currencyPipe.transform(dish.price, 'COP', 'symbol')??'').toString(),
+      this.titlePipe.transform(dish.state),
       dish.menuId.toString()
     ]);
 

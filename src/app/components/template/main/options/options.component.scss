@@ -1,0 +1,27 @@
+@use '../../../../ui/styles/mixins.scss' as mx;
+@use '../../../../ui/styles/variables.scss' as vr;
+
+.options{
+    padding: 20px 0;
+    &__add-button{
+        @include mx.flex-container(center, center, 5px);
+        background-color: vr.$color-green;
+        color: vr.$color-white;
+        text-decoration: none;
+        font-size: 15px;
+        padding: 5px;
+        width: 180px;
+        border: none;
+        border-radius: 100px;
+        cursor: pointer;
+
+        &:hover{
+            background-color: vr.$color-green-hover;
+        }
+
+        & svg{
+            width: 15px;
+            height: 15px;
+        }
+    }
+}

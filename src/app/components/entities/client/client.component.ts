@@ -4,14 +4,17 @@ import { DeleteClientService } from '../../../services/client/delete-client.serv
 import { IClientResponse } from '../../../interfaces/client/client.response.interface';
 import { BoardComponent } from "../../template/main/board/board.component";
 import { ContainerComponent } from "../../template/main/container/container.component";
-import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
+import { TitleCasePipe } from '@angular/common';
+import { OptionsComponent } from "../../template/main/options/options.component";
+import { BooleanPipe } from '../../../pipes/boolean.pipe';
 
 @Component({
   selector: 'app-client',
-  imports: [BoardComponent, ContainerComponent, RouterOutlet, RouterLink],
-  templateUrl: './client.component.html',
-  styleUrl: './client.component.scss'
+  imports: [BoardComponent, ContainerComponent, RouterOutlet, OptionsComponent],
+  providers:[TitleCasePipe, BooleanPipe],
+  templateUrl: './client.component.html'
 })
 export class ClientComponent {
   formContent={
@@ -30,13 +33,16 @@ export class ClientComponent {
   router = inject(Router);
   route = inject(ActivatedRoute);
 
+  titlePipe = inject(TitleCasePipe);
+  booleanPipe = inject(BooleanPipe);
+
   ngOnInit(){
     this.getData();
 
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd ))
-      .subscribe(async() => {
-        await this.getData();
+      .subscribe(() => {
+        this.getData();
     });
   }
 
@@ -46,13 +52,13 @@ export class ClientComponent {
     })
   }
 
-  private transformClientResponse(dishes: IClientResponse[]): void {
+  private transformClientResponse(clients: IClientResponse[]): void {
     const titles = ['#', 'Nombre', 'Correo electrónico', '¿Es frecuente?'];
-    const content = dishes.map(dish =>[
-      dish.id.toString(),
-      dish.name,
-      dish.email,
-      dish.frequent.toString()
+    const content = clients.map(client =>[
+      client.id.toString(),
+      this.titlePipe.transform(client.name),
+      client.email,
+      (this.booleanPipe.transform(client.frequent)).toString()
     ]);
 
     this.tableContent={titles, content};

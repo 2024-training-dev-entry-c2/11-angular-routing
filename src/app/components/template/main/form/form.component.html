@@ -1,5 +1,5 @@
 @if (formFields() || formDynamicField()) {
-<div class="form__container">
+<dialog class="form__container" role="dialog">
     <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
         <header class="form__header">
             <button class="form__button-close" (click)="onCloseForm()">x</button>
@@ -25,5 +25,5 @@
             {{ buttonText() }}
         </button>
     </form> 
-</div>
+</dialog>
 }

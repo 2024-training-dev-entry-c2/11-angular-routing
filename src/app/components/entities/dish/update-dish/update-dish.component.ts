@@ -9,8 +9,7 @@ import { IDishRequest } from '../../../../interfaces/dish/dish.request.interface
 @Component({
   selector: 'app-update-dish',
   imports: [FormComponent],
-  templateUrl: './update-dish.component.html',
-  styleUrl: './update-dish.component.scss'
+  templateUrl: './update-dish.component.html'
 })
 export class UpdateDishComponent {
   formContent={

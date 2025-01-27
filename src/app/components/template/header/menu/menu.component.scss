@@ -1,10 +1,13 @@
+@use '../../../../ui/styles/variables.scss' as vr;
+@use '../../../../ui/styles/mixins.scss' as mx;
+
+
 .menu{
+    @include mx.flex-container(start,start, 25px);
     list-style: none;
-    display: flex;
-    gap: 25px;
 
     &__link{
-        color: #000;
+        color: vr.$color-back;
         text-decoration: none;
         &--active{
             font-weight: 600;

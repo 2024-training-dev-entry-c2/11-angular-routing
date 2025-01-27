@@ -1,27 +1,27 @@
+@use '../../../../ui/styles/variables.scss' as vr;
+@use '../../../../ui/styles/mixins.scss' as mx;
+
 .form{
+    @include mx.flex-container(center, center, 20px, column);
     position: relative;
     top:-80px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     max-height: 60%;
-    min-width: 400px;
+    min-width: 500px;
     padding: 30px;
     background-color: #fff;
     border-radius: 5px;
-    gap: 20px;
     overflow: hidden;
+    overflow-y: auto;
 
     &__container{
+        @include mx.flex-container(center, center);
         position: fixed;
         top: 0;
         left: 0;
         width: 100vw;
         height: 100vh;
         background-color: #0000002b;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        z-index: 100;
     }
 
     &__header{
@@ -49,10 +49,7 @@
     }
 
     &__content{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
+        @include mx.flex-container(start, center,10px, column);
     }
 
     &__button{
@@ -79,6 +76,7 @@
         }
 
         &--dynamic{
+            padding: 8px 5px;
             width: 100px;
             font-size: 12px;
             background: #345995;

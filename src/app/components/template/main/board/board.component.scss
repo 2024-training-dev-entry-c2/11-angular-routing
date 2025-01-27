@@ -1,5 +1,8 @@
+@use '../../../../ui/styles/variables.scss' as vr;
+@use '../../../../ui/styles/mixins.scss' as mx;
+
 .table{
-    background: #fff;
+    background: vr.$color-white;
     border-radius: 6px;
     border-spacing: 0;
     overflow: hidden;
@@ -9,21 +12,21 @@
 
     &__column{
         &:hover{
-            background-color: #ddd;
+            background-color: vr.$color-gray-secondary;
         }
     }
 
     &__title{
         padding: 10px;
         font-weight: 600;
-        background-color: #000;
-        color: #fff;
+        background-color: vr.$color-back;
+        color: vr.$color-white;
         border: none;
     }
     
     &__item{
         padding: 8px 30px;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid vr.$color-gray-secondary;
         text-align: center;
 
         &__buttons-container{
@@ -33,24 +36,21 @@
     }
 
     &__button{
+        @include mx.flex-container(center, center);
         width: 30px;
         height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         border-radius: 50%;
         border: none;
         cursor: pointer;
         margin: 0 6px;
+        color: vr.$color-white;
         
         &--update{
-            background: #ffa400;
-            color: #fff;
+            background: vr.$color-yellow;
         }
 
         &--delete{
-            background: #fe4a49;
-            color: #fff;
+            background: vr.$color-red;
         }
 
         & svg{

@@ -1,8 +1,14 @@
+@use '../../../ui/styles/variables.scss' as vr;
+@use '../../../ui/styles/mixins.scss' as mx;
+
 .footer{
-    width: 100vw;
-    padding: 20px 50px;
+    @include mx.flex-container(end);
     position: fixed;
     bottom: 0;
-    display: flex;
-    justify-content: end;
+    width: 100vw;
+    padding: 20px 50px;
+
+    &__copyright{
+        color: vr.$color-gray;
+    }
 }

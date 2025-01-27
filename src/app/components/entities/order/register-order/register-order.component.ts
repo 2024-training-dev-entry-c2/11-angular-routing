@@ -7,8 +7,7 @@ import { IOrderRequest } from "../../../../interfaces/order/order.request.interf
 @Component({
   selector: "app-register-order",
   imports: [FormComponent],
-  templateUrl: "./register-order.component.html",
-  styleUrl: "./register-order.component.scss",
+  templateUrl: "./register-order.component.html"
 })
 export class RegisterOrderComponent {
   formContent = {

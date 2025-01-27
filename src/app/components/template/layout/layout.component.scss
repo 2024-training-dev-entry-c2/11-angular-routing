@@ -1,9 +1,13 @@
+@use '../../../ui/styles/variables.scss' as vr;
+
 .layout{
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(#e8e8e8, #fff);
+    padding-bottom: 120px;
+    background: linear-gradient(vr.$color-gray, vr.$color-white);
+    overflow: auto;
 
     &__main{
-        padding-top: 200px;
+        padding-top: 130px;
     }
 }

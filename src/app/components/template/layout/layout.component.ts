@@ -14,12 +14,14 @@ export class LayoutComponent {
   private upperCase = new UpperCasePipe();
 
   items = [
+    {url: '', text: 'Inicio'},
     {url: 'pedidos', text: 'Pedidos'},
     {url: 'clientes', text: 'Clientes'},
     {url: 'menus', text: 'Menús'},
     {url: 'platos', text: 'Platos'}
   ];
   user = 'admin';
+  iconUrl = '/admin';
 
   ngOnInit(){
     this.items.forEach(item => {

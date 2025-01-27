@@ -1,31 +1,31 @@
+@use '../../../ui/styles/variables.scss' as vr;
+@use '../../../ui/styles/mixins.scss' as mx;
+
 .header{
-    width: 100vw;
+    @include mx.flex-container(center);
     position: fixed;
     top: 0;
-    background-color: #fff;
-    display: flex;
-    justify-content: center;
+    width: 100vw;
+    background-color: vr.$color-white;
     box-shadow: 0px 2px 5px #0000002b;
+    z-index: 5;
 }
 
 .navigation{
-    display: flex;
-    justify-content: space-between;
+    @include mx.flex-container(space-between);
     padding: 20px;
-    width: 70%;
+    width: 80%;
     min-width: 1000px;
     font-size: 14px;
 
     &__options{
-        display: flex;
-        gap: 50px;
-        align-items: center;
+        @include mx.flex-container(start, center);
     }
 
     &__item{
-        display: flex;
-        align-items: center;
-        gap: 10px;
+        @include mx.flex-container(start, center, 10px);
+        text-decoration: none;
+        color: vr.$color-back;
         
         &--bold{
             font-weight: 600;
@@ -37,7 +37,26 @@
         }
 
         & span{
-            font-size: 10px;            
+            @include mx.text-properties(balance, normal, 4px);
+            font-size: 10px;                      
+        }
+    }
+
+    &__user{
+        @include mx.flex-container(center, center, 10px);
+        margin-left: 50px;
+        padding: 5px 10px;
+        border: solid 1px vr.$color-gray;
+        border-radius: 30px;
+
+        & svg{
+            width: 22px;
+            height: 22px;
+        }
+
+        & span{
+            @include mx.text-properties(balance, normal, 2px);
+            font-size: 12px;
         }
     }
 

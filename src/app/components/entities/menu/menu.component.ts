@@ -4,14 +4,16 @@ import { GetMenusService } from '../../../services/menu/get-menus.service';
 import { ContainerComponent } from "../../template/main/container/container.component";
 import { BoardComponent } from '../../template/main/board/board.component';
 import { DeleteMenuService } from '../../../services/menu/delete-menu.service';
-import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
+import { TitleCasePipe } from '@angular/common';
+import { OptionsComponent } from '../../template/main/options/options.component';
 
 @Component({
   selector: 'app-menu',
-  imports: [ ContainerComponent, BoardComponent, RouterOutlet, RouterLink ],
-  templateUrl: './menu.component.html',
-  styleUrl: './menu.component.scss'
+  imports: [ ContainerComponent, BoardComponent, OptionsComponent, RouterOutlet ],
+  providers:[TitleCasePipe],
+  templateUrl: './menu.component.html'
 })
 export class MenuComponent {
   tableContent:{ titles: string[]; content: string[][];} = { titles: [], content: [] };
@@ -21,6 +23,9 @@ export class MenuComponent {
 
   router = inject(Router);
   route = inject(ActivatedRoute);
+
+  titlePipe = inject(TitleCasePipe);  
+
 
   ngOnInit(){
     this.getData();
@@ -42,8 +47,8 @@ export class MenuComponent {
     const titles = ['#', 'Menú', 'Platos'];
     const content = menus.map(menu =>[
       menu.id.toString(),
-      menu.name,
-      menu.dishes.map(dish => `• ${dish.name}`).join('<br>')
+      this.titlePipe.transform(menu.name),
+      menu.dishes.map(dish => `• ${this.titlePipe.transform(dish.name)}`).join('<br>')
     ]);
 
     this.tableContent={titles, content};
