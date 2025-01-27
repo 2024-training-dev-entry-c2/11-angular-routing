@@ -5,7 +5,7 @@ export interface ICreateDishRequest {
 }
 
 export interface IDishResponse {
-    id: string;
+    id: number;
     name: string;
     price: number;
     menuId: number;
