@@ -12,9 +12,14 @@ import { ICustomerResponse } from '../../../services/customer/interfaces/custome
 })
 export class CustomerListComponent {
   @Input() customers: ICustomerResponse[] = [];
-  @Output() editCustomer = new EventEmitter<ICustomerResponse>();
+  @Output() editCustomer = new EventEmitter<number>();
+  @Output() deleteCustomer = new EventEmitter<number>();
 
-  onEditCustomer(customer: ICustomerResponse) {
-    this.editCustomer.emit(customer);
+  onEditCustomer(customerId: number) {
+    this.editCustomer.emit(customerId);
+  }
+
+  onDeleteCustomer(customerId: number) {
+    this.deleteCustomer.emit(customerId);
   }
 }

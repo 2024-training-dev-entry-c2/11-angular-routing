@@ -11,12 +11,15 @@ import { CurrencyPipe } from '@angular/common';
   styleUrls: ['./dish-manager.component.scss'],
 })
 export class DishManagerComponent {
-  private CreateDishService = inject(CreateDishService);
+  private createDishService = inject(CreateDishService);
   dishes: IDish[] = [];
 
   addDish(dish: IDish) {
     const newDish = { ...dish, price: Number(dish.price) };
-    this.dishes.push(dish);
-    this.CreateDishService.execute(dish).subscribe();
+    this.createDishService.execute(dish).subscribe({
+      next: () => console.log('Plato creado con éxito'),
+      // fetchDishes: () => this.fetchDishes(), TODO: Implementar RE-fetchDishes
+      error: (error) => console.error('Error al crear el plato:', error),
+    });
   }
 }

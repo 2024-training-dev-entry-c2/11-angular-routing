@@ -5,7 +5,7 @@ import {
   ICreateCustomerRequest,
   ICustomerResponse,
 } from './interfaces/customer-interface';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,9 +17,15 @@ export class UpdateCustomerService {
     customerId: number,
     customer: ICreateCustomerRequest
   ): Observable<ICustomerResponse> {
-    return this.http.put<ICustomerResponse>(
-      `${ENV.BASE_URL}/customers/${customerId}`,
-      customer
-    );
+    return this.http
+      .put<ICustomerResponse>(
+        `${ENV.BASE_URL}/customers/${customerId}`,
+        customer
+      )
+      .pipe(
+        tap(() => {
+          console.log;
+        })
+      );
   }
 }

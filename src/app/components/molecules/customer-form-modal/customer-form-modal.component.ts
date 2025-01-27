@@ -1,23 +1,7 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  OnChanges,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-  FormControl,
-} from '@angular/forms';
-import {
-  ICreateCustomerRequest,
-  ICustomerResponse,
-} from '../../../services/customer/interfaces/customer-interface';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, FormControl } from '@angular/forms';
+import { ICreateCustomerRequest, ICustomerResponse } from '../../../services/customer/interfaces/customer-interface';
 import { InputFieldComponent } from '../../atoms/input-field/input-field.component';
 
 @Component({

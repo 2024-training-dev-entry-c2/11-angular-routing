@@ -13,14 +13,14 @@ import { ICustomerResponse } from '../../../services/customer/interfaces/custome
 })
 export class CustomerCardComponent {
   @Input() customer!: ICustomerResponse;
-  @Output() edit = new EventEmitter<void>();
-  @Output() delete = new EventEmitter<void>();
+  @Output() edit = new EventEmitter<number>();
+  @Output() delete = new EventEmitter<number>();
 
   onEdit() {
-    this.edit.emit();
+    this.edit.emit(this.customer.id);
   }
 
   onDelete() {
-    this.delete.emit();
+    this.delete.emit(this.customer.id);
   }
 }

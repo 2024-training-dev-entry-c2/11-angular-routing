@@ -5,6 +5,6 @@
 
     <app-modal [isOpen]="isModalOpen" (close)="closeCustomerModal()">
         <app-customer-form-modal [initialValues]="selectedCustomer" (close)="closeCustomerModal()"
-            (submit)="createCustomer($event)"></app-customer-form-modal>
+            (submit)="selectedCustomer ? updateCustomer($event) : createCustomer($event)"></app-customer-form-modal>
     </app-modal>
 </div>

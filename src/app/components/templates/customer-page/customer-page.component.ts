@@ -11,6 +11,7 @@ import {
 } from '../../../services/customer/interfaces/customer-interface';
 import { ListCustomersService } from '../../../services/customer/list-customers.service';
 import { CreateCustomerService } from '../../../services/customer/create-customer.service';
+import { UpdateCustomerService } from '../../../services/customer/update-customer.service';
 
 @Component({
   selector: 'app-customer-page',
@@ -29,9 +30,12 @@ import { CreateCustomerService } from '../../../services/customer/create-custome
 export class CustomerPageComponent implements OnInit {
   customers: ICustomerResponse[] = [];
   isModalOpen = false;
+  selectedCustomerId?: number; // Gestión central del ID seleccionado
   selectedCustomer?: ICustomerResponse;
+
   listCustomersService = inject(ListCustomersService);
   createCustomerService = inject(CreateCustomerService);
+  updateCustomerService = inject(UpdateCustomerService);
 
   ngOnInit(): void {
     this.fetchCustomers();
@@ -45,30 +49,52 @@ export class CustomerPageComponent implements OnInit {
   }
 
   openCreateCustomerModal() {
+    this.selectedCustomerId = undefined;
     this.selectedCustomer = undefined;
     this.isModalOpen = true;
   }
 
-  openEditCustomerModal(customer: ICustomerResponse) {
-    this.selectedCustomer = customer;
+  openEditCustomerModal(customerId: number) {
+    this.selectedCustomerId = customerId;
+    this.selectedCustomer = this.customers.find(
+      (customer) => customer.id === customerId
+    );
+    if (!this.selectedCustomer) {
+      console.error('Customer not found');
+      return;
+    }
     this.isModalOpen = true;
   }
 
   closeCustomerModal() {
     this.isModalOpen = false;
+    this.selectedCustomerId = undefined;
+    this.selectedCustomer = undefined;
     this.fetchCustomers();
   }
 
   createCustomer(customer: ICreateCustomerRequest) {
     this.createCustomerService.execute(customer).subscribe({
-      next: () => {
-        this.closeCustomerModal();
-      },
+      next: () => this.closeCustomerModal(),
       error: (error) => console.error('Error al crear el cliente:', error),
     });
   }
 
-  onEditCustomer(customer: ICustomerResponse) {
-    this.openEditCustomerModal(customer);
+  updateCustomer(customer: ICreateCustomerRequest) {
+    if (this.selectedCustomerId) {
+      this.updateCustomerService
+        .execute(this.selectedCustomerId, customer)
+        .subscribe({
+          next: () => this.closeCustomerModal(),
+          error: (error) =>
+            console.error('Error al actualizar el cliente:', error),
+        });
+    } else {
+      console.error('Selected customer ID is undefined');
+    }
+  }
+
+  onEditCustomer(customerId: number) {
+    this.openEditCustomerModal(customerId);
   }
 }
