@@ -2,8 +2,7 @@
 @use '../../ui/styles/variables.scss' as variables;
 
 .aside {
-    @include mixins.flex-column;
-    align-items: center;
+    @include mixins.flex-column(center);
     min-height: 100%;
     width: 100%;
     padding: 1rem;

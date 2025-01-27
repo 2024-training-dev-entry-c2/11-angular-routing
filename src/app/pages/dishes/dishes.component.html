@@ -1,5 +1,4 @@
 <section class="container" aria-labelledby="section-title">
-
     <app-table [title]="'Platos'" [columns]="columns" [data]="dishes" (delete)="deleteById($event)"
         (update)="updateById($event)" (openModal)="openModal($event)" aria-label="Tabla de platos" role="table"
         tabindex="0">

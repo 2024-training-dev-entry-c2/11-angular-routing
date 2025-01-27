@@ -1,5 +1,5 @@
-@use "../../ui/styles/variables.scss" as variables;
 @use "../../ui/styles/mixins.scss" as mixins;
+
 section {
     @include mixins.flex-center-horizontal(center);
     flex-wrap: wrap;

@@ -4,12 +4,11 @@
 
 
 .form {
+  @include mixins.flex-column;
   width: 100%;
   height: auto;
   max-width: 500px;
   padding: 20px 40px;
-  display: flex;
-  flex-direction: column;
   gap: 20px;
 
   &__inputs {
