@@ -7,8 +7,4 @@ import { RouterOutlet } from '@angular/router';
   template: '<router-outlet />'
 })
 export class AppComponent {
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> f625066c92f7a71c66e9424319e85907be9b8338

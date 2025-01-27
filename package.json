@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
   "name": "restaurante-angular",
-=======
-  "name": "routing-test",
->>>>>>> f625066c92f7a71c66e9424319e85907be9b8338
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

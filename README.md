@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 # RestauranteAngular
-=======
-# RoutingTest
->>>>>>> f625066c92f7a71c66e9424319e85907be9b8338
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.1.
 
