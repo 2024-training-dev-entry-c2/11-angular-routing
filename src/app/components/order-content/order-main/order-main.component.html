@@ -1,0 +1,60 @@
+<main class="order">
+    <table class="order__table">
+        <thead>
+            <tr>
+                @for (header of getHeaders(); track header.label) {
+                <th>{{ header.label }}</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (order of filteredOrders; track order.idOrder) {
+            <tr>
+                <td>{{ order.idOrder }}</td>
+                <td>{{ order.clientName }}</td>
+                <td>{{ order.totalAmount | currency }}</td>
+                <td>
+                    <button class="accordion" (click)="toggleAccordion($event)">Ver detalles de la Orden</button>
+                    <div class="panel">
+                        <ul class="panel__list">
+                            @for (item of order.orderItems; track item.idOrderItem) {
+                            <li>
+                                <i aria-hidden="true">
+                                    <svg>
+                                        <use xlink:href="svg/food.svg#food"></use>
+                                    </svg>
+                                </i>
+                                {{ item.idOrderItem }} - {{ item.quantity }}
+                            </li>
+                            }
+                        </ul>
+                    </div>
+                </td>
+                <td class="order__action">
+                    @for (action of getActions(); track action.label) {
+                    <a class="order__button order__button--{{ action.type }}"
+                        (click)="openModal(modalTemplate, action.type, order.idOrder)">
+                        <i class="order__icon" aria-hidden="true">
+                            <svg>
+                                <use [attr.xlink:href]="action.icon"></use>
+                            </svg>
+                        </i>
+                        {{ action.label }}
+                    </a>
+                    }
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</main>
+
+<ng-template #modalTemplate>
+    <div class="modal" *ngIf="modalType === 'edit'; else deleteContent">
+        <label for="orderStatus">Ingrese el nuevo estado de la Orden</label>
+        <input class="modal__input" [(ngModel)]="orderStatus" id="orderStatus" placeholder={{currentOrderStatus}} />
+    </div>
+    <ng-template #deleteContent>
+        <p>¿Estas seguro de que deseas eliminar esta orden?</p>
+    </ng-template>
+</ng-template>

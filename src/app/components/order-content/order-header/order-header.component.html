@@ -1,0 +1,9 @@
+<app-header title="Orders" buttonText="Agregar Orden" iconPath="svg/plus.svg#plus" [modalContent]="orderModalTemplate"
+    (actionConfirmed)="addOrderToAPI()">
+</app-header>
+
+<ng-template #orderModalTemplate>
+    <p>Ingresa el nombre del cliente y el estado de la orden</p>
+    <input class="modal-input" [(ngModel)]="customerName" placeholder="Nombre del Cliente" />
+    <input class="modal-input" [(ngModel)]="orderStatus" placeholder="Estado de la Orden" />
+</ng-template>

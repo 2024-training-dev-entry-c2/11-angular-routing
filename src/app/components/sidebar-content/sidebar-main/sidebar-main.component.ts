@@ -8,10 +8,11 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './sidebar-main.component.scss'
 })
 export class SidebarMainComponent {
+  menuId: number = 4;
   menuItems = [
     { label: 'Panel de inicio', icon: 'svg/dashboard.svg#dashboard', link: '/' },
     { label: 'Menus', icon: 'svg/menu.svg#menu', link: '/menus' },
-    { label: 'Platos', icon: 'svg/dish.svg#dish', link: '/dishes' },
+    { label: 'Platos', icon: 'svg/dish.svg#dish', link: `/menus/${this.menuId}/dishes`  },
     { label: 'Clientes', icon: 'svg/client.svg#client', link: '/clients' },
     { label: 'Ordenes', icon: 'svg/order.svg#order', link: '/orders' }
   ];

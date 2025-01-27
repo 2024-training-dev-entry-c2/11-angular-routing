@@ -1,1 +1,13 @@
-<p>dish-header works!</p>
+<app-header title="Platos" buttonText="Agregar Plato" iconPath="svg/plus.svg#plus" [modalContent]="menuModalTemplate"
+    (actionConfirmed)="addDishToAPI()"></app-header>
+
+<ng-template #menuModalTemplate>
+    <p>Ingresa la información del nuevo plato:</p>
+    <input class="modal-input" [(ngModel)]="dishName" placeholder="Nombre del plato" />
+    <input class="modal-input" type="number" [(ngModel)]="price" placeholder="Precio del plato" />
+    <textarea class="modal-textarea" [(ngModel)]="description" placeholder="Descripción del plato"></textarea>
+    <label>
+        <input type="checkbox" [(ngModel)]="isPopular" />
+        ¿Es popular?
+    </label>
+</ng-template>

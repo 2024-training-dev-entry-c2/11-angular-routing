@@ -1,1 +1,5 @@
-<p>order works!</p>
+<app-order-header></app-order-header>
+<!-- (orderAdded)="onOrderAdded($event)" -->
+<hr>
+<app-search (searchQueryChange)="onSearchQueryChange($event)"></app-search>
+<app-order-main [searchQuery]="searchQuery"></app-order-main>
