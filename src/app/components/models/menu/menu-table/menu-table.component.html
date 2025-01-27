@@ -2,18 +2,24 @@
   <div class="menu-table__grid">
     @let data = menus | async;
     @for (menu of data; track $index){
-    <article class="menu-card">
+    <article class="menu-card" aria-label="Tarjeta de menú">
       <div class="menu-card__content">
-        <h2 class="menu-card__title">{{ menu.name }}</h2>
-        <p class="menu-card__subtitle">
+        <h2 class="menu-card__title" aria-label="Nombre del menú">
+          {{ menu.name }}
+        </h2>
+        <p class="menu-card__subtitle" aria-label="Estado de platillos en el menú">
           {{ (menu.dishes ?? []).length > 0 ? 'Platillos incluidos:' : 'Sin platillos asociados' }}
         </p>
 
-        <ul *ngIf="(menu.dishes ?? []).length > 0" class="menu-card__dish-list">
+        <ul *ngIf="(menu.dishes ?? []).length > 0" class="menu-card__dish-list" aria-label="Lista de platillos del menú">
           <li *ngFor="let dish of menu.dishes ?? []" class="menu-card__dish-item">
             <div class="dish">
-              <h3 class="dish__title">{{ dish.name }}</h3>
-              <p class="dish__price"><strong>Precio:</strong> ${{ dish.price }}</p>
+              <h3 class="dish__title" aria-label="Nombre del platillo">
+                {{ dish.name }}
+              </h3>
+              <p class="dish__price" aria-label="Precio del platillo">
+                <strong>Precio:</strong> {{ dish.price | currency:'USD':'symbol':'1.2-2' }}
+              </p>
             </div>
           </li>
         </ul>

@@ -14,25 +14,5 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class OrderComponent{
   orders = new BehaviorSubject<IOrder[]>([]);
-  // private getAllOrderService = inject(GetAllOrderService);
-
-  constructor(
-    private router: Router,
-  ) {}
-
-  // ngOnInit(): void {
-  //   this.loadOrders();
-  // }
-
-  // loadOrders() {
-  //   this.getAllOrderService.execute().subscribe((data) => {
-  //     this.orders.next(data);
-  //   });
-  
-  // }
-
-  // onOrderDeleted() {
-  //   this.loadOrders(); 
-  // }
 
 }

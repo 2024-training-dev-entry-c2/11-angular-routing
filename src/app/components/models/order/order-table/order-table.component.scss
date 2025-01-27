@@ -1,4 +1,5 @@
 @use '../../../../ui/variables.scss';
+@use '../../../../ui/mixins.scss';
 
 .order__list {
     display: flex;
@@ -78,34 +79,13 @@
       }
     
       &-btn {
-        padding: 0.5rem 1rem;
-        border: none;
-        font-size: 1rem;
-        font-weight: bold;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background 0.3s ease, transform 0.2s ease;
-    
-        &:hover {
-          transform: translateY(-2px);
-        }
-    
         &--edit {
-          background-color: #007bff;
-          color: white;
-    
-          &:hover {
-            background-color: #0056b3;
-          }
+          @include mixins.button-styles(#007bff, white, #0056b3);
+  
         }
     
         &--delete {
-          background-color: #dc3545;
-          color: white;
-    
-          &:hover {
-            background-color: #a71d2a;
-          }
+          @include mixins.button-styles(#dc3545, white, #c82333);
         }
       }
   }

@@ -2,13 +2,13 @@ import { Component,  inject, OnInit } from '@angular/core';
 import { IMenu } from '../../../../interfaces/menu.interface';
 import { DeleteMenuService } from '../../../../services/menu/delete-menu.service';
 import { GetAllMenuService } from '../../../../services/menu/get-all-menu.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-menu-table',
-  imports: [CommonModule],
+  imports: [CommonModule, CurrencyPipe],
   templateUrl: './menu-table.component.html',
   styleUrl: './menu-table.component.scss'
 })

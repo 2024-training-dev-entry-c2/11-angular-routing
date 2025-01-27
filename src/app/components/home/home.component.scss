@@ -1,9 +1,4 @@
-// Variables
-$spacing: 20px;
-$image-size: 400px;
-$circle-size: 700px; 
 
-// HomePage
 .homepage {
   display: flex;
   align-items: center;
@@ -15,8 +10,8 @@ $circle-size: 700px;
 
   &__background-circle {
     position: absolute;
-    width: $circle-size;
-    height: $circle-size;
+    width:  700px;
+    height:  700px;
     border-radius: 50%;
     background: #e4b270; 
   }
@@ -50,7 +45,7 @@ $circle-size: 700px;
   }
 
   &__image {
-    width: $image-size;
+    width: 400px;
     height: auto;
     object-fit: contain;
     position: relative;

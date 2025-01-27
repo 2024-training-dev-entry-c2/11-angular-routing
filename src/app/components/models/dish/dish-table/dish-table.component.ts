@@ -1,6 +1,6 @@
 import { Component, inject, Input, OnInit} from '@angular/core';
 import { IDish } from '../../../../interfaces/dish.interface';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { DeleteDishService } from '../../../../services/dish/delete-dish.service';
@@ -8,7 +8,7 @@ import { GetAllDishService } from '../../../../services/dish/get-all-dish.servic
 
 @Component({
   selector: 'app-dish-table',
-  imports: [CommonModule],
+  imports: [CommonModule, CurrencyPipe],
   templateUrl: './dish-table.component.html',
   styleUrl: './dish-table.component.scss'
 })

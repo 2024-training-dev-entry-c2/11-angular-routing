@@ -1,24 +1,30 @@
 <div class="client-table">
   @let data = clients | async;
   @for (client of data; track $index){
-    <div class="client-table__card">
+    <div class="client-table__card" aria-label="Tarjeta de cliente">
       <div class="client-table__card-info">
-        <h3 class="client-table__card-name">{{ client.name }} {{ client.lastName }}</h3>
-        <p class="client-table__card-email">{{ client.email }}</p>
-        <p class="client-table__card-frequent">
+        <h3 class="client-table__card-name" aria-label="Nombre del cliente">
+          {{ client.name }} {{ client.lastName }}
+        </h3>
+        <p class="client-table__card-email" aria-label="Correo electrónico del cliente">
+          {{ client.email }}
+        </p>
+        <p class="client-table__card-frequent" aria-label="Cliente frecuente">
           <strong>Frecuente:</strong> {{ client.frequent ? 'Sí' : 'No' }}
         </p>
       </div>
       <div class="client-table__card-actions">
         <button 
-            class="btn--edit"
-            (click)="goToEditClient(client.id)">
-            Editar</button>
-        <button class="btn--delete" (click)="deleteClient(client.id)">
-          Eliminar
+          class="btn--edit"
+          (click)="goToEditClient(client.id)">
+          ✏️ Editar
+        </button>
+        <button 
+          class="btn--delete"
+          (click)="deleteClient(client.id)">
+          🗑️ Eliminar
         </button>
       </div>
     </div>
   }
-  </div>
-  
+</div>

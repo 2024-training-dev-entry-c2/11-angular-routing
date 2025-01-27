@@ -1,30 +1,31 @@
 <section>
-    <div class="order__list">
-      @let data = orders | async;
-      @for (order of data; track $index) {
-        <article class="order__card">
-          <header class="order__card-header">
-            <h3 class="order__card-title">Orden #{{ order.id }}</h3>
-            <p class="order__card-client">Cliente ID: {{ order.clientId }}</p>
-          </header>
-  
-          <ul class="order__card-dishes">
-            <li *ngFor="let dish of order.dishes" class="order__card-dish">
-              <span class="order__card-dish-name">{{ dish.name }}</span>
-              <span class="order__card-dish-price">${{ dish.price | number:'1.2-2' }}</span>
-            </li>
-          </ul>
-  
-          <footer class="order__card-footer">
-            <strong class="order__card-total">Total: {{ order.total | currency:'USD':'symbol':'1.2-2'}}</strong>
-            
-            <div class="order__card-actions">
-              <button class="order__card-btn order__card-btn--edit" (click)="goToEditOrder(order.id)">Editar</button>
-              <button class="order__card-btn order__card-btn--delete" (click)="deleteOrder(order.id)">Eliminar</button>
-            </div>
-          </footer>
-        </article>
-      }
-    </div>
+  <div class="order__list" aria-label="Lista de órdenes">
+    @let data = orders | async;
+    @for (order of data; track $index) {
+      <article class="order__card">
+        <header class="order__card-header">
+          <h3 class="order__card-title" aria-label="Número de orden">Orden #{{ order.id }}</h3>
+          <p class="order__card-client" aria-label="ID del cliente">Cliente ID: {{ order.clientId }}</p>
+        </header>
+
+        <ul class="order__card-dishes" aria-label="Lista de platillos en la orden">
+          <li *ngFor="let dish of order.dishes" class="order__card-dish">
+            <span class="order__card-dish-name" aria-label="Nombre del platillo">{{ dish.name }}</span>
+            <span class="order__card-dish-price" aria-label="Precio del platillo">${{ dish.price | number:'1.2-2' }}</span>
+          </li>
+        </ul>
+
+        <footer class="order__card-footer">
+          <strong class="order__card-total" aria-label="Total de la orden">
+            Total: {{ order.total | currency:'USD':'symbol':'1.2-2'}}
+          </strong>
+          
+          <div class="order__card-actions">
+            <button class="order__card-btn order__card-btn--edit" (click)="goToEditOrder(order.id)">✏️ Editar</button>
+            <button class="order__card-btn order__card-btn--delete" (click)="deleteOrder(order.id)">🗑️ Eliminar</button>
+          </div>
+        </footer>
+      </article>
+    }
+  </div>
 </section>
-  

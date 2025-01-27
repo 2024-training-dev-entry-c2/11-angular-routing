@@ -1,4 +1,5 @@
 @use '../../../../ui/variables.scss';
+@use '../../../../ui/mixins.scss';
 
 .client-table {
     display: flex;
@@ -33,45 +34,19 @@
   
       &-actions {
         display: flex;
-        justify-content: space-between; /* Alinea los botones a la izquierda y derecha */
+        justify-content: space-between; 
         margin-top: 1rem;
-      }
-  
-      .btn--edit,
-      .btn--delete {
-        padding: 0.5rem 1rem;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        font-size: 1rem;
-      }
-  
-      .btn--edit {
-        background-color: #4d90ff; /* Color azul para el botón de editar */
-        color: white;
-        border: none;
-  
-        &:hover {
-          background-color: #357ae8; /* Color más oscuro al pasar el mouse */
+
+        .btn--edit {
+          @include mixins.button-styles(#4d90ff, white, #357ae8);
+        }
+    
+        .btn--delete {
+          @include mixins.button-styles(#ff4d4f, white, #d9363e);
         }
       }
   
-      .btn--delete {
-        background-color: #ff4d4f; /* Rojo para el botón de eliminar */
-        color: white;
-        border: none;
-  
-        &:hover {
-          background-color: #d9363e;
-        }
-      }
     }
   
-    /* Media query para pantallas pequeñas, donde las tarjetas ocuparán todo el ancho */
-    @media (max-width: 768px) {
-      &__card {
-        width: 100%;
-      }
-    }
   }
   
