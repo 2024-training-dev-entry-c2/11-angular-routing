@@ -31,8 +31,10 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+
     &--submit {
       background-color: vars.$color-menu;
+
       &:hover {
         background-color: darken(vars.$color-menu, 10%);
       }

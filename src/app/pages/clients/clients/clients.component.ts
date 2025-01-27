@@ -130,6 +130,7 @@ export class ClientsComponent implements OnInit {
         this.ClientId = id;
         this.clientData = data;
         this.showModal = true;
+        setTimeout(() => this.getClients(), 1000);
         this.getClients();
       },
       error: (error) => {
@@ -143,5 +144,7 @@ export class ClientsComponent implements OnInit {
   }
   closeModal() {
     this.showModal = false;
+    setTimeout(() => this.getClients(), 1000);
+    this.getClients();
   }
 }
