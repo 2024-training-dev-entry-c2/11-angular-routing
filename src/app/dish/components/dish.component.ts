@@ -133,4 +133,17 @@ export class DishComponent implements OnInit {
       });
     }
   }
+
+  setDishes(dish: IDishResponse): void {
+    let savedDishes: IDishResponse[] | null =
+      JSON.parse(sessionStorage.getItem('dishes') as string) || [];
+    if (savedDishes === null) {
+      savedDishes = [];
+    }
+    const dishSaved = savedDishes.find((obj) => obj.id === dish.id);
+    if (!dishSaved) {
+      savedDishes.push(dish);
+      sessionStorage.setItem('dishes', JSON.stringify(savedDishes));
+    }
+  }
 }

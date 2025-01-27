@@ -79,4 +79,8 @@ export class CustomerComponent implements OnInit {
       this.showDeleteCustomer = false;
     });
   }
+
+  setCustomer(customer: ICustomerResponse): void {
+    sessionStorage.setItem('client', JSON.stringify(customer));
+  }
 }

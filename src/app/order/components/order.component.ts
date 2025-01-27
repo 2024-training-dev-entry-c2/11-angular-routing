@@ -8,26 +8,33 @@ import { OrderDetailComponent } from '../../order-detail/order-detail.component'
 import { DatePipe, DecimalPipe } from '@angular/common';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
+import { CartComponent } from '../../cart/cart.component';
 
 registerLocaleData(localeEs, 'es');
 
 @Component({
   selector: 'app-order',
-  imports: [FontAwesomeModule, DecimalPipe, DatePipe, OrderDetailComponent],
+  imports: [
+    FontAwesomeModule,
+    DecimalPipe,
+    DatePipe,
+    OrderDetailComponent,
+    CartComponent,
+  ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss',
 })
 export class OrderComponent implements OnInit {
   faPlus = faPlus;
-  showSaveOrder = false;
+
   showOrderDetails = false;
+  showCart = false;
 
   private listOrdersService = inject(ListOrdersService);
   private updateOrderService = inject(UpdateOrderService);
 
   orders: IOrderResponse[] = [];
   selectedOrder: IOrderResponse | null = null;
-  selectedIdOrder!: number;
 
   ngOnInit(): void {
     const today = new Date();
@@ -35,10 +42,6 @@ export class OrderComponent implements OnInit {
     this.listOrdersService.execute(formattedDate).subscribe((orders) => {
       this.orders = orders;
     });
-  }
-
-  showCreatOrderModal(): void {
-    this.showSaveOrder = true;
   }
 
   showOrderDetailsModal(order: IOrderResponse): void {
@@ -49,6 +52,14 @@ export class OrderComponent implements OnInit {
   closeOrderDetailsModal(): void {
     this.showOrderDetails = false;
     this.selectedOrder = null;
+  }
+
+  showCartModal(): void {
+    this.showCart = true;
+  }
+
+  closeCartModal(): void {
+    this.showCart = false;
   }
 
   changeStatus(order: IOrderResponse, status: string): void {
@@ -62,5 +73,9 @@ export class OrderComponent implements OnInit {
           o.id === updatedOrder.id ? updatedOrder : o
         );
       });
+  }
+
+  addOrder(newOrder: IOrderResponse): void {
+    this.orders = [...this.orders, newOrder];
   }
 }

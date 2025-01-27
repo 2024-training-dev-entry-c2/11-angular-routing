@@ -85,7 +85,8 @@
 
   &__edit-button,
   &__delete-button,
-  &__detail-button {
+  &__detail-button,
+  &__add-button {
     background-color: white;
     font-size: 16px;
     padding: 8px 12px;
@@ -120,6 +121,16 @@
 
     &:hover {
       background-color: variables.$color-tertiary;
+      color: white;
+    }
+  }
+
+  &__add-button {
+    color: variables.$color-font;
+    border: 1px solid variables.$color-font;
+
+    &:hover {
+      background-color: variables.$color-font;
       color: white;
     }
   }
