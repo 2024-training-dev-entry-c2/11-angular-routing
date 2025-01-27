@@ -1,0 +1,40 @@
+<div class="modal-backdrop">
+    <div class="modal" role="dialog" aria-labelledby="menu-modal-title">
+        <h2 id="menu-modal-title">{{ menu ? 'Editar Menú' : 'Agregar Menú' }}</h2>
+      <form [formGroup]="menuForm" (ngSubmit)="onSave()">
+        <label>
+          Nombre:
+          <input formControlName="name" type="text" />
+          <div *ngIf="menuForm.get('name')?.invalid && menuForm.get('name')?.touched">
+            El nombre es requerido.
+          </div>
+        </label>
+        <label>
+          Descripción:
+          <textarea formControlName="description"></textarea>
+          <div *ngIf="menuForm.get('description')?.invalid && menuForm.get('description')?.touched">
+            La descripción es requerida.
+          </div>
+        </label>
+        <label>
+          Platos:
+          <div class="checkbox-list">
+            <div *ngFor="let dish of dishes">
+              <input
+                type="checkbox"
+                [value]="dish"
+                (change)="onDishToggle(dish, $event)"
+                [checked]="isDishSelected(dish)"
+              />
+              {{ dish.name }}
+            </div>
+          </div>
+        </label>
+        <div class="modal-actions">
+          <button type="submit" [disabled]="menuForm.invalid">Guardar</button>
+          <button type="button" (click)="onCancel()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

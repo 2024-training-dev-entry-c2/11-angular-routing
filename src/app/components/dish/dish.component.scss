@@ -1,0 +1,119 @@
+@use '../../ui/styles/variables.scss' as v;
+
+.dishes-table {
+  margin: 40px auto;
+  max-width: 1000px;
+
+  &__title {
+    text-align: center;
+    font-size: 24px;
+    color: v.$color-primary;
+    margin-bottom: 20px;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+
+    .dishes-table__button--add {
+      background-color: v.$color-success;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: darken(v.$color-success, 10%);
+      }
+    }
+  }
+
+  &__wrapper {
+    overflow-x: auto;
+    border-radius: 8px;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    color: v.$color-text;
+
+    thead {
+      background-color: v.$color-primary;
+      color: #fff;
+
+      &__header-row {
+        th {
+          padding: 12px 16px;
+          text-align: left;
+          font-weight: bold;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: v.$color-row-hover;
+        }
+      }
+
+      td {
+        padding: 12px 16px;
+        border: 1px solid v.$color-border;
+
+        &[data-label]:before {
+          content: attr(data-label);
+          font-weight: bold;
+          color: v.$color-muted;
+          display: none;
+        }
+
+        &--actions {
+          display: flex;
+          gap: 10px;
+
+          .dishes-table__button {
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            &--edit {
+              background-color: v.$color-primary;
+              color: #fff;
+
+              &:hover {
+                background-color: darken(v.$color-primary, 10%);
+              }
+            }
+
+            &--delete {
+              background-color: v.$color-danger;
+              color: #fff;
+
+              &:hover {
+                background-color: darken(v.$color-danger, 10%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__empty {
+    text-align: center;
+    color: v.$color-muted;
+    font-size: 18px;
+  }
+}

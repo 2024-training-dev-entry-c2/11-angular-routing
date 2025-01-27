@@ -1,0 +1,33 @@
+<div class="modal-backdrop">
+    <div class="modal">
+      <h2>{{ dish ? 'Editar Plato' : 'Agregar Plato' }}</h2>
+      <form [formGroup]="dishForm" (ngSubmit)="onSave()">
+        <label>
+          Nombre:
+          <input formControlName="name" type="text" />
+          <div *ngIf="dishForm.get('name')?.invalid && dishForm.get('name')?.touched">
+            El nombre es requerido.
+          </div>
+        </label>
+        <label>
+          Precio:
+          <input formControlName="price" type="number" />
+          <div *ngIf="dishForm.get('price')?.invalid && dishForm.get('price')?.touched">
+            El precio debe ser mayor o igual a 0.
+          </div>
+        </label>
+        <label>
+          Tipo:
+          <input formControlName="type" type="text" />
+          <div *ngIf="dishForm.get('type')?.invalid && dishForm.get('type')?.touched">
+            El tipo es requerido.
+          </div>
+        </label>
+        <div class="modal-actions">
+          <button type="submit" [disabled]="dishForm.invalid">Guardar</button>
+          <button type="button" (click)="onCancel()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

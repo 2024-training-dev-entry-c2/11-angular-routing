@@ -1,0 +1,19 @@
+<div class="sidebar">
+  <app-image [src]="urlImages" alt="Company logo" />
+  <nav class="sidebar__menu" aria-label="Main Navigation">
+    <ul class="sidebar__menu-list">
+      <li class="sidebar__menu-item" [routerLink]="['clients']" routerLinkActive="sidebar__menu-item--active">
+        Clientes
+      </li>
+      <li class="sidebar__menu-item" [routerLink]="['orders']" routerLinkActive="sidebar__menu-item--active">
+        Órdenes
+      </li>
+      <li class="sidebar__menu-item" [routerLink]="['dishes']" routerLinkActive="sidebar__menu-item--active">
+        Platos
+      </li>
+      <li class="sidebar__menu-item" [routerLink]="['menus']" routerLinkActive="sidebar__menu-item--active">
+        Menús
+      </li>
+    </ul>
+  </nav>
+</div>
