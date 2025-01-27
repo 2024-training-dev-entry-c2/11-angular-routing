@@ -1,5 +1,9 @@
-<app-modal (close)="onClose()" [title]="'Create user'">
-  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+<app-modal
+  (close)="onClose()"
+  [title]="'Create user'"
+  aria-label="Create User Modal"
+>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" aria-label="User Form">
     <app-input
       (change)="onValueChange('nameError')"
       [error]="formErrors.nameError"
@@ -20,6 +24,6 @@
       "
     ></app-input>
 
-    <app-buttons (close)="onClose()"></app-buttons>
+    <app-buttons (close)="onClose()" aria-label="Form Actions"></app-buttons>
   </form>
 </app-modal>

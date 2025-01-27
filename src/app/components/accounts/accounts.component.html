@@ -1,32 +1,43 @@
-<div class="accounts">
+<div class="accounts" aria-label="Accounts Section">
   <div class="accounts__create">
-    <button class="accounts__create__button" (click)="openCreateModal()">
+    <button
+      class="accounts__create__button"
+      (click)="openCreateModal()"
+      aria-label="Add new account"
+      tabindex="0"
+    >
       Add new account
     </button>
   </div>
 
   @for (account of accounts; track $index) {
-  <div class="accounts__card">
+  <div class="accounts__card" role="listitem">
     <div class="accounts__card__header">
-      <span class="accounts__card__header--icon">
+      <span class="accounts__card__header--icon" aria-hidden="true">
         <fa-icon [icon]="faUniversity" class="icon" />
       </span>
-      <h3 class="accounts__card__header--number">
+      <h3 class="accounts__card__header--number" tabindex="0">
         {{ account.accountNumber }}
       </h3>
     </div>
     <div class="accounts__card__details">
       <p class="accounts__card__details--item">
-        <fa-icon [icon]="faUser" class="icon" /> User:
-        {{ account.user.name }}
+        <span aria-hidden="true">
+          <fa-icon [icon]="faUser" class="icon" />
+        </span>
+        User: {{ account.user.name }}
       </p>
       <p class="accounts__card__details--item">
-        <fa-icon [icon]="faIdCard" class="icon" /> Document ID:
-        {{ account.user.documentId }}
+        <span aria-hidden="true">
+          <fa-icon [icon]="faIdCard" class="icon" />
+        </span>
+        Document ID: {{ account.user.documentId }}
       </p>
       <p class="accounts__card__details--item">
-        <fa-icon [icon]="faMoneyBillWave" class="icon icon--money" /> Balance:
-        {{ account.balance | currency : "USD" }}
+        <span aria-hidden="true">
+          <fa-icon [icon]="faMoneyBillWave" class="icon icon--money" />
+        </span>
+        Balance: {{ account.balance | currency : "USD" }}
       </p>
     </div>
   </div>
@@ -34,6 +45,8 @@
   <app-create-account
     (close)="closeCreateModal()"
     (create)="onCreateAccount($event)"
+    aria-modal="true"
+    aria-label="Create Account Modal"
   ></app-create-account>
   }
 </div>

@@ -1,10 +1,21 @@
 <header class="header">
   <div class="header__group">
-    <fa-icon [icon]="faMoneyBillWave" class="icon icon--money" />
-    <p>Balance: ${{ selectedAccount?.balance }}</p>
+    <fa-icon
+      [icon]="faMoneyBillWave"
+      class="icon icon--money"
+      aria-hidden="true"
+    />
+    <p tabindex="0">Balance: ${{ selectedAccount?.balance }}</p>
   </div>
   <div>
-    {{ admin.email }}
-    <button class="header__logout" (click)="logout()">Logout</button>
+    <span aria-label="Administrator email"> {{ admin.email }}</span>
+    <button
+      aria-label="Button for logout"
+      class="header__logout"
+      (click)="logout()"
+      tabindex="0"
+    >
+      Logout
+    </button>
   </div>
 </header>

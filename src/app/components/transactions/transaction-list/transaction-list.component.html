@@ -1,35 +1,40 @@
 @if (transactions()!.length > 0) {
-<table class="transaction-table">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Type</th>
-      <th>Fee</th>
-      <th>Net amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (transaction of transactions(); track $index) {
-    <tr>
-      <td>{{ transaction.timestamp | date : "dd/MM/yyyy hh:mm a" }}</td>
-      <td [innerHTML]="getTypeName(transaction.type)"></td>
-      <td class="transaction-table__cost">
-        {{ transaction.fee | currency : "USD" : "symbol" : "1.0-2" }}
-      </td>
-      <td
-        [ngClass]="{
-          'transaction-table__plus': getType(transaction.type) == 'deposit',
-          'transaction-table__cost': getType(transaction.type) == 'withdrawal'
-        }"
-      >
-        {{ transaction.netAmount | currency : "USD" : "symbol" : "1.0-2" }}
-      </td>
-    </tr>
-    }
-  </tbody>
-</table>
+<div role="table" aria-label="Transaction History">
+  <table class="transaction-table">
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Type</th>
+        <th scope="col">Fee</th>
+        <th scope="col">Net amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (transaction of transactions(); track $index) {
+      <tr role="row">
+        <td role="cell">
+          {{ transaction.timestamp | date : "dd/MM/yyyy hh:mm a" }}
+        </td>
+        <td role="cell" [innerHTML]="getTypeName(transaction.type)"></td>
+        <td role="cell" class="transaction-table__cost">
+          {{ transaction.fee | currency : "USD" : "symbol" : "1.0-2" }}
+        </td>
+        <td
+          role="cell"
+          [ngClass]="{
+            'transaction-table__plus': getType(transaction.type) == 'deposit',
+            'transaction-table__cost': getType(transaction.type) == 'withdrawal'
+          }"
+        >
+          {{ transaction.netAmount | currency : "USD" : "symbol" : "1.0-2" }}
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
 } @else {
-<div class="empty__container">
+<div class="empty__container" role="alert" aria-live="polite">
   <p>There are no transactions for this account</p>
 </div>
 }

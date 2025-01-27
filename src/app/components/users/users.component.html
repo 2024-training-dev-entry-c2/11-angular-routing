@@ -1,6 +1,11 @@
-<div class="users">
+<section class="users" aria-label="Users Section">
   <div class="users__create">
-    <button class="users__create__button" (click)="openCreateModal()">
+    <button
+      class="users__create__button"
+      (click)="openCreateModal()"
+      aria-label="Add new user"
+      tabindex="0"
+    >
       Add new user
     </button>
   </div>
@@ -8,23 +13,28 @@
   @if (isLoading) {
   <app-spinner></app-spinner>
   } @else { @for (user of users; track $index) {
-  <div class="users__card">
+  <div class="users__card" role="listitem">
     <div class="users__card__avatar">
       <img
         class="users__card__avatar--img"
         src="assets/images/user.jpg"
         alt="User Avatar"
+        aria-hidden="true"
       />
     </div>
     <div class="users__card__details">
-      <h3 class="users__card__name">{{ user.name }}</h3>
-      <p class="users__card__document">Document ID: {{ user.documentId }}</p>
+      <h3 class="users__card__name" tabindex="0">{{ user.name }}</h3>
+      <p class="users__card__document" tabindex="0">
+        Document ID: {{ user.documentId }}
+      </p>
     </div>
   </div>
   } } @if (isCreateModalOpen) {
   <app-create-user
     (close)="closeCreateModal()"
     (create)="onCreateUser($event)"
+    aria-modal="true"
+    aria-label="Create User Modal"
   ></app-create-user>
   }
-</div>
+</section>

@@ -1,18 +1,30 @@
-<div class="container">
+<section class="container" aria-label="Transactions Section">
   <div class="container__header">
-    <h2>Transactions</h2>
-    <button class="container__header__button" (click)="openCreateModal()">
+    <h2 tabindex="0">Transactions</h2>
+    <button
+      class="container__header__button"
+      (click)="openCreateModal()"
+      aria-label="Create new transaction"
+      tabindex="0"
+    >
       Create transaction
     </button>
   </div>
-  @if (isLoading) { 
+  @if (isLoading) {
+  <div role="alert" aria-live="polite">
     <app-spinner></app-spinner>
+  </div>
   } @else {
-  <app-transaction-list [transactions]="transactions"></app-transaction-list>
+  <app-transaction-list
+    [transactions]="transactions"
+    aria-label="Transaction List"
+  ></app-transaction-list>
   } @if (isCreateModalOpen) {
   <app-create-transaction
     (close)="closeCreateModal()"
     (create)="onCreateTransaction($event)"
+    aria-modal="true"
+    aria-label="Create Transaction Modal"
   ></app-create-transaction>
   }
-</div>
+</section>

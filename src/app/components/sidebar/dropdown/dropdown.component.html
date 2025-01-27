@@ -1,5 +1,16 @@
-<div class="dropdown">
-  <div class="dropdown__button" (click)="toggleDropdown()">
+<div
+  class="dropdown"
+  [attr.aria-expanded]="showDropdown"
+  aria-haspopup="listbox"
+  aria-label="Account Selection Dropdown"
+>
+  <div
+    class="dropdown__button"
+    tabindex="0"
+    (click)="toggleDropdown()"
+    role="button"
+    aria-label="Toggle Account Dropdown"
+  >
     @if (selectedAccount) {
     <div class="dropdown__preview">
       <small>Selected account:</small>
@@ -10,9 +21,15 @@
     }
   </div>
   @if (showDropdown) {
-  <div class="dropdown__content">
+  <div class="dropdown__content" role="listbox" aria-label="Account Options">
     @for (account of accounts(); track $index) {
-    <div (click)="selectAccount(account)" class="dropdown__content__option">
+    <div
+      (click)="selectAccount(account)"
+      class="dropdown__content__option"
+      role="option"
+      tabindex="0"
+      [attr.aria-selected]="selectedAccount === account"
+    >
       <small>User: {{ account.user.name }}</small>
       <p>{{ account.accountNumber }}</p>
     </div>

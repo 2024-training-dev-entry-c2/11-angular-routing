@@ -2,24 +2,24 @@
   display: flex;
   gap: 50px;
   height: 100vh;
-}
 
-.content {
-  width: 100%;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+  &__content {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
 }
 
 main {
   overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
 
-main::-webkit-scrollbar {
-  display: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 app-sidebar {

@@ -1,5 +1,13 @@
-<app-modal (close)="onClose()" [title]="'Create transaction'">
-  <form [formGroup]="transactionForm" (ngSubmit)="openModalConfirm()">
+<app-modal
+  (close)="onClose()"
+  [title]="'Create transaction'"
+  aria-label="Create Transaction Modal"
+>
+  <form
+    [formGroup]="transactionForm"
+    (ngSubmit)="openModalConfirm()"
+    aria-label="Transaction Form"
+  >
     <div class="form-group">
       <label class="form-group__label" for="amount">Amount:</label>
       <input
@@ -7,13 +15,14 @@
         id="amount"
         class="form-group__input"
         formControlName="amount"
+        aria-describedby="amount-error"
         (keypress)="onKeyPress($event)"
         (focus)="onValueChange('amountError')"
         (change)="onValueChange('amountError')"
         [ngClass]="{ 'form-group__input--invalid': formErrors.amountError }"
       />
       @if(formErrors.amountError){
-      <span class="form-group__error">
+      <span id="amount-error" class="form-group__error" role="alert">
         Amount is required and must be greater than 0.
       </span>
       }
@@ -25,6 +34,7 @@
         id="type"
         class="form-group__select"
         formControlName="type"
+        aria-describedby="type-error"
         (change)="onValueChange('typeError')"
         [ngClass]="{ 'form-group__input--invalid': formErrors.typeError }"
       >
@@ -34,11 +44,13 @@
         }
       </select>
       @if(formErrors.typeError){
-      <span class="form-group__error"> Type is required. </span>
+      <span id="type-error" class="form-group__error" role="alert">
+        Type is required.
+      </span>
       }
     </div>
 
-    <app-buttons (close)="onClose()"></app-buttons>
+    <app-buttons (close)="onClose()" aria-label="Form Actions"></app-buttons>
   </form>
 </app-modal>
 @if (dialogConfirm) {
@@ -46,5 +58,7 @@
   [title]="'Create Transaction'"
   [text]="'Are you sure you want to create this transaction?'"
   (confirm)="handleConfirmation($event)"
+  aria-modal="true"
+  aria-label="Confirm Transaction Modal"
 ></app-dialog-confirmation>
 }
