@@ -1,32 +1,37 @@
-<section class="get-by-id">
-    <article>
-        <h3 class="get-by-id__title">Obtener Menú por ID</h3>
-        <form [formGroup]="form" class="get-by-id__form" (ngSubmit)="onSubmit()">
-            <label class="get-by-id__label">
-                <span>ID:</span>
-                <input type="text" formControlName="id" class="get-by-id__input">
-            </label>
-            <button class="get-by-id__button">Enviar</button>
-        </form>
-    </article>
+<section class="get-by-id-menu">
+    <div class="get-by-id-menu__container">
+        <article class="get-by-id-menu__article">
+            <h3 class="get-by-id-menu__title">Obtener Menú por ID</h3>
+            <form [formGroup]="form" class="get-by-id-menu__form" (ngSubmit)="onSubmit()" aria-label="form">
+                <label class="get-by-id-menu__label">
+                    <span>ID:</span>
+                    <input type="text" formControlName="id" class="get-by-id-menu__input" aria-required="true">
+                </label>
+                <button class="get-by-id-menu__button" aria-label="send form">Enviar</button>
+            </form>
+        </article>
 
-    @if (menu) {
-    <article>
-        <h3 class="get-by-id__menu-title">{{ menu.nombre }}</h3>
-        <div>
-            @if(menu.platos){
-            <h4>Platos:</h4>
-            <div>
-                @for (plato of menu.platos; track $index) {
-                <div>
-                    <p>{{ plato.nombre }} <span>({{ plato.tipo}})</span></p>
-                    <p>{{ plato.precio | currency}}</p>
+        @if (menu) {
+        <article class="get-by-id-menu__menu-info">
+            <h3 class="get-by-id-menu__menu-title">{{ menu.nombre }}</h3>
+            <div class="get-by-id-menu__menu-container">
+                @if (menu.platos) {
+                <h4 class="get-by-id-menu__menu-subtitle">Platos:</h4>
+                <div class="get-by-id-menu__menu-dishes">
+                    @for (plato of menu.platos; track $index) {
+                    <div class="get-by-id-menu__dish-content">
+                        <div class="get-by-id-menu__dish-header">
+                            <p class="get-by-id-menu__dish-name">{{ plato.nombre }} <span>({{ plato.tipo }})</span></p>
+                            <p class="get-by-id-menu__dish-price">{{ plato.precio | currency }}</p>
+                        </div>
+                        <p class="get-by-id-menu__dish-description">- {{ plato.descripcion }}</p>
+                    </div>
+                    <hr>
+                    }
                 </div>
-                <p>{{ plato.descripcion }}</p>
                 }
             </div>
-            }
-        </div>
-    </article>
-    }
+        </article>
+        }
+    </div>
 </section>
