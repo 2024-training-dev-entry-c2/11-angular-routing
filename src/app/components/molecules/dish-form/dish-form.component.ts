@@ -1,10 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, Output } from '@angular/core';
 import {
-  ReactiveFormsModule,
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import {
   FormBuilder,
-  Validators,
   FormControl,
+  ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { InputFieldComponent } from '../../atoms/input-field/input-field.component';
 
@@ -22,12 +29,23 @@ interface DishForm {
   styleUrls: ['./dish-form.component.scss'],
 })
 export class DishFormComponent {
+  @Input() initialValues?: DishForm;
   @Output() submitDish = new EventEmitter<DishForm>();
   form = inject(FormBuilder).group({
     name: ['', [Validators.required, Validators.minLength(3)]],
     price: [5000, [Validators.required, Validators.min(0.01)]],
     menuId: [1, [Validators.required, Validators.min(1)]],
   });
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['initialValues'] && this.initialValues) {
+      this.form.patchValue({
+        name: this.initialValues.name,
+        price: this.initialValues.price,
+        menuId: this.initialValues.menuId,
+      });
+    }
+  }
 
   onSubmit(): void {
     if (this.form.valid) {
@@ -43,7 +61,7 @@ export class DishFormComponent {
   get priceControl(): FormControl {
     return this.form.get('price') as FormControl;
   }
-  
+
   get menuIdControl(): FormControl {
     return this.form.get('menuId') as FormControl;
   }
