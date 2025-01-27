@@ -1,0 +1,19 @@
+<section class="client-page" aria-labelledby="client-page-heading">
+    <header class="client-page__header">
+        <h1 id="client-page-heading" class="client-page__title">Gestión de Clientes</h1>
+        <p class="client-page__description">
+            Aquí encontrarás la lista de clientes registrados en el sistema. Puedes gestionar sus datos con las opciones
+            disponibles.
+        </p>
+        <a routerLink="/add-client">
+            <i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24" style="fill: rgba(47, 45, 43, 1);transform: rotate(180deg);"><path d="M4 22h12v-2H4V8H2v12c0 1.103.897 2 2 2z"></path><path d="M20 2H8c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zm-2 9h-3v3h-2v-3h-3V9h3V6h2v3h3v2z"></path></svg>
+            </i>
+        </a>
+    </header>
+
+    <section class="client-page__list">
+        <app-client-table></app-client-table>
+    </section>
+</section>
+
