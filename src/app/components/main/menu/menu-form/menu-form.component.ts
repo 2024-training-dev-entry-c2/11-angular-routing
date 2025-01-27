@@ -8,6 +8,7 @@ import { IDish } from '../../../../interfaces/dishResponse.interface';
 import { CustomFormComponent } from '../../../custom/custom-form/custom-form.component';
 import { FormTitleComponent } from '../../../custom/form-title/form-title.component';
 import { IMenu } from '../../../../interfaces/menuResponse.interface';
+import { IMenuRequest } from '../../../../interfaces/menuRequest.interface';
 
 @Component({
   selector: 'app-menu-form',
@@ -91,7 +92,7 @@ export class MenuFormComponent implements OnInit {
     });
   }
 
-  setFormData(menu: any): void {
+  setFormData(menu: IMenuRequest): void {
     this.form.patchValue({
       name: menu.name,
     });

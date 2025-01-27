@@ -1,5 +1,5 @@
 export interface IOrderRequests {
-  reservationId: number;
-  dishIds: number[];
+  reservationId?: number;
+  dishIds?: number[];
   status: string;
 }

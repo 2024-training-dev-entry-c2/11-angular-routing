@@ -10,6 +10,7 @@ import { IReservationResponse } from '../../../../interfaces/reservationResponse
 import { CustomFormComponent } from '../../../custom/custom-form/custom-form.component';
 import { FormTitleComponent } from '../../../custom/form-title/form-title.component';
 import { IOrderRequests } from '../../../../interfaces/orderRequest.interface';
+import { IOrderResponse } from '../../../../interfaces/orderResponese.interface';
 
 @Component({
   selector: 'app-order-form',
@@ -19,7 +20,7 @@ import { IOrderRequests } from '../../../../interfaces/orderRequest.interface';
 })
 export class OrderFormComponent implements OnInit {
   orderId: number | null = null;
-  formData: any = null;
+  formData: IOrderRequests | null = null;
   dishes: IDish[] = [];
   reservations: IReservationResponse[] = [];
 
@@ -113,7 +114,7 @@ export class OrderFormComponent implements OnInit {
     });
   }
 
-  setFormData(order: any): void {
+  setFormData(order: IOrderRequests): void {
     this.form.patchValue({
       reservationId: order.reservationId,
     });
