@@ -22,16 +22,6 @@
     gap: $gap;
 }
 
-@mixin button-parameters($background, $border:none , $border-radius: 0, $color: vr.$color-white, $box-shadow: none){
-    background: $background;
-    border: $border;
-    border-radius: $border-radius;
-    color: $color;
-    box-shadow: $box-shadow;
-    text-decoration: none;
-    cursor: pointer;
-}
-
 @function px-to-rem($px, $base: 16) {
     @return $px / $base * 1rem;
 }

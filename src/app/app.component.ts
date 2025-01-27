@@ -12,5 +12,5 @@ registerLocaleData(localeEs, 'es');
   template: '<router-outlet/>',
 })
 export class AppComponent {
-  title = 'resturant';
+  title = 'restaurant';
 }
