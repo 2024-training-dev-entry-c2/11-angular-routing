@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { BottonEditComponent } from '../botton-edit/botton-edit.component';
 import { BottonDeleteComponent } from '../botton-delete/botton-delete.component';
 import { RestaurantService } from '../../services/restaurant.service';
@@ -15,6 +15,7 @@ import { DishService } from '../../services/dish.service';
 export class GetMenuComponent {
   private restaurantService = inject(RestaurantService);
   private dishService = inject(DishService);
+  @Output() editDishEvent = new EventEmitter<IDish>();
   infoRestaurant: IRestaurant | null = null;
   dishes: IDish[] = [];
   menuDescription: string = '';
@@ -34,6 +35,10 @@ export class GetMenuComponent {
       },
     });
   }
+  editDish(dish: IDish) {
+    this.editDishEvent.emit(dish);
+  }
+
   deleteDish(id: number): void {
     this.dishService.deleteDishById(id).subscribe({
       next: () => {

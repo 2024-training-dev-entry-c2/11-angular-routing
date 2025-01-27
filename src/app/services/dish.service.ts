@@ -13,6 +13,9 @@ private http = inject(HttpClient);
   addDish(payload: IDish): Observable<IDish> {
     return this.http.post<IDish>(this.urlbase, payload);
   }
+ updateDish(dish: IDish): Observable<IDish> {
+    return this.http.put<IDish>(`${this.urlbase}/${dish.id}`, dish);
+  }
 
   deleteDishById(id: number): Observable<void> {
     console.log(id)

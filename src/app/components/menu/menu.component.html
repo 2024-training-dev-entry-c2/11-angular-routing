@@ -1,8 +1,8 @@
 <section class="menu-restaurante">
   <section class="menu_restaurante__view">
-    <app-get-menu></app-get-menu>
+    <app-get-menu (editDishEvent)="editDish($event)"></app-get-menu>
   </section>
   <section class="menu-restaurante__add">
-    <app-add-dish></app-add-dish>
+    <app-add-dish [dishSelect]="dishEdit"></app-add-dish>
   </section>
 </section>
