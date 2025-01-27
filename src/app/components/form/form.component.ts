@@ -17,5 +17,6 @@ export class FormComponent {
   public action = input.required<string>();
   public controls = input.required<IValidator[]>();
   public submit = output<() => void>();
+  public totalPrice = input<number>();
 
 }

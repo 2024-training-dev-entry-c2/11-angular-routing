@@ -1,0 +1,31 @@
+@use '../../ui/styles/mixins.scss' as mixins;
+@use '../../ui/styles/variables.scss' as variables;
+
+.footer {
+    margin-top: 75px; 
+    width: 100%; 
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: normal;
+    color: variables.$white;
+    background-color: variables.$primary-color;
+
+    &__span {
+        a {
+            color: variables.$white;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    small {
+        display: block;
+        margin-top: 5px;
+        font-size: 0.8rem;
+        color: variables.$white;
+        opacity: 0.8;
+    }
+}
