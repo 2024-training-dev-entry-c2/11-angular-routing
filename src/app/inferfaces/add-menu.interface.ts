@@ -1,6 +1,5 @@
-
-export interface Dish {
-  id?: number,
+export interface IDish {
+  id: number,
   name: string;
   price: number;
   popular: boolean;
@@ -9,7 +8,7 @@ export interface Dish {
 export interface IAddMenuRequest {
   description: string;
   restaurantId: number;
-  dishes: Dish[];
+  dishes: IDish[];
 }
 export interface IAddMenuResponse {
     id: number,

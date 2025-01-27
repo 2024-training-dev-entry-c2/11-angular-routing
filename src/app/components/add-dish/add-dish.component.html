@@ -1,0 +1,26 @@
+<section class="plato-form">
+  <h2>{{ isEditMode ? 'Editar Plato' : 'Crear Plato' }}</h2>
+  @if(mensajeExito) {
+    <div class="plato-form__mensaje-exito">
+      {{ mensajeExito }}
+    </div>
+  }
+  <form [formGroup]="dishForm" (ngSubmit)="onSubmit()">
+    <div class="plato-form__form-group">
+      <label>Nombre:</label>
+      <input formControlName="name" type="text" />
+    </div>
+    <div class="plato-form__form-group">
+      <label>Precio:</label>
+      <input formControlName="price" type="number" />
+    </div>
+    <div class="plato-form__form-group">
+      <label>ID del Menú del Restaurante:</label>
+      <input formControlName="menuRestaurantId" type="number"/>
+    </div>
+    <div class="plato-form__form-actions">
+      <button type="submit" id="submit">{{ isEditMode ? 'Editar Plato' : 'Crear Plato' }}</button>
+    </div>
+  </form>
+</section>
+

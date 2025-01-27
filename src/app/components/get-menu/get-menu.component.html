@@ -31,7 +31,7 @@
         </td>
         <td>
           <app-botton-edit></app-botton-edit>
-          <app-botton-delete ></app-botton-delete>
+          <app-botton-delete [id]="dish.id" (deleteEvent)="deleteDish($event)"></app-botton-delete>
         </td>
       </tr>
     }
