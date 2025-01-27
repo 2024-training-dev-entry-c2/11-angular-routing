@@ -39,10 +39,14 @@
 
 <ng-template #modalTemplate>
     <div class="modal" *ngIf="modalType === 'edit'; else deleteContent">
-        <label for="menuName">Ingrese el nombre que desea actualizar</label>
-        <!-- <input class="modal__input" [(ngModel)]="clientName" id="menuName" placeholder={{currentClientName}} /> -->
+        <label for="menuName">Ingrese el nuevo nombre del plato</label>
+        <input class="modal__input" [(ngModel)]="dishName" id="menuName" placeholder={{dishName}} />
+        <label for="price">Ingrese el nuevo precio</label>
+        <input class="modal__input" [(ngModel)]="price" id="price" placeholder={{price}} />
+        <label for="description">Ingrese la nueva descripcion</label>
+        <input class="modal__input" [(ngModel)]="description" id="descripcion" placeholder={{description}} />
     </div>
     <ng-template #deleteContent>
-        <p>¿Estas seguro de que deseas eliminar este cliente?</p>
+        <p>¿Estas seguro de que deseas eliminar este plato?</p>
     </ng-template>
 </ng-template>

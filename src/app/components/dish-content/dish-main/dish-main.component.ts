@@ -26,6 +26,8 @@ export class DishMainComponent implements OnInit {
   menuId!: number;  
   filteredMenus: IMenu[] = []; 
   menus: IMenu[] = []; 
+  dishMenuMap: Map<number, number> = new Map();
+
 
   @Input() searchQuery: string = ''; 
 
@@ -69,9 +71,9 @@ export class DishMainComponent implements OnInit {
         for (let i = 0; i < this.filteredMenus.length; i++) {
           this.dishService.getAllDishesFromMenu(this.filteredMenus[i].idMenu).subscribe(
             (dishes) => {
+              dishes.forEach(dish => this.dishMenuMap.set(dish.idDish, this.filteredMenus[i].idMenu));
               this.dishes.push(...dishes); 
               this.filteredDishes = [...this.dishes]; 
-              console.log('NECESITO ESTO', this.filteredDishes);
             },
             (error) => {
               console.error('Error al cargar los platos:', error);
@@ -159,23 +161,33 @@ export class DishMainComponent implements OnInit {
     );
   }
 
-  deleteDish(id: number): void {
-    if (!this.menuId) {
-      console.error('El ID del menú es necesario para eliminar un plato.');
+  deleteDish(dishId: number): void {
+    const menuId = this.dishMenuMap.get(dishId); // Intentar obtener el menuId
+  
+    if (!menuId) {
+      console.error('No se encontró el ID del menú para este plato. Mapa actual:', this.dishMenuMap);
       return;
     }
-
-    this.dishService.deleteDishFromMenu(this.menuId, id).subscribe(
+  
+    console.log(`Intentando eliminar plato con ID ${dishId} del menú con ID ${menuId}...`);
+  
+    this.dishService.deleteDishFromMenu(menuId, dishId).subscribe(
       () => {
-        console.log('Plato eliminado.');
-        this.loadDishes();  
+        console.log(`Plato eliminado exitosamente: ${dishId} del menú ${menuId}`);
+  
+        // Actualizar las listas locales
+        this.dishes = this.dishes.filter(dish => dish.idDish !== dishId);
+        this.filteredDishes = this.filteredDishes.filter(dish => dish.idDish !== dishId);
+  
+        console.log('Platos actuales después de eliminar:', this.dishes);
       },
       (error) => {
         console.error('Error al eliminar el plato:', error);
       }
     );
   }
-
+  
+  
   resetModalFields(): void {
     this.dishName = '';
     this.price = 0;

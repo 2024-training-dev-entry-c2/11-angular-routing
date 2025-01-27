@@ -1,0 +1,32 @@
+.modal {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    &__checkbox {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    &__textarea {
+        padding: 5px;
+        width: 340px;
+        border: 1px solid rgba(0, 0, 0, 0.361);
+        border-radius: 5px;
+    }
+
+    &__input {
+        padding: 5px;
+        width: 340px;
+        border: 1px solid rgba(0, 0, 0, 0.361);
+        border-radius: 5px;
+
+        &--checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+    }
+
+}
