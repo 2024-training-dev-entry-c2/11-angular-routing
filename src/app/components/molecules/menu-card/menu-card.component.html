@@ -6,7 +6,10 @@
         <p class="menu-card__info">Platos: {{ menu.dishes.length }}</p>
         <div class="menu-card__actions">
             <app-button text="Editar" type="secondary" icon="edit"></app-button>
-            <app-button text="Eliminar" type="primary" icon="delete"></app-button>
+            <app-button text="Eliminar" type="primary" icon="delete" (click)="openDeleteDialog()"></app-button>
         </div>
     </div>
+    <app-dialog *ngIf="isDeleteDialogOpen" [message]="'¿Estás seguro de que deseas eliminar el menu ' + menu.name + '?'"
+        (confirm)="confirmDelete()" (cancel)="closeDeleteDialog()">
+    </app-dialog>
 </div>
