@@ -1,0 +1,5 @@
+<router-outlet />
+<app-loading-screen [isLoading]="isLoading"></app-loading-screen>
+@if (isError) {
+<app-dialog-error (cancel)="onErrorClose()"></app-dialog-error>
+}

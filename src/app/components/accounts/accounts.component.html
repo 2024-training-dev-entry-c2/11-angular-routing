@@ -1,0 +1,23 @@
+<div class="accounts" aria-label="Accounts Section">
+  <div class="accounts__create">
+    <button
+      class="accounts__create__button"
+      (click)="openCreateModal()"
+      aria-label="Add new account"
+      tabindex="0"
+    >
+      Add new account
+    </button>
+  </div>
+
+  @for (account of accounts; track $index) {
+  <app-card-account [account]="account"></app-card-account>
+  } @if (isCreateModalOpen) {
+  <app-create-account
+    (close)="closeCreateModal()"
+    (create)="onCreateAccount($event)"
+    aria-modal="true"
+    aria-label="Create Account Modal"
+  ></app-create-account>
+  }
+</div>

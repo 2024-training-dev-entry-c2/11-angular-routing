@@ -1,0 +1,37 @@
+<app-modal
+  (close)="onClose()"
+  [title]="'Create account'"
+  aria-label="Create Account Modal"
+>
+  <form
+    [formGroup]="accountForm"
+    (ngSubmit)="onSubmit()"
+    aria-label="Account Form"
+  >
+    <div class="form-group">
+      <label class="form-group__label" for="userId">User:</label>
+      <select
+        id="userId"
+        class="form-group__select"
+        formControlName="userId"
+        (change)="onFalseError()"
+        aria-describedby="user-error"
+        [ngClass]="{ 'form-group__select--invalid': formError }"
+      >
+        <option value="" disabled selected>Select a user</option>
+        @for (user of users; track $index) {
+        <option [value]="user.id">
+          {{ user.name }}
+        </option>
+        }
+      </select>
+      @if(formError){
+      <span id="user-error" class="form-group__error" role="alert">
+        User is required.
+      </span>
+      }
+    </div>
+
+    <app-buttons (close)="onClose()" aria-label="Form Actions"></app-buttons>
+  </form>
+</app-modal>

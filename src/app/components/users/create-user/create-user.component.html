@@ -1,0 +1,29 @@
+<app-modal
+  (close)="onClose()"
+  [title]="'Create user'"
+  aria-label="Create User Modal"
+>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" aria-label="User Form">
+    <app-input
+      (change)="onValueChange('nameError')"
+      [error]="formErrors.nameError"
+      [id]="'name'"
+      [title]="'Name'"
+      [control]="getFormControl('name')"
+      [errorMessage]="'Name is required.'"
+    ></app-input>
+
+    <app-input
+      (change)="onValueChange('documentError')"
+      [error]="formErrors.documentError"
+      [id]="'documentId'"
+      [title]="'Document'"
+      [control]="getFormControl('documentId')"
+      [errorMessage]="
+        'Document is required and must be longer than 8 characters.'
+      "
+    ></app-input>
+
+    <app-buttons (close)="onClose()" aria-label="Form Actions"></app-buttons>
+  </form>
+</app-modal>

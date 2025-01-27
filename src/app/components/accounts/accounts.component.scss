@@ -1,0 +1,17 @@
+@use "../../../assets/styles/mixins" as mixin;
+@use "../../../assets/styles/variables.scss" as *;
+
+.accounts {
+  @include mixin.card-container;
+
+  &__create {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+
+    &__button {
+      @include mixin.button;
+    }
+  }
+}

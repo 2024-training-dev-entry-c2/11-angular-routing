@@ -1,0 +1,16 @@
+<div class="users__card" role="listitem">
+  <div class="users__card__avatar">
+    <img
+      class="users__card__avatar--img"
+      src="assets/images/user.jpg"
+      alt="User Avatar"
+      aria-hidden="true"
+    />
+  </div>
+  <div class="users__card__details">
+    <h3 class="users__card__name" tabindex="0">{{ user()!.name }}</h3>
+    <p class="users__card__document" tabindex="0">
+      Document ID: {{ user()!.documentId }}
+    </p>
+  </div>
+</div>

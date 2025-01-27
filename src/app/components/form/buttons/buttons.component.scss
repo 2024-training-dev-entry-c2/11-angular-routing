@@ -1,0 +1,24 @@
+.form-group {
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__cancel--button,
+  &__save--button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+
+  &__cancel--button {
+    background-color: #ccc;
+  }
+
+  &__save--button {
+    background-color: #3b82f6;
+    color: white;
+  }
+}

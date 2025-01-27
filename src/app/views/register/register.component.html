@@ -1,0 +1,84 @@
+<section class="register">
+  <div class="register__container">
+    <h1 class="register__container__title">Bank</h1>
+    <form
+      class="register__container__form"
+      [formGroup]="registerForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="register__container__form__group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          required
+          placeholder="tu@email.com"
+          (focus)="onValueChange('emailError')"
+          (change)="onValueChange('emailError')"
+          [ngClass]="{
+            'register__container__form__group--invalid': formErrors.emailError
+          }"
+        />
+        @if(formErrors.emailError){
+        <span class="register__container__form__group__error">
+          Email is required
+        </span>
+        }
+      </div>
+
+      <div class="register__container__form__group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          required
+          (focus)="onValueChange('passwordError')"
+          (change)="onValueChange('passwordError')"
+          [ngClass]="{
+            'register__container__form__group--invalid': formErrors.passwordError
+          }"
+        />
+        @if(formErrors.passwordError){
+        <span class="register__container__form__group__error">
+          Password is required and must have at least one uppercase letter, one
+          lowercase letter, one number and one special character
+        </span>
+        }
+      </div>
+
+      <div class="register__container__form__group">
+        <label for="role">Role</label>
+        <select
+          id="role"
+          formControlName="role"
+          required
+          (change)="onValueChange('roleError')"
+          [ngClass]="{
+            'register__container__form__group--invalid': formErrors.roleError
+          }"
+        >
+          <option value="" disabled selected>Select a role</option>
+          <option value="ADMIN">ADMIN</option>
+          <option value="GOD">GOD</option>
+        </select>
+        @if(formErrors.roleError){
+        <span class="register__container__form__group__error">
+          Role is required
+        </span>
+        }
+      </div>
+
+      <button
+        class="register__container__form__button"
+        type="submit"
+      >
+        Register
+      </button>
+    </form>
+    <p class="register__container__login">
+      Already have an account? <a [routerLink]="'/login'">Login here</a>
+    </p>
+  </div>
+</section>

@@ -1,0 +1,58 @@
+<section class="login">
+  <div class="login__container">
+    <h1 class="login__container__title">Bank</h1>
+    <form
+      class="login__container__form"
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="login__container__form__group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          required
+          placeholder="tu@email.com"
+          (focus)="onValueChange('emailError')"
+          (change)="onValueChange('emailError')"
+          [ngClass]="{
+            'login__container__form__group--invalid': formErrors.emailError
+          }"
+        />
+        @if(formErrors.emailError){
+        <span class="login__container__form__group__error">
+          Email is required
+        </span>
+        }
+      </div>
+
+      <div class="login__container__form__group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          required
+          (focus)="onValueChange('passwordError')"
+          (change)="onValueChange('passwordError')"
+          [ngClass]="{
+            'login__container__form__group--invalid': formErrors.passwordError
+          }"
+        />
+        @if(formErrors.passwordError){
+        <span class="login__container__form__group__error">
+          Password is required
+        </span>
+        }
+      </div>
+
+      <button class="login__container__form__button" type="submit">
+        Login
+      </button>
+    </form>
+    <p class="login__container__register">
+      Don't have an account? <a [routerLink]="'/register'">Register here</a>
+    </p>
+  </div>
+</section>

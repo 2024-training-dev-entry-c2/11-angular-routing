@@ -1,0 +1,25 @@
+<section class="users" aria-label="Users Section">
+  <div class="users__create">
+    <button
+      class="users__create__button"
+      (click)="openCreateModal()"
+      aria-label="Add new user"
+      tabindex="0"
+    >
+      Add new user
+    </button>
+  </div>
+
+  @if (isLoading) {
+  <app-spinner></app-spinner>
+  } @else { @for (user of users; track $index) {
+  <app-card-user [user]="user"></app-card-user>
+  } } @if (isCreateModalOpen) {
+  <app-create-user
+    (close)="closeCreateModal()"
+    (create)="onCreateUser($event)"
+    aria-modal="true"
+    aria-label="Create User Modal"
+  ></app-create-user>
+  }
+</section>
