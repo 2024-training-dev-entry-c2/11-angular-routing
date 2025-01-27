@@ -1,0 +1,13 @@
+<header class="header">
+    <div class="user-info">
+        <img src="assets/svg/user_icon.svg" aria-hidden="true" alt="" height="40" width="40">
+        {{username}}
+    </div>
+    <div class="header__actions">
+        @for (item of headerActions; track $index) {
+            <app-icon-button [icon]="item.icon" [textButton]="item.textButton" [action]="item.action"
+            class="action__button__nav--filled"></app-icon-button>
+
+        }
+    </div>
+</header>

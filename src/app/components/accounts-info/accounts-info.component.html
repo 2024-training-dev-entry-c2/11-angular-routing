@@ -1,0 +1,17 @@
+<div class="bank-account-card" (click)="onClick(cardAccountNumber()!)">
+  <div class="account-info">
+    <div class="account-header">
+      <div class="icon-container">
+        <i [class]="iconClass()"></i>
+      </div>
+      <div class="account-details">
+        <span class="account-name" aria-hidden="true">{{type()}}</span>
+        <span class="account-number" aria-hidden="true">{{ cardAccountNumber() }}</span>
+      </div>
+      <div class="balance">
+        <span  aria-hidden="true">${{ balance() }}</span>
+        <span class="title"  aria-hidden="true">{{ balanceType() }}</span>
+      </div>
+    </div>
+  </div>
+</div>
