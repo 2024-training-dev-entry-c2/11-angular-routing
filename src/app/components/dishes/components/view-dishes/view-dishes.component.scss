@@ -1,0 +1,13 @@
+@use '@ui/variables.scss' as variables;
+@use '@ui/mixins.scss' as mixins;
+
+:host {
+  display: block;
+}
+
+.dishes{
+
+  &__header{
+    @include mixins.header-page();
+  }
+}

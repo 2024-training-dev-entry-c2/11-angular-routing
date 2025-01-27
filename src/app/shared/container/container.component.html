@@ -1,0 +1,27 @@
+<main class="container">
+  <header class="container__header"
+  [ngClass]="{'container__header-cols-4': isDishes, 'container__header-cols-5': isCustomers}"
+  >
+    @for (col of columns; track $index) {
+      <p class="container__header__item">{{col | uppercase}}</p>
+    }
+  </header>
+
+  <section class="container__content">
+    @if (isCustomers) {
+      @let dataCustomer = customers | async;
+      @for (item of dataCustomer; track $index) {
+        <article class="container__card">
+          <app-container-card [customer]="item" isCustomer="true" />
+        </article>
+      }
+    }@else {
+        @let dataDishes = dishes | async;
+        @for (item of dataDishes; track $index) {
+          <article class="container__card">
+            <app-container-card [dish]="item" isDishes="true" />
+          </article>
+        }
+      }
+  </section>
+</main>
