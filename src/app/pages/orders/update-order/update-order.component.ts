@@ -159,7 +159,7 @@ export class UpdateOrderComponent implements OnInit {
   }
   getDishName(dishId: any): string {
     const dish = this.dishfoods.find((d) => d.id === dishId);
-    return dish ? dish.name : '';
+    return dish ? `${dish.name} - ${dish.price} $` : '';
   }
   closeModal() {
     this.closeModalMenu.emit();
