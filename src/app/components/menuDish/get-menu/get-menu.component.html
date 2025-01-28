@@ -7,6 +7,9 @@
         <th scope="col">Platos</th>
         <th scope="col">Popularidad</th>
         <th scope="col">Acciones</th>
+        <th>
+            <app-botton-add (addDishEvent)="addDish()"></app-botton-add>
+        </th>
       </tr>
     </thead>
     <tbody class="content__body">
@@ -31,9 +34,11 @@
         </td>
         <td>
           <app-botton-edit (click)="editDish(dish)"></app-botton-edit>
+          <hr>
           <app-botton-delete [id]="dish.id" (deleteEvent)="deleteDish($event)"></app-botton-delete>
         </td>
       </tr>
       }
+
     </tbody>
   </table>

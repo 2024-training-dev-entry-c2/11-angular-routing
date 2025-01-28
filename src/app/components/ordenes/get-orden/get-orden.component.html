@@ -35,6 +35,7 @@
         </td>
         <td>
           <app-botton-edit [id]="orden.id" (editEvent)="editOrden(orden.id)"></app-botton-edit>
+         <hr>
           <app-botton-delete [id]="orden.id" (deleteEvent)="deleteOrden($event)"></app-botton-delete>
         </td>
       </tr>

@@ -46,22 +46,22 @@ export class AddDishComponent {
         this.dishService.updateDish(dishData).subscribe({
           next: () => {
             this.mensajeExito = '¡Plato actualizado con éxito!';
-            this.dishForm.reset();
             this.dishUpdated.emit(dishData);
             setTimeout(() => {
               this.mensajeExito = null;
-            }, 3000);
+              this.dishForm.reset();
+            }, 2000);
           },
         });
       } else {
         this.dishService.addDish(dishData).subscribe({
           next: () => {
             this.mensajeExito = '¡Plato creado con éxito!';
-            this.dishForm.reset();
             this.dishUpdated.emit(dishData);
             setTimeout(() => {
               this.mensajeExito = null;
-            }, 3000);
+              this.dishForm.reset();
+            }, 2000);
           },
         });
       }
