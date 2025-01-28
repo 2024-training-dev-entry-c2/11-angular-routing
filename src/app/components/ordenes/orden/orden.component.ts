@@ -4,11 +4,12 @@ import { AddOrdenComponent } from '../add-orden/add-orden.component';
 import { ICreateOrden } from '../../../inferfaces/create-orden.interface';
 import { OrdenService } from '../../../services/orden.service';
 import { IViewOrden } from '../../../inferfaces/view-orden.interface';
+import { ModalComponent } from "../../modal/modal.component";
 
 
 @Component({
   selector: 'app-orden',
-  imports: [GetOrdenComponent, AddOrdenComponent],
+  imports: [GetOrdenComponent, AddOrdenComponent, ModalComponent],
   templateUrl: './orden.component.html',
   styleUrl: './orden.component.scss'
 })
@@ -17,6 +18,7 @@ export class OrdenComponent {
   ordenEdit: ICreateOrden | null = null;
   ordenes: ICreateOrden[] = [];
   @ViewChild(GetOrdenComponent) getOrdenComponent!: GetOrdenComponent;
+  isModalVisible: boolean = false;
   ngOnInit() {
     this.loadOrdenes();
   }
@@ -41,11 +43,21 @@ export class OrdenComponent {
         ...data,
         clientId: data.client?.id || 0,
       };
-      console.log('Orden para editar:', this.ordenEdit);
+      this.isModalVisible = true;
     });
   }
+  addOrden() {
+    this.ordenEdit = null;
+    this.isModalVisible = true;
+  }
   onOrdenUpdated() {
-    console.log('Orden actualizada. Actualizando la lista de órdenes...');
-    this.getOrdenComponent.loadOrdenes();
+    this.loadOrdenes();
+    setTimeout(() => {
+      this.isModalVisible = false;
+    }, 2000);
+  }
+
+  closeModal() {
+    this.isModalVisible = false;
   }
 }

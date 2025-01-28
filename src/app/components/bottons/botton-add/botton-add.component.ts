@@ -7,9 +7,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './botton-add.component.scss'
 })
 export class BottonAddComponent {
-  @Output() addDishEvent = new EventEmitter<void>();
+  @Output() buttonEvent = new EventEmitter<void>();
 
-  openAddDish() {
-    this.addDishEvent.emit();
+  onButtonClick() {
+    this.buttonEvent.emit();
   }
 }

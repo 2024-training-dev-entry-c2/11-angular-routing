@@ -1,9 +1,11 @@
 <section class="orden" aria-label="Gestión de Órdenes">
   <section class="orden__view" aria-labelledby="viewTitle">
     <h2 id="viewTitle" class="visually-hidden">Vista de Órdenes</h2>
-    <app-get-orden (editOrdenEvent)="editOrden($event)" (reloadOrders)="loadOrdenes()"></app-get-orden>
+    <app-get-orden (editOrdenEvent)="editOrden($event)" (reloadOrders)="loadOrdenes()" (addOrdenEvent)="addOrden()"></app-get-orden>
   </section>
   <section class="orden__add" aria-labelledby="addTitle">
-    <app-add-orden [ordenSelect]="ordenEdit" (ordenUpdated)="onOrdenUpdated()"></app-add-orden>
+    <app-modal [isVisible]="isModalVisible" (close)="closeModal()">
+      <app-add-orden [ordenSelect]="ordenEdit" (ordenUpdated)="onOrdenUpdated()"></app-add-orden>
+    </app-modal>
   </section>
 </section>
