@@ -31,6 +31,7 @@ export class CustomFormComponent implements OnInit, OnChanges {
   @Input() formData!: any;
   @Input() submitAction!: (data: any) => void;
   @Input() menuId!: number;
+  @Input() orderId!: number;
   formGroup!: FormGroup;
 
   constructor(private fb: FormBuilder, private location: Location) {}
@@ -60,7 +61,6 @@ export class CustomFormComponent implements OnInit, OnChanges {
       }, {} as any)
     );
 
-    console.log('Form Data:', this.formData);
     this.formGroup.patchValue(this.formData);
   }
 

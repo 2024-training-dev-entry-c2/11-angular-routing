@@ -40,7 +40,7 @@ export class OrderFormComponent implements OnInit {
     },
     {
       name: 'dishIds',
-      label: 'Dishes',
+      label: 'dishes',
       type: 'array',
       errorMessage: 'At least one dish is required.',
       options: [],

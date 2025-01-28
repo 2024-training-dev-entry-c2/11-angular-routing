@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IReservationResponse } from '../../interfaces/reservationResponse.interface';
+import { IOrderResponse } from '../../interfaces/orderResponese.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -11,15 +12,15 @@ export class EditOrderService {
   private apiUrl = 'http://localhost:8080/orders';
   private http = inject(HttpClient);
 
-  getOrder(id: number): Observable<IReservationResponse> {
+  getOrder(id: number): Observable<IOrderResponse> {
     return this.http
-      .get<IReservationResponse>(`${this.apiUrl}/${id}`)
+      .get<IOrderResponse>(`${this.apiUrl}/${id}`)
       .pipe(catchError(this.handleError));
   }
 
   updateOrder(
     id: number,
-    order: Partial<IReservationResponse>
+    order: Partial<IOrderResponse>
   ): Observable<IReservationResponse> {
     return this.http
       .put<IReservationResponse>(`${this.apiUrl}/${id}`, order)

@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { EditMenuService } from '../../../services/menu/edit-menu.service';
 import { IDish } from '../../../interfaces/dishResponse.interface';
+import { EditOrderService } from '../../../services/order/edit-order.service';
 
 @Component({
   selector: 'app-custom-input',
@@ -26,15 +27,20 @@ export class CustomInputComponent implements OnInit {
     options?: { label: string; value: any }[];
   };
   @Input() menuId!: number | null;
+  @Input() orderId!: number | null;
 
   dishes: IDish[] = [];
 
-  constructor(private editMenuService: EditMenuService) {}
+  constructor(
+    private editMenuService: EditMenuService,
+    private editOrderService: EditOrderService
+  ) {}
 
   ngOnInit(): void {
-    console.log('Menu ID:', this.menuId);
     if (this.config.name === 'dishIds' && this.menuId) {
       this.loadMenuDishes(this.menuId);
+    } else if (this.config.name === 'dishIds' && this.orderId) {
+      this.loadOrderDishes(this.orderId);
     }
   }
 
@@ -49,6 +55,13 @@ export class CustomInputComponent implements OnInit {
   loadMenuDishes(menuId: number): void {
     this.editMenuService.getMenu(menuId).subscribe((menu) => {
       this.dishes = menu.dishes;
+      this.updateDishOptions();
+    });
+  }
+
+  loadOrderDishes(orderId: number): void {
+    this.editOrderService.getOrder(orderId).subscribe((order) => {
+      this.dishes = order.dishes;
       this.updateDishOptions();
     });
   }
