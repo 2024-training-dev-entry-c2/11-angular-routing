@@ -29,6 +29,7 @@ export class GetOrdenComponent implements OnInit {
   @Output() editOrdenEvent = new EventEmitter<number>();
   @Output() addOrdenEvent = new EventEmitter<void>();
 
+
   statusOptions = [
     'PENDING',
     'IN_PREPARATION',
@@ -67,7 +68,9 @@ export class GetOrdenComponent implements OnInit {
   editOrden(id: number) {
     this.editOrdenEvent.emit(id);
   }
-
+  onOrdenUpdated(): void {
+    this.loadOrdenes();
+  }
   deleteOrden(id: number): void {
     this.ordenService.deleteOrderById(id).subscribe({
       next: () => {

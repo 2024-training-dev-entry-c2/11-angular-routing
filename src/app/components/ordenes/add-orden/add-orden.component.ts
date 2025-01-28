@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, ReactiveFormsModule, Validators } from '@angula
 import { OrdenService } from '../../../services/orden.service';
 import { ICreateOrden } from '../../../inferfaces/create-orden.interface';
 import { CommonModule } from '@angular/common';
+import { IViewOrden } from '../../../inferfaces/view-orden.interface';
 
 @Component({
   selector: 'app-add-orden',
@@ -97,22 +98,22 @@ export class AddOrdenComponent {
         this.ordenService.updateOrden(orderData).subscribe({
           next: () => {
             this.mensajeExito = '¡Orden actualizada con éxito!';
-            this.ordenForm.reset();
             this.ordenUpdated.emit();
             setTimeout(() => {
               this.mensajeExito = null;
-            }, 3000);
+              this.ordenForm.reset();
+            }, 2000);
           },
         });
       } else {
         this.ordenService.addOrden(orderData).subscribe({
           next: () => {
             this.mensajeExito = '¡Orden creada con éxito!';
-            this.ordenForm.reset();
             this.ordenUpdated.emit();
             setTimeout(() => {
               this.mensajeExito = null;
-            }, 3000);
+              this.ordenForm.reset();
+            }, 2000);
           },
         });
       }

@@ -17,10 +17,32 @@ export class OrdenComponent {
   private ordenService = inject(OrdenService);
   ordenEdit: ICreateOrden | null = null;
   ordenes: ICreateOrden[] = [];
-  @ViewChild(GetOrdenComponent) getOrdenComponent!: GetOrdenComponent;
   isModalVisible: boolean = false;
+  @ViewChild(GetOrdenComponent) getOrdenComponent!: GetOrdenComponent;
+
+
   ngOnInit() {
     this.loadOrdenes();
+  }
+  addOrden() {
+    this.ordenEdit = null;
+    this.isModalVisible = true;
+  }
+  editOrden(id: number) {
+    this.ordenService.getOrdenById(id).subscribe((data: any) => {
+      this.ordenEdit = {
+        ...data,
+        clientId: data.client?.id || 0,
+      };
+      this.isModalVisible = true;
+    });
+  }
+
+  onOrdenUpdated() {
+    this.getOrdenComponent.loadOrdenes();
+    setTimeout(() => {
+      this.isModalVisible = false;
+    }, 2000);
   }
 
   loadOrdenes() {
@@ -36,27 +58,6 @@ export class OrdenComponent {
       }
     });
   }
-  editOrden(id: number) {
-    this.ordenService.getOrdenById(id).subscribe((data: any) => {
-      console.log('Datos recibidos del backend:', data);
-      this.ordenEdit = {
-        ...data,
-        clientId: data.client?.id || 0,
-      };
-      this.isModalVisible = true;
-    });
-  }
-  addOrden() {
-    this.ordenEdit = null;
-    this.isModalVisible = true;
-  }
-  onOrdenUpdated() {
-    this.loadOrdenes();
-    setTimeout(() => {
-      this.isModalVisible = false;
-    }, 2000);
-  }
-
   closeModal() {
     this.isModalVisible = false;
   }

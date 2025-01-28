@@ -16,6 +16,7 @@ import { BottonAddComponent } from '../../bottons/botton-add/botton-add.componen
 export class GetMenuComponent {
   private restaurantService = inject(RestaurantService);
   private dishService = inject(DishService);
+
   @Output() addDishEvent = new EventEmitter<void>();
   @Output() editDishEvent = new EventEmitter<IDish>();
   @Input() dishes: IDish[] = [];

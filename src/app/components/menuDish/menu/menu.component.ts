@@ -1,14 +1,10 @@
 import { Component, inject, ViewChild } from '@angular/core';
 import { GetMenuComponent } from '../get-menu/get-menu.component';
 import { AddDishComponent } from '../add-dish/add-dish.component';
-import { DishService } from '../../../services/dish.service';
 import { IDish } from '../../../inferfaces/add-menu.interface';
 import { RestaurantService } from '../../../services/restaurant.service';
 import { IRestaurant } from '../../../inferfaces/restaurant.interface';
 import { ModalComponent } from "../../modal/modal.component";
-import { BottonAddComponent } from '../../bottons/botton-add/botton-add.component';
-
-
 
 
 @Component({

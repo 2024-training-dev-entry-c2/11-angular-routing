@@ -3,10 +3,11 @@ import { ClientService } from '../../../services/client.service';
 import { IClient } from '../../../inferfaces/view-orden.interface';
 import { BottonDeleteComponent } from '../../bottons/botton-delete/botton-delete.component';
 import { BottonEditComponent } from '../../bottons/botton-edit/botton-edit.component';
+import { BottonAddComponent } from "../../bottons/botton-add/botton-add.component";
 
 @Component({
   selector: 'app-get-client',
-  imports: [BottonDeleteComponent, BottonEditComponent],
+  imports: [BottonDeleteComponent, BottonEditComponent, BottonAddComponent],
   templateUrl: './get-client.component.html',
   styleUrl: './get-client.component.scss',
 })
