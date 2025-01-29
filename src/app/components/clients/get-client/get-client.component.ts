@@ -15,6 +15,7 @@ export class GetClientComponent {
   private clienteService = inject(ClientService);
   clients: IClient[] = [];
   @Output() editClientEvent = new EventEmitter<number>();
+  @Output() addClientEvent = new EventEmitter<void>();
 
    ngOnInit() {
       this.loadClients();
@@ -30,7 +31,9 @@ export class GetClientComponent {
         },
       });
     }
-
+ addClient() {
+    this.addClientEvent.emit();
+  }
   editClient(id: number) {
     this.editClientEvent.emit(id);
   }

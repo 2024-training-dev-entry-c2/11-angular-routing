@@ -1,9 +1,11 @@
 <section class="clients" aria-labelledby="clients-title">
   <h1 id="clients-title" class="visually-hidden">Gestión de Clientes</h1>
   <section class="clients__view" aria-label="Ver clientes">
-    <app-get-client (editClientEvent)="editClient($event)"></app-get-client>
+    <app-get-client (editClientEvent)="editClient($event)" (addClientEvent)="addClient()"></app-get-client>
   </section>
   <section class="clients__add" aria-label="Agregar/editar cliente">
-    <app-add-client [clientSelect]="clientEdit" (clientUpdated)="onClientUpdated()"></app-add-client>
+    <app-modal [isVisible]="isModalVisible" (close)="closeModal()">
+      <app-add-client [clientSelect]="clientEdit" (clientUpdated)="onClientUpdated()"></app-add-client>
+    </app-modal>
   </section>
 </section>
