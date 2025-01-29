@@ -10,7 +10,6 @@ export class RestaurantService {
  private http = inject(HttpClient);
   urlbase= 'http://localhost:8080/api/restaurante';
 
-
   execute(): Observable<IRestaurant> {
       return this.http.get<IRestaurant>(`${this.urlbase}/1`);
     }

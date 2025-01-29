@@ -4,11 +4,12 @@ import { AddOrdenComponent } from '../add-orden/add-orden.component';
 import { ICreateOrden } from '../../../inferfaces/create-orden.interface';
 import { OrdenService } from '../../../services/orden.service';
 import { IViewOrden } from '../../../inferfaces/view-orden.interface';
+import { ModalComponent } from "../../modal/modal.component";
 
 
 @Component({
   selector: 'app-orden',
-  imports: [GetOrdenComponent, AddOrdenComponent],
+  imports: [GetOrdenComponent, AddOrdenComponent, ModalComponent],
   templateUrl: './orden.component.html',
   styleUrl: './orden.component.scss'
 })
@@ -16,9 +17,32 @@ export class OrdenComponent {
   private ordenService = inject(OrdenService);
   ordenEdit: ICreateOrden | null = null;
   ordenes: ICreateOrden[] = [];
+  isModalVisible: boolean = false;
   @ViewChild(GetOrdenComponent) getOrdenComponent!: GetOrdenComponent;
+
+
   ngOnInit() {
     this.loadOrdenes();
+  }
+  addOrden() {
+    this.ordenEdit = null;
+    this.isModalVisible = true;
+  }
+  editOrden(id: number) {
+    this.ordenService.getOrdenById(id).subscribe((data: any) => {
+      this.ordenEdit = {
+        ...data,
+        clientId: data.client?.id || 0,
+      };
+      this.isModalVisible = true;
+    });
+  }
+
+  onOrdenUpdated() {
+    this.getOrdenComponent.loadOrdenes();
+    setTimeout(() => {
+      this.isModalVisible = false;
+    }, 2000);
   }
 
   loadOrdenes() {
@@ -34,18 +58,7 @@ export class OrdenComponent {
       }
     });
   }
-  editOrden(id: number) {
-    this.ordenService.getOrdenById(id).subscribe((data: any) => {
-      console.log('Datos recibidos del backend:', data);
-      this.ordenEdit = {
-        ...data,
-        clientId: data.client?.id || 0,
-      };
-      console.log('Orden para editar:', this.ordenEdit);
-    });
-  }
-  onOrdenUpdated() {
-    console.log('Orden actualizada. Actualizando la lista de órdenes...');
-    this.getOrdenComponent.loadOrdenes();
+  closeModal() {
+    this.isModalVisible = false;
   }
 }

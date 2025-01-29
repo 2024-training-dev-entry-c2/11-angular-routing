@@ -36,6 +36,9 @@
     tr:hover {
       color: variables.$color-gradients;
     }
+    hr {
+      opacity: 0;
+    }
     button {
       border: none;
       padding: 8px 16px;

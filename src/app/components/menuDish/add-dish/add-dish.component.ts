@@ -1,4 +1,4 @@
-import { Component, inject, Input, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, SimpleChanges } from '@angular/core';
 import { DishService } from '../../../services/dish.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IDish } from '../../../inferfaces/add-menu.interface';
@@ -12,6 +12,7 @@ export class AddDishComponent {
   private dishService = inject(DishService)
   private formBuilder = inject(FormBuilder);
   @Input() dishSelect: IDish | null = null;
+  @Output() dishUpdated = new EventEmitter<IDish>();
   public mensajeExito: string | null = null;
 
   isEditMode: boolean = false;
@@ -45,20 +46,22 @@ export class AddDishComponent {
         this.dishService.updateDish(dishData).subscribe({
           next: () => {
             this.mensajeExito = '¡Plato actualizado con éxito!';
-            this.dishForm.reset();
+            this.dishUpdated.emit(dishData);
             setTimeout(() => {
               this.mensajeExito = null;
-            }, 3000);
+              this.dishForm.reset();
+            }, 2000);
           },
         });
       } else {
         this.dishService.addDish(dishData).subscribe({
           next: () => {
             this.mensajeExito = '¡Plato creado con éxito!';
-            this.dishForm.reset();
+            this.dishUpdated.emit(dishData);
             setTimeout(() => {
               this.mensajeExito = null;
-            }, 3000);
+              this.dishForm.reset();
+            }, 2000);
           },
         });
       }

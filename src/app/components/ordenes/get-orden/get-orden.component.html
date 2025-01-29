@@ -10,9 +10,11 @@
         <th scope="col">Teléfono del Cliente</th>
         <th scope="col">Platos</th>
         <th scope="col">Acciones</th>
+        <th><app-botton-add (buttonEvent)="addOrden()"></app-botton-add></th>
       </tr>
     </thead>
     <tbody class="content__body" role="rowgroup">
+
       @for(orden of ordenes; track orden.id){
       <tr class="content__orden" role="row">
         <td>{{ orden.id }}</td>
@@ -35,6 +37,7 @@
         </td>
         <td>
           <app-botton-edit [id]="orden.id" (editEvent)="editOrden(orden.id)"></app-botton-edit>
+         <hr>
           <app-botton-delete [id]="orden.id" (deleteEvent)="deleteOrden($event)"></app-botton-delete>
         </td>
       </tr>

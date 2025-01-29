@@ -6,6 +6,7 @@ import { BottonDeleteComponent } from '../../bottons/botton-delete/botton-delete
 import { CurrencyPipe } from '@angular/common';
 import { ICreateOrden } from '../../../inferfaces/create-orden.interface';
 import { BottonEditComponent } from '../../bottons/botton-edit/botton-edit.component';
+import { BottonAddComponent } from "../../bottons/botton-add/botton-add.component";
 
 @Component({
   selector: 'app-get-orden',
@@ -14,7 +15,8 @@ import { BottonEditComponent } from '../../bottons/botton-edit/botton-edit.compo
     BottonDeleteComponent,
     CurrencyPipe,
     BottonEditComponent,
-  ],
+    BottonAddComponent
+],
   templateUrl: './get-orden.component.html',
   styleUrl: './get-orden.component.scss',
 })
@@ -23,9 +25,10 @@ export class GetOrdenComponent implements OnInit {
 
   ordenes: IViewOrden[] = [];
   items: IViewOrden[] = [];
-  restaurantId = 11;
   ordenEdit: ICreateOrden | null = null;
   @Output() editOrdenEvent = new EventEmitter<number>();
+  @Output() addOrdenEvent = new EventEmitter<void>();
+
 
   statusOptions = [
     'PENDING',
@@ -59,10 +62,15 @@ export class GetOrdenComponent implements OnInit {
   getButtonClass(status: string): string {
     return this.statusClassMap.get(status) || '';
   }
+  addOrden() {
+    this.addOrdenEvent.emit();
+  }
   editOrden(id: number) {
     this.editOrdenEvent.emit(id);
   }
-
+  onOrdenUpdated(): void {
+    this.loadOrdenes();
+  }
   deleteOrden(id: number): void {
     this.ordenService.deleteOrderById(id).subscribe({
       next: () => {
